@@ -1,8 +1,17 @@
 <?
 	include_once "./header.php";
 ?>
+  <style>
+	#category_list  tr td{
+		border-bottom: 1px solid black;
+		/*border-right: 1px solid black;*/
+	}
+	#category_list {
+		border-collapse: collapse;
+	}  
+  </style>
   <body>
-    <h2>카테고리 입력/수정</h2>
+    <h2>------------------------ 카테고리 입력 ------------------------</h2>
     <div>
       <table>
         <tr>
@@ -69,10 +78,6 @@
             <input type="radio" name="cate_accessYN" value="SPECIFIC">특정 회원등급
             <select id="access_specific">
               <option value="">선택하세요</option>
-              <option value="VIP">VIP</option>
-              <option value="GOLD">GOLD</option>
-              <option value="SILVER">SILVER</option>
-              <option value="BRONZE">BRONZE</option>
             </select>
           </td>
         </tr>
@@ -83,6 +88,12 @@
         </tr>
       </table>
     </div>
+    <h2>------------------------ 카테고리 수정 ------------------------</h2>
+    <div>
+      <table id="category_list">
+        
+      </table>
+    </div>
   </body>
 </html>
 <script type="text/javascript">
@@ -90,6 +101,6 @@ $(document).ready(function(){
 	// 회원 등급 셀렉트박스
 	show_select_grade("access_specific");
 	show_select_cate1("cate_1");
-	show_select_cate2("cate_2");
+	show_category_list("category_list");
 });
 </script>

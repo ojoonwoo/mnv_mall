@@ -30,13 +30,14 @@ switch ($_REQUEST['exec'])
 	break;
 
 	case "show_select_cate2" :
-		$cate2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_3=0";
+		$cate_1		= $_REQUEST['cate_1'];
+		$cate2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2<>0 AND cate_3=0";
 		$cate2_result		= mysqli_query($my_db, $cate2_query);
 
 		$innerHTML	= "<option value=''>선택하세요</option>";
 		while ($cate2_data	= mysqli_fetch_array($cate2_result))
 		{
-			$innerHTML	.= "<option value='".$cate2_data['cate_2']."'>".$cate1_data['cate_name']."</option>";
+			$innerHTML	.= "<option value='".$cate2_data['cate_2']."'>".$cate2_data['cate_name']."</option>";
 		}
 
 		echo $innerHTML;
@@ -50,31 +51,36 @@ switch ($_REQUEST['exec'])
 		$cate_pcYN				= $_REQUEST['cate_pcYN'];
 		$cate_mobileYN		= $_REQUEST['cate_mobileYN'];
 		$cate_accessYN		= $_REQUEST['cate_accessYN'];
+		$access_specific		= $_REQUEST['access_specific'];
+		if ($cate_accessYN == "SPECIFIC")
+			$accessYN	= $access_specific;
+		else
+			$accessYN	= $cate_accessYN;
 
 		if ($cate_1 == "")
 		{
 			$care1_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1 <> 0 and cate_2 = 0 and cate_3 = 0";
 			$care1_result		= mysqli_query($my_db, $care1_query);
-			$cate1_num		= mysqli_num_rows($care1_result);
+			$cate1_num		= @mysqli_num_rows($care1_result);
 			$cate_1				= $cate1_num + 1;
 		}else{
 			if ($cate_2 == "")
 			{
-				$care2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_2 <> 0 and cate_3 = 0";
+				$care2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2 <> 0 and cate_3 = 0";
 				$care2_result		= mysqli_query($my_db, $care2_query);
-				$cate2_num		= mysqli_num_rows($care2_result);
+				$cate2_num		= @mysqli_num_rows($care2_result);
 				$cate_2				= $cate2_num + 1;
 			}else{
 				if ($cate_3 == "")
 				{
-					$care3_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_3 <> 0";
+					$care3_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2='".$cate_2."' AND cate_3 <> 0";
 					$care3_result		= mysqli_query($my_db, $care3_query);
-					$cate3_num		= mysqli_num_rows($care3_result);
+					$cate3_num		= @mysqli_num_rows($care3_result);
 					$cate_3				= $cate3_num + 1;
 				}
 			}
 		}
-		$cate_query		= "INSERT INTO ".$_gl['category_info_table']."(cate_1, cate_2, cate_3, cate_name, cate_pcYN, cate_mobileYN, cate_accessYN, cate_date) values('".$cate_1."','".$cate_2."','".$cate_3."','".$cate_name."','".$cate_pcYN."','".$cate_mobileYN."','".$cate_accessYN."','".date("Y-m-d H:i:s")."')";
+		$cate_query		= "INSERT INTO ".$_gl['category_info_table']."(cate_1, cate_2, cate_3, cate_name, cate_pcYN, cate_mobileYN, cate_accessYN, cate_date) values('".$cate_1."','".$cate_2."','".$cate_3."','".$cate_name."','".$cate_pcYN."','".$cate_mobileYN."','".$accessYN."','".date("Y-m-d H:i:s")."')";
 		$cate_result		= mysqli_query($my_db, $cate_query);
 
 		if ($cate_result)
@@ -83,6 +89,43 @@ switch ($_REQUEST['exec'])
 			$flag	= "N";
 
 		echo $flag;
+	break;
+
+	case "show_category_list" :
+		$target	= $_REQUEST['target'];
+
+		$list_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE 1 ORDER BY cate_1 ASC, cate_2 ASC, cate_3 ASC";
+		$list_result		= mysqli_query($my_db, $list_query);
+
+		$innerHTML	= "<tr>";
+		$innerHTML	.= "<td>순번</td>";
+		$innerHTML	.= "<td>1번 카테고리</td>";
+		$innerHTML	.= "<td>2번 카테고리</td>";
+		$innerHTML	.= "<td>3번 카테고리</td>";
+		$innerHTML	.= "<td>카테고리 명</td>";
+		$innerHTML	.= "<td>PC 화면 노출여부</td>";
+		$innerHTML	.= "<td>MOBILE 화면 노출여부</td>";
+		$innerHTML	.= "<td>카테고리 접속 권한</td>";
+		$innerHTML	.= "<td>카테고리 생성 날짜</td>";
+		$innerHTML	.= "</tr>";
+		$i	= 1;
+		while ($list_data = mysqli_fetch_array($list_result))
+		{
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<td>".$i."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_1']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_2']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_3']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_name']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_pcYN']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_mobileYN']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_accessYN']."</td>";
+			$innerHTML	.= "<td>".$list_data['cate_date']."</td>";
+			$innerHTML	.= "</tr>";
+			$i++;
+		}
+
+		echo $innerHTML;
 	break;
 }
 ?>
