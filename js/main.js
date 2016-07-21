@@ -3,6 +3,9 @@
 *	PC전용 JS 파일
 *
 */
+
+
+
 $(document).on("click", "#cate1_btn_td a", function(){
 	$("#cate1_btn_td").hide();
 	$("#cate1_sel_td").show();

@@ -13,26 +13,6 @@
 
 /** RESET AND LAYOUT
 ===================================*/
-html, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
-blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
-img, ins, kbd, q, samp, small, strike, strong, sub, sup, tt, var, b, i,
-dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside, canvas, details, figure, figcaption,
-footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, video
-{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-.home-slider-wrapper {
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
-}
 
 .bx-wrapper {
 	position: relative;
@@ -53,22 +33,22 @@ footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, 
 	-moz-box-shadow: 0 0 5px #ccc;
 	-webkit-box-shadow: 0 0 5px #ccc;
 	box-shadow: 0 0 5px #ccc;
-	/*border:  5px solid #fff;*/
+	border:  5px solid #fff;
 	left: -5px;
 	background: #fff;
 	
 	/*fix other elements on the page moving (on Chrome)*/
 	-webkit-transform: translatez(0);
 	-moz-transform: translatez(0);
-	-ms-transform: translatez(0);
-	-o-transform: translatez(0);
-	transform: translatez(0);
+    	-ms-transform: translatez(0);
+    	-o-transform: translatez(0);
+    	transform: translatez(0);
 }
 
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
 	position: absolute;
-	bottom: 10px;
+	bottom: -30px;
 	width: 100%;
 }
 
@@ -138,7 +118,7 @@ footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, 
 }
 
 .bx-wrapper .bx-next:hover {
-	background-position: 0 0;
+	background-position: -43px 0;
 }
 
 .bx-wrapper .bx-controls-direction a {
