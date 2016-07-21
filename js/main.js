@@ -79,6 +79,11 @@ $(document).on("click", "#submit_btn a", function(){
 
 });
 
+$(document).on("click", "#banner_submit", function(){
+	var device_distinct = $('#device_distinct').val();
+	var banner_title = $('#banner_title').val();
+});
+
 
 function show_select_grade(id)
 {
