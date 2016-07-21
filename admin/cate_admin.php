@@ -17,7 +17,7 @@
             <select id="cate_1">
               <option value="">선택하세요</option>
               <option value=""></option>
-            </select>
+            </select> *1차 카테고리를 선택하지 않으면 1차 카테고리에 저장이 됩니다.
           </td>
           <td id="cate1_btn_td">
             <a href="#">추가</a>
@@ -29,7 +29,7 @@
             <select id="cate_2">
               <option value="">선택하세요</option>
               <option value=""></option>
-            </select>
+            </select> *2차 카테고리를 선택하지 않으면 2차 카테고리에 저장이 됩니다.
           </td>
           <td id="cate2_btn_td">
             <a href="#">추가</a>
@@ -41,7 +41,7 @@
             <select id="cate_3">
               <option value="">선택하세요</option>
               <option value=""></option>
-            </select>
+            </select> *3차 카테고리를 선택하지 않으면 3차 카테고리에 저장이 됩니다.
           </td>
           <td id="cate3_btn_td">
             <a href="#">추가</a>
@@ -50,23 +50,30 @@
         <tr>
           <td>PC쇼핑몰 노출여부</td>
           <td>
-            <input type="radio" name="cate_pcYN" value="PC_Y">노출함
-            <input type="radio" name="cate_pcYN" value="PC_N">노출 안함
+            <input type="radio" name="cate_pcYN" value="Y">노출함
+            <input type="radio" name="cate_pcYN" value="N" checked>노출 안함
           </td>
         </tr>
         <tr>
           <td>모바일 쇼핑몰 노출여부</td>
           <td>
-            <input type="radio" name="cate_mobileYN" value="MOBILE_Y">노출함
-            <input type="radio" name="cate_mobileYN" value="MOBILE_N">노출 안함
+            <input type="radio" name="cate_mobileYN" value="Y">노출함
+            <input type="radio" name="cate_mobileYN" value="N" checked>노출 안함
           </td>
         </tr>
         <tr>
           <td>접근 권한</td>
           <td>
-            <input type="radio" name="cate_accessYN" value="ACCESS_ALL">전체(회원 + 비회원)
-            <input type="radio" name="cate_accessYN" value="ACCESS_MEMBER">회원전용(비회원 제외)
-            <input type="radio" name="cate_accessYN" value="ACCESS_SPECIFIC">특정 회원등급
+            <input type="radio" name="cate_accessYN" value="ALL">전체(회원 + 비회원)
+            <input type="radio" name="cate_accessYN" value="MEMBER" checked>회원전용(비회원 제외)
+            <input type="radio" name="cate_accessYN" value="SPECIFIC">특정 회원등급
+            <select id="access_specific">
+              <option value="">선택하세요</option>
+              <option value="VIP">VIP</option>
+              <option value="GOLD">GOLD</option>
+              <option value="SILVER">SILVER</option>
+              <option value="BRONZE">BRONZE</option>
+            </select>
           </td>
         </tr>
         <tr>
@@ -78,3 +85,11 @@
     </div>
   </body>
 </html>
+<script type="text/javascript">
+$(document).ready(function(){
+	// 회원 등급 셀렉트박스
+	show_select_grade("access_specific");
+	show_select_cate1("cate_1");
+	show_select_cate2("cate_2");
+});
+</script>
