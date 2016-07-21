@@ -96,6 +96,11 @@ $(document).on("click", "#submit_btn a", function(){
 
 });
 
+$(document).on("click", "#banner_submit", function(){
+	var device_distinct = $('#device_distinct').val();
+	var banner_title = $('#banner_title').val();
+});
+
 // 회원 등급 select 새로 생성
 function show_select_grade(id)
 {
