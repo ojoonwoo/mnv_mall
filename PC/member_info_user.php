@@ -59,16 +59,47 @@ include_once "../header.php";
     // result - 메일 발송
     if($insert_result) {
       echo "가입 성공!";
-      
-      $to      = 'ojoonwoo@gmail.com';
-      // $to      = $email;
-      $subject = 'test';
-      $message = 'test';
-      $headers = 'From: webmaster@localhost' . "\r\n" .
-          'Reply-To: minivertinsing@example.com' . "\r\n" .
-          'X-Mailer: PHP/' . phpversion();
 
-      mail($to, $subject, $message, $headers);
+  // 메일발송 시작
+      $nameFrom  = "미니버타이징";
+      $mailFrom = "localhost@localhost.com";
+      $nameTo  = "오준우";
+      $mailTo = "ojoonwoo@gmail.com";
+      // $cc = "참조";
+      // $bcc = "숨은참조";
+      $subject = "test";
+      $content = "test";    
+
+      $charset = "UTF-8";
+
+      $nameFrom   = "=?$charset?B?".base64_encode($nameFrom)."?=";
+      $nameTo   = "=?$charset?B?".base64_encode($nameTo)."?=";
+      $subject = "=?$charset?B?".base64_encode($subject)."?=";
+
+      $header  = "Content-Type: text/html; charset=utf-8\r\n";
+      $header .= "MIME-Version: 1.0\r\n";
+
+      $header .= "Return-Path: <". $mailFrom .">\r\n";
+      $header .= "From: ". $nameFrom ." <". $mailFrom .">\r\n";
+      $header .= "Reply-To: <". $mailFrom .">\r\n";
+      // if ($cc)  $header .= "Cc: ". $cc ."\r\n";
+      // if ($bcc) $header .= "Bcc: ". $bcc ."\r\n";
+
+      $mail_result = mail($mailTo, $subject, $content, $header, $mailFrom);
+      
+      // $mailto      = "ojoonwoo@gmail.com";
+      // // $to      = $email;
+      // $subject = "test";
+      // $message = "test";
+
+      // $mail_result = mail($mailto, $subject, $message);
+
+      if($mail_result){
+        echo "mail success";
+      }else{
+        echo "mail fail";
+        error_log($mailto, 0);  
+      }
       echo "<script>location.href='./member_index.php';</script>";
       
     }else{

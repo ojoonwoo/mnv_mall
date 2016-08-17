@@ -2,7 +2,7 @@
 include_once "../header.php";
 ?>
 <body>
-  <form action="./join.php" method="post" onsubmit="return validate();">
+  <form action="./member_info_user.php" method="post" onsubmit="return validate();">
     <h3>기본 정보 입력</h3>
     <strong>아이디 * :</strong> <input type="text" id="userid" name="userid" onblur="dupli_chk('id',this.value);return false;"> 영문 소문자+숫자, 4 - 16자, 숫자 처음X, 숫자로만 X (ajax로 실시간 체크)
     <br>
@@ -50,7 +50,7 @@ include_once "../header.php";
       <option>이메일 선택</option>
       <option value="gmail.com">gmail.com</option>
       <option value="naver.com">naver.com</option>
-      <option value="hanmail.com">hanmail.com</option>
+      <option value="hanmail.net">hanmail.net</option>
       <option>직접입력</option>
     </select>
     <br>

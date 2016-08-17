@@ -9,6 +9,6 @@
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
     <script type="text/javascript" src="../lib/bxslider/jquery.bxslider.js"></script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- join_form 에서만 불러와도 될듯합니다. -->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <title>Document</title>
   </head>
