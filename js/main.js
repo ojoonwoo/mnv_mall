@@ -42,6 +42,13 @@ $(document).on("change", "#cate_1", function(){
 	show_select_cate2("cate_2");
 });
 
+// 배너 구분 선택시 상세내용 설정
+$(document).on("change", "#banner_type", function(){
+	show_banner_config();
+});
+
+
+
 // 카테고리 정보 insert
 $(document).on("click", "#submit_btn a", function(){
 	var cate_name				= $("#cate_name").val();
@@ -167,4 +174,51 @@ function show_category_list(id)
 			$("#"+id).html(response);
 		}
 	});
+}
+
+// 배너 설정에서 배너 타입 불러오기
+function show_select_banner_type(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../main_exec.php",
+		data:{
+			"exec"	: "show_select_banner_type"
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 배너 설정에서 선택한 배너 상세 정보 불러오기
+function show_banner_config()
+{
+	var banner_type	= $("#banner_type").val();
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../main_exec.php",
+		data:{
+			"exec"				: "show_banner_detail",
+			"banner_type"		: banner_type
+
+		},
+		error: function(response){
+			console.log(response);
+		},
+		success: function(response){
+			// 배너 설정 DB에서 불러와 세팅
+			var banner_config_arr	= response.split("||");
+			$("#slide_speed").val(banner_config_arr[0]);
+			$("#slide_interval").val(banner_config_arr[1]);
+			$('input:radio[name=slide_effect]:input[value='+banner_config_arr[2]+']').attr("checked", true);
+			$("#bn_slide_speed").show();
+			$("#bn_slide_interval").show();
+			$("#bn_slide_effect").show();
+		}
+	});
+
 }
