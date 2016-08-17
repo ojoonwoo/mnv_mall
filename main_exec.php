@@ -127,5 +127,51 @@ switch ($_REQUEST['exec'])
 
 		echo $innerHTML;
 	break;
+
+// 회원가입시 아이디 중복체크
+	case "duplicate_check": 
+
+		$type = $_REQUEST['type'];
+		$input = $_REQUEST['input'];
+
+		if($type == 'id') {
+			$chk_id_query 	= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$input."'";
+			$chk_id_result 	= mysqli_query($my_db, $chk_id_query);
+			$chk_id_data	= mysqli_num_rows($chk_id_result);
+
+			if($chk_id_data > 0) {
+				$flag = "N";
+			}else{
+				$flag = "Y";
+			}
+		}
+		echo $flag;
+
+
+	break;
+
+// 회원수정시 회원본인인지 체크
+	case "member_check":
+
+		$m_id = $_REQUEST['m_id'];
+		$m_pw = $_REQUEST['m_pw'];
+
+		$id_query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$m_id."'";
+		$id_result		= mysqli_query($my_db, $id_query);
+		$id_data = mysqli_fetch_array($id_result);
+		if($id_data) { // 아이디가 있을경우 입력한 비밀번호 검사
+			$pw_query		= "SELECT mb_id,mb_name,mb_question,mb_answer,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_gender,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$id_data['mb_id']."' AND mb_password='".$m_pw."'";
+			$pw_result		= mysqli_query($my_db, $pw_query);
+			$pw_data 		= mysqli_fetch_array($pw_result);
+			if($pw_data) {
+				echo json_encode($pw_data);
+			}else{
+				echo json_encode("P");
+			}
+		}else{ // 입력한 아이디가 없는경우
+			echo json_encode("N");
+		} 
+
+	break;
 }
 ?>
