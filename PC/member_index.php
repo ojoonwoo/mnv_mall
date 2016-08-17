@@ -63,7 +63,8 @@ include_once "../header.php";
                 var info_array = $.parseJSON(res);
                 if(info_array['mb_id']){ // 정보 확인 완료
                     alert("확인 완료");
-                    go_page('modify', info_array);
+                    console.log(info_array);
+                    // go_page('modify', info_array);
                 }else if(info_array=='P'){ // 비밀번호가 틀림
                     alert("비밀번호가 맞지않습니다.");
                     m_pw.val('').focus();
