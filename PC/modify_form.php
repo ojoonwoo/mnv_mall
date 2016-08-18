@@ -1,17 +1,20 @@
 <?
 include_once "../header.php";
-// print_r($_POST);
-$split_email = explode('@', $_POST['mb_email']);
-$split_birth = explode('/', $_POST['mb_birth']);
-$split_phone = explode('-', $_POST['mb_handphone']);
-$split_tel = explode('-', $_POST['mb_telphone']);
+
+$user_id = $_SESSION['user_id'];
+$user_query = "SELECT mb_id,mb_name,mb_question,mb_answer,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_gender,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$user_id."'";
+$user_result = mysqli_query($my_db, $user_query);
+$user_data = mysqli_fetch_array($user_result);
+
+$split_email = explode('@', $user_data['mb_email']);
+$split_birth = explode('/', $user_data['mb_birth']);
+$split_phone = explode('-', $user_data['mb_handphone']);
+$split_tel = explode('-', $user_data['mb_telphone']);
 ?>
 <body>
-  <div id="dataHouse">
-  </div>
-  <form action="./member_info_user.php" method="post" onsubmit="return validate();">
+  <form method="post" id="modify_form">
     <h3>기본 정보 입력</h3>
-    <strong>아이디 * :</strong> <input type="text" id="userid" name="userid" value="<?=$_POST['mb_id']?>"readonly="true"> 
+    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>"readonly="true"> 
     <br>
     <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 대소문자, 최소 1개의 숫자/ 특수 문자 포함
     <br>
@@ -19,20 +22,20 @@ $split_tel = explode('-', $_POST['mb_telphone']);
     <br>
     <strong>비밀번호 확인 질문 * :</strong>
     <select id="password_Q" name="password_Q">
-      <option <? if($_POST['mb_question'] == 1) echo 'selected'; ?> value="1">기억에 남는 추억의 장소는?</option>
-      <option <? if($_POST['mb_question'] == 2) echo 'selected'; ?> value="2">자신의 인생 좌우명은?</option>
-      <option <? if($_POST['mb_question'] == 3) echo 'selected'; ?> value="3">자신의 보물 제1호는?</option>
+      <option <? if($user_data['mb_question'] == 1) echo 'selected'; ?> value="1">기억에 남는 추억의 장소는?</option>
+      <option <? if($user_data['mb_question'] == 2) echo 'selected'; ?> value="2">자신의 인생 좌우명은?</option>
+      <option <? if($user_data['mb_question'] == 3) echo 'selected'; ?> value="3">자신의 보물 제1호는?</option>
     </select>
     <br>
-    <strong>비밀번호 확인 답변 * :</strong> <input type="text" id="password_A" name="password_A" value="<?=$_POST['mb_answer']?>">
+    <strong>비밀번호 확인 답변 * :</strong> <input type="text" id="password_A" name="password_A" value="<?=$user_data['mb_answer']?>">
     <br>
-    <strong>이름 * :</strong> <input type="text" id="username" name="username" value="<?=$_POST['mb_name']?>" style="ime-mode:active">
+    <strong>이름 * :</strong> <input type="text" id="username" name="username" value="<?=$user_data['mb_name']?>" style="ime-mode:active">
     <br>
-    <strong>주소 * :</strong> <input type="text" name="zipcode" id="zipcode" value="<?=$_POST['mb_zipcode']?>"> <button onclick="daum_postcode();return false;">주소검색</button>
+    <strong>주소 * :</strong> <input type="text" name="zipcode" id="zipcode" value="<?=$user_data['mb_zipcode']?>" readonly="true"> <input type="button" id="find_addr" value="주소검색">
     <br>
-    <input type="text" name="addr1" id="addr1" value="<?=$_POST['mb_address1']?>" size="30"> 기본주소
+    <input type="text" name="addr1" id="addr1" value="<?=$user_data['mb_address1']?>" size="30" readonly="true"> 기본주소
     <br>
-    <input type="text" name="addr2" id="addr2" value="<?=$_POST['mb_address2']?>"> 나머지주소
+    <input type="text" name="addr2" id="addr2" value="<?=$user_data['mb_address2']?>"> 나머지주소
     <br>
     <strong>휴대전화 * :</strong>
     <select id="phone1" name="phone1">
@@ -46,22 +49,21 @@ $split_tel = explode('-', $_POST['mb_telphone']);
     - <input type="text" id="phone2" name="phone2" value="<?=$split_phone[1]?>"> - <input type="text" id="phone3" name="phone3" value="<?=$split_phone[2]?>">
     <br>
     <strong>SMS 수신여부 * :</strong>
-    <input type="radio" name="smsYN" <? if($_POST['mb_smsYN'] == 'Y') echo 'checked'; ?> value="Y">수신함
-    <input type="radio" name="smsYN" <? if($_POST['mb_smsYN'] == 'N') echo 'checked'; ?> value="N">수신안함
+    <input type="radio" name="smsYN" <? if($user_data['mb_smsYN'] == 'Y') echo 'checked'; ?> value="Y">수신함
+    <input type="radio" name="smsYN" <? if($user_data['mb_smsYN'] == 'N') echo 'checked'; ?> value="N">수신안함
     <br>
     <strong>이메일 * :</strong>
     <input type="text" id="email1" name="email1" value="<?=$split_email[0]?>"> @ <input type="text" id="email2" name="email2" value="<?=$split_email[1]?>" readonly="true"> 
-    <select id="email3" onchange="auto_insert();return false;">
-      <option>이메일 선택</option>
+    <select id="email3"">
+      <option value="direct">직접입력</option>
       <option value="gmail.com">gmail.com</option>
       <option value="naver.com">naver.com</option>
       <option value="hanmail.net">hanmail.net</option>
-      <option>직접입력</option>
     </select>
     <br>
     <strong>이메일 수신여부 * :</strong>
-    <input type="radio" name="emailYN" <? if($_POST['mb_emailYN'] == 'Y') echo 'checked'; ?> value="Y">수신함
-    <input type="radio" name="emailYN" <? if($_POST['mb_emailYN'] == 'N') echo 'checked'; ?> value="N">수신안함
+    <input type="radio" name="emailYN" <? if($user_data['mb_emailYN'] == 'Y') echo 'checked'; ?> value="Y">수신함
+    <input type="radio" name="emailYN" <? if($user_data['mb_emailYN'] == 'N') echo 'checked'; ?> value="N">수신안함
     <br><br>
     <h3>추가 정보 입력</h3><br>
     <strong>생년월일 :</strong> 
@@ -76,16 +78,15 @@ $split_tel = explode('-', $_POST['mb_telphone']);
     - <input type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>"> - <input type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
     <br><br>
     <strong>성별</strong>
-    <input type="radio" name="gender" <? if($_POST['mb_gender'] == 'M') echo 'checked'; ?> value="M">남
-    <input type="radio" name="gender" <? if($_POST['mb_gender'] == 'F') echo 'checked'; ?> value="F">여
+    <input type="radio" name="gender" <? if($user_data['mb_gender'] == 'M') echo 'checked'; ?> value="M">남
+    <input type="radio" name="gender" <? if($user_data['mb_gender'] == 'F') echo 'checked'; ?> value="F">여
     <br><br>
-    <input type="hidden" name="type" value="modify">
-    <button type="submit">수정</button>&nbsp;&nbsp;&nbsp;
-    <button type="reset">취소</button>
+    <input type="button" id="submit" value="수정">&nbsp;&nbsp;&nbsp;
+    <input type="reset" value="취소">
   </form>
 <script type="text/javascript">
-
-  function daum_postcode() {
+  var check;
+  $('#find_addr').on('click', function() {
     new daum.Postcode({
       oncomplete: function(data) {
           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -125,107 +126,64 @@ $split_tel = explode('-', $_POST['mb_telphone']);
           document.getElementById('addr2').focus();
       }
     }).open();
-  }
+  });
 
-  function validate() {
-      // var userid = document.getElementById('userid');
-      var password = document.getElementById('password');
-      var passchk = document.getElementById('passchk');
-      var username = document.getElementById('username');
-      var zipcode = document.getElementById('zipcode');
-      var addr1 = document.getElementById('addr1');
-      var addr2 = document.getElementById('addr2');
-      var password_Q = document.getElementById('password_Q');
-      var password_A = document.getElementById('password_A');
-      var email1 = document.getElementById('email1');
-      var email2 = document.getElementById('email2');
-      var tel1 = document.getElementById('tel1');
-      var tel2 = document.getElementById('tel2');
-      var tel3 = document.getElementById('tel3');
-      var phone1 = document.getElementById('phone1');
-      var phone2 = document.getElementById('phone2');
-      var phone3 = document.getElementById('phone3');
-
-      // 비밀번호 검사
-      // 영문 대소문자
-      // 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
-      // if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{4,12}$/, password, "비밀번호에 대소문자, 최소 1개의 숫자/ 특수 문자 포함"))
-      //        return false;
-
-      if(!chk(/^[a-zA-Z0-9]{4,12}$/, password, "비밀번호는 숫자, 영문자 혼합으로 4~12자 입력할것"))
-             return false;
-
-      // 비밀번호 확인 검사
-      if(password.value!=passchk.value) {
-             alert("비밀번호가 틀립니다");
-             return false;
-      }
-     
-      // 이름 검사
-      // 2글자 이상, 한글만
-      // 통과하지 못하면 한글로 2글자 이상을 넣으세요~ alert 출력!
-      if(!chk(/^[가-힝]{2,}$/, username, "이름은 한글로 2글자 이상을 넣으세요."))
-             return false;
-
-
-      // 우편번호, 주소 검사
-      if(zipcode.value == '' || addr1.value == '') {
-        alert("주소를 입력해주세요.");
-        return false;
-      }
-     
-      // 전화번호 검사
-
-      // 전화번호 앞자리는 2~3자리 숫자, 두번째 자리는 3~4자리 숫자
-      // 세번째 자리는 4자리 숫자
-
-      // if (tel1.value != '') {
-      //        if (!chk(/^[0-9]{3,}$/, tel2, "번호 3자리 이상 입력"))
-      //                return false;
-      //        if (!chk(/^[0-9]{4}$/, tel3, "4자리 번호 입력"))
-      //                return false;
-      //        }
-
-      if (phone1.value != '') {
-             if (!chk(/^[0-9]{3,}$/, phone2, "번호 3자리 이상 입력"))
-                     return false;
-             if (!chk(/^[0-9]{4}$/, phone3, "4자리 번호 입력"))
-                     return false;
-             }
-
-      if (email1.value != '') {
-            email1.value = email1.value+'@'+email2.value;
-            if(!chk(/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/, email1, "이메일 주소가 올바르지 않습니다."))
-               return false;
-             }
-    }
-
-
-      // 전체 공백 체크
-
-
-
-  function chk(re, e, msg) {
-         if (re.test(e.value)) {
-             return true;
-         }
-
-         alert(msg);
-         e.value = "";
-         e.focus();
-         return false;
-  }
-
-  function auto_insert() {
-    $('#email2').attr('readonly', false);
+  $('#email3').on('change', function(){
+    $('#email2').attr('disabled', false);
     var mail = $('#email3').val();
-    if(mail=="직접입력") {
+    if(mail=="direct") {
       $('#email2').val('').focus();
     }else{
-      $('#email2').empty().val(mail);
-      $('#email2').attr('readonly', true);
+      $('#email2').val('').val(mail);
+      $('#email2').attr('disabled', true);
     }
-  }
+  });
+
+  $('#submit').on('click', function(){
+    check = validate('modify');
+
+    if(check){
+      $.ajax({
+        method: 'POST',
+        url: '../main_exec.php',
+        data: {
+          exec        : "member_modify",
+          user_id  : user_id.value,
+          password  : password.value,
+          username  : username.value,
+          zipcode  : zipcode.value,
+          addr1  : addr1.value,
+          addr2  : addr2.value,
+          password_Q  : password_Q.value,
+          password_A  : password_A.value,
+          email1  : email1.value,
+          email2  : email2.value,
+          emailYN  : $(':radio[name="emailYN"]:checked').val(),
+          tel1  : tel1.value,
+          tel2  : tel2.value,
+          tel3  : tel3.value,
+          phone1  : phone1.value,
+          phone2  : phone2.value,
+          phone3  : phone3.value,
+          smsYN  : $(':radio[name="smsYN"]:checked').val(),
+          gender  : $(':radio[name="gender"]:checked').val(),
+          phone2  : phone2.value,
+          birthY  : $('#birthY').val(),
+          birthM  : $('#birthM').val(),
+          birthD  : $('#birthD').val()
+        },
+        success: function(res){
+          if(res=='Y'){
+            alert("수정 성공");
+            location.href='./member_index.php';;
+          }else{
+            alert("수정 실패");
+          }
+        }
+      });
+    }
+  });
+
 
 </script>
 </body>

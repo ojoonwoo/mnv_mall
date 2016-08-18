@@ -2,9 +2,9 @@
 include_once "../header.php";
 ?>
 <body>
-  <form action="./member_info_user.php" method="post" onsubmit="return validate();">
+  <form id="join_form">
     <h3>기본 정보 입력</h3>
-    <strong>아이디 * :</strong> <input type="text" id="userid" name="userid" onblur="dupli_chk('id',this.value);return false;"> 영문 소문자+숫자, 4 - 16자, 숫자 처음X, 숫자로만 X (ajax로 실시간 체크)
+    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" onblur="dupli_chk(this.value);return false;"> 영문 소문자+숫자, 4 - 16자, 숫자 처음X, 숫자로만 X (ajax로 실시간 체크)
     <br>
     <em id="check_alert" style="color:#999"></em>
     <br>
@@ -23,9 +23,9 @@ include_once "../header.php";
     <br>
     <strong>이름 * :</strong> <input type="text" id="username" name="username" style="ime-mode:active">
     <br>
-    <strong>주소 * :</strong> <input type="text" name="zipcode" id="zipcode" placeholder="우편번호"> <button onclick="daum_postcode();return false;">주소검색</button>
+    <strong>주소 * :</strong> <input type="text" name="zipcode" id="zipcode" placeholder="우편번호" readonly="true"> <input type="button" id="find_addr" value="주소검색">
     <br>
-    <input type="text" name="addr1" id="addr1" placeholder="기본주소"> 기본주소
+    <input type="text" name="addr1" id="addr1" placeholder="기본주소" size="30" readonly="true"> 기본주소
     <br>
     <input type="text" name="addr2" id="addr2" placeholder="나머지주소"> 나머지주소
     <br>
@@ -45,13 +45,12 @@ include_once "../header.php";
     <input type="radio" name="smsYN" value="N">수신안함
     <br>
     <strong>이메일 * :</strong>
-    <input type="text" id="email1" name="email1"> @ <input type="text" id="email2" name="email2" readonly="true"> 
-    <select id="email3" onchange="auto_insert();return false;">
-      <option>이메일 선택</option>
+    <input type="text" id="email1" name="email1"> @ <input type="text" id="email2" name="email2"> 
+    <select id="email3">
+      <option value="direct">직접입력</option>
       <option value="gmail.com">gmail.com</option>
       <option value="naver.com">naver.com</option>
       <option value="hanmail.net">hanmail.net</option>
-      <option>직접입력</option>
     </select>
     <br>
     <strong>이메일 수신여부 * :</strong>
@@ -78,38 +77,13 @@ include_once "../header.php";
     <input type="checkbox" name="notice1" checked> 동의함
     <input type="checkbox" name="notice2" checked> 동의함
     <br><br>
-    <input type="hidden" name="type" value="register">
-    <button type="submit">회원가입</button>&nbsp;&nbsp;&nbsp;
-    <button type="reset">회원가입 취소</button>
+    <input type="button" id="submit" value="회원가입">&nbsp;&nbsp;&nbsp;
+    <input type="reset" value="회원가입 취소">
   </form>
 <script type="text/javascript">
-  function dupli_chk(type, input) {
-    if(input == ""){
-      $('#check_alert').text("아이디를 입력해주세요.");
-      return;
-    }
-
-    $.ajax({
-      method: 'POST',
-      url: '../main_exec.php',
-      data: {
-        exec            : "duplicate_check",
-        type : type,
-        input  : input
-      },
-      success: function(res){
-        var regExp1 = /^[a-z][a-z\d]{3,11}$/;
-        var regExp2 = /[0-9]/;
-        if(res == 'Y' && regExp1.test(input) == true && regExp2.test(input) == true){
-          $('#check_alert').text("사용가능한 아이디입니다.");
-        }else{
-          $('#check_alert').text("사용불가능한 아이디입니다.")
-        }
-      }
-    });
-  }
-
-  function daum_postcode() {
+  var val_check;
+  var id_check;
+  $('#find_addr').on('click', function() {
     new daum.Postcode({
       oncomplete: function(data) {
           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -149,18 +123,97 @@ include_once "../header.php";
           document.getElementById('addr2').focus();
       }
     }).open();
-  }
+  });
 
-  function auto_insert() {
-    $('#email2').attr('readonly', false);
+  $('#email3').on('change', function(){
+    $('#email2').attr('disabled', false);
     var mail = $('#email3').val();
-    if(mail=="직접입력") {
+    if(mail=="direct") {
       $('#email2').val('').focus();
     }else{
-      $('#email2').empty().val(mail);
-      $('#email2').attr('readonly', true);
+      $('#email2').val('').val(mail);
+      $('#email2').attr('disabled', true);
     }
+  });
+
+  $('#submit').on('click', function(){
+    val_check = validate('join');
+
+    if(id_check == 'Y'){
+      if(val_check){
+        $.ajax({
+          method: 'POST',
+          url: '../main_exec.php',
+          data: {
+            exec        : "member_join",
+            user_id  : user_id.value,
+            password  : password.value,
+            username  : username.value,
+            zipcode  : zipcode.value,
+            addr1  : addr1.value,
+            addr2  : addr2.value,
+            password_Q  : password_Q.value,
+            password_A  : password_A.value,
+            email1  : email1.value,
+            email2  : email2.value,
+            emailYN  : $(':radio[name="emailYN"]:checked').val(),
+            tel1  : tel1.value,
+            tel2  : tel2.value,
+            tel3  : tel3.value,
+            phone1  : phone1.value,
+            phone2  : phone2.value,
+            phone3  : phone3.value,
+            smsYN  : $(':radio[name="smsYN"]:checked').val(),
+            gender  : $(':radio[name="gender"]:checked').val(),
+            phone2  : phone2.value,
+            birthY  : $('#birthY').val(),
+            birthM  : $('#birthM').val(),
+            birthD  : $('#birthD').val()
+          },
+          success: function(res){
+            if(res=='Y'){
+              alert("가입 성공");
+              location.href='./member_index.php';;
+            }else{
+              alert("가입 실패");
+            }
+          }
+        });
+      }
+    }else{
+      alert("중복된 아이디입니다.");
+      $('#user_id').val('').focus;
+      return;
+    }
+  });
+
+  function dupli_chk(input) {
+    if(input == ""){
+      $('#check_alert').text("아이디를 입력해주세요.");
+      return;
+    }
+
+    $.ajax({
+      method: 'POST',
+      url: '../main_exec.php',
+      data: {
+        exec            : "duplicate_check",
+        input  : input
+      },
+      success: function(res){
+        var regExp1 = /^[a-z][a-z\d]{3,11}$/;
+        var regExp2 = /[0-9]/;
+        if(res == 'Y' && regExp1.test(input) == true && regExp2.test(input) == true){
+          id_check = 'Y';
+          $('#check_alert').text("사용가능한 아이디입니다.");
+        }else{
+          id_check = 'N';
+          $('#check_alert').text("사용불가능한 아이디입니다.")
+        }
+      }
+    });
   }
+
 
 </script>
 </body>
