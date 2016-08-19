@@ -2,7 +2,7 @@
 include_once "../header.php";
 
 $user_id = $_SESSION['user_id'];
-$user_query = "SELECT mb_id,mb_name,mb_question,mb_answer,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_gender,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$user_id."'";
+$user_query = "SELECT mb_id,mb_name,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$user_id."'";
 $user_result = mysqli_query($my_db, $user_query);
 $user_data = mysqli_fetch_array($user_result);
 
@@ -14,20 +14,11 @@ $split_tel = explode('-', $user_data['mb_telphone']);
 <body>
   <form method="post" id="modify_form">
     <h3>기본 정보 입력</h3>
-    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>"readonly="true"> 
+    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>" readonly="true"> 
     <br>
     <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 대소문자, 최소 1개의 숫자/ 특수 문자 포함
     <br>
     <strong>비밀번호 확인 * :</strong> <input type="password" id="passchk">
-    <br>
-    <strong>비밀번호 확인 질문 * :</strong>
-    <select id="password_Q" name="password_Q">
-      <option <? if($user_data['mb_question'] == 1) echo 'selected'; ?> value="1">기억에 남는 추억의 장소는?</option>
-      <option <? if($user_data['mb_question'] == 2) echo 'selected'; ?> value="2">자신의 인생 좌우명은?</option>
-      <option <? if($user_data['mb_question'] == 3) echo 'selected'; ?> value="3">자신의 보물 제1호는?</option>
-    </select>
-    <br>
-    <strong>비밀번호 확인 답변 * :</strong> <input type="text" id="password_A" name="password_A" value="<?=$user_data['mb_answer']?>">
     <br>
     <strong>이름 * :</strong> <input type="text" id="username" name="username" value="<?=$user_data['mb_name']?>" style="ime-mode:active">
     <br>
@@ -54,7 +45,7 @@ $split_tel = explode('-', $user_data['mb_telphone']);
     <br>
     <strong>이메일 * :</strong>
     <input type="text" id="email1" name="email1" value="<?=$split_email[0]?>"> @ <input type="text" id="email2" name="email2" value="<?=$split_email[1]?>" readonly="true"> 
-    <select id="email3"">
+    <select id="email3">
       <option value="direct">직접입력</option>
       <option value="gmail.com">gmail.com</option>
       <option value="naver.com">naver.com</option>
@@ -76,10 +67,6 @@ $split_tel = explode('-', $user_data['mb_telphone']);
       <option <? if($split_tel[0] == '032') echo 'selected'; ?> value="032">032</option>
     </select>
     - <input type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>"> - <input type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
-    <br><br>
-    <strong>성별</strong>
-    <input type="radio" name="gender" <? if($user_data['mb_gender'] == 'M') echo 'checked'; ?> value="M">남
-    <input type="radio" name="gender" <? if($user_data['mb_gender'] == 'F') echo 'checked'; ?> value="F">여
     <br><br>
     <input type="button" id="submit" value="수정">&nbsp;&nbsp;&nbsp;
     <input type="reset" value="취소">
@@ -154,8 +141,6 @@ $split_tel = explode('-', $user_data['mb_telphone']);
           zipcode  : zipcode.value,
           addr1  : addr1.value,
           addr2  : addr2.value,
-          password_Q  : password_Q.value,
-          password_A  : password_A.value,
           email1  : email1.value,
           email2  : email2.value,
           emailYN  : $(':radio[name="emailYN"]:checked').val(),
@@ -166,8 +151,6 @@ $split_tel = explode('-', $user_data['mb_telphone']);
           phone2  : phone2.value,
           phone3  : phone3.value,
           smsYN  : $(':radio[name="smsYN"]:checked').val(),
-          gender  : $(':radio[name="gender"]:checked').val(),
-          phone2  : phone2.value,
           birthY  : $('#birthY').val(),
           birthM  : $('#birthM').val(),
           birthD  : $('#birthD').val()
@@ -175,7 +158,7 @@ $split_tel = explode('-', $user_data['mb_telphone']);
         success: function(res){
           if(res=='Y'){
             alert("수정 성공");
-            location.href='./member_index.php';;
+            location.href='./member_index.php';
           }else{
             alert("수정 실패");
           }

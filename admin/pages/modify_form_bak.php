@@ -1,6 +1,6 @@
 <?
-    include_once "./header.php";
-    $select_query   = "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$_REQUEST['mb_id']."'";
+    include_once "header.php";
+    $select_query   = "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$_REQUEST['userid']."'";
     $select_result    = mysqli_query($my_db, $select_query);
     $select_data = mysqli_fetch_array($select_result);
     $split_email = explode('@', $select_data['mb_email']);

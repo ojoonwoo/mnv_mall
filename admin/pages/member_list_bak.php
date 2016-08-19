@@ -1,5 +1,5 @@
 <?
-    include_once "./header.php";
+    include_once "header.php";
     $m_list_query   = "SELECT * FROM ".$_gl['member_info_table']." WHERE 1 ORDER BY idx DESC";
     $m_list_result    = mysqli_query($my_db, $m_list_query);
 ?>
@@ -33,7 +33,7 @@
     <td><input type="button" id="send_mail" onclick="send();" value="메일">&nbsp;
         <input type="button" id="send_sms" onclick="send();" value="SMS">
     </td>
-    <td><input type="button" id="send_mail" onclick="action('modify', '<?=$row['mb_id']?>');" value="수정"></td>
+    <td><input type="button" id="modify" onclick="action('modify', '<?=$row['mb_id']?>');" value="수정"></td>
   </tr>
 <?
     }

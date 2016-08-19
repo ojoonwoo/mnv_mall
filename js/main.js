@@ -233,8 +233,6 @@ function validate(ref)
 	var zipcode = document.getElementById('zipcode');
 	var addr1 = document.getElementById('addr1');
 	var addr2 = document.getElementById('addr2');
-	var password_Q = document.getElementById('password_Q');
-	var password_A = document.getElementById('password_A');
 	var email1 = document.getElementById('email1');
 	var email2 = document.getElementById('email2');
 	var tel1 = document.getElementById('tel1');
@@ -267,11 +265,6 @@ function validate(ref)
 	// 비밀번호 확인 검사
 	if(password.value!=passchk.value) {
 		alert("비밀번호가 틀립니다");
-		return false;
-	}
-
-	if (password_A.value == '') {
-		alert("비밀번호 확인 답변을 입력해주세요.");
 		return false;
 	}
 
