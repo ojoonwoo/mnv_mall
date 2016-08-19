@@ -48,4 +48,17 @@ function select_category_info($idx)
 	return $data;
 }
 
+// 해당 거래처 정보 가져오기 (idx)
+function select_purchasing_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
 ?>

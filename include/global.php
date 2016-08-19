@@ -12,5 +12,6 @@
 	$_gl['grade_info_table']					= "grade_info";					// 회원 등급 정보 테이블
 	$_gl['admin_info_table']					= "admin_info";					// 관리자 계정 정보 테이블
 	$_gl['goodscode_info_table']			= "goodscode_info";			// 상품코드 정보 테이블
+	$_gl['purchasing_info_table']			= "purchasing_info";			// 거래처 정보 테이블
 
 ?>

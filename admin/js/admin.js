@@ -273,6 +273,7 @@ $(document).on("click", "#submit_btn4", function(){
 // *********************** 상품관리 *********************** //
 
 // 관리자 상품 관리 > 옵션사용 클릭
+/*
 var option_txt		= "";
 var option_num	= "1";
 $(document).on("click", "#goods_optionY", function(){
@@ -290,6 +291,25 @@ $(document).on("click", ".option_add_btn", function(){
 	option_num	= option_num + 1;
 	option_txt	= "<input class='form-control' id='goods_option"+option_num+"'> <button type='button' class='btn btn-primary option_add_btn'>+ 추가</button><br />";
 	$("#option_detail_div").append(option_txt);
+});
+*/
+var option_num	= 1;
+// 관리자 상품 관리 > 옵션사용 클릭
+$(document).on("click", "#goods_optionY", function(){
+	$("#option_ins").show();
+});
+
+// 관리자 상품 관리 > 옵션사용안함 클릭
+$(document).on("click", "#goods_optionN", function(){
+	$("#option_ins").hide();
+});
+
+// 관리자 상품 관리 > 옵션 추가 버튼 클릭
+$(document).on("click", ".option_add_btn", function(){
+	option_num	= option_num + 1;
+
+	option_txt	= '<tr><td><input class="form-control" id="option_name'+option_num+'" placeholder="예시) 색상" style="width:100%"></td><td><input class="form-control" id="option_value'+option_num+'" placeholder="예시) 블랙;화이트;블루" style="width:90%"> <button type="button" class="btn btn-primary btn-xs option_add_btn">+</button></td></tr>';
+	$("#option_detail_tr").append(option_txt);
 });
 
 // 관리자 상품 관리 > 적립금 직접 등록
@@ -492,7 +512,11 @@ $(document).on("click", "#submit_btn2", function(){
 	{
 		for (var i=1; i<=option_num; i++ )
 		{
-			goods_option_txt			+= "||" + $("#goods_option"+i).val();
+			var option_tag	= "";
+			if (i != option_num)
+				option_tag	= "||";
+
+			goods_option_txt			+= $("#option_name"+i).val() + "|+|" + $("#option_value"+i).val() + option_tag;
 		}
 		if (goods_option_txt == "")
 		{
@@ -561,6 +585,7 @@ $(document).on("click", "#submit_btn3", function(){
 	var goods_name					= $("#goods_name").val();
 	var goods_eng_name			= $("#goods_eng_name").val();
 	var goods_model					= $("#goods_model").val();
+	var goods_brand					= $("#goods_brand").val();
 	var goods_status					= $(':radio[name="goods_status"]:checked').val();
 	var goods_small_desc			= $("#goods_small_desc").val();
 	var goods_middle_desc			= $("#goods_middle_desc").val();
@@ -587,13 +612,13 @@ $(document).on("click", "#submit_btn3", function(){
 		alert("상품분류를 선택해주세요.");
 		return false;
 	}
-
+/*
 	if (cate_3 == "")
 	{
 		alert("상품분류를 선택해주세요.");
 		return false;
 	}
-
+*/
 	if (goods_name == "")
 	{
 		alert("상품명을 입력해주세요.");
@@ -692,6 +717,7 @@ $(document).on("click", "#submit_btn3", function(){
 			"goods_name"				: goods_name,
 			"goods_eng_name"		: goods_eng_name,
 			"goods_model"			: goods_model,
+			"goods_brand"			: goods_brand,
 			"goods_status"			: goods_status,
 			"goods_small_desc"		: goods_small_desc,
 			"goods_middle_desc"	: goods_middle_desc,
@@ -712,7 +738,157 @@ $(document).on("click", "#submit_btn3", function(){
 			//goods_code	= goods_code;
 			if (res_arr[0]== "Y")
 			{
-				img_submit();
+				img_submit2();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 선택한 상품 삭제
+$(document).on("click", ".del_goods", function(){
+	if (confirm(" 상품을 삭제하시겠습니까?"))
+	{
+		var goodscode	= $(".del_goods").attr("data-goodscode");
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "../../main_exec.php",
+			data:{
+				"exec"						: "delete_goods_info",
+				"goodscode"				: goodscode
+			},
+			success: function(response){
+				if (response == "Y")
+				{
+					alert("해당 상품이 삭제 되었습니다.");
+					location.reload();
+				}else{
+					alert("시스템 오류. 다시 시도해 주세요.");
+					location.reload();
+				}
+			}
+		});
+	}
+});
+
+// *********************** 거래처 *********************** //
+
+// 거래처 정보 insert
+$(document).on("click", "#submit_btn5", function(){
+	var purchasing_name		= $("#purchasing_name").val();
+	var purchasing_addr			= $("#purchasing_addr").val();
+	var purchasing_phone		= $("#purchasing_phone").val();
+	var purchasing_desc			= $("#purchasing_desc").val();
+
+	if (purchasing_name == "")
+	{
+		alert("거래처 명을 입력해주세요.");
+		$("#purchasing_name").focus();
+		return false;
+	}
+
+	if (purchasing_phone == "")
+	{
+		alert("거래처 전화번호를 입력해주세요.");
+		$("#purchasing_phone").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"						: "insert_purchasing_info",
+			"purchasing_name"		: purchasing_name,
+			"purchasing_addr"		: purchasing_addr,
+			"purchasing_phone"		: purchasing_phone,
+			"purchasing_desc"		: purchasing_desc
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("거래처 정보가 입력 되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 쇼핑몰 관리 > 거래처 관리 > 거래처 추가 버튼 클릭
+$(document).on("click", "#add_purchasing_btn", function(){
+	$("#list_purchasing").hide();
+	$("#add_purchasing").show();
+});
+
+// 쇼핑몰 관리 > 거래처 관리 > 거래처 목록 버튼 클릭
+$(document).on("click", "#list_purchasing_btn", function(){
+	$("#add_purchasing").hide();
+	$("#list_purchasing").show();
+});
+
+// 전체 거래처 리스트 생성
+function show_purchasing_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"	: "show_purchasing_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 상품 정보 update
+$(document).on("click", "#submit_btn6", function(){
+	var idx							= $("#idx").val();
+	var purchasing_name		= $("#purchasing_name").val();
+	var purchasing_addr			= $("#purchasing_addr").val();
+	var purchasing_phone		= $("#purchasing_phone").val();
+	var purchasing_desc			= $("#purchasing_desc").val();
+
+	if (purchasing_name == "")
+	{
+		alert("거래처 명을 입력해주세요.");
+		$("#purchasing_name").focus();
+		return false;
+	}
+
+	if (purchasing_phone == "")
+	{
+		alert("거래처 전화번호를 입력해주세요.");
+		$("#purchasing_phone").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"						: "update_purchasing_info",
+			"idx"							: idx,
+			"purchasing_name"		: purchasing_name,
+			"purchasing_addr"		: purchasing_addr,
+			"purchasing_phone"		: purchasing_phone,
+			"purchasing_desc"		: purchasing_desc
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("거래처 정보가 수정되었습니다.");
+				location.reload();
 			}else{
 				alert("다시 시도해 주세요.");
 				location.reload();
@@ -735,38 +911,25 @@ function img_submit()
 		url: '../../lib/filer/php/upload.php?goodscode='+goods_code,
 		data: stringData,
 		success:function(msg){
-			alert(msg);
 			alert('상품이 등록 되었습니다');
 			self.location.reload();
 		}
 	}); // end ajaxSubmit
 }
 
-// 선택한 상품 삭제
-function delete_goods(goods_name,goodscode)
+function img_submit2()
 {
-	if (confirm(" 상품을 삭제하시겠습니까?"))
-	{
-		$.ajax({
-			type   : "POST",
-			async  : false,
-			url    : "../../main_exec.php",
-			data:{
-				"exec"						: "delete_goods_info",
-				"goodscode"				: goodscode
-			},
-			success: function(response){
-				if (response == "Y")
-				{
-					alert("해당 상품이 삭제 되었습니다.");
-					location.reload();
-				}else{
-					alert("시스템 오류. 다시 시도해 주세요.");
-					location.reload();
-				}
-			}
-		});
-	}
+	var frm = $('#img_frm');
+	var stringData = frm.serialize();
+	frm.ajaxSubmit({
+		type: 'post',
+		url: '../../lib/filer/php/upload.php?goodscode='+goods_code,
+		data: stringData,
+		success:function(msg){
+			alert('상품정보가 수정 되었습니다');
+			self.location.reload();
+		}
+	}); // end ajaxSubmit
 }
 
 // 배너 설정에서 배너 타입 불러오기
