@@ -273,28 +273,6 @@ $(document).on("click", "#submit_btn4", function(){
 // *********************** 상품관리 *********************** //
 
 // 관리자 상품 관리 > 옵션사용 클릭
-/*
-var option_txt		= "";
-var option_num	= "1";
-$(document).on("click", "#goods_optionY", function(){
-	option_txt	= "<input class='form-control' id='goods_option"+option_num+"'> <button type='button' class='btn btn-primary option_add_btn'>+ 추가</button><br />";
-	$("#option_detail_div").html(option_txt);
-});
-
-// 관리자 상품 관리 > 옵션사용안함 클릭
-$(document).on("click", "#goods_optionN", function(){
-	$("#option_detail_div").html("");
-});
-
-// 관리자 상품 관리 > 옵션 추가 버튼 클릭
-$(document).on("click", ".option_add_btn", function(){
-	option_num	= option_num + 1;
-	option_txt	= "<input class='form-control' id='goods_option"+option_num+"'> <button type='button' class='btn btn-primary option_add_btn'>+ 추가</button><br />";
-	$("#option_detail_div").append(option_txt);
-});
-*/
-var option_num	= 1;
-// 관리자 상품 관리 > 옵션사용 클릭
 $(document).on("click", "#goods_optionY", function(){
 	$("#option_ins").show();
 });
@@ -306,7 +284,7 @@ $(document).on("click", "#goods_optionN", function(){
 
 // 관리자 상품 관리 > 옵션 추가 버튼 클릭
 $(document).on("click", ".option_add_btn", function(){
-	option_num	= option_num + 1;
+	option_num	= Number(option_num) + 1;
 
 	option_txt	= '<tr><td><input class="form-control" id="option_name'+option_num+'" placeholder="예시) 색상" style="width:100%"></td><td><input class="form-control" id="option_value'+option_num+'" placeholder="예시) 블랙;화이트;블루" style="width:90%"> <button type="button" class="btn btn-primary btn-xs option_add_btn">+</button></td></tr>';
 	$("#option_detail_tr").append(option_txt);
@@ -685,9 +663,14 @@ $(document).on("click", "#submit_btn3", function(){
 
 	if (goods_optionYN == "Y")
 	{
+		alert(option_num);
 		for (var i=1; i<=option_num; i++ )
 		{
-			goods_option_txt			+= "||" + $("#goods_option"+i).val();
+			var option_tag	= "";
+			if (i != option_num)
+				option_tag	= "||";
+
+			goods_option_txt			+= $("#option_name"+i).val() + "|+|" + $("#option_value"+i).val() + option_tag;
 		}
 		if (goods_option_txt == "")
 		{

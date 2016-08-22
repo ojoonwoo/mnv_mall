@@ -270,6 +270,7 @@
 	var oEditors		= [];
 	var m_oEditors	= [];
 	var goods_code = null;
+	var option_num	= 1;
 	$(document).ready(function() {
 		// 1번 카테고리 정보
 		show_select_cate1("cate_1");

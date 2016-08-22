@@ -67,7 +67,7 @@
                     <a href="#">추가</a>
                   </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td>2차 카테고리</td>
                   <td id="cate2_sel_td" style="display:none;">
                     <select id="cate_2">
@@ -90,7 +90,7 @@
                   <td id="cate3_btn_td">
                     <a href="#">추가</a>
                   </td>
-                </tr>
+                </tr> -->
                 <tr>
                   <td>PC쇼핑몰 노출여부</td>
                   <td>
