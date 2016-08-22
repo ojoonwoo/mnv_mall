@@ -48,6 +48,51 @@ function select_category_info($idx)
 	return $data;
 }
 
+/*
+* 메일발송 함수
+* $EMAIL : 보내는 사람 메일 주소
+* $NAME : 보내는 사람 이름
+* $SUBJECT : 메일 제목
+* $CONTENT : 메일 내용
+* $MAILTO : 받는 사람 메일 주소
+* $MAILTONAME : 받는 사람 이름 
+*/
+function sendMail($EMAIL, $NAME, $SUBJECT, $CONTENT, $MAILTO, $MAILTONAME){
+	$mail             = new PHPMailer();
+	$body             = $CONTENT;
+
+	$mail->IsSMTP(); // telling the class to use SMTP
+	// $mail->Host 	  = "www.coolio.so"; // SMTP server
+	$mail->SMTPDebug  = 0;						// enables SMTP debug information (for testing)
+												// 1 = errors and messages
+												// 2 = messages only
+	$mail->CharSet    = "utf-8";
+	$mail->SMTPAuth   = true;                  // enable SMTP authentication
+	$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+	$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+	$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+	$mail->Username   = "ojoonwoo2@gmail.com";             // GMAIL username
+	$mail->Password   = "5wnsdn23";              // GMAIL password
+
+	$mail->SetFrom($EMAIL, $NAME);
+
+	$mail->AddReplyTo($EMAIL, $NAME);
+
+	$mail->Subject    = $SUBJECT;
+
+	$mail->MsgHTML($body);
+
+	$address = $MAILTO;
+	$mail->AddAddress($address, $MAILTONAME);
+
+	// if(!$mail->Send()) {
+	// 	echo "Mailer Error: " . $mail->ErrorInfo;
+	// } else {
+	// 	echo "Message sent!";
+	// }
+	$mail->Send();
+}
+
 // 해당 거래처 정보 가져오기 (idx)
 function select_purchasing_info($idx)
 {

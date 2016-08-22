@@ -59,7 +59,7 @@
         <a href="#"><i class="fa fa-files-o fa-fw"></i> 고객관리<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li>
-            <a href="blank.html">Blank Page</a>
+            <a href="member_list.php">회원 목록</a>
           </li>
           <li>
             <a href="login.html">Login Page</a>

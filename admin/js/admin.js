@@ -1055,6 +1055,7 @@ $(document).on("click", ".JoinSubmit", function(){
 
 });
 
+
 // 배너 구분 선택시 상세내용 설정
 $(document).on("change", "#banner_type", function(){
 	show_banner_config();
