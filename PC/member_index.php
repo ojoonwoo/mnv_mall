@@ -2,7 +2,7 @@
 include_once "../header.php";
 session_start();
 // $_SESSION['user_id'] = $user_id;
-$_SESSION['user_id'] = "ojoonwoo2";
+$_SESSION['user_id'] = "ojoonwoo";
 ?>
 <body>
 <script type="text/javascript">
@@ -38,14 +38,14 @@ $_SESSION['user_id'] = "ojoonwoo2";
         });
     });
 </script>
-<h3>회원 가입</h3>
-<input type="button" id="register" value="가입">
-<br><br>
-<h3>회원 정보 수정</h3>
-<strong>아이디 :</strong> <input type="text" id="userid" name="userid" readonly="true" value="<?=$_SESSION['user_id']?>">
-<br><br>
-<strong>비밀번호 :</strong> <input type="password" id="password" name="password">
-<br><br>
-<input type="button" id="modify" value="수정">
+  <h3>회원 가입</h3>
+  <input type="button" id="register" value="가입">
+  <br><br>
+  <h3>회원 정보 수정</h3>
+  <strong>아이디 :</strong> <input type="text" id="userid" name="userid" readonly="true" value="<?=$_SESSION['user_id']?>">
+  <br><br>
+  <strong>비밀번호 :</strong> <input type="password" id="password" name="password">
+  <br><br>
+  <input type="button" id="modify" value="수정">
 </body>
 </html>

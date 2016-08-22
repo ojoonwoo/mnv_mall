@@ -400,8 +400,6 @@
 			$zipcode = $_POST['zipcode'];
 			$addr1 = $_POST['addr1'];
 			$addr2 = trim($_POST['addr2']);
-			$password_Q = $_POST['password_Q'];
-			$password_A = trim($_POST['password_A']);
 			$email1 = preg_replace("/\s+/", "", $_POST['email1']);
 			$email2 = $_POST['email2'];
 			$emailYN = $_POST['emailYN'];
@@ -412,7 +410,6 @@
 			$phone2 = $_POST['phone2'];
 			$phone3 = $_POST['phone3'];
 			$smsYN = $_POST['smsYN'];
-			$gender = $_POST['gender'];
 			$birthY = preg_replace("/\s+/", "", $_POST['birthY']);
 			$birthM = preg_replace("/\s+/", "", $_POST['birthM']);
 			$birthD = preg_replace("/\s+/", "", $_POST['birthD']);
@@ -452,6 +449,7 @@
 
 				// result - 메일 발송
 				if($insert_result) {
+					$mail_reult = sendMail("ojoonwoo2@gmail.com", "촌의감각", "회원가입을 축하합니다.", "내용", "ojoonwoo@naver.com", "$username");
 					$flag = "Y";
 				}else{
 					$flag = "N";

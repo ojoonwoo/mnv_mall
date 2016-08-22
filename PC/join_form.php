@@ -4,22 +4,13 @@ include_once "../header.php";
 <body>
   <form id="join_form">
     <h3>기본 정보 입력</h3>
-    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" onblur="dupli_chk(this.value);return false;"> 영문 소문자+숫자, 4 - 16자, 숫자 처음X, 숫자로만 X (ajax로 실시간 체크)
+    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" onblur="dupli_chk(this.value);return false;"> 첫글자 영문 소문자, 나머지 영문소문자/숫자 가능 6 - 12자, (ajax로 실시간 체크)
     <br>
     <em id="check_alert" style="color:#999"></em>
     <br>
-    <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 대소문자, 최소 1개의 숫자/ 특수 문자 포함
+    <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 첫글자 대소문자 나머지 영문대소문자/숫자/특수문자 가능 6 - 12자
     <br>
     <strong>비밀번호 확인 * :</strong> <input type="password" id="passchk">
-    <br>
-    <strong>비밀번호 확인 질문 * :</strong>
-    <select id="password_Q" name="password_Q">
-      <option value="1">기억에 남는 추억의 장소는?</option>
-      <option value="2">자신의 인생 좌우명은?</option>
-      <option value="3">자신의 보물 제1호는?</option>
-    </select>
-    <br>
-    <strong>비밀번호 확인 답변 * :</strong> <input type="text" id="password_A" name="password_A">
     <br>
     <strong>이름 * :</strong> <input type="text" id="username" name="username" style="ime-mode:active">
     <br>
@@ -69,13 +60,9 @@ include_once "../header.php";
     </select>
     - <input type="text" id="tel2" name="tel2"> - <input type="text" id="tel3" name="tel3">
     <br><br>
-    <strong>성별</strong>
-    <input type="radio" name="gender" value="M" checked>남
-    <input type="radio" name="gender" value="F">여
-    <br><br>
     <strong>이용약관</strong><br><br>
-    <input type="checkbox" name="notice1" checked> 동의함
-    <input type="checkbox" name="notice2" checked> 동의함
+    <input type="checkbox" id="notice1"> 동의함
+    <input type="checkbox" id="notice2"> 동의함
     <br><br>
     <input type="button" id="submit" value="회원가입">&nbsp;&nbsp;&nbsp;
     <input type="reset" value="회원가입 취소">
@@ -137,53 +124,50 @@ include_once "../header.php";
   });
 
   $('#submit').on('click', function(){
-    val_check = validate('join');
-
     if(id_check == 'Y'){
-      if(val_check){
-        $.ajax({
-          method: 'POST',
-          url: '../main_exec.php',
-          data: {
-            exec        : "member_join",
-            user_id  : user_id.value,
-            password  : password.value,
-            username  : username.value,
-            zipcode  : zipcode.value,
-            addr1  : addr1.value,
-            addr2  : addr2.value,
-            password_Q  : password_Q.value,
-            password_A  : password_A.value,
-            email1  : email1.value,
-            email2  : email2.value,
-            emailYN  : $(':radio[name="emailYN"]:checked').val(),
-            tel1  : tel1.value,
-            tel2  : tel2.value,
-            tel3  : tel3.value,
-            phone1  : phone1.value,
-            phone2  : phone2.value,
-            phone3  : phone3.value,
-            smsYN  : $(':radio[name="smsYN"]:checked').val(),
-            gender  : $(':radio[name="gender"]:checked').val(),
-            phone2  : phone2.value,
-            birthY  : $('#birthY').val(),
-            birthM  : $('#birthM').val(),
-            birthD  : $('#birthD').val()
-          },
-          success: function(res){
-            if(res=='Y'){
-              alert("가입 성공");
-              location.href='./member_index.php';;
-            }else{
-              alert("가입 실패");
-            }
-          }
-        });
-      }
+      val_check = validate('join');
     }else{
-      alert("중복된 아이디입니다.");
+      alert("아이디를 다시 입력해주세요.");
       $('#user_id').val('').focus;
       return;
+    }
+
+    if(val_check){
+      $.ajax({
+        method: 'POST',
+        url: '../main_exec.php',
+        data: {
+          exec        : "member_join",
+          user_id     : user_id.value,
+          password    : password.value,
+          username    : username.value,
+          zipcode     : zipcode.value,
+          addr1       : addr1.value,
+          addr2       : addr2.value,
+          email1      : email1.value,
+          email2      : email2.value,
+          emailYN     : $(':radio[name="emailYN"]:checked').val(),
+          tel1        : tel1.value,
+          tel2        : tel2.value,
+          tel3        : tel3.value,
+          phone1      : phone1.value,
+          phone2      : phone2.value,
+          phone3      : phone3.value,
+          smsYN       : $(':radio[name="smsYN"]:checked').val(),
+          phone2      : phone2.value,
+          birthY      : $('#birthY').val(),
+          birthM      : $('#birthM').val(),
+          birthD      : $('#birthD').val()
+        },
+        success: function(res){
+          if(res=='Y'){
+            alert("가입 성공");
+            location.href='./member_index.php';;
+          }else{
+            alert("가입 실패");
+          }
+        }
+      });
     }
   });
 
@@ -197,18 +181,20 @@ include_once "../header.php";
       method: 'POST',
       url: '../main_exec.php',
       data: {
-        exec            : "duplicate_check",
+        exec   : "duplicate_check",
         input  : input
       },
       success: function(res){
-        var regExp1 = /^[a-z][a-z\d]{3,11}$/;
-        var regExp2 = /[0-9]/;
-        if(res == 'Y' && regExp1.test(input) == true && regExp2.test(input) == true){
+        var regExp1 = /^[a-z]{1}[a-z0-9]{5,11}$/;
+        if(res == 'Y' && regExp1.test(input) == true){
           id_check = 'Y';
           $('#check_alert').text("사용가능한 아이디입니다.");
-        }else{
+        }else if(res == 'Y' && regExp1.test(input) == false){
           id_check = 'N';
-          $('#check_alert').text("사용불가능한 아이디입니다.")
+          $('#check_alert').text("사용불가능한 아이디입니다.");
+        }else{
+          id_check = 'D';
+          $('#check_alert').text("중복된 아이디입니다.");
         }
       }
     });

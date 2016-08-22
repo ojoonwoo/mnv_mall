@@ -16,7 +16,7 @@ $split_tel = explode('-', $user_data['mb_telphone']);
     <h3>기본 정보 입력</h3>
     <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>" readonly="true"> 
     <br>
-    <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 대소문자, 최소 1개의 숫자/ 특수 문자 포함
+    <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 첫글자 대소문자 나머지 영문대소문자/숫자/특수문자 가능 6 - 12자
     <br>
     <strong>비밀번호 확인 * :</strong> <input type="password" id="passchk">
     <br>
@@ -72,7 +72,17 @@ $split_tel = explode('-', $user_data['mb_telphone']);
     <input type="reset" value="취소">
   </form>
 <script type="text/javascript">
-  var check;
+  var val_check;
+  var id_check;
+
+  $(window).load(function() {
+    if($('#birthY').val() !== ''){
+      $('#birthY').attr('readonly', 'true');
+      $('#birthM').attr('readonly', 'true');
+      $('#birthD').attr('readonly', 'true');
+    }
+  });
+
   $('#find_addr').on('click', function() {
     new daum.Postcode({
       oncomplete: function(data) {
@@ -127,9 +137,15 @@ $split_tel = explode('-', $user_data['mb_telphone']);
   });
 
   $('#submit').on('click', function(){
-    check = validate('modify');
+    // if(id_check == 'Y'){
+    val_check = validate('modify');
+    // }else{
+    //   alert("중복된 아이디입니다.");
+    //   $('#user_id').val('').focus;
+    //   return;
+    // }
 
-    if(check){
+    if(val_check){
       $.ajax({
         method: 'POST',
         url: '../main_exec.php',
