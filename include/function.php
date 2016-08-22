@@ -49,6 +49,7 @@ function select_category_info($idx)
 }
 
 /*
+* 메일발송 함수
 * $EMAIL : 보내는 사람 메일 주소
 * $NAME : 보내는 사람 이름
 * $SUBJECT : 메일 제목
@@ -90,6 +91,19 @@ function sendMail($EMAIL, $NAME, $SUBJECT, $CONTENT, $MAILTO, $MAILTONAME){
 	// 	echo "Message sent!";
 	// }
 	$mail->Send();
+}
+
+// 해당 거래처 정보 가져오기 (idx)
+function select_purchasing_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
 }
 
 ?>

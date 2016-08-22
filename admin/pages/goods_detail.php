@@ -216,14 +216,50 @@
                   <td colspan="2">
                     <input type="radio" name="goods_optionYN" id="goods_optionY" value="Y" <?if ($goods_info['goods_optionYN']=="Y"){?>checked<?}?>> 사용함
                     <input type="radio" name="goods_optionYN" id="goods_optionN" value="N" <?if ($goods_info['goods_optionYN']=="N"){?>checked<?}?>> 사용안함
-                    <div id="option_detail_div">
-<?
-
-?>
-                      <input class='form-control' id='goods_option"+option_num+"'> <button type='button' class='btn btn-primary option_add_btn'>+ 추가</button><br />
-                    </div>
                   </td>
                 </tr>
+<?
+	if ($goods_info['goods_optionYN'] == "Y")
+	{
+		$option_gubun	= explode("||",$goods_info['goods_option_txt']);
+?>
+                <tr>
+                  <td>옵션입력</td>
+                  <td colspan="2">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width:30%">옵션명</th>
+                          <th>옵션값</th>
+                        </tr>
+                      </thead>
+                      <tbody id="option_detail_tr">
+<?
+	$i	= 1;
+	foreach($option_gubun as $key => $val)
+	{
+		$option_detail_gubun	= explode("|+|",$val);
+?>
+                        <tr>
+                          <td>
+                            <input class="form-control" id="option_name<?=$i?>" placeholder="예시) 색상" style="width:100%" value="<?=$option_detail_gubun[0]?>">
+                          </td>
+                          <td>
+                            <input class="form-control" id="option_value<?=$i?>" placeholder="예시) 블랙;화이트;블루" style="width:90%" value="<?=$option_detail_gubun[1]?>"> 
+                            <button type="button" class="btn btn-primary btn-xs option_add_btn">+</button>
+                          </td>
+                        </tr>
+<?
+		$i++;
+	}
+?>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+<?
+	}
+?>
                 <tr>
                   <td>* 재고수량</td>
                   <td colspan="2">

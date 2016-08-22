@@ -22,6 +22,9 @@
           <li>
             <a href="banner.php">배너 관리</a>
           </li>
+          <li>
+            <a href="purchasing.php">거래처 관리</a>
+          </li>
         </ul>
         <!-- /.nav-second-level -->
       </li>

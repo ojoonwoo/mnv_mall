@@ -27,7 +27,8 @@
 		$i			= 0;
 		foreach($files['files'] as $key => $val)
 		{
-			$file_txt	.= "||".$val;
+			//$file_txt	.= "||".$val;
+			$file_txt	= $val;
 			$i++;
 		}
 		// 상품정보에 이미지 정보 업데이트

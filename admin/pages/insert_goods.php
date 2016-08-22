@@ -201,17 +201,39 @@
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
-                  <th colspan="2" style="background:#dde">옵션/재고 설정</th>
+                  <th colspan="3" style="background:#dde">옵션/재고 설정</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>옵션사용</td>
                   <td colspan="2">
-                    <input type="radio" name="goods_optionYN" id="goods_optionY" value="Y"> 사용함
+                    <input type="radio" name="goods_optionYN" id="goods_optionY" value="Y"> 사용함 ( 최대 5개 )
                     <input type="radio" name="goods_optionYN" id="goods_optionN" value="N" checked> 사용안함
-                    <div id="option_detail_div">
-                    </div>
+                  </td>
+                </tr>
+                <tr id="option_ins" style="display:none;">
+                  <td>옵션입력</td>
+                  <td colspan="2">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width:30%">옵션명</th>
+                          <th>옵션값</th>
+                        </tr>
+                      </thead>
+                      <tbody id="option_detail_tr">
+                        <tr>
+                          <td>
+                            <input class="form-control" id="option_name1" placeholder="예시) 색상" style="width:100%">
+                          </td>
+                          <td>
+                            <input class="form-control" id="option_value1" placeholder="예시) 블랙;화이트;블루" style="width:90%"> 
+                            <button type="button" class="btn btn-primary btn-xs option_add_btn">+</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </td>
                 </tr>
                 <tr>

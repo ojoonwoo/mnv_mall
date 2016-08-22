@@ -279,7 +279,44 @@
 				$innerHTML	.= "<td>".$list_data['cate_mobileYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_accessYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_date']."</td>";
-				$innerHTML	.= "<td><a href='./category_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a><a href='#' onclick='delete_goods(".$list_data['goods_name'].",".$list_data['goods_code'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "<td><a href='./category_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' onclick='delete_goods(".$list_data['goods_name'].",".$list_data['goods_code'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+
+			echo $innerHTML;
+		break;
+
+		case "show_purchasing_list" :
+			$target	= $_REQUEST['target'];
+
+			$list_query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>거래처명</th>";
+			$innerHTML	.= "<th>거래처 주소</th>";
+			$innerHTML	.= "<th>거래처 전화번호</th>";
+			$innerHTML	.= "<th>거래처 특이사항</th>";
+			$innerHTML	.= "<th>거래처 등록일자</th>";
+			$innerHTML	.= "<th>거래처 최근 정보수정일자</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['purchasing_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['purchasing_addr']."</td>";
+				$innerHTML	.= "<td>".$list_data['purchasing_phone']."</td>";
+				$innerHTML	.= "<td>".$list_data['purchasing_desc']."</td>";
+				$innerHTML	.= "<td>".$list_data['purchasing_regdate']."</td>";
+				$innerHTML	.= "<td>".$list_data['purchasing_latedate']."</td>";
+				$innerHTML	.= "<td><a href='./purchasing_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_purchasing' data-idx='".$list_data['idx']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
 			}
@@ -318,13 +355,28 @@
 				$innerHTML	.= "<td>".$list_data['sales_price']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_stock']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_regdate']."/".$list_data['goods_latedate']."</td>";
-				$innerHTML	.= "<td><a href='./goods_detail.php?goodscode=".$list_data['goods_code']."'><button type='button' class='btn btn-primary'>수정</button></a><a href='#' onclick='delete_goods(".$list_data['goods_name'].",".$list_data['goods_code'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "<td><a href='./goods_detail.php?goodscode=".$list_data['goods_code']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_goods' data-goodscode='".$list_data['goods_code']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
 			}
 			$innerHTML	.= "</tbody>";
 			echo $innerHTML;
 		break;
+
+		case "delete_goods_info" :
+			$goodscode	= $_REQUEST['goodscode'];
+
+			$goods_query		= "DELETE FROM ".$_gl['goods_info_table']." WHERE goods_code='".$goodscode."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+
+			if ($goods_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
 		case "show_stock_list" :
 			$target	= $_REQUEST['target'];
 			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY idx DESC";
@@ -365,6 +417,42 @@
 				$flag	= "N";
 			echo $flag;
 		break;
+
+		case "insert_purchasing_info" :
+			$purchasing_name	= $_REQUEST['purchasing_name'];
+			$purchasing_addr	= $_REQUEST['purchasing_addr'];
+			$purchasing_phone	= $_REQUEST['purchasing_phone'];
+			$purchasing_desc	= $_REQUEST['purchasing_desc'];
+
+			$purchasing_query		= "INSERT INTO ".$_gl['purchasing_info_table']."(purchasing_name,purchasing_addr,purchasing_phone,purchasing_desc,purchasing_regdate) values('".$purchasing_name."','".$purchasing_addr."','".$purchasing_phone."','".$purchasing_desc."','".date("Y-m-d H:i:s")."');"; 
+			$purchasing_result		= mysqli_query($my_db, $purchasing_query);
+
+			if ($purchasing_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "update_purchasing_info" :
+			$idx						= $_REQUEST['idx'];
+			$purchasing_name	= $_REQUEST['purchasing_name'];
+			$purchasing_addr	= $_REQUEST['purchasing_addr'];
+			$purchasing_phone	= $_REQUEST['purchasing_phone'];
+			$purchasing_desc	= $_REQUEST['purchasing_desc'];
+
+			$purchasing_query		= "UPDATE ".$_gl['purchasing_info_table']." SET purchasing_name='".$purchasing_name."',purchasing_addr='".$purchasing_addr."',purchasing_phone='".$purchasing_phone."',purchasing_desc='".$purchasing_desc."',purchasing_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+			$purchasing_result		= mysqli_query($my_db, $purchasing_query);
+
+			if ($purchasing_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
 		case "show_banner_detail" :
 			$banner_type	= $_REQUEST['banner_type'];
 			$list_query		= "SELECT * FROM ".$_gl['banner_config_info_table']." WHERE banner_type='".$banner_type."'";
@@ -545,8 +633,6 @@
 			// }else{ // 입력한 아이디가 없는경우
 			// 	echo json_encode("N");
 			// } 
-
-
 
 		break;
 }
