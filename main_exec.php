@@ -635,5 +635,20 @@
 			// } 
 
 		break;
+
+		case "insert_banner_info" :
+			$banner_name	= $_REQUEST['banner_name'];
+			$banner_type		= $_REQUEST['banner_type'];
+
+			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,banner_type,banner_regdate) values('".$banner_name."','".$banner_type."','".date("Y-m-d H:i:s")."')";
+			$banner_result	= mysqli_query($my_db, $banner_query);
+
+			if($banner_result)
+				$flag = "Y";
+			else
+				$flag = "N";
+
+			echo $banner_query;
+		break;
 }
 ?>

@@ -338,8 +338,9 @@ class Uploader {
 				$string = $random_string;
 			break;
 			case "name":
-				//$string = $file['name'];
-				$string = $_REQUEST['goodscode'];
+				$string = $file['name'];
+				//$string = $_REQUEST['goodscode'];
+				//$string = $file_change_name;
 			break;
 			default:
 				$string = $type;

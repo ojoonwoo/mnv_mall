@@ -61,9 +61,6 @@
           <li>
             <a href="member_list.php">회원 목록</a>
           </li>
-          <li>
-            <a href="login.html">Login Page</a>
-          </li>
         </ul>
         <!-- /.nav-second-level -->
       </li>
