@@ -67,7 +67,7 @@ function show_select_grade(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_select_grade"
 		},
@@ -83,7 +83,7 @@ function show_select_cate1(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_select_cate1"
 		},
@@ -111,7 +111,7 @@ function show_select_cate2(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_select_cate2",
 			"cate_1"	: cate_1
@@ -131,7 +131,7 @@ function show_select_cate3(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_select_cate3",
 			"cate_1"	: cate_1,
@@ -149,7 +149,7 @@ function show_category_list(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_category_list",
 			"target"	: id
@@ -188,7 +188,7 @@ $(document).on("click", "#submit_btn", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"			: "insert_cate_info",
 			"cate_name"			: cate_name,
@@ -243,7 +243,7 @@ $(document).on("click", "#submit_btn4", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"					: "update_cate_info",
 			"idx"						: idx,
@@ -273,28 +273,6 @@ $(document).on("click", "#submit_btn4", function(){
 // *********************** 상품관리 *********************** //
 
 // 관리자 상품 관리 > 옵션사용 클릭
-/*
-var option_txt		= "";
-var option_num	= "1";
-$(document).on("click", "#goods_optionY", function(){
-	option_txt	= "<input class='form-control' id='goods_option"+option_num+"'> <button type='button' class='btn btn-primary option_add_btn'>+ 추가</button><br />";
-	$("#option_detail_div").html(option_txt);
-});
-
-// 관리자 상품 관리 > 옵션사용안함 클릭
-$(document).on("click", "#goods_optionN", function(){
-	$("#option_detail_div").html("");
-});
-
-// 관리자 상품 관리 > 옵션 추가 버튼 클릭
-$(document).on("click", ".option_add_btn", function(){
-	option_num	= option_num + 1;
-	option_txt	= "<input class='form-control' id='goods_option"+option_num+"'> <button type='button' class='btn btn-primary option_add_btn'>+ 추가</button><br />";
-	$("#option_detail_div").append(option_txt);
-});
-*/
-var option_num	= 1;
-// 관리자 상품 관리 > 옵션사용 클릭
 $(document).on("click", "#goods_optionY", function(){
 	$("#option_ins").show();
 });
@@ -306,7 +284,7 @@ $(document).on("click", "#goods_optionN", function(){
 
 // 관리자 상품 관리 > 옵션 추가 버튼 클릭
 $(document).on("click", ".option_add_btn", function(){
-	option_num	= option_num + 1;
+	option_num	= Number(option_num) + 1;
 
 	option_txt	= '<tr><td><input class="form-control" id="option_name'+option_num+'" placeholder="예시) 색상" style="width:100%"></td><td><input class="form-control" id="option_value'+option_num+'" placeholder="예시) 블랙;화이트;블루" style="width:90%"> <button type="button" class="btn btn-primary btn-xs option_add_btn">+</button></td></tr>';
 	$("#option_detail_tr").append(option_txt);
@@ -347,7 +325,7 @@ $(document).on("blur", ".stock_td_fin", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"				: "update_stock_info",
 			"goods_code"		: this.id,
@@ -372,7 +350,7 @@ function show_goods_list(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_goods_list",
 			"target"	: id
@@ -389,7 +367,7 @@ function show_stock_list(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_stock_list",
 			"target"	: id
@@ -535,7 +513,7 @@ $(document).on("click", "#submit_btn2", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"						: "insert_goods_info",
 			"showYN"					: showYN,
@@ -685,9 +663,14 @@ $(document).on("click", "#submit_btn3", function(){
 
 	if (goods_optionYN == "Y")
 	{
+		alert(option_num);
 		for (var i=1; i<=option_num; i++ )
 		{
-			goods_option_txt			+= "||" + $("#goods_option"+i).val();
+			var option_tag	= "";
+			if (i != option_num)
+				option_tag	= "||";
+
+			goods_option_txt			+= $("#option_name"+i).val() + "|+|" + $("#option_value"+i).val() + option_tag;
 		}
 		if (goods_option_txt == "")
 		{
@@ -706,7 +689,7 @@ $(document).on("click", "#submit_btn3", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"						: "update_goods_info",
 			"showYN"					: showYN,
@@ -755,7 +738,7 @@ $(document).on("click", ".del_goods", function(){
 		$.ajax({
 			type   : "POST",
 			async  : false,
-			url    : "../../main_exec.php",
+			url    : "admin_exec.php",
 			data:{
 				"exec"						: "delete_goods_info",
 				"goodscode"				: goodscode
@@ -773,6 +756,53 @@ $(document).on("click", ".del_goods", function(){
 		});
 	}
 });
+
+function img_submit()
+{
+	var frm = $('#img_frm');
+	var stringData = frm.serialize();
+	frm.ajaxSubmit({
+		type: 'post',
+		url: '../../lib/filer/php/upload.php?ig=goods&goodscode='+goods_code,
+		data: stringData,
+		success:function(msg){
+			alert('상품이 등록 되었습니다');
+			self.location.reload();
+		}
+	}); // end ajaxSubmit
+}
+
+function img_submit2()
+{
+	var frm = $('#img_frm');
+	var stringData = frm.serialize();
+	frm.ajaxSubmit({
+		type: 'post',
+		url: '../../lib/filer/php/upload.php?ig=goods&goodscode='+goods_code,
+		data: stringData,
+		success:function(msg){
+			alert('상품정보가 수정 되었습니다');
+			self.location.reload();
+		}
+	}); // end ajaxSubmit
+}
+
+function img_submit3(idx)
+{
+	var frm = $('#main_image_frm');
+	var stringData = frm.serialize();
+	frm.ajaxSubmit({
+		type: 'post',
+		url: '../../lib/filer/php/upload.php?ig=banner&b_idx='+idx,
+		data: stringData,
+		success:function(msg){
+			alert(msg);
+			alert('배너가 등록 되었습니다');
+			self.location.reload();
+		}
+	}); // end ajaxSubmit
+}
+
 
 // *********************** 거래처 *********************** //
 
@@ -800,7 +830,7 @@ $(document).on("click", "#submit_btn5", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"						: "insert_purchasing_info",
 			"purchasing_name"		: purchasing_name,
@@ -839,7 +869,7 @@ function show_purchasing_list(id)
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"	: "show_purchasing_list",
 			"target"	: id
@@ -850,7 +880,7 @@ function show_purchasing_list(id)
 	});
 }
 
-// 상품 정보 update
+// 거래처 정보 update
 $(document).on("click", "#submit_btn6", function(){
 	var idx							= $("#idx").val();
 	var purchasing_name		= $("#purchasing_name").val();
@@ -875,7 +905,7 @@ $(document).on("click", "#submit_btn6", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"						: "update_purchasing_info",
 			"idx"							: idx,
@@ -897,87 +927,7 @@ $(document).on("click", "#submit_btn6", function(){
 	});
 });
 
-$(document).on("click", "#banner_submit", function(){
-	var device_distinct = $('#device_distinct').val();
-	var banner_title = $('#banner_title').val();
-});
-
-function img_submit()
-{
-	var frm = $('#img_frm');
-	var stringData = frm.serialize();
-	frm.ajaxSubmit({
-		type: 'post',
-		url: '../../lib/filer/php/upload.php?goodscode='+goods_code,
-		data: stringData,
-		success:function(msg){
-			alert('상품이 등록 되었습니다');
-			self.location.reload();
-		}
-	}); // end ajaxSubmit
-}
-
-function img_submit2()
-{
-	var frm = $('#img_frm');
-	var stringData = frm.serialize();
-	frm.ajaxSubmit({
-		type: 'post',
-		url: '../../lib/filer/php/upload.php?goodscode='+goods_code,
-		data: stringData,
-		success:function(msg){
-			alert('상품정보가 수정 되었습니다');
-			self.location.reload();
-		}
-	}); // end ajaxSubmit
-}
-
-// 배너 설정에서 배너 타입 불러오기
-function show_select_banner_type(id)
-{
-	$.ajax({
-		type   : "POST",
-		async  : false,
-		url    : "../../main_exec.php",
-		data:{
-			"exec"	: "show_select_banner_type"
-		},
-		success: function(response){
-			$("#"+id).html(response);
-		}
-	});
-}
-
-// 배너 설정에서 선택한 배너 상세 정보 불러오기
-function show_banner_config()
-{
-	var banner_type	= $("#banner_type").val();
-
-	$.ajax({
-		type   : "POST",
-		async  : false,
-		url    : "../../main_exec.php",
-		data:{
-			"exec"				: "show_banner_detail",
-			"banner_type"		: banner_type
-
-		},
-		error: function(response){
-			console.log(response);
-		},
-		success: function(response){
-			// 배너 설정 DB에서 불러와 세팅
-			var banner_config_arr	= response.split("||");
-			$("#slide_speed").val(banner_config_arr[0]);
-			$("#slide_interval").val(banner_config_arr[1]);
-			$('input:radio[name=slide_effect]:input[value='+banner_config_arr[2]+']').attr("checked", true);
-			$("#bn_slide_speed").show();
-			$("#bn_slide_interval").show();
-			$("#bn_slide_effect").show();
-		}
-	});
-
-}
+// *********************** 관리자 로그인 *********************** //
 
 // 관리자 로그인 정보 체크
 $(document).on("click", ".loginSubmit", function(){
@@ -1001,7 +951,7 @@ $(document).on("click", ".loginSubmit", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"			: "login_admin",
 			"admin_id"		: admin_id,
@@ -1049,7 +999,7 @@ $(document).on("click", ".JoinSubmit", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "../../main_exec.php",
+		url    : "admin_exec.php",
 		data:{
 			"exec"			: "join_admin",
 			"admin_id"		: admin_id,
@@ -1072,9 +1022,91 @@ $(document).on("click", ".JoinSubmit", function(){
 
 });
 
+// *********************** 배너 설정 *********************** //
 
-// 배너 구분 선택시 상세내용 설정
-$(document).on("change", "#banner_type", function(){
-	show_banner_config();
+// 배너 정보 insert
+$(document).on("click", "#submit_btn7", function(){
+	var banner_name				= $("#banner_name").val();
+	var banner_type				= $("#banner_type").val();
+	var banner_value				= $("#banner_value").val();
+	var banner_showYN			= $("#banner_showYN").val();
+	var banner_show_order		= $("#banner_show_order").val();
+	var banner_link_target		= $("#banner_link_target").val();
+
+	if (banner_name == "")
+	{
+		alert("배너 설명을 넣어주세요.");
+		$("#banner_name").focus();
+		return false;
+	}
+
+	if (banner_type == "")
+	{
+		alert("배너 타입을 선택해주세요.");
+		$("#banner_type").focus();
+		return false;
+	}
+
+	if (banner_value == "")
+	{
+		alert("배너 링크를 입력해주세요.");
+		$("#banner_value").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"							: "insert_banner_info",
+			"banner_name"				: banner_name,
+			"banner_type"					: banner_type,
+			"banner_value"				: banner_value,
+			"banner_showYN"			: banner_showYN,
+			"banner_show_order"		: banner_show_order,
+			"banner_link_target"			: banner_link_target
+		},
+		success: function(response){
+			alert(response);
+			if (response == "0")
+			{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}else{
+				alert("배너 정보가 입력 되었습니다.");
+				img_submit3(response);
+				location.reload();
+			}
+		}
+	});
 });
 
+// 전체 거래처 리스트 생성
+function show_banner_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_banner_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 쇼핑몰 관리 > 배너 관리 > 배너 추가 버튼 클릭
+$(document).on("click", "#add_banner_btn", function(){
+	$("#list_banner").hide();
+	$("#add_banner").show();
+});
+
+// 쇼핑몰 관리 > 배너 관리 > 배너 목록 버튼 클릭
+$(document).on("click", "#list_banner_btn", function(){
+	$("#add_banner").hide();
+	$("#list_banner").show();
+});

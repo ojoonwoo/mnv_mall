@@ -1,6 +1,8 @@
 <?
 	include_once "header.php";
 ?>
+<link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <body>
 
 <div id="wrapper">
@@ -36,7 +38,97 @@
       </div>
       <!-- /.row -->
       <!-- /.panel-heading -->
-      작업 예정
+      <button type="button" class="btn btn-outline btn-primary btn-lg" id="add_banner_btn">배너 추가</button>
+      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_banner_btn">배너 목록</button>
+      <div class="panel-body">
+        <div class="panel-body">
+          <div class="table-responsive" id="add_banner">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>타이틀</th>
+                  <th>내용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>배너명</td>
+                  <td colspan="2">
+                    <input type="text" id="banner_name" style="width:100%">
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 종류</td>
+                  <td>
+                    <select id="banner_type">
+                      <option value="">선택하세요</option>
+                      <option value="main_rolling_banner">메인 롤링 배너</option>
+                      <option value="main_image_banner">메인 이미지 배너</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr class="banner_detail">
+                  <td>이미지 및 링크설정</td>
+                  <td>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width:30%">이미지 첨부</th>
+                          <th>연결링크</th>
+                        </tr>
+                      </thead>
+                      <tbody id="banner_detail_tr">
+                        <tr>
+                          <td>
+                            <form action="../../lib/filer/php/upload.php" id="main_image_frm" method="post" enctype="multipart/form-data">
+                              <input type="file" name="files[]" id="filer_input" multiple="multiple">
+                            </form>
+                          </td>
+                          <td>
+                            <input class="form-control" id="banner_value" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 노출 위치</td>
+                  <td colspan="2">
+                    <input type="text" id="banner_show_order" style="width:100%"> * 메인 롤링 배너 선택시 노출 순서, 메인 이미지 배너 선택시 표시되는 위치
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 노출 여부</td>
+                  <td>
+                    <select id="banner_showYN">
+                      <option value="Y">노출</option>
+                      <option value="N">비노출</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 TARGET 설정</td>
+                  <td>
+                    <select id="banner_link_target">
+                      <option value="_blank">새로운 창</option>
+                      <option value="_self">핸재의 창</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn7">완 료</button>
+          </div>
+          <!-- /.table-responsive -->
+          <div class="table-responsive" id="list_banner" style="display:none;">
+            <table width="100%" class="table table-striped table-bordered table-hover" id="banner_list">
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+      </div>
+      <!-- /.panel-body -->
     </div>
     <!-- /.container-fluid -->
   </div>
@@ -52,7 +144,87 @@
 	<script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 	<script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
 
+	<script src="../../lib/filer/js/jquery.filer.min.js"></script>
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-</body>
+	<script>
+	var banner_num	= 1;
+	$(document).ready(function() {
+		// 배너 리스트
+		// 작업해야함
+		show_banner_list("banner_list");
 
+		// 테이블 api 세팅 
+		/*
+		var table	= $('#banner_list').DataTable({
+			"columnDefs": [ {
+				"searchable": false,
+				"orderable": false,
+				"targets": 0
+			} ],
+			"order": [[ 1, 'asc' ]],
+			"ordering":false,
+			"searching": true
+		});
+		*/
+	});
+
+	$('#filer_input').filer({
+		showThumbs: true,
+		templates: {
+			box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+			item: '<li class="jFiler-item">\
+						<div class="jFiler-item-container">\
+							<div class="jFiler-item-inner">\
+								<div class="jFiler-item-thumb">\
+									<div class="jFiler-item-status"></div>\
+									<div class="jFiler-item-info">\
+										<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+										<span class="jFiler-item-others">{{fi-size2}}</span>\
+									</div>\
+									{{fi-image}}\
+								</div>\
+								<div class="jFiler-item-assets jFiler-row">\
+									<ul class="list-inline pull-left"></ul>\
+									<ul class="list-inline pull-right">\
+										<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+									</ul>\
+								</div>\
+							</div>\
+						</div>\
+					</li>',
+			itemAppend: '<li class="jFiler-item">\
+							<div class="jFiler-item-container">\
+								<div class="jFiler-item-inner">\
+									<div class="jFiler-item-thumb">\
+										<div class="jFiler-item-status"></div>\
+										<div class="jFiler-item-info">\
+											<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+											<span class="jFiler-item-others">{{fi-size2}}</span>\
+										</div>\
+										{{fi-image}}\
+									</div>\
+									<div class="jFiler-item-assets jFiler-row">\
+										<ul class="list-inline pull-left">\
+											<li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+										</ul>\
+										<ul class="list-inline pull-right">\
+											<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+										</ul>\
+									</div>\
+								</div>\
+							</div>\
+						</li>',
+			itemAppendToEnd: false,
+			removeConfirmation: true,
+			_selectors: {
+				list: '.jFiler-items-list',
+				item: '.jFiler-item',
+				remove: '.jFiler-item-trash-action'
+			}
+		},
+		addMore: false
+	});
+
+	</script>
+</body>
 </html>

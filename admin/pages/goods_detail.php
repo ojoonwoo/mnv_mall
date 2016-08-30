@@ -2,6 +2,21 @@
 	include_once "header.php";
 	// 상품 정보 SELECT
 	$goods_info	= select_goods_info($_REQUEST['goodscode']);
+
+	// 상품 이미지 정보 추출
+	$goods_fils_name_arr	=explode("/",$goods_info['goods_img_url']);
+	$goods_file_name		= $goods_fils_name_arr[6];
+
+	$goods_img_type_arr	= explode(".",$goods_file_name);
+	$goods_img_type			= $goods_img_type_arr[1];
+	if ($goods_img_type == "jpg")
+		$goods_img_type	= "image/jpg";
+	else if ($goods_img_type == "png")
+		$goods_img_type	= "image/png";
+	else if ($goods_img_type == "gif")
+		$goods_img_type	= "image/gif";
+
+	$goods_link	= str_replace("../../admin/","",$goods_info['goods_img_url']);
 ?>
 <link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 <link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
@@ -79,9 +94,9 @@
                     <select class="form-control" id="cate_2">
                       <option value="">선택하세요</option>
                     </select>
-                    <select class="form-control" id="cate_3">
+                    <!-- <select class="form-control" id="cate_3">
                       <option value="">선택하세요</option>
-                    </select>
+                    </select> -->
                   </td>
                 </tr>
               </tbody>
@@ -255,6 +270,7 @@
 ?>
                       </tbody>
                     </table>
+                    <input type="hidden" id="option_cnt" value="<?=$i-1?>">
                   </td>
                 </tr>
 <?
@@ -295,6 +311,8 @@
 	var oEditors		= [];
 	var m_oEditors	= [];
 	var goods_code = null;
+	// 옵션 갯수 넣어주기
+	option_num	= $("#option_cnt").val();
 	$(document).ready(function() {
 		// 1번 카테고리 정보
 		show_select_cate1("cate_1");
@@ -356,7 +374,7 @@
 									<div class="jFiler-item-status"></div>\
 									<div class="jFiler-item-info">\
 										<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-										<span class="jFiler-item-others">{{fi-size2}}</span>\
+										//<span class="jFiler-item-others">{{fi-size2}}</span>\
 									</div>\
 									{{fi-image}}\
 								</div>\
@@ -376,7 +394,7 @@
 										<div class="jFiler-item-status"></div>\
 										<div class="jFiler-item-info">\
 											<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-											<span class="jFiler-item-others">{{fi-size2}}</span>\
+											//<span class="jFiler-item-others">{{fi-size2}}</span>\
 										</div>\
 										{{fi-image}}\
 									</div>\
@@ -402,10 +420,10 @@
 		addMore: true,
 		files: [
 			{
-				name: "PR00000001_2.jpg",
-				size: 5453,
-				type: "image/jpg",
-				file: "../uploads/PR00000001/PR00000001_2.jpg"
+				name: "<?=$goods_file_name?>",
+				//size: 5453,
+				type: "<?=$goods_img_type?>",
+				file: "<?=$goods_link?>"
 			}
 		]
 	});

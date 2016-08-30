@@ -203,7 +203,6 @@
 
 			$u_query = "UPDATE ".$_gl['board_review_table']." SET subject='".$subject."', content='".$content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
 			$u_result = mysqli_query ($my_db, $u_query); // 글 수정
-			
 			if($u_result){
 				$flag = "Y";
 			}else{

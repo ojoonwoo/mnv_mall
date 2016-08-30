@@ -73,9 +73,9 @@
                     <select class="form-control" id="cate_2">
                       <option value="">선택하세요</option>
                     </select>
-                    <select class="form-control" id="cate_3">
+                    <!-- <select class="form-control" id="cate_3">
                       <option value="">선택하세요</option>
-                    </select>
+                    </select> -->
                   </td>
                 </tr>
               </tbody>
@@ -270,6 +270,7 @@
 	var oEditors		= [];
 	var m_oEditors	= [];
 	var goods_code = null;
+	var option_num	= 1;
 	$(document).ready(function() {
 		// 1번 카테고리 정보
 		show_select_cate1("cate_1");
@@ -370,20 +371,6 @@
 			}
 		},
 		addMore: true
-		/*files: [
-			{
-				name: "appended_file.jpg",
-				size: 5453,
-				type: "image/jpg",
-				file: "http://dummyimage.com/720x480/f9f9f9/191a1a.jpg"
-			},
-			{
-				name: "appended_file_2.jpg",
-				size: 9453,
-				type: "image/jpg",
-				file: "http://dummyimage.com/640x480/f9f9f9/191a1a.jpg"
-			}
-		]*/
 	});
 	</script>
 
