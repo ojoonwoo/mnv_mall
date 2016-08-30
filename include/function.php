@@ -48,6 +48,147 @@ function select_category_info($idx)
 	return $data;
 }
 
+function select_all_category_info($gubun)
+{
+	global $_gl;
+	global $my_db;
+
+	if ($gubun	== "main")
+		$where	= " AND cate_2='0' AND cate_3='0'";
+	$query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE 1 ".$where."";
+	$result		= mysqli_query($my_db, $query);
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[]	= $data;
+	}
+
+	return $res_data;
+}
+
+function select_banner_info($type)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE banner_type='".$type."' AND banner_showYN='Y' ORDER BY banner_show_order ASC";
+	$result		= mysqli_query($my_db, $query);
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[]	= $data;
+	}
+
+	return $res_data;
+}
+
+// 메인 베스트 상품 리스트
+function select_best_goods_info($goods_flag, $goods_num)
+{
+	global $_gl;
+	global $my_db;
+
+	if ($goods_flag == "auto")
+	{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY goods_sales_cnt DESC limit ".$goods_num."";
+		$result		= mysqli_query($my_db, $query);
+	}else{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_best_flag='Y' ORDER BY idx DESC";
+		$result		= mysqli_query($my_db, $query);
+	}
+
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[]	= $data;
+	}
+
+	return $res_data;
+}
+
+// 메인 신 상품 리스트
+function select_new_goods_info($goods_flag, $goods_num)
+{
+	global $_gl;
+	global $my_db;
+
+	if ($goods_flag == "auto")
+	{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY goods_regdate DESC limit ".$goods_num."";
+		$result		= mysqli_query($my_db, $query);
+	}else{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_new_flag='Y' ORDER BY idx DESC";
+		$result		= mysqli_query($my_db, $query);
+	}
+
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[]	= $data;
+	}
+
+	return $res_data;
+}
+
+// 메인 기획 상품 리스트
+function select_plan_goods_info($goods_flag, $goods_num)
+{
+	global $_gl;
+	global $my_db;
+
+	if ($goods_flag == "auto")
+	{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY goods_regdate DESC limit ".$goods_num."";
+		$result		= mysqli_query($my_db, $query);
+	}else{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_plan_flag='Y' ORDER BY idx DESC";
+		$result		= mysqli_query($my_db, $query);
+	}
+
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[]	= $data;
+	}
+
+	return $res_data;
+}
+
+// 카테고리별 베스트 상품 리스트
+function select_cate_best_goods_info($cate_no, $goods_flag, $goods_num)
+{
+	global $_gl;
+	global $my_db;
+
+	if ($goods_flag == "auto")
+	{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND cate_1='".$cate_no."' ORDER BY goods_sales_cnt DESC limit ".$goods_num."";
+		$result		= mysqli_query($my_db, $query);
+	}else{
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_cate_flag='Y' ORDER BY idx DESC";
+		$result		= mysqli_query($my_db, $query);
+	}
+
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[]	= $data;
+	}
+
+	return $res_data;
+}
+
+// 사이트 기본 옵션 불러오기
+function load_option()
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['site_option_table']." WHERE option_load='Y'";
+	$result		= mysqli_query($my_db, $query);
+	while ($data = mysqli_fetch_array($result))
+	{
+		$res_data[$data['option_name']]	= $data['option_value'];
+	}
+
+	return $res_data;
+
+}
+
 /*
 * 메일발송 함수
 * $EMAIL : 보내는 사람 메일 주소

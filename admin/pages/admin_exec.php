@@ -735,10 +735,14 @@
 		break;
 
 		case "insert_banner_info" :
-			$banner_name	= $_REQUEST['banner_name'];
-			$banner_type		= $_REQUEST['banner_type'];
+			$banner_name			= $_REQUEST['banner_name'];
+			$banner_type				= $_REQUEST['banner_type'];
+			$banner_value				= $_REQUEST['banner_value'];
+			$banner_showYN			= $_REQUEST['banner_showYN'];
+			$banner_show_order	= $_REQUEST['banner_show_order'];
+			$banner_link_target		= $_REQUEST['banner_link_target'];
 
-			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,banner_type,banner_regdate) values('".$banner_name."','".$banner_type."','".date("Y-m-d H:i:s")."')";
+			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,banner_type,banner_showYN,banner_show_order,banner_img_link,banner_link_target,banner_regdate) values('".$banner_name."','".$banner_type."','".$banner_showYN."','".$banner_show_order."','".$banner_value."','".$banner_link_target."','".date("Y-m-d H:i:s")."')";
 			$banner_result	= mysqli_query($my_db, $banner_query);
 			$id_num				= mysqli_insert_id($my_db);
 			if($banner_result)
@@ -747,6 +751,46 @@
 				$flag = "0";
 
 			echo $flag;
+		break;
+
+		case "show_banner_list" :
+			$target	= $_REQUEST['target'];
+
+			$list_query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>배너 이름</th>";
+			$innerHTML	.= "<th>배너 타입</th>";
+			$innerHTML	.= "<th>배너 노출 여부</th>";
+			$innerHTML	.= "<th>배너 표시 순서</th>";
+			$innerHTML	.= "<th>배너 이미지</th>";
+			$innerHTML	.= "<th>배너 링크</th>";
+			$innerHTML	.= "<th>배너 타겟</th>";
+			$innerHTML	.= "<th>배너 등록일</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['banner_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_type']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_showYN']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_show_order']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_img_url']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_img_link']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_link_target']."</td>";
+				$innerHTML	.= "<td>".$list_data['banner_regdate']."</td>";
+				$innerHTML	.= "<td><a href='./banner_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_banner' data-idx='".$list_data['idx']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
 		break;
 	}
 ?>

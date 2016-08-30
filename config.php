@@ -13,6 +13,8 @@
 
 	mysqli_query ($my_db,"set names utf8");
 
+
+	// 모바일 체크
 	$mobile_agent = array("iPhone","iPod","iPad","Android","Blackberry","SymbianOS|SCH-M\d+","Opera Mini", "Windows ce", "Nokia", "sony" );
 	$check_mobile = "N";
 	for($i=0; $i<sizeof($mobile_agent); $i++){
@@ -26,4 +28,7 @@
 		$gubun = "MOBILE";
 	else
 		$gubun = "PC";
+
+	// 사이트 기본 옵션 불러오기
+	$site_option	= load_option();
 ?>

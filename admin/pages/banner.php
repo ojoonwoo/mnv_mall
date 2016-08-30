@@ -42,7 +42,7 @@
       <button type="button" class="btn btn-outline btn-success btn-lg" id="list_banner_btn">배너 목록</button>
       <div class="panel-body">
         <div class="panel-body">
-          <div class="table-responsive" id="add_category">
+          <div class="table-responsive" id="add_banner">
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
@@ -67,115 +67,8 @@
                     </select>
                   </td>
                 </tr>
-                <tr class="banner_detail" id="main_rolling_banner_td" style="display:none;">
-                  <td>메인 롤링 배너</td>
-                  <td>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width:30%">이미지 첨부</th>
-                          <th>연결 링크</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <form action="../../lib/filer/php/upload.php" id="img_frm" method="post" enctype="multipart/form-data">
-                        <tr id="banner_detail_tr1">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input1" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value1" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr2" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input2" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value2" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr3" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input3" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value3" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr4" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input4" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value4" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr5" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input5" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value5" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr6" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input6" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value6" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr7" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input7" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value7" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr8" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input8" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value8" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr9" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input9" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value9" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        <tr id="banner_detail_tr10" style="display:none;">
-                          <td>
-                            <input type="file" name="files[]" id="filer_input10" multiple="multiple">
-                          </td>
-                          <td>
-                            <input class="form-control" id="banner_value10" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
-                            <button type="button" class="btn btn-primary btn-xs rolling_banner_add_btn">+</button>
-                          </td>
-                        </tr>
-                        </form>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-                <tr class="banner_detail" id="main_image_banner_td" style="display:none;">
-                  <td>메인 이미지 배너</td>
+                <tr class="banner_detail">
+                  <td>이미지 및 링크설정</td>
                   <td>
                     <table class="table">
                       <thead>
@@ -188,15 +81,39 @@
                         <tr>
                           <td>
                             <form action="../../lib/filer/php/upload.php" id="main_image_frm" method="post" enctype="multipart/form-data">
-                              <input type="file" name="files[]" id="filer_input11" multiple="multiple">
+                              <input type="file" name="files[]" id="filer_input" multiple="multiple">
                             </form>
                           </td>
                           <td>
-                            <input class="form-control" id="banner_value11" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
+                            <input class="form-control" id="banner_value" placeholder="예시) http://store-chon.com/event/event_list1.php" style="width:90%"> 
                           </td>
                         </tr>
                       </tbody>
                     </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 노출 위치</td>
+                  <td colspan="2">
+                    <input type="text" id="banner_show_order" style="width:100%"> * 메인 롤링 배너 선택시 노출 순서, 메인 이미지 배너 선택시 표시되는 위치
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 노출 여부</td>
+                  <td>
+                    <select id="banner_showYN">
+                      <option value="Y">노출</option>
+                      <option value="N">비노출</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>배너 TARGET 설정</td>
+                  <td>
+                    <select id="banner_link_target">
+                      <option value="_blank">새로운 창</option>
+                      <option value="_self">핸재의 창</option>
+                    </select>
                   </td>
                 </tr>
               </tbody>
@@ -234,7 +151,7 @@
 	$(document).ready(function() {
 		// 배너 리스트
 		// 작업해야함
-		//show_banner_list("banner_list");
+		show_banner_list("banner_list");
 
 		// 테이블 api 세팅 
 		/*
@@ -251,13 +168,31 @@
 		*/
 	});
 
-	for (var filer_cnt = 1; filer_cnt <= 11; filer_cnt++)
-	{
-		$('#filer_input'+filer_cnt).filer({
-			showThumbs: true,
-			templates: {
-				box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
-				item: '<li class="jFiler-item">\
+	$('#filer_input').filer({
+		showThumbs: true,
+		templates: {
+			box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+			item: '<li class="jFiler-item">\
+						<div class="jFiler-item-container">\
+							<div class="jFiler-item-inner">\
+								<div class="jFiler-item-thumb">\
+									<div class="jFiler-item-status"></div>\
+									<div class="jFiler-item-info">\
+										<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+										<span class="jFiler-item-others">{{fi-size2}}</span>\
+									</div>\
+									{{fi-image}}\
+								</div>\
+								<div class="jFiler-item-assets jFiler-row">\
+									<ul class="list-inline pull-left"></ul>\
+									<ul class="list-inline pull-right">\
+										<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+									</ul>\
+								</div>\
+							</div>\
+						</div>\
+					</li>',
+			itemAppend: '<li class="jFiler-item">\
 							<div class="jFiler-item-container">\
 								<div class="jFiler-item-inner">\
 									<div class="jFiler-item-thumb">\
@@ -269,7 +204,9 @@
 										{{fi-image}}\
 									</div>\
 									<div class="jFiler-item-assets jFiler-row">\
-										<ul class="list-inline pull-left"></ul>\
+										<ul class="list-inline pull-left">\
+											<li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+										</ul>\
 										<ul class="list-inline pull-right">\
 											<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
 										</ul>\
@@ -277,39 +214,16 @@
 								</div>\
 							</div>\
 						</li>',
-				itemAppend: '<li class="jFiler-item">\
-								<div class="jFiler-item-container">\
-									<div class="jFiler-item-inner">\
-										<div class="jFiler-item-thumb">\
-											<div class="jFiler-item-status"></div>\
-											<div class="jFiler-item-info">\
-												<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-												<span class="jFiler-item-others">{{fi-size2}}</span>\
-											</div>\
-											{{fi-image}}\
-										</div>\
-										<div class="jFiler-item-assets jFiler-row">\
-											<ul class="list-inline pull-left">\
-												<li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
-											</ul>\
-											<ul class="list-inline pull-right">\
-												<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
-											</ul>\
-										</div>\
-									</div>\
-								</div>\
-							</li>',
-				itemAppendToEnd: false,
-				removeConfirmation: true,
-				_selectors: {
-					list: '.jFiler-items-list',
-					item: '.jFiler-item',
-					remove: '.jFiler-item-trash-action'
-				}
-			},
-			addMore: false
-		});
-	}
+			itemAppendToEnd: false,
+			removeConfirmation: true,
+			_selectors: {
+				list: '.jFiler-items-list',
+				item: '.jFiler-item',
+				remove: '.jFiler-item-trash-action'
+			}
+		},
+		addMore: false
+	});
 
 	</script>
 </body>

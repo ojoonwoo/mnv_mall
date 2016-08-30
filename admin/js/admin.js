@@ -1024,23 +1024,14 @@ $(document).on("click", ".JoinSubmit", function(){
 
 // *********************** 배너 설정 *********************** //
 
-// 배너 구분 선택시 상세내용 설정
-$(document).on("change", "#banner_type", function(){
-	$(".banner_detail").hide();
-	$("#"+this.value+"_td").show();
-});
-
-// 관리자 쇼핑몰 관리 > 배너관리 > 메인 롤링 배너 추가 버튼 클릭
-$(document).on("click", ".rolling_banner_add_btn", function(){
-	banner_num	= Number(banner_num) + 1;
-
-	$("#banner_detail_tr" + banner_num).show();
-});
-
-// 거래처 정보 insert
+// 배너 정보 insert
 $(document).on("click", "#submit_btn7", function(){
-	var banner_name		= $("#banner_name").val();
-	var banner_type			= $("#banner_type").val();
+	var banner_name				= $("#banner_name").val();
+	var banner_type				= $("#banner_type").val();
+	var banner_value				= $("#banner_value").val();
+	var banner_showYN			= $("#banner_showYN").val();
+	var banner_show_order		= $("#banner_show_order").val();
+	var banner_link_target		= $("#banner_link_target").val();
 
 	if (banner_name == "")
 	{
@@ -1056,17 +1047,25 @@ $(document).on("click", "#submit_btn7", function(){
 		return false;
 	}
 
-	if (banner_type == "main_image_banner")
+	if (banner_value == "")
 	{
+		alert("배너 링크를 입력해주세요.");
+		$("#banner_value").focus();
+		return false;
 	}
+
 	$.ajax({
 		type   : "POST",
 		async  : false,
 		url    : "admin_exec.php",
 		data:{
-			"exec"						: "insert_banner_info",
-			"banner_name"			: banner_name,
-			"banner_type"				: banner_type
+			"exec"							: "insert_banner_info",
+			"banner_name"				: banner_name,
+			"banner_type"					: banner_type,
+			"banner_value"				: banner_value,
+			"banner_showYN"			: banner_showYN,
+			"banner_show_order"		: banner_show_order,
+			"banner_link_target"			: banner_link_target
 		},
 		success: function(response){
 			alert(response);
@@ -1081,4 +1080,33 @@ $(document).on("click", "#submit_btn7", function(){
 			}
 		}
 	});
+});
+
+// 전체 거래처 리스트 생성
+function show_banner_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_banner_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 쇼핑몰 관리 > 배너 관리 > 배너 추가 버튼 클릭
+$(document).on("click", "#add_banner_btn", function(){
+	$("#list_banner").hide();
+	$("#add_banner").show();
+});
+
+// 쇼핑몰 관리 > 배너 관리 > 배너 목록 버튼 클릭
+$(document).on("click", "#list_banner_btn", function(){
+	$("#add_banner").hide();
+	$("#list_banner").show();
 });
