@@ -14,7 +14,8 @@ if(bSuccessUpload) {
 	if(!in_array($filename_ext, $allow_file)) {
 		$url .= '&errstr='.$name;
 	} else {
-		$uploadDir = '../../upload/';
+		// $uploadDir = '../../upload/';
+		$uploadDir = '../../../../PC/upload/';
 		if(!is_dir($uploadDir)){
 			mkdir($uploadDir, 0777);
 		}
@@ -25,7 +26,8 @@ if(bSuccessUpload) {
 		
 		$url .= "&bNewLine=true";
 		$url .= "&sFileName=".urlencode(urlencode($name));
-		$url .= "&sFileURL=upload/".urlencode(urlencode($name));
+		// $url .= "&sFileURL=upload/".urlencode(urlencode($name));
+		$url .= "&sFileURL=http://localhost:80/mnv_mall/PC/upload/".urlencode(urlencode($name));
 	}
 }
 // FAILED

@@ -14,5 +14,6 @@
 	$_gl['goodscode_info_table']			= "goodscode_info";			// 상품코드 정보 테이블
 	$_gl['member_info_table']				= "member_info"; // 회원 정보 테이블
 	$_gl['purchasing_info_table']			= "purchasing_info";			// 거래처 정보 테이블
+	$_gl['board_review_table']				= "board_review";				// 리뷰 게시판 테이블
 
 ?>

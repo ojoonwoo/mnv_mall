@@ -8,7 +8,7 @@
 	include_once "include/dir.php"; 						//경로정보
 	include_once "include/pbkdf2.compat.php"; 	//암호화
 	include_once "include/PHPMailer/PHPMailerAutoload.php";			//MAIL 클래스
-	//include_once "include/page.class.php";		//페이징 처리 CLASS
+	include_once "include/page.class.php";		//페이징 처리 CLASS
 	//include_once "include/phprandom.php";		//난수번호 생성 CLASS
 
 	mysqli_query ($my_db,"set names utf8");
