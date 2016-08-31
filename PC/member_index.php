@@ -1,10 +1,8 @@
 <?
-
 	include_once "../header.php";
 	session_start();
 	// $_SESSION['user_id'] = $user_id;
-	$_SESSION['user_id'] = "ojoonwoo";
-
+	// $_SESSION['user_id'] = "ojoonwoo";
 ?>
 <body>
 <script type="text/javascript">
