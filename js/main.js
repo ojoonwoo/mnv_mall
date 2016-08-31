@@ -151,5 +151,60 @@ $(document).on("click", "#cnt_minus", function(){
 
 // 금액 3자리마다 콤마 찍기
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+// 회원 로그인
+$(document).on("click", "#mb_login", function(){
+	var mb_id					= $("#mb_id").val();
+	var mb_password			= $("#mb_password").val();
+
+	if (mb_id == "")
+	{
+		alert("아이디를 입력해주세요.");
+		$("#mb_id").focus();
+		return false;
+	}
+
+	if (mb_password == "")
+	{
+		alert("비밀번호를 입력해주세요.");
+		$("#mb_password").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/mnv_mall/main_exec.php",
+		data:{
+			"exec"				: "member_login",
+			"mb_id"				: mb_id,
+			"mb_password"	: mb_password
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				location.href = "http://localhost/mnv_mall/PC/index.php";
+			}else{
+				alert("아이디와 비밀번호를 다시 확인하시고, 로그인해주세요..");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 회원 로그인
+$(document).on("click", "#mb_logout", function(){
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/mnv_mall/main_exec.php",
+		data:{
+			"exec"				: "member_logout"
+		},
+		success: function(response){
+			location.reload();
+		}
+	});
+});

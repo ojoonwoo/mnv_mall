@@ -1,12 +1,26 @@
 <?
 	include_once "../config.php";
 	include_once "./header.php";
+
+	print_r($_SESSION);
 ?>
 <body>
   <div id="header_area">
     <a href="http://localhost/mnv_mall/PC/index.php">촌의 감각</a>
-    <a href="#">로그인</a>
-    <a href="#">회원가입</a>
+<?
+	if ($_SESSION['ss_chon_id'])
+	{
+?>
+    <a href="#" id="mb_logout">로그아웃</a>
+    <a href="http://localhost/mnv_mall/PC/member/join_form.php">정보수정</a>
+<?
+	}else{
+?>
+    <a href="http://localhost/mnv_mall/PC/member/member_login.php">로그인</a>
+    <a href="http://localhost/mnv_mall/PC/member/join_form.php">회원가입</a>
+<?
+	}
+?>
     <a href="#">마이페이지</a>
     <a href="#">장바구니</a>
     <a href="#">주문조회</a>
