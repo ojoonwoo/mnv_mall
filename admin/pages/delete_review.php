@@ -40,6 +40,7 @@
 	include_once "top_navi.php";
 	include_once "side_navi.php";
 ?>
+
 </div>
 <!-- /.navbar-static-side -->
   </nav>

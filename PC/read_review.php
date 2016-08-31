@@ -1,17 +1,17 @@
 <?
-include_once "../header.php";
+	include_once "../header.php";
 
-$idx = $_GET['idx'];
-$pg = $_GET['pg'];
-$user_id = $_GET['id'];
-$goods_code = $_GET['code'];
+	$idx = $_GET['idx'];
+	$pg = $_GET['pg'];
+	$user_id = $_GET['id'];
+	$goods_code = $_GET['code'];
 
-$hit_query = "UPDATE ".$_gl['board_review_table']." SET hit=hit+1 WHERE idx='".$idx."'";
-$result = @mysqli_query($my_db, $hit_query); 
+	$hit_query = "UPDATE ".$_gl['board_review_table']." SET hit=hit+1 WHERE idx='".$idx."'";
+	$result = @mysqli_query($my_db, $hit_query); 
 
-$s_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
-$result = @mysqli_query($my_db, $s_query);
-$data = @mysqli_fetch_array($result);
+	$s_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
+	$result = @mysqli_query($my_db, $s_query);
+	$data = @mysqli_fetch_array($result);
 ?>
 <body>
   <table width="580" cellpadding="2" cellspacing="1">

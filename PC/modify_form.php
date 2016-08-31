@@ -1,15 +1,15 @@
 <?
-include_once "../header.php";
+	include_once "../header.php";
 
-$user_id = $_SESSION['user_id'];
-$user_query = "SELECT mb_id,mb_name,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$user_id."'";
-$user_result = mysqli_query($my_db, $user_query);
-$user_data = mysqli_fetch_array($user_result);
+	$user_id = $_SESSION['user_id'];
+	$user_query = "SELECT mb_id,mb_name,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$user_id."'";
+	$user_result = mysqli_query($my_db, $user_query);
+	$user_data = mysqli_fetch_array($user_result);
 
-$split_email = explode('@', $user_data['mb_email']);
-$split_birth = explode('/', $user_data['mb_birth']);
-$split_phone = explode('-', $user_data['mb_handphone']);
-$split_tel = explode('-', $user_data['mb_telphone']);
+	$split_email = explode('@', $user_data['mb_email']);
+	$split_birth = explode('/', $user_data['mb_birth']);
+	$split_phone = explode('-', $user_data['mb_handphone']);
+	$split_tel = explode('-', $user_data['mb_telphone']);
 ?>
 <body>
   <form method="post" id="modify_form">
@@ -72,118 +72,116 @@ $split_tel = explode('-', $user_data['mb_telphone']);
     <input type="reset" value="취소">
   </form>
 <script type="text/javascript">
-  var val_check;
-  var id_check;
+	var val_check;
+	var id_check;
 
-  $(window).load(function() {
-    if($('#birthY').val() !== ''){
-      $('#birthY').attr('readonly', 'true');
-      $('#birthM').attr('readonly', 'true');
-      $('#birthD').attr('readonly', 'true');
-    }
-  });
+	$(window).load(function() {
+		if($('#birthY').val() !== ''){
+			$('#birthY').attr('readonly', 'true');
+			$('#birthM').attr('readonly', 'true');
+			$('#birthD').attr('readonly', 'true');
+		}
+	});
 
-  $('#find_addr').on('click', function() {
-    new daum.Postcode({
-      oncomplete: function(data) {
-          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	$('#find_addr').on('click', function() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-          // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-          var fullAddr = ''; // 최종 주소 변수
-          var extraAddr = ''; // 조합형 주소 변수
+				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var fullAddr = ''; // 최종 주소 변수
+				var extraAddr = ''; // 조합형 주소 변수
 
-          // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-              fullAddr = data.roadAddress;
+				// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					fullAddr = data.roadAddress;
 
-          } else { // 사용자가 지번 주소를 선택했을 경우(J)
-              fullAddr = data.jibunAddress;
-          }
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					fullAddr = data.jibunAddress;
+				}
 
-          // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-          if(data.userSelectedType === 'R'){
-              //법정동명이 있을 경우 추가한다.
-              if(data.bname !== ''){
-                  extraAddr += data.bname;
-              }
-              // 건물명이 있을 경우 추가한다.
-              if(data.buildingName !== ''){
-                  extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-              }
-              // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-              fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-          }
+				// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+				if(data.userSelectedType === 'R'){
+					//법정동명이 있을 경우 추가한다.
+					if(data.bname !== ''){
+						extraAddr += data.bname;
+					}
+					// 건물명이 있을 경우 추가한다.
+					if(data.buildingName !== ''){
+						extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
+					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+					fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+				}
 
-          // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
-          document.getElementById('addr1').value = fullAddr;
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
+				document.getElementById('addr1').value = fullAddr;
 
-          // 커서를 상세주소 필드로 이동한다.
-          document.getElementById('addr2').focus();
-      }
-    }).open();
-  });
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById('addr2').focus();
+			}
+		}).open();
+	});
 
-  $('#email3').on('change', function(){
-    $('#email2').attr('disabled', false);
-    var mail = $('#email3').val();
-    if(mail=="direct") {
-      $('#email2').val('').focus();
-    }else{
-      $('#email2').val('').val(mail);
-      $('#email2').attr('disabled', true);
-    }
-  });
+	$('#email3').on('change', function(){
+		$('#email2').attr('disabled', false);
+		var mail = $('#email3').val();
+		if(mail=="direct") {
+			$('#email2').val('').focus();
+		}else{
+			$('#email2').val('').val(mail);
+			$('#email2').attr('disabled', true);
+		}
+	});
 
-  $('#submit').on('click', function(){
-    // if(id_check == 'Y'){
-    val_check = validate('modify');
-    // }else{
-    //   alert("중복된 아이디입니다.");
-    //   $('#user_id').val('').focus;
-    //   return;
-    // }
+	$('#submit').on('click', function(){
+		// if(id_check == 'Y'){
+		val_check = validate('modify');
+		// }else{
+		//   alert("중복된 아이디입니다.");
+		//   $('#user_id').val('').focus;
+		//   return;
+		// }
 
-    if(val_check){
-      $.ajax({
-        method: 'POST',
-        url: '../main_exec.php',
-        data: {
-          exec        : "member_modify",
-          user_id     : user_id.value,
-          password    : password.value,
-          username    : username.value,
-          zipcode     : zipcode.value,
-          addr1       : addr1.value,
-          addr2       : addr2.value,
-          email1      : email1.value,
-          email2      : email2.value,
-          emailYN     : $(':radio[name="emailYN"]:checked').val(),
-          tel1        : tel1.value,
-          tel2        : tel2.value,
-          tel3        : tel3.value,
-          phone1      : phone1.value,
-          phone2      : phone2.value,
-          phone3      : phone3.value,
-          smsYN       : $(':radio[name="smsYN"]:checked').val(),
-          birthY      : $('#birthY').val(),
-          birthM      : $('#birthM').val(),
-          birthD      : $('#birthD').val()
-        },
-        success: function(res){
-          if(res=='Y'){
-            alert("수정 성공");
-            location.href='./member_index.php';
-          }else{
-            alert("수정 실패");
-          }
-        }
-      });
-    }
-  });
-
-
+		if(val_check){
+			$.ajax({
+				method: 'POST',
+				url: '../main_exec.php',
+				data: {
+					exec        : "member_modify",
+					user_id     : user_id.value,
+					password    : password.value,
+					username    : username.value,
+					zipcode     : zipcode.value,
+					addr1       : addr1.value,
+					addr2       : addr2.value,
+					email1      : email1.value,
+					email2      : email2.value,
+					emailYN     : $(':radio[name="emailYN"]:checked').val(),
+					tel1        : tel1.value,
+					tel2        : tel2.value,
+					tel3        : tel3.value,
+					phone1      : phone1.value,
+					phone2      : phone2.value,
+					phone3      : phone3.value,
+					smsYN       : $(':radio[name="smsYN"]:checked').val(),
+					birthY      : $('#birthY').val(),
+					birthM      : $('#birthM').val(),
+					birthD      : $('#birthD').val()
+				},
+				success: function(res){
+					if(res=='Y'){
+						alert("수정 성공");
+						location.href='./member_index.php';
+					}else{
+						alert("수정 실패");
+					}
+				}
+			});
+		}
+	});
 </script>
 </body>
 </html>

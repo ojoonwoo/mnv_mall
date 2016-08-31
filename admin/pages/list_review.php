@@ -86,56 +86,56 @@
 <?
 	include_once "lib.php";
 ?>
-    <!-- DataTables JavaScript -->
-    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-    <script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<!-- DataTables JavaScript -->
+<script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+<script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+<script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
-    <script src="../../lib/filer/js/jquery.filer.min.js"></script>
-    <script>
-    var goods_code = null;
-    $(document).ready(function() {
-        // 멤버 리스트
-        show_review_list("review_list");
+<script src="../../lib/filer/js/jquery.filer.min.js"></script>
+<script>
+	var goods_code = null;
+	$(document).ready(function() {
+	// 멤버 리스트
+	show_review_list("review_list");
 
-        // 테이블 api 세팅 
-        var table   = $('#review_list').DataTable({
-            "columnDefs": [ {
-                "searchable": false,
-                "orderable": false,
-                "targets": 0
-            } ],
-            "order": [[ 1, 'asc' ]],
-            "ordering":false,
-            "searching": true
-        });
-        table.on( 'order.dt search.dt', function () {
-            table.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                cell.innerHTML = i+1;
-            } );
-        } ).draw();
+	// 테이블 api 세팅
+	var table   = $('#review_list').DataTable({
+		"columnDefs": [ {
+			"searchable": false,
+			"orderable": false,
+			"targets": 0
+		} ],
+		"order": [[ 1, 'asc' ]],
+		"ordering":false,
+		"searching": true
+	});
+		table.on( 'order.dt search.dt', function () {
+			table.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+				cell.innerHTML = i+1;
+			} );
+		} ).draw();
 
 
-    });
+	});
 
-    function show_review_list(id)
-    {
-      $.ajax({
-        type   : "POST",
-        async  : false,
-        url    : "admin_exec.php",
-        data:{
-          "exec"  : "show_review_list",
-          "target"  : id
-        },
-        success: function(response){
-          $("#"+id).html(response);
-        }
-      });
-    }
+	function show_review_list(id)
+	{
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "admin_exec.php",
+			data:{
+				"exec"  : "show_review_list",
+				"target"  : id
+			},
+			success: function(response){
+				$("#"+id).html(response);
+			}
+		});
+	}
 
-    </script>
+	</script>
 
 </body>
 
