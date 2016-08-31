@@ -180,7 +180,7 @@ function load_option()
 
 	$query		= "SELECT * FROM ".$_gl['site_option_table']." WHERE option_load='Y'";
 	$result		= mysqli_query($my_db, $query);
-	while ($data = mysqli_fetch_array($result))
+	while ($data = @mysqli_fetch_array($result))
 	{
 		$res_data[$data['option_name']]	= $data['option_value'];
 	}

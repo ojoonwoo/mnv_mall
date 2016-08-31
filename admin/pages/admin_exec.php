@@ -1,7 +1,9 @@
 <?php
 	include_once "../../config.php";
+
 	switch ($_REQUEST['exec'])
 	{
+		
 		case "login_admin" :
 			$admin_id	= $_REQUEST['admin_id'];
 			$admin_pw	= $_REQUEST['admin_pw'];
@@ -22,6 +24,7 @@
 			}
 			echo $flag;
 		break;
+
 		case "join_admin" :
 			$admin_id			= $_REQUEST['admin_id'];
 			$admin_pw			= $_REQUEST['admin_pw'];
@@ -43,6 +46,7 @@
 			}
 			echo $flag;
 		break;
+
 		case "show_select_grade" :
 			$grade_query		= "SELECT * FROM ".$_gl['grade_info_table']."";
 			$grade_result		= mysqli_query($my_db, $grade_query);
@@ -53,6 +57,7 @@
 			}
 			echo $innerHTML;
 		break;
+
 		case "show_select_cate1" :
 			$cate1_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_2=0 AND cate_3=0";
 			$cate1_result		= mysqli_query($my_db, $cate1_query);
@@ -63,6 +68,7 @@
 			}
 			echo $innerHTML;
 		break;
+
 		case "show_select_cate2" :
 			$cate_1		= $_REQUEST['cate_1'];
 			$cate2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2<>0 AND cate_3=0";
@@ -74,6 +80,7 @@
 			}
 			echo $innerHTML;
 		break;
+
 		case "show_select_cate3" :
 			$cate_1		= $_REQUEST['cate_1'];
 			$cate_2		= $_REQUEST['cate_2'];
@@ -86,6 +93,7 @@
 			}
 			echo $innerHTML;
 		break;
+
 		case "show_select_banner_type" :
 			$banner_query		= "SELECT * FROM ".$_gl['banner_config_info_table']."";
 			$banner_result		= mysqli_query($my_db, $banner_query);
@@ -96,6 +104,7 @@
 			}
 			echo $innerHTML;
 		break;
+
 		case "insert_cate_info" :
 			$cate_name			= $_REQUEST['cate_name']; 
 			$cate_1					= $_REQUEST['cate_1'];
@@ -140,6 +149,7 @@
 				$flag	= "N";
 			echo $flag;
 		break;
+
 		case "update_cate_info" :
 			$idx						= $_REQUEST['idx']; 
 			$cate_name			= $_REQUEST['cate_name']; 
@@ -185,6 +195,7 @@
 				$flag	= "N";
 			echo $flag;
 		break;
+
 		case "insert_goods_info" :
 			$showYN						= $_REQUEST['showYN'];
 			$salesYN						= $_REQUEST['salesYN'];
@@ -217,6 +228,7 @@
 				$flag	= "N||".$goods_code;
 			echo $flag;
 		break;
+
 		case "update_goods_info" :
 			$showYN						= $_REQUEST['showYN'];
 			$salesYN						= $_REQUEST['salesYN'];
@@ -249,6 +261,7 @@
 				$flag	= "N";
 			echo $flag;
 		break;
+
 		case "show_category_list" :
 			$target	= $_REQUEST['target'];
 			$list_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE 1 ORDER BY cate_1 ASC, cate_2 ASC, cate_3 ASC";
@@ -284,16 +297,13 @@
 				//$i++;
 			}
 			$innerHTML	.= "</tbody>";
-
 			echo $innerHTML;
 		break;
 
 		case "show_purchasing_list" :
 			$target	= $_REQUEST['target'];
-
 			$list_query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE 1 ORDER BY idx DESC";
 			$list_result		= mysqli_query($my_db, $list_query);
-
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
 			$innerHTML	.= "<th>거래처명</th>";
@@ -323,6 +333,7 @@
 			$innerHTML	.= "</tbody>";
 			echo $innerHTML;
 		break;
+
 		case "show_goods_list" :
 			$target	= $_REQUEST['target'];
 			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY idx DESC";
@@ -365,15 +376,12 @@
 
 		case "delete_goods_info" :
 			$goodscode	= $_REQUEST['goodscode'];
-
 			$goods_query		= "DELETE FROM ".$_gl['goods_info_table']." WHERE goods_code='".$goodscode."'";
 			$goods_result		= mysqli_query($my_db, $goods_query);
-
 			if ($goods_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
-
 			echo $flag;
 		break;
 
@@ -406,6 +414,7 @@
 			$innerHTML	.= "</tbody>";
 			echo $innerHTML;
 		break;
+
 		case "update_stock_info" :
 			$goods_code	= $_REQUEST['goods_code'];
 			$goods_stock	= $_REQUEST['goods_stock'];
@@ -416,22 +425,18 @@
 			else
 				$flag	= "N";
 			echo $flag;
-		break;
-
+			break;
 		case "insert_purchasing_info" :
 			$purchasing_name	= $_REQUEST['purchasing_name'];
 			$purchasing_addr	= $_REQUEST['purchasing_addr'];
 			$purchasing_phone	= $_REQUEST['purchasing_phone'];
 			$purchasing_desc	= $_REQUEST['purchasing_desc'];
-
 			$purchasing_query		= "INSERT INTO ".$_gl['purchasing_info_table']."(purchasing_name,purchasing_addr,purchasing_phone,purchasing_desc,purchasing_regdate) values('".$purchasing_name."','".$purchasing_addr."','".$purchasing_phone."','".$purchasing_desc."','".date("Y-m-d H:i:s")."');"; 
 			$purchasing_result		= mysqli_query($my_db, $purchasing_query);
-
 			if ($purchasing_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
-
 			echo $flag;
 		break;
 
@@ -441,15 +446,12 @@
 			$purchasing_addr	= $_REQUEST['purchasing_addr'];
 			$purchasing_phone	= $_REQUEST['purchasing_phone'];
 			$purchasing_desc	= $_REQUEST['purchasing_desc'];
-
 			$purchasing_query		= "UPDATE ".$_gl['purchasing_info_table']." SET purchasing_name='".$purchasing_name."',purchasing_addr='".$purchasing_addr."',purchasing_phone='".$purchasing_phone."',purchasing_desc='".$purchasing_desc."',purchasing_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
 			$purchasing_result		= mysqli_query($my_db, $purchasing_query);
-
 			if ($purchasing_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
-
 			echo $flag;
 		break;
 
@@ -461,27 +463,21 @@
 			echo $list_data['banner_speed']."||".$list_data['banner_time']."||".$list_data['banner_effect'];
 		break;
 
-	// 회원가입시 아이디 중복체크
+		// 회원가입시 아이디 중복체크
 		case "duplicate_check": 
-
 			$input = $_REQUEST['input'];
-
 			$chk_id_query 	= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$input."'";
 			$chk_id_result 	= mysqli_query($my_db, $chk_id_query);
 			$chk_id_data	= mysqli_num_rows($chk_id_result);
-
 			if($chk_id_data > 0) {
 				$flag = "N";
 			}else{
 				$flag = "Y";
 			}
 			echo $flag;
-
-
 		break;
 
 		case "member_join":
-
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
@@ -501,17 +497,13 @@
 			$birthY = preg_replace("/\s+/", "", $_POST['birthY']);
 			$birthM = preg_replace("/\s+/", "", $_POST['birthM']);
 			$birthD = preg_replace("/\s+/", "", $_POST['birthD']);
-
 			$email = $email1 . '@' . $email2;
-
 			if($tel2 == '') {
 				$tel = '';
 			}else{
 				$tel = $tel1 . '-' . $tel2 . '-' . $tel3;
-			} 
-
-				$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
-
+			}
+			$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
 			if($birthY !== '' && $birthM !== '' && $birthD !== '') {
 				if($birthM < 10 && strlen($birthM) < 2) {
 					$birthM = "/0".$birthM;
@@ -524,30 +516,22 @@
 					$birthD = "/".$birthD;
 				}
 			}
-
-
-				$birth = $birthY . $birthM . $birthD;
-				// 등급 수정할것
-				$grade = "silver";
-
-
-				$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."','".$password."','".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
-				$insert_result   = mysqli_query($my_db, $insert_query);
-
-
-				// result - 메일 발송
-				if($insert_result) {
-					$mail_reult = sendMail("ojoonwoo2@gmail.com", "촌의감각", "회원가입을 축하합니다.", "내용", "ojoonwoo@naver.com", "$username");
-					$flag = "Y";
-				}else{
-					$flag = "N";
-				}
+			$birth = $birthY . $birthM . $birthD;
+			// 등급 수정할것
+			$grade = "silver";
+			$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."','".$password."','".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
+			$insert_result   = mysqli_query($my_db, $insert_query);
+			// result - 메일 발송
+			if($insert_result) {
+				$mail_reult = sendMail("ojoonwoo2@gmail.com", "촌의감각", "회원가입을 축하합니다.", "내용", "ojoonwoo@naver.com", "$username");
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
 			echo $flag;
-
 		break;
 
 		case "member_modify":
-
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
@@ -567,48 +551,38 @@
 			$birthY = preg_replace("/\s+/", "", $_POST['birthY']);
 			$birthM = preg_replace("/\s+/", "", $_POST['birthM']);
 			$birthD = preg_replace("/\s+/", "", $_POST['birthD']);
-
 			$email = $email1 . '@' . $email2;
-
 			if($tel2 == '') {
 				$tel = '';
 			}else{
 				$tel = $tel1 . '-' . $tel2 . '-' . $tel3;
 			} 
-
-				$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
-
-				if($birthM !== '' && ($birthM < 10 && strlen($birthM) < 2)) {
-					$birthM = "/0".$birthM;
-				}else{
-					$birthM = "/".$birthM;
-				}
-				if($birthD !== '' && ($birthD < 10 && strlen($birthD) < 2)) {
-					$birthD = "/0".$birthD;
-				}else{
-					$birthD = "/".$birthD;
-				}
-
-				$birth = $birthY . $birthM . $birthD;
-
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."',mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
-				$update_result   = mysqli_query($my_db, $update_query);
-
-				if($update_result) {
-					$flag = "Y";
-				}else{
-					$flag = "N";
-				}
+			$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
+			if($birthM !== '' && ($birthM < 10 && strlen($birthM) < 2)) {
+				$birthM = "/0".$birthM;
+			}else{
+				$birthM = "/".$birthM;
+			}
+			if($birthD !== '' && ($birthD < 10 && strlen($birthD) < 2)) {
+				$birthD = "/0".$birthD;
+			}else{
+				$birthD = "/".$birthD;
+			}
+			$birth = $birthY . $birthM . $birthD;
+			$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."',mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
+			$update_result   = mysqli_query($my_db, $update_query);
+			if($update_result) {
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
 			echo $flag;
-
 		break;
 
-// 회원수정시 회원본인인지 체크
+		// 회원수정시 회원본인인지 체크
 		case "member_check":
-
 			$m_id = $_REQUEST['m_id'];
 			$m_pw = $_REQUEST['m_pw'];
-
 			$pw_query		= "SELECT mb_id,mb_name,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$m_id."' AND mb_password='".$m_pw."'";
 			$pw_result		= mysqli_query($my_db, $pw_query);
 			$pw_data 		= mysqli_fetch_array($pw_result);
@@ -632,8 +606,7 @@
 			// 	}
 			// }else{ // 입력한 아이디가 없는경우
 			// 	echo json_encode("N");
-			// } 
-
+			// }
 		break;
 
 		case "show_member_list" :
@@ -667,9 +640,9 @@
 				$innerHTML	.= "<td>".$list_data['mb_join_date']."</td>";
 				$innerHTML	.= "<td>".$list_data['mb_login_date']."</td>";
 				$innerHTML	.= "<td><input type='button' id='send_mail' onclick='sendMail();' value='메일'>&nbsp;
-									<input type='button' id='send_sms' onclick='sendSMS();' value='SMS'></td>";
+										<input type='button' id='send_sms' onclick='sendSMS();' value='SMS'></td>";
 				$innerHTML	.= "<td><a href='./modify_form.php?userid=".$list_data['mb_id']."'>
-										<input type='button' value='수정'><a></td>";
+											<input type='button' value='수정'><a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
 			}
@@ -678,7 +651,6 @@
 		break;
 
 		case "member_modify":
-
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
@@ -699,38 +671,31 @@
 			$birthM = preg_replace("/\s+/", "", $_POST['birthM']);
 			$birthD = preg_replace("/\s+/", "", $_POST['birthD']);
 			$grade = preg_replace("/\s+/", "", $_POST['grade']);
-
 			$email = $email1 . '@' . $email2;
-
 			if($tel2 == '') {
 				$tel = '';
 			}else{
 				$tel = $tel1 . '-' . $tel2 . '-' . $tel3;
 			} 
-
-				$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
-
-				if($birthM !== '' && ($birthM < 10 && strlen($birthM) < 2)) {
-					$birthM = "/0".$birthM;
-				}else{
-					$birthM = "/".$birthM;
-				}
-				if($birthD !== '' && ($birthD < 10 && strlen($birthD) < 2)) {
-					$birthD = "/0".$birthD;
-				}else{
-					$birthD = "/".$birthD;
-				}
-
-				$birth = $birthY . $birthM . $birthD;
-
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."',mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_grade='".$grade."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
-				$update_result   = mysqli_query($my_db, $update_query);
-
-				if($update_result) {
-					$flag = "Y";
-				}else{
-					$flag = "N";
-				}
+			$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
+			if($birthM !== '' && ($birthM < 10 && strlen($birthM) < 2)) {
+				$birthM = "/0".$birthM;
+			}else{
+				$birthM = "/".$birthM;
+			}
+			if($birthD !== '' && ($birthD < 10 && strlen($birthD) < 2)) {
+				$birthD = "/0".$birthD;
+			}else{
+				$birthD = "/".$birthD;
+			}
+			$birth = $birthY . $birthM . $birthD;
+			$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."',mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_grade='".$grade."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
+			$update_result   = mysqli_query($my_db, $update_query);
+			if($update_result) {
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
 			echo $flag;
 		break;
 
@@ -741,7 +706,6 @@
 			$banner_showYN			= $_REQUEST['banner_showYN'];
 			$banner_show_order	= $_REQUEST['banner_show_order'];
 			$banner_link_target		= $_REQUEST['banner_link_target'];
-
 			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,banner_type,banner_showYN,banner_show_order,banner_img_link,banner_link_target,banner_regdate) values('".$banner_name."','".$banner_type."','".$banner_showYN."','".$banner_show_order."','".$banner_value."','".$banner_link_target."','".date("Y-m-d H:i:s")."')";
 			$banner_result	= mysqli_query($my_db, $banner_query);
 			$id_num				= mysqli_insert_id($my_db);
@@ -749,16 +713,13 @@
 				$flag = $id_num;
 			else
 				$flag = "0";
-
 			echo $flag;
 		break;
 
 		case "show_banner_list" :
 			$target	= $_REQUEST['target'];
-
 			$list_query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 ORDER BY idx DESC";
 			$list_result		= mysqli_query($my_db, $list_query);
-
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
 			$innerHTML	.= "<th>배너 이름</th>";
@@ -792,5 +753,163 @@
 			$innerHTML	.= "</tbody>";
 			echo $innerHTML;
 		break;
+
+		case "show_review_list":
+
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['board_review_table']." WHERE 1 ORDER BY thread DESC";
+			$list_result	= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th><input type='checkbox' name='all_check' id='all_check'></th>";
+			$innerHTML	.= "<th>순번</th>";
+			$innerHTML	.= "<th>상품코드</th>";
+			$innerHTML	.= "<th>제목</th>";
+			$innerHTML	.= "<th>작성자</th>";
+			$innerHTML	.= "<th>작성일시</th>";
+			$innerHTML	.= "<th>조회수</th>";
+			$innerHTML	.= "<th>답변</th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td><input type='checkbox' name='one_check' id='one_check'></td>";
+				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
+				$innerHTML	.= "<td>";
+				if($list_data['depth']>0)
+				{
+					$depth = $list_data['depth']*7;
+					$innerHTML	.= "<img height='1' width=$depth>";
+				}
+				$innerHTML	.= "<a href='./read_review.php?idx=".$list_data['idx']."'>
+										".$list_data['subject']."
+										</td>";
+				$innerHTML	.= "<td>".$list_data['user_id']."</td>";
+				$innerHTML	.= "<td>".$list_data['date']."</td>";
+				$innerHTML	.= "<td>".$list_data['hit']."</td>";
+				$innerHTML	.= "<td>
+										<a href='./reply_review.php?idx=".$list_data['idx']."'>
+										<input type='button' value='답변'></a>
+										<a href='./delete_review.php?idx=".$list_data['idx']."'>
+										<input type='button' value='삭제'></a>
+									</td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+
+		break;
+
+		case "reply_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+			$p_thread = $_REQUEST['p_thread'];
+			$p_depth = $_REQUEST['p_depth'];
+			$parent_gID = $_REQUEST['parent_gID'];
+
+			$prev_parent_thread = ceil($p_thread/1000)*1000 - 1000; // 올림
+
+			//원본글보다는 작고 위값보다는 큰 글들의 thread 값을 모두 1씩 낮춘다.
+			//만약 부모글이 2000이면 prev_parent_thread는 1000이므로 2000> x >1000 인 x 글들을 모두 -1 한다.
+
+			$u_query = "UPDATE ".$_gl['board_review_table']." SET thread=thread-1 WHERE thread > '".$prev_parent_thread."' AND thread < '".$p_thread."'";
+			$result = mysqli_query ($my_db, $u_query); 
+
+			//원본글보다는 1 작은 값으로 답글을 등록한다.
+			//원본글의 바로 밑에 등록되게 된다.
+			//depth는 원본글의 depth + 1 이다. 원본글이 3(이글도 답글)이면 답글은 4가된다.
+			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+							VALUES ('".$parent_gID."','".$p_thread."'-1,'".$p_depth."'+1,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
+			$result = mysqli_query($my_db, $i_query);
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;	
+
+		break;
+
+		case "edit_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+
+			// $s_query = "SELECT max(thread) AS thread FROM ".$_gl['board_review_table']."";
+			// $max_thread_result = mysqli_query($my_db, $s_query);
+			// $max_thread_fetch = mysqli_fetch_row($max_thread_result);
+
+			// $max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
+
+			$u_query = "UPDATE ".$_gl['board_review_table']." SET subject='".$subject."', content='".$content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+			$u_result = mysqli_query ($my_db, $u_query); // 글 수정
+			if($u_result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+
+		case "delete_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$group_id	 = $_REQUEST['group_id'];
+			$goods_code = $_REQUEST['goods_code'];
+
+			$del_subject = "삭제된 글입니다.";
+			$del_content = "삭제된 글입니다.";
+
+			// 모든 글에서의 내용 뽑아내서 치환할경우
+			// $query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx = '".$idx."'";
+			// $result = mysqli_query($my_db, $query);
+			// $target = mysqli_fetch_array($result); // 지울 제목, 내용
+
+			// $query = "SELECT * FROM ".$_gl['board_review_table']." WHERE group_id = '".$group_id."'";
+			// $result = mysqli_query($my_db, $query);
+			// while ($array = mysqli_fetch_array($result)) {
+			// 	$contentArr[][] = str_replace($target['content'], $del_content, $array['content']);
+			// }
+			// print_r($contentArr);
+
+			$query = "SELECT * FROM ".$_gl['board_review_table']." WHERE group_id = '".$group_id."'";
+			$result = mysqli_query($my_db, $query);
+			$rows = mysqli_num_rows($result);
+
+			if($rows>1)
+			{
+				$query = "UPDATE ".$_gl['board_review_table']." SET subject='".$del_subject."', content='".$del_content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+				$result = mysqli_query($my_db, $query); // 글 수정 (답변글 존재)
+			}else{
+				$query = "DELETE FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
+				$result = mysqli_query($my_db, $query); // 글 삭제 (답변글 X)
+			}
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
 	}
+
 ?>

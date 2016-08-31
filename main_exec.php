@@ -140,7 +140,7 @@
 				$tel = '';
 			}else{
 				$tel = $tel1 . '-' . $tel2 . '-' . $tel3;
-			} 
+			}
 
 				$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
 
@@ -184,6 +184,166 @@
 				$flag = "N";
 			}
 			echo $flag;
+
+			// $id_query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$m_id."'";
+			// $id_result		= mysqli_query($my_db, $id_query);
+			// $id_data = mysqli_fetch_array($id_result);
+			// if($id_data) { // 아이디가 있을경우 입력한 비밀번호 검사
+			// 	$pw_query		= "SELECT mb_id,mb_name,mb_question,mb_answer,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_gender,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$id_data['mb_id']."' AND mb_password='".$m_pw."'";
+			// 	$pw_result		= mysqli_query($my_db, $pw_query);
+			// 	$pw_data 		= mysqli_fetch_array($pw_result);
+			// 	if($pw_data) {
+			// 		echo json_encode($pw_data);
+			// 	}else{
+			// 		echo json_encode("P");
+			// 	}
+			// }else{ // 입력한 아이디가 없는경우
+			// 	echo json_encode("N");
+			// }
+
 		break;
-}
+
+		case "insert_banner_info" :
+					$banner_name	= $_REQUEST['banner_name'];
+					$banner_type		= $_REQUEST['banner_type'];
+					$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,banner_type,banner_regdate) values('".$banner_name."','".$banner_type."','".date("Y-m-d H:i:s")."')";
+					$banner_result	= mysqli_query($my_db, $banner_query);
+					if($banner_result)
+						$flag = "Y";
+					else
+						$flag = "N";
+					echo $banner_query;
+				break;
+
+		case "write_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+
+			$s_query = "SELECT max(thread) AS thread, max(idx) FROM ".$_gl['board_review_table']."";
+			$max_thread_result = mysqli_query($my_db, $s_query);
+			$max_thread_fetch = mysqli_fetch_row($max_thread_result);
+
+			$max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
+			$max_idx = $max_thread_fetch[1]+1;
+
+			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+			VALUES('".$max_idx."','".$max_thread."',0,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
+
+			$i_result = mysqli_query($my_db, $i_query); // 글 저장
+
+			if($i_result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+
+		case "edit_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+
+			// $s_query = "SELECT max(thread) AS thread FROM ".$_gl['board_review_table']."";
+			// $max_thread_result = mysqli_query($my_db, $s_query);
+			// $max_thread_fetch = mysqli_fetch_row($max_thread_result);
+
+			// $max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
+
+			$u_query = "UPDATE ".$_gl['board_review_table']." SET subject='".$subject."', content='".$content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+			$u_result = mysqli_query ($my_db, $u_query); // 글 수정
+			if($u_result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+
+		case "reply_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+			$p_thread = $_REQUEST['p_thread'];
+			$p_depth = $_REQUEST['p_depth'];
+			$parent_gID = $_REQUEST['parent_gID'];
+
+			$prev_parent_thread = ceil($p_thread/1000)*1000 - 1000; // 올림
+
+			//원본글보다는 작고 위값보다는 큰 글들의 thread 값을 모두 1씩 낮춘다.
+			//만약 부모글이 2000이면 prev_parent_thread는 1000이므로 2000> x >1000 인 x 글들을 모두 -1 한다.
+
+			$u_query = "UPDATE ".$_gl['board_review_table']." SET thread=thread-1 WHERE thread > '".$prev_parent_thread."' AND thread < '".$p_thread."'";
+			$result = mysqli_query ($my_db, $u_query); 
+
+			//원본글보다는 1 작은 값으로 답글을 등록한다.
+			//원본글의 바로 밑에 등록되게 된다.
+			//depth는 원본글의 depth + 1 이다. 원본글이 3(이글도 답글)이면 답글은 4가된다.
+			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+						VALUES ('".$parent_gID."','".$p_thread."'-1,'".$p_depth."'+1,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
+			$result = mysqli_query($my_db, $i_query);
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+
+		case "delete_review":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$group_id	 = $_REQUEST['group_id'];
+			$goods_code = $_REQUEST['goods_code'];
+
+			$del_subject = "삭제된 글입니다.";
+			$del_content = "삭제된 글입니다.";
+
+
+			$query = "SELECT * FROM ".$_gl['board_review_table']." WHERE group_id = '".$group_id."'";
+			$result = mysqli_query($my_db, $query);
+			$rows = mysqli_num_rows($result);
+
+			// $query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."' AND group_id=";
+			// $result = mysqli_query($my_db, $query);
+			// $data = mysqli_fetch_array($result);
+
+
+			if($rows>1)
+			{
+				$query = "UPDATE ".$_gl['board_review_table']." SET subject='".$del_subject."', content='".$del_content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+				$result = mysqli_query($my_db, $query); // 글 수정 (답변글 존재)
+			}else{
+				$query = "DELETE FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
+				$result = mysqli_query($my_db, $query); // 글 삭제 (답변글 X)
+			}
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+
+	}
 ?>
