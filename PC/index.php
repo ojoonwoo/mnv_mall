@@ -12,7 +12,7 @@
 	{
 ?>
     <a href="#" id="mb_logout">로그아웃</a>
-    <a href="http://localhost/mnv_mall/PC/member/join_form.php">정보수정</a>
+    <a href="http://localhost/mnv_mall/PC/member/modify_form.php">정보수정</a>
 <?
 	}else{
 ?>

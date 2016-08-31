@@ -247,4 +247,16 @@ function select_purchasing_info($idx)
 	return $data;
 }
 
+// 회원 정보 가져오기 (SESSION)
+function select_member_info()
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$_SESSION['ss_chon_id']."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
 ?>
