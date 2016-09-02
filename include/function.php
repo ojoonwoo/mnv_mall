@@ -259,4 +259,21 @@ function select_member_info()
 
 	return $data;
 }
+
+// 쇼핑몰 기본 설정 가져오기
+function select_shop_config_info()
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['site_option_table']." WHERE 1";
+	$result		= mysqli_query($my_db, $query);
+	while ($data = @mysqli_fetch_array($result))
+	{
+		$res_data[$data['option_name']][]	= $data['option_value'];
+		$res_data[$data['option_name']][]	= $data['option_load'];
+	}
+
+	return $res_data;
+}
 ?>

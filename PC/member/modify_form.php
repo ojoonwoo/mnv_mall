@@ -67,7 +67,7 @@
     - <input type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>"> - <input type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
     <br><br>
     <input type="button" id="submit" value="수정">&nbsp;&nbsp;&nbsp;
-    <input type="reset" value="취소">
+    <input type="button" id="cancel_modify_member"  value="취소">
   </form>
 <script type="text/javascript">
 	$(window).load(function() {
@@ -169,6 +169,10 @@
 				}
 			});
 		}
+	});
+
+	$(document).on("click", "#cancel_modify_member", function(){
+		history.back();
 	});
 </script>
 </body>

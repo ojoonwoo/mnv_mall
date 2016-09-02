@@ -716,6 +716,41 @@
 			echo $flag;
 		break;
 
+		case "update_option_info" :
+			$best_goods_flag			= $_REQUEST['best_goods_flag'];
+			$new_goods_flag			= $_REQUEST['new_goods_flag'];
+			$plan_goods_flag			= $_REQUEST['plan_goods_flag'];
+			$cate_goods_flag			= $_REQUEST['cate_goods_flag'];
+			$best_goods_flagYN		= $_REQUEST['best_goods_flagYN'];
+			$new_goods_flagYN		= $_REQUEST['new_goods_flagYN'];
+			$plan_goods_flagYN		= $_REQUEST['plan_goods_flagYN'];
+			$cate_goods_flagYN		= $_REQUEST['cate_goods_flagYN'];
+			$default_saved_priceYN	= $_REQUEST['default_saved_priceYN'];
+			$default_saved_price	= $_REQUEST['default_saved_price'];
+
+			$option1_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$best_goods_flag."', option_load='".$best_goods_flagYN."' WHERE option_name='best_goods_flag'"; 
+			$option1_result		= mysqli_query($my_db, $option1_query);
+
+			$option2_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$new_goods_flag."', option_load='".$new_goods_flagYN."' WHERE option_name='new_goods_flag'"; 
+			$option2_result		= mysqli_query($my_db, $option2_query);
+
+			$option3_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$plan_goods_flag."', option_load='".$plan_goods_flagYN."' WHERE option_name='plan_goods_flag'"; 
+			$option3_result		= mysqli_query($my_db, $option3_query);
+
+			$option4_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$cate_goods_flag."', option_load='".$cate_goods_flagYN."' WHERE option_name='cate_goods_flag'"; 
+			$option4_result		= mysqli_query($my_db, $option4_query);
+
+			$option5_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_saved_price."', option_load='".$default_saved_priceYN."' WHERE option_name='default_saved_price'"; 
+			$option5_result		= mysqli_query($my_db, $option5_query);
+
+			if ($option5_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
 		case "show_banner_list" :
 			$target	= $_REQUEST['target'];
 			$list_query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 ORDER BY idx DESC";
