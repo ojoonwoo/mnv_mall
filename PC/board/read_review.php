@@ -1,6 +1,6 @@
 <?
-	include_once "../../config.php";
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
 	$idx				= $_GET['idx'];
 	$pg				= $_GET['pg'];

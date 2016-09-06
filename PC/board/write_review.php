@@ -1,6 +1,6 @@
 <?
-	include_once "../../config.php";
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 	$user_id			= $_SESSION['ss_chon_id'];
 	$goods_code	= $_GET['goods_code'];
 ?>

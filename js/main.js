@@ -208,3 +208,47 @@ $(document).on("click", "#mb_logout", function(){
 		}
 	});
 });
+
+// 위시리스트 클릭
+$(document).on("click", "#wish_link", function(){
+	var goods_idx	= $("#goods_idx").val();
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/mnv_mall/main_exec.php",
+		data:{
+			"exec"				: "add_wishlist",
+			"goods_idx"		: goods_idx
+		},
+		success: function(response){
+			if (response == "N")
+			{
+				alert("로그인을 먼저 해 주세요.");
+			}else if (response == "D"){
+				alert("이미 위시리스트에 등록한 상품입니다.");
+			}else if (response == "Y"){
+				alert("위시리스트에 등록되었습니다.");
+			}else{
+				alert("다시 시도해 주세요.");
+			}
+			//location.reload();
+		}
+	});
+});
+
+// 장바구니 클릭
+$(document).on("click", "#mycart_link", function(){
+	var goods_idx	= $("#goods_idx").val();
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/mnv_mall/main_exec.php",
+		data:{
+			"exec"				: "add_mycart",
+			"goods_idx"		: goods_idx
+		},
+		success: function(response){
+			alert(response);
+		}
+	});
+});

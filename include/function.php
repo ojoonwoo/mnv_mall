@@ -276,4 +276,11 @@ function select_shop_config_info()
 
 	return $res_data;
 }
+
+function create_cartid()
+{
+	$randcode = md5( mktime() . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] ); ;
+
+	return $randcode; // 난수 생성
+}
 ?>

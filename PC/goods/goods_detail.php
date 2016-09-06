@@ -1,6 +1,6 @@
 <?
-	include_once "../../config.php";
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
 	$goods_code	= $_REQUEST['goods_code'];
 	$goods_info	= select_goods_info($goods_code);
@@ -20,17 +20,40 @@
 	if (!$pg) {
 		$pg = "1";
 	}
-	//if(isset($pg) == false) $pg = 1;  // $pg가 없으면 1로 생성
 	$page_size = 10;  // 한 페이지에 나타날 개수
 	$block_size = 10; // 한 화면에 나타낼 페이지 번호 개수
 
+	print_r($_SESSION);
 ?>
 <body>
+  <div id="header_area">
+    <a href="http://localhost/mnv_mall/PC/index.php">촌의 감각</a>
+<?
+	if ($_SESSION['ss_chon_id'])
+	{
+?>
+    <a href="#" id="mb_logout">로그아웃</a>
+    <a href="http://localhost/mnv_mall/PC/member/modify_form.php">정보수정</a>
+<?
+	}else{
+?>
+    <a href="http://localhost/mnv_mall/PC/member/member_login.php">로그인</a>
+    <a href="http://localhost/mnv_mall/PC/member/join_form.php">회원가입</a>
+<?
+	}
+?>
+    <a href="#">마이페이지</a>
+    <a href="#">장바구니</a>
+    <a href="#">주문조회</a>
+    <a href="#">매거진 촌</a>
+    <a href="#">인스타그램</a>
+  </div>
 <?
 	// 상단 카테고리 영역
 	include_once "../cate_navi.php";
 ?>
 <input type="hidden" id="hd_sales_price" value="<?=$goods_info['sales_price']?>">
+<input type="hidden" id="goods_idx" value="<?=$goods_info['idx']?>">
 썸네일 : <img src="<?=$goods_info['goods_img_url']?>" style="width:200px"><br />
 제품명 : <?=$goods_info['goods_name']?><br />
 판매가 : <?=$goods_info['sales_price']?><br />
@@ -75,7 +98,7 @@
   -----------------------------------------------------------------------------------
   <br />
   총 상품금액(수량) <span id="total_price"><?=number_format($goods_info['sales_price'])?></span>원 (<span id="total_cnt">1</span>개) <br />
-  <a href="#">구매하기</a> <a href="#">장바구니</a> <a href="#">위시리스트</a>
+  <a href="#">구매하기</a> <a href="#" id="mycart_link">장바구니</a> <a href="#" id="wish_link">위시리스트</a>
 
   <h1>리뷰 게시판</h1>
   <form name="frm_execute" method="POST" onsubmit="return checkfrm()">

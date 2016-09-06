@@ -1,5 +1,6 @@
 <?
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
 	$idx = $_GET['idx'];
 	$parent_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";

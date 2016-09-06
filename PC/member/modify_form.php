@@ -1,13 +1,13 @@
 <?
-	include_once "../../config.php";
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
-	$user_data = select_member_info();
+	$user_data		= select_member_info();
 
-	$split_email = explode('@', $user_data['mb_email']);
-	$split_birth = explode('/', $user_data['mb_birth']);
-	$split_phone = explode('-', $user_data['mb_handphone']);
-	$split_tel = explode('-', $user_data['mb_telphone']);
+	$split_email	= explode('@', $user_data['mb_email']);
+	$split_birth		= explode('/', $user_data['mb_birth']);
+	$split_phone	= explode('-', $user_data['mb_handphone']);
+	$split_tel		= explode('-', $user_data['mb_telphone']);
 ?>
 <body>
   <form method="post" id="modify_form">

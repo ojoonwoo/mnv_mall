@@ -342,8 +342,50 @@
 			}
 
 			echo $flag;
-
 		break;
 
+		case "add_wishlist" :
+			$goods_idx	= $_REQUEST['goods_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			if ($mb_id == "")
+			{
+				$flag	= "N"; // 로그인 안되어 있음.
+			}else{
+				$wish_query 	= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE mb_id='".$mb_id."' AND goods_idx='".$goods_idx."'";
+				$wish_result 	= mysqli_query($my_db, $wish_query);
+				$wish_data		= mysqli_fetch_array($wish_result);
+				if ($wish_data)
+				{
+					$flag	= "D";
+				}else{
+					$wish_query2 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, wish_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
+					$wish_result2 	= mysqli_query($my_db, $wish_query2);
+
+					if ($wish_result2)
+						$flag	= "Y";
+					else
+						$flag	= "E";
+				}
+			}
+			echo $flag;
+		break;
+
+		case "add_mycart" :
+			$goods_idx	= $_REQUEST['goods_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+			$cart_id		= $_SESSION['ss_chon_cartid'];
+
+			if ($mb_id == "")
+			{
+				$_SESSION['ss_chon_cartid']			= create_cartid();
+			}else{
+				$_SESSION['ss_chon_cartid']			= $mb_id;
+			}
+			// 추가 수정 작업 해야함
+			$wish_query2 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, wish_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
+			$wish_result2 	= mysqli_query($my_db, $wish_query2);
+
+		break;
 	}
 ?>
