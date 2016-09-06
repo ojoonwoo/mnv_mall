@@ -1,5 +1,6 @@
 <?
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
 	$idx = $_GET['idx'];
 	$parent_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
@@ -35,7 +36,7 @@
 		elPlaceHolder: "content",
 		sSkinURI: "../lib/smarteditor/SmartEditor2Skin.html",  
 		htParams : {
-			bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+		  bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,   // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseModeChanger : true,     // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 			//aAdditionalFontList : aAdditionalFontSet,   // 추가 글꼴 목록

@@ -1,5 +1,6 @@
 <?
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
 	$idx = $_GET['idx'];
 
@@ -19,7 +20,7 @@
     <input type="button" id="edit_rev" value="수정하기">
     <input type="button" onclick="history.back();" value="뒤로가기">
   </form>
-<script type="text/javascript" src="../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
 	var oEditors    = [];
 	var m_oEditors  = [];
@@ -27,7 +28,7 @@
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "content",
-		sSkinURI: "../lib/smarteditor/SmartEditor2Skin.html",  
+		sSkinURI: "../../lib/smarteditor/SmartEditor2Skin.html",  
 		htParams : {
 			bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,   // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -48,7 +49,7 @@
 	$('#edit_rev').on('click', function(){
 		$.ajax({
 			method: 'POST',
-			url: '../main_exec.php',
+			url: '../../main_exec.php',
 			data: {
 				exec        : "edit_review",
 				user_id     : $('#user_id').val(),

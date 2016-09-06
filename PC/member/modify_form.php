@@ -1,15 +1,13 @@
 <?
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
-	$user_id = $_SESSION['user_id'];
-	$user_query = "SELECT mb_id,mb_name,mb_handphone,mb_telphone,mb_zipcode,mb_address1,mb_address2,mb_birth,mb_email,mb_emailYN,mb_smsYN FROM ".$_gl['member_info_table']." WHERE mb_id='".$user_id."'";
-	$user_result = mysqli_query($my_db, $user_query);
-	$user_data = mysqli_fetch_array($user_result);
+	$user_data		= select_member_info();
 
-	$split_email = explode('@', $user_data['mb_email']);
-	$split_birth = explode('/', $user_data['mb_birth']);
-	$split_phone = explode('-', $user_data['mb_handphone']);
-	$split_tel = explode('-', $user_data['mb_telphone']);
+	$split_email	= explode('@', $user_data['mb_email']);
+	$split_birth		= explode('/', $user_data['mb_birth']);
+	$split_phone	= explode('-', $user_data['mb_handphone']);
+	$split_tel		= explode('-', $user_data['mb_telphone']);
 ?>
 <body>
   <form method="post" id="modify_form">
@@ -69,12 +67,9 @@
     - <input type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>"> - <input type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
     <br><br>
     <input type="button" id="submit" value="수정">&nbsp;&nbsp;&nbsp;
-    <input type="reset" value="취소">
+    <input type="button" id="cancel_modify_member"  value="취소">
   </form>
 <script type="text/javascript">
-	var val_check;
-	var id_check;
-
 	$(window).load(function() {
 		if($('#birthY').val() !== ''){
 			$('#birthY').attr('readonly', 'true');
@@ -137,14 +132,7 @@
 	});
 
 	$('#submit').on('click', function(){
-		// if(id_check == 'Y'){
-		val_check = validate('modify');
-		// }else{
-		//   alert("중복된 아이디입니다.");
-		//   $('#user_id').val('').focus;
-		//   return;
-		// }
-
+		var val_check = validate('modify');
 		if(val_check){
 			$.ajax({
 				method: 'POST',
@@ -181,6 +169,10 @@
 				}
 			});
 		}
+	});
+
+	$(document).on("click", "#cancel_modify_member", function(){
+		history.back();
 	});
 </script>
 </body>

@@ -1,5 +1,6 @@
 <?
-	include_once "../header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
 	if(isset($_REQUEST['pg']) == false)
 		$pg = "1";
@@ -79,7 +80,8 @@
       </tr>
       <tr>
         <td colspan="4">
-          <a href="write_review.php?id=ojoonwoo&code=test1111">WRITE</a>
+          <!-- <a href="write_review.php?id=ojoonwoo&code=test1111">WRITE</a> -->
+          <a href="write_review.php">WRITE</a>
           /<a href="view_all_review.php"> VIEW ALL</a>
         </td>
       </tr>

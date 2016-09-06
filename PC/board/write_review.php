@@ -1,7 +1,8 @@
 <?
-	include_once "../header.php";
-	$user_id = $_GET['id'];
-	$goods_code = $_GET['code'];
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
+	$user_id			= $_SESSION['ss_chon_id'];
+	$goods_code	= $_GET['goods_code'];
 ?>
 <body>
   <form id="write_review">
@@ -11,7 +12,7 @@
     <textarea name="content"  id="content" rows="10" cols="100" style="width:100%; height:412px; display:none;"></textarea><br>
     <input type="button" id="write_rev" value="등록">
   </form>
-<script type="text/javascript" src="../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
 	var oEditors    = [];
 	var m_oEditors  = [];
@@ -19,7 +20,7 @@
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "content",
-		sSkinURI: "../lib/smarteditor/SmartEditor2Skin.html",  
+		sSkinURI: "../../lib/smarteditor/SmartEditor2Skin.html",  
 		htParams : {
 			bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,   // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -54,7 +55,7 @@
 
 		$.ajax({
 			method: 'POST',
-			url: '../main_exec.php',
+			url: '../../main_exec.php',
 			data: {
 				exec        : "write_review",
 				user_id     : user_id,
@@ -67,7 +68,8 @@
 				if(res == "Y")
 				{
 					alert("리뷰가 등록되었습니다.");
-					location.href="list_review.php";
+					//location.href="list_review.php";
+					history.back();
 				}else{
 					alert("리뷰 등록 실패");
 					location.reload();

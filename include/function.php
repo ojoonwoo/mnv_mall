@@ -247,4 +247,40 @@ function select_purchasing_info($idx)
 	return $data;
 }
 
+// 회원 정보 가져오기 (SESSION)
+function select_member_info()
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$_SESSION['ss_chon_id']."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
+// 쇼핑몰 기본 설정 가져오기
+function select_shop_config_info()
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['site_option_table']." WHERE 1";
+	$result		= mysqli_query($my_db, $query);
+	while ($data = @mysqli_fetch_array($result))
+	{
+		$res_data[$data['option_name']][]	= $data['option_value'];
+		$res_data[$data['option_name']][]	= $data['option_load'];
+	}
+
+	return $res_data;
+}
+
+function create_cartid()
+{
+	$randcode = md5( mktime() . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] ); ;
+
+	return $randcode; // 난수 생성
+}
 ?>

@@ -1,7 +1,6 @@
 <?
-	include_once "../../config.php";
-	include_once "../header.php";
-
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 ?>
 <body>
   <h2>LOGIN</h2>

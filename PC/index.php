@@ -1,8 +1,8 @@
 <?
-	include_once "../config.php";
-	include_once "./header.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_mnv_PC_dir."header.php";
 
-	print_r($_SESSION);
+	//print_r($_SESSION);
 ?>
 <body>
   <div id="header_area">
@@ -12,7 +12,7 @@
 	{
 ?>
     <a href="#" id="mb_logout">로그아웃</a>
-    <a href="http://localhost/mnv_mall/PC/member/join_form.php">정보수정</a>
+    <a href="http://localhost/mnv_mall/PC/member/modify_form.php">정보수정</a>
 <?
 	}else{
 ?>
@@ -29,15 +29,15 @@
   </div>
 <?
 	// 상단 카테고리 영역
-	include_once "./cate_navi.php";
+	include_once $_mnv_PC_dir."cate_navi.php";
 	// 배너 영역
-	include_once "./banner_area.php";
+	include_once $_mnv_PC_dir."banner_area.php";
 	// 베스트셀러 상품 영역
-	include_once "./best_goods_area.php";
+	include_once $_mnv_PC_dir."best_goods_area.php";
 	// 신 상품 영역
-	include_once "./new_goods_area.php";
+	include_once $_mnv_PC_dir."new_goods_area.php";
 	// 기획 상품 영역
-	include_once "./plan_goods_area.php";
+	include_once $_mnv_PC_dir."plan_goods_area.php";
 ?>
 </body>
 </html>
