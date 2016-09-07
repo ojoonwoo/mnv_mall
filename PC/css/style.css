@@ -556,6 +556,7 @@ input {
 /* main 안에서 레이아웃 2단 나누기 */
 
 .contents .area_product_detail {
+    display: block;
     width: 100%;
     padding: 20px 0;
 }
@@ -578,6 +579,7 @@ input {
 
 .contents .area_product_detail .product_head.info {
     width: 470px;
+    height: 400px;
 }
 
 .product_head.info .block_info_top {
@@ -713,12 +715,31 @@ input {
     text-align: center;
 }
 
-.polygon_double {
+
+.amount_btn {
     vertical-align: -6px;
     display: inline-block;
 }
 
+.amount_btn.off_stock {
+    background-color: #196a24;
+    padding: 2px 6px;
+    color: #ffffff;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.amount_btn.off_stock .restock_arrow {
+    margin-left: 5px;
+    display: inline-block;
+    background: url(../images/restock_arrow.png) no-repeat;
+    width: 3px;
+    height: 5px;
+    vertical-align: 1px;
+}
+
 .block_line.total {
+    display: block;
     margin: 20.5px 0;
 }
 
@@ -738,7 +759,10 @@ input {
 
 .block_btn {
     width: 100%;
+    display: block;
+    position: relative;
 }
+
 
 .block_btn .pr_btn {
     float: left;
@@ -754,7 +778,7 @@ input {
     font-size: 15px;
 }
 
-.block_btn .pr_btn:last-child {
+.block_btn .pr_btn:nth-child(3) {
     margin: 0;
 }
 
@@ -763,18 +787,79 @@ input {
     color: #ffffff;
 }
 
+.block_btn.off_stock .pr_btn {
+    width: 100%;
+    background-color: #575757;
+    color: #196a24;
+    font-weight: 600;
+    border: none;
+}
+
+
+/* 장바구니 팝업 */
+.popup_basket {
+    position: absolute;
+    z-index: 100;
+    background: url(../images/popup_bg.png) 344px 159px no-repeat;
+    width: 344px;
+    height: 159px;
+    top: -162px;
+    left: 64px;
+    background-position: center;
+}
+.popup_basket .popup_inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+.popup_basket .area_close {
+    position: absolute;
+    text-indent: -9999px;
+    top: 4px;
+    right: 4px;
+    width: 30px;
+    height: 30px;
+}
+
+.area_close > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.popup_txt {
+    padding-top: 36px;
+    text-align: center;
+}
+
+.popup_btn_block {
+    padding-top: 16px;
+}
+
+.pr_btn.sm {
+    width: 117px;
+    height: 35px;
+    font-size: 12px;
+    margin-right: 4px;
+}
+/* 장바구니 팝업 */
+
 .area_main_middle {
     padding-top: 50px;
     margin: 0 auto;
 }
 
+
 .product_logo {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .product_dt_img {
     margin: 6px 0;
+    width: 100%;
 }
 
 .product_dt_img img {

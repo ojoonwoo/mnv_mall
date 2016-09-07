@@ -101,13 +101,18 @@
                     <div class="block_line">
                       <span class="left_text">수량</span>
                       <input type="text" name="select_amount" id="amount_val" value="1">
-                      <span class="polygon_double">
-                        <img src="../images/polygon_double.png" usemap="#amount">
-                        <map name="amount" id="amount">
-                          <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
-                          <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
-                        </map>
+                      <span class="amount_btn">
+                          <img src="../images/polygon_double.png" usemap="#amount">
+                          <map name="amount" id="amount">
+                            <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
+                            <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
+                          </map>
                       </span>
+<!-- 품절일시 화살표 아이콘 재입고요청 버튼으로 변경
+                      <span class="amount_btn off_stock" style="display:none">
+                        재입고요청<span class="restock_arrow"></span>
+                      </span>
+-->
                     </div>
                     <div class="block_line">
                         <span class="left_text">
@@ -135,7 +140,26 @@
                       <input type="button" class="pr_btn active" value="바로구매">
                       <input type="button" class="pr_btn" value="장바구니">
                       <input type="button" class="pr_btn" value="위시리스트">
+<!-- 장바구니 팝업
+                      <div class="popup_basket" style="display:none;">
+                        <div class="popup_inner">
+                          <div class="area_close"><a href="#">닫기</a></div>
+                          <div class="popup_txt">
+                            <p>장바구니에 담겼습니다<br>지금 확인하시겠어요?</p>
+                          </div>
+                          <div class="popup_btn_block clearfix">
+                            <input type="button" class="pr_btn sm active" value="계속쇼핑하기">
+                            <input type="button" class="pr_btn sm" value="장바구니 보기">
+                          </div>
+                        </div>
+                      </div>
+-->
                     </div>
+<!-- 품절일때 버튼 레이아웃, 스타일 변경
+                    <div class="block_btn clearfix off_stock" style="display:none;">
+                      <input type="button" class="pr_btn" value="SOLD OUT">
+                    </div>
+-->
                   </div>
                 </div>
               </div>
@@ -274,6 +298,13 @@
                     <td class="date">2016-01-01</td>
                   </tr>
                 </table>
+<!-- 게시물 없을 때
+                <table class="pr_view_table board_empty" style="display:none">
+                  <tr>
+                    <td>게시물이 없습니다</td>
+                  </tr>
+                </table>
+-->
                 <div class="block_board_btn">
                   <input type="button" value="작성하기" class="board_btn">
                   <input type="button" value="목록으로" class="board_btn">
@@ -324,6 +355,13 @@
                     <td class="date">2016-01-01</td>
                   </tr>
                 </table>
+<!-- 게시물 없을 때
+                <table class="pr_view_table board_empty" style="display:none">
+                  <tr>
+                    <td>게시물이 없습니다</td>
+                  </tr>
+                </table>
+-->
                 <div class="block_board_btn">
                   <input type="button" value="작성하기" class="board_btn">
                   <input type="button" value="목록으로" class="board_btn">
