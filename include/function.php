@@ -283,4 +283,30 @@ function create_cartid()
 
 	return $randcode; // 난수 생성
 }
+
+// 카테고리1 이름 가져오기
+function select_cate1_info($cate_1)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT cate_name FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2=0 AND cate_3=0";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data['cate_name'];
+}
+
+// 카테고리2 이름 가져오기
+function select_cate2_info($cate_1, $cate_2)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT cate_name FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2='".$cate_2."' AND cate_3=0";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data['cate_name'];
+}
 ?>

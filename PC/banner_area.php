@@ -1,4 +1,4 @@
-  <div class="slide_banner">
+  <!-- <div class="slide_banner">
 <?
 	$rolling_banner_info		= select_banner_info("main_rolling_banner");
 
@@ -28,4 +28,31 @@
 		$i++;
 	}
 ?>
-  </div>
+  </div> -->
+
+
+
+
+
+          <div class="area_banner">
+            <div class="banner_slide">
+<?
+	$rolling_banner_info		= select_banner_info("main_rolling_banner");
+
+	foreach ($rolling_banner_info as $key => $val)
+	{
+		$val['banner_img_url']	= str_replace("../../","",$val['banner_img_url']);
+?>
+              <div class="slide"><a href="<?=$val['banner_img_link']?>" target="<?=$val['banner_link_target']?>"><img src="<?=$val['banner_img_url']?>"></a></div>
+<?
+	}
+	$image_banner_info		= select_banner_info("main_image_banner");
+	$image_banner_info[0]['banner_img_url']	= str_replace("../../","",$image_banner_info[0]['banner_img_url']);
+?>
+            </div>
+            <div class="banner_list clearfix">
+              <div class="banner"><a href="#"><div class="banner_bg1"><span class="over_txt">촌의 감각</span></div></a></div>
+              <div class="banner"><a href="#"><div class="banner_bg2"><span class="over_txt">매거진, 촌</span></div></a></div>
+              <div class="banner"><a href="#"><div class="banner_bg3"><span class="over_txt">느린 그릇</span></div></a></div>
+            </div>
+          </div>
