@@ -131,8 +131,8 @@ $(document).on("click", "#cnt_plus", function(){
 	var ins_cnt	= Number($("#buy_cnt").val()) + 1;
 	var ins_total_price	= Number($("#hd_sales_price").val()) * ins_cnt
 	$("#buy_cnt").val(ins_cnt);
-	$("#total_cnt").html(ins_cnt);
-	$("#total_price").html(numberWithCommas(ins_total_price));
+	$("#total_cnt").html("("+ins_cnt+"개)");
+	$("#total_price").html(numberWithCommas(ins_total_price)+"원");
 });
 
 // 상품 상세 정보 > 수량 감소
@@ -145,8 +145,8 @@ $(document).on("click", "#cnt_minus", function(){
 	}
 	var ins_total_price	= Number($("#hd_sales_price").val()) * ins_cnt
 	$("#buy_cnt").val(ins_cnt);
-	$("#total_cnt").html(ins_cnt);
-	$("#total_price").html(numberWithCommas(ins_total_price));
+	$("#total_cnt").html("("+ins_cnt+"개)");
+	$("#total_price").html(numberWithCommas(ins_total_price)+"원");
 });
 
 // 금액 3자리마다 콤마 찍기
@@ -252,3 +252,4 @@ $(document).on("click", "#mycart_link", function(){
 		}
 	});
 });
+

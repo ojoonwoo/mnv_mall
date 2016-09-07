@@ -216,11 +216,13 @@
 			$sales_price					= $_REQUEST['sales_price'];
 			$saved_priceYN				= $_REQUEST['saved_priceYN'];
 			$saved_price					= $_REQUEST['saved_price'];
+			$discount_price				= $_REQUEST['discount_price'];
 			$goods_optionYN			= $_REQUEST['goods_optionYN'];
 			$goods_option_txt			= $_REQUEST['goods_option_txt'];
 			$goods_stock					= $_REQUEST['goods_stock'];
 			$goods_code					= create_goodscode();
-			$goods_query		= "INSERT INTO ".$_gl['goods_info_table']."(showYN,salesYN,cate_1,cate_2,cate_3,goods_name,goods_eng_name,goods_code,goods_model,goods_brand,goods_status,goods_small_desc,goods_middle_desc,goods_big_desc,m_goods_big_descYN,m_goods_big_desc,supply_price,sales_price,saved_priceYN,saved_price,goods_optionYN,goods_option_txt,goods_stock,goods_regdate) values('".$showYN."','".$salesYN."','".$cate_1."','".$cate_2."','".$cate_3."','".$goods_name."','".$goods_eng_name."','".$goods_code."','".$goods_model."','".$goods_brand."','".$goods_status."','".$goods_small_desc."','".$goods_middle_desc."','".$goods_big_desc."','".$m_goods_big_descYN."','".$m_goods_big_desc."','".$supply_price."','".$sales_price."','".$saved_priceYN."','".$saved_price."','".$goods_optionYN."','".$goods_option_txt."','".$goods_stock."','".date("Y-m-d H:i:s")."')";
+
+			$goods_query		= "INSERT INTO ".$_gl['goods_info_table']."(showYN,salesYN,cate_1,cate_2,cate_3,goods_name,goods_eng_name,goods_code,goods_model,goods_brand,goods_status,goods_small_desc,goods_middle_desc,goods_big_desc,m_goods_big_descYN,m_goods_big_desc,supply_price,sales_price,discount_price,saved_priceYN,saved_price,goods_optionYN,goods_option_txt,goods_stock,goods_regdate) values('".$showYN."','".$salesYN."','".$cate_1."','".$cate_2."','".$cate_3."','".$goods_name."','".$goods_eng_name."','".$goods_code."','".$goods_model."','".$goods_brand."','".$goods_status."','".$goods_small_desc."','".$goods_middle_desc."','".$goods_big_desc."','".$m_goods_big_descYN."','".$m_goods_big_desc."','".$supply_price."','".$sales_price."','".$discount_price."','".$saved_priceYN."','".$saved_price."','".$goods_optionYN."','".$goods_option_txt."','".$goods_stock."','".date("Y-m-d H:i:s")."')";
 			$goods_result		= mysqli_query($my_db, $goods_query);
 			if ($goods_result)
 				$flag	= "Y||".$goods_code;
@@ -247,13 +249,14 @@
 			$m_goods_big_desc			= $_REQUEST['m_goods_big_desc'];
 			$supply_price					= $_REQUEST['supply_price'];
 			$sales_price					= $_REQUEST['sales_price'];
+			$discount_price				= $_REQUEST['discount_price'];
 			$saved_priceYN				= $_REQUEST['saved_priceYN'];
 			$saved_price					= $_REQUEST['saved_price'];
 			$goods_optionYN			= $_REQUEST['goods_optionYN'];
 			$goods_option_txt			= $_REQUEST['goods_option_txt'];
 			$goods_stock					= $_REQUEST['goods_stock'];
 			$goods_code					= $_REQUEST['goods_code'];
-			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET showYN='".$showYN."',salesYN='".$salesYN."',cate_1='".$cate_1."',cate_2='".$cate_2."',cate_3='".$cate_3."',goods_name='".$goods_name."',goods_eng_name='".$goods_eng_name."',goods_model='".$goods_model."',goods_brand='".$goods_brand."',goods_status='".$goods_status."',goods_small_desc='".$goods_small_desc."',goods_middle_desc='".$goods_middle_desc."',goods_big_desc='".$goods_big_desc."',m_goods_big_descYN='".$m_goods_big_descYN."',m_goods_big_desc='".$m_goods_big_desc."',supply_price='".$supply_price."',sales_price='".$sales_price."',saved_priceYN='".$saved_priceYN."',saved_price='".$saved_price."',goods_optionYN='".$goods_optionYN."',goods_option_txt='".$goods_option_txt."',goods_stock='".$goods_stock."',goods_latedate='".date("Y-m-d H:i:s")."' WHERE goods_code='".$goods_code."'";
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET showYN='".$showYN."',salesYN='".$salesYN."',cate_1='".$cate_1."',cate_2='".$cate_2."',cate_3='".$cate_3."',goods_name='".$goods_name."',goods_eng_name='".$goods_eng_name."',goods_model='".$goods_model."',goods_brand='".$goods_brand."',goods_status='".$goods_status."',goods_small_desc='".$goods_small_desc."',goods_middle_desc='".$goods_middle_desc."',goods_big_desc='".$goods_big_desc."',m_goods_big_descYN='".$m_goods_big_descYN."',m_goods_big_desc='".$m_goods_big_desc."',supply_price='".$supply_price."',sales_price='".$sales_price."',discount_price='".$discount_price."',saved_priceYN='".$saved_priceYN."',saved_price='".$saved_price."',goods_optionYN='".$goods_optionYN."',goods_option_txt='".$goods_option_txt."',goods_stock='".$goods_stock."',goods_latedate='".date("Y-m-d H:i:s")."' WHERE goods_code='".$goods_code."'";
 			$goods_result		= mysqli_query($my_db, $goods_query);
 			if ($goods_result)
 				$flag	= "Y";

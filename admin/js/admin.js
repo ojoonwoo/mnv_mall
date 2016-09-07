@@ -397,6 +397,7 @@ $(document).on("click", "#submit_btn2", function(){
 	var m_goods_big_descYN		= $(':radio[name="m_goods_big_descYN"]:checked').val();
 	var supply_price					= $("#supply_price").val();
 	var sales_price						= $("#sales_price").val();
+	var discount_price				= $("#discount_price").val();
 	var saved_priceYN				= $(':radio[name="saved_priceYN"]:checked').val();
 	var goods_optionYN				= $(':radio[name="goods_optionYN"]:checked').val();
 	var goods_option_txt			= "";
@@ -533,6 +534,7 @@ $(document).on("click", "#submit_btn2", function(){
 			"m_goods_big_desc"		: m_goods_big_desc,
 			"supply_price"				: supply_price,
 			"sales_price"				: sales_price,
+			"discount_price"			: discount_price,
 			"saved_priceYN"			: saved_priceYN,
 			"saved_price"				: saved_price,
 			"goods_optionYN"		: goods_optionYN,
@@ -571,6 +573,7 @@ $(document).on("click", "#submit_btn3", function(){
 	var m_goods_big_descYN		= $(':radio[name="m_goods_big_descYN"]:checked').val();
 	var supply_price					= $("#supply_price").val();
 	var sales_price						= $("#sales_price").val();
+	var discount_price				= $("#discount_price").val();
 	var saved_priceYN				= $(':radio[name="saved_priceYN"]:checked').val();
 	var goods_optionYN				= $(':radio[name="goods_optionYN"]:checked').val();
 	var goods_option_txt			= "";
@@ -709,6 +712,7 @@ $(document).on("click", "#submit_btn3", function(){
 			"m_goods_big_desc"		: m_goods_big_desc,
 			"supply_price"				: supply_price,
 			"sales_price"				: sales_price,
+			"discount_price"			: discount_price,
 			"saved_priceYN"			: saved_priceYN,
 			"saved_price"				: saved_price,
 			"goods_optionYN"		: goods_optionYN,

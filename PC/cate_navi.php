@@ -18,3 +18,16 @@
 	}
 ?>
             </div>
+            <div class="right_cate">
+              <a href="#">
+                <span class="cate_name">매거진, 촌</span>
+              </a>
+              <span class="bar2"></span>
+              <a href="#">
+                <span class="cate_name">이벤트</span>
+              </a>
+              <span class="bar2"></span>
+              <a href="#">
+                <span class="cate_name">제휴문의</span>
+              </a>
+            </div>

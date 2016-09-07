@@ -3,7 +3,7 @@
           </div>
           <div class="list_product clearfix">
 <?
-	$plan_goods_info		= select_plan_goods_info($site_option['plan_goods_flag'],4);
+	$plan_goods_info		= select_plan_goods_info($site_option['plan_goods_flag'],5);
 	$i	= 0;
 	foreach ($plan_goods_info as $key => $val)
 	{

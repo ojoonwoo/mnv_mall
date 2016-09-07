@@ -187,6 +187,12 @@
                   </td>
                 </tr>
                 <tr>
+                  <td>할인가</td>
+                  <td colspan="2">
+                    <input class="form-control" id="discount_price"> 원
+                  </td>
+                </tr>
+                <tr>
                   <td>적립금</td>
                   <td colspan="2">
                     <input type="radio" name="saved_priceYN" id="saved_priceY" value="Y" checked> 기본 설정 사용

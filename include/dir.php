@@ -11,12 +11,12 @@
 	$_mnv_MOBILE_dir_name			= "MOBILE";
 
 	// 쇼핑몰 PC폴더 하위 폴더
-	$_mnv_PC_board_dir_name		= "board";
-	$_mnv_PC_css_dir_name			= "css";
-	$_mnv_PC_goods_dir_name		= "goods";
-	$_mnv_PC_images_dir_name		= "images";
-	$_mnv_PC_member_dir_name		= "member";
-	$_mnv_PC_upload_dir_name		= "upload";
+	$_mnv_board_dir_name		= "board";
+	$_mnv_css_dir_name			= "css";
+	$_mnv_goods_dir_name		= "goods";
+	$_mnv_images_dir_name		= "images";
+	$_mnv_member_dir_name		= "member";
+	$_mnv_upload_dir_name		= "upload";
 
 	// 쇼핑몰 루트폴더 경로
 	$_mnv_include_dir					= $_mnv_base_dir . $_mnv_include_dir_name . "/";
@@ -27,12 +27,12 @@
 	$_mnv_MOBILE_dir					= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/";
 
 	// 쇼핑몰 PC폴더 경로
-	$_mnv_PC_board_dir					= $_mnv_base_dir . $_mnv_PC_board_dir_name . "/";
-	$_mnv_PC_css_dir						= $_mnv_base_dir . $_mnv_PC_css_dir_name . "/";
-	$_mnv_PC_goods_dir				= $_mnv_base_dir . $_mnv_PC_goods_dir_name . "/";
-	$_mnv_PC_images_dir				= $_mnv_base_dir . $_mnv_PC_images_dir_name . "/";
-	$_mnv_PC_member_dir				= $_mnv_base_dir . $_mnv_PC_member_dir_name . "/";
-	$_mnv__PC_upload_dir				= $_mnv_base_dir . $_mnv_PC_upload_dir_name . "/";
+	$_mnv_PC_board_dir					= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_board_dir_name . "/";
+	$_mnv_PC_css_dir						= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_css_dir_name . "/";
+	$_mnv_PC_goods_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_goods_dir_name . "/";
+	$_mnv_PC_images_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_images_dir_name . "/";
+	$_mnv_PC_member_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_member_dir_name . "/";
+	$_mnv__PC_upload_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
 
 	// 쇼핑몰 메인 URL 경로
 	$_mnv_base_url						= "http://localhost/mnv_mall/";

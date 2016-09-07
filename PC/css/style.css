@@ -706,7 +706,7 @@ input {
     letter-spacing: 0;
 }
 
-#amount_val {
+#buy_cnt {
     border: 1px solid #b88b5b;
     width: 50px;
     height: 24px;
