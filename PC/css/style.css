@@ -12,6 +12,8 @@
 html {
     font-size: 13px;
     line-height: 15px;
+    width: 100%;
+    min-width: 1180px;
 }
 
 body {
@@ -31,6 +33,10 @@ a:hover {
     color: #000;
 }
 
+img {
+    border: none;
+}
+
 ul {
     list-style: none;
     margin: 0;
@@ -48,6 +54,7 @@ button {
 
 input {
     border: none;
+    cursor: pointer;
 }
 
 .mb14 {
@@ -55,6 +62,8 @@ input {
 }
 
 #wrap_page {
+  width: 100%;
+
 }
 
 #wrap_content {
@@ -76,6 +85,7 @@ input {
     width: 1180px;
     margin: 0 auto;
     overflow: auto;
+    display: block;
 }
 
 #header .head_bar .user_status {
@@ -155,7 +165,7 @@ input {
 }
 
 
-#header .bar1 {
+.bar1 {
     display: inline-block;
     background-color: #b88b5b;
     height: 18px;
@@ -164,13 +174,18 @@ input {
     margin: 0 18.5px;
 }
 
-#header .bar2 {
+.bar1.short {
+    height: 13px;
+    margin: 0 10px;
+}
+
+.bar2 {
     display: inline-block;
     background-color: #196a24;
     height: 18px;
     width: 1px;
     vertical-align: middle;
-    margin: 0 19.5px;
+    margin: 0 17px;
 }
 
 
@@ -248,6 +263,12 @@ input {
 /* start contents 1단 */
 .contents {
     padding-bottom: 50px;
+}
+
+.contents .area_banner img {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .contents .area_banner .banner_slide img {
@@ -349,6 +370,8 @@ input {
 
 .contents .list_product .product a img {
     display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .contents .list_product .product .prd_info {
@@ -396,7 +419,8 @@ input {
 }
 
 .contents .area_insta .inner.insta {
-    width: 580px;
+    width: 600px;
+    display: block;
 }
 
 .contents .area_insta .insta_box {
@@ -520,11 +544,12 @@ input {
 }
 
 .side_full_img {
-
+    width: 100%;
 }
 
 .side_full_img  img {
     display: block;
+    width: 100%;
 }
 
 /*                                                        */
@@ -541,10 +566,13 @@ input {
 
 .contents .area_product_detail .product_head.img {
     width: 400px;
+    height: 400px;
     margin-right: 20px;
 }
 
 .contents .area_product_detail .product_head.img img {
+    width: 100%;
+    height: 100%;
     display: block;
 }
 
@@ -749,6 +777,12 @@ input {
     margin: 6px 0;
 }
 
+.product_dt_img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .product_desc {
     text-align: center;
     margin: 20px 0;
@@ -778,6 +812,12 @@ input {
 
 .product_dt_branding {
     
+}
+
+.product_dt_branding img {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* area_main_bottom */
@@ -879,7 +919,74 @@ input {
     margin-left: 6px;
 }
 
-                                    /* 여기까지 진행 */
+/* member_index */
+
+.section.main .block_input {
+    margin-top: 80px;
+}
+
+.block_input .area_input {
+    float: left;
+/*    width: 445px;*/
+}
+
+.area_input.member {
+    padding-left: 100px;
+    margin-right: 90px;
+}
+
+.area_input h3 {
+    color: #b88b5b;
+    font-size: 22px;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+.area_input.nomember {
+    padding-right: 100px;
+}
+
+.area_inner {
+    padding: 30px 0;
+}
+
+.group_input {
+    width: 300px;
+    padding: 4px 0;
+    position: relative;
+    text-align: center;
+}
+
+.group_input label {
+    position: absolute;
+    font-size: 13px;
+    color: #b88b5b;
+    top: 35%;
+    left: 4%;
+    letter-spacing: 0;
+}
+
+.group_input input {
+    width: 93.5%;
+    padding: 0 3%;
+    border: 1px solid #b88b5b;
+    height: 40px;
+    display: block;
+}
+
+.group_input .btn {
+    width: 100%;
+    color: #ffffff;
+    background-color: #b88b5b;
+}
+
+.group_input.member_action {
+    margin-top: 15px;
+}
+
+.member_action a {
+    color: #b88b5b;
+}
 
 /* end main 레이아웃 2단*/
 
@@ -896,6 +1003,7 @@ input {
 #footer .area_infoChon .inner.infoC {
     width: 1180px;
     padding: 35px 0;
+    display: block;
 /*    height: 100%;*/
 }
 
@@ -964,15 +1072,15 @@ input {
     margin-right: 0;
 }
 
-#footer .area_infoChon .inner.infoC .box_info:last-child {
+#footer .area_infoChon .inner.infoC .box_info.sns {
     padding-top: 40px;
     width: 210px;
 }
 
-#footer .area_infoChon .inner.infoC .box_info:last-child span {
+#footer .area_infoChon .inner.infoC .box_info.sns span {
     float: left;
-    margin-left: 10px;
-    margin-right: 18px;
+    margin-left: 8px;
+    margin-right: 16px;
 }
 
 #footer .address {
@@ -1006,6 +1114,10 @@ div {
     visibility: hidden;
     line-height: 0;
     height: 0;
+}
+
+.clearfix {
+    display: inline-block;
 }
 
 html[xmlns] .clearfix {
