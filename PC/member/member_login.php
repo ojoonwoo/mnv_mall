@@ -3,6 +3,7 @@
 	include_once $_mnv_PC_dir."header.php";
 ?>
   <body>
+    <input type="hidden" id="pg_referer" value="<?=$_SERVER['HTTP_REFERER']?>">
     <div id="wrap_page">
       <div id="header">
         <div class="area_top">

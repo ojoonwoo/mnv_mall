@@ -158,6 +158,7 @@ function numberWithCommas(x) {
 $(document).on("click", "#mb_login", function(){
 	var mb_id					= $("#mb_id").val();
 	var mb_password			= $("#mb_password").val();
+	var pg_referer				= $("#pg_referer").val();
 
 	if (mb_id == "")
 	{
@@ -185,7 +186,10 @@ $(document).on("click", "#mb_login", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				location.href = "http://localhost/mnv_mall/PC/index.php";
+				if (pg_referer == "")
+					location.href = "http://localhost/mnv_mall/PC/index.php";
+				else
+					location.href = pg_referer;
 			}else{
 				alert("아이디와 비밀번호를 다시 확인하시고, 로그인해주세요..");
 				location.reload();
