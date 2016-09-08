@@ -387,5 +387,25 @@
 			$wish_result2 	= mysqli_query($my_db, $wish_query2);
 
 		break;
+
+		case "insert_restock" :
+			$goods_idx	= $_REQUEST['goods_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			if ($mb_id == "")
+			{
+				$flag	= "N"; // 로그인이 안되어 있을 경우
+			}else{
+				$restock_query2 	= "INSERT INTO ".$_gl['restock_info_table']."(restock_goodsidx, restock_mb_id, restock_regdate) values('".$goods_idx."','".$mb_id."','".date("Y-m-d H:i:s")."')";
+				$restock_result2 	= mysqli_query($my_db, $restock_query2);
+
+				if ($restock_result2)
+					$flag	= "Y";
+				else
+					$flag	= "E";
+			}
+
+			echo $flag;
+		break;
 	}
 ?>

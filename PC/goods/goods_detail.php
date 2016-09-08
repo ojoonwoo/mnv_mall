@@ -17,6 +17,9 @@
 	else
 		$real_price	= $goods_info['discount_price'];
 
+	// 현재 남은 갯수
+	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
+
 	$goods_info['goods_img_url']		= str_replace("../../","../",$goods_info['goods_img_url']);
 	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 	if ($goods_info['goods_optionYN'] == "Y")
@@ -24,17 +27,6 @@
 		$goods_option_arr	= explode("||",$goods_info['goods_option_txt']);
 	}
 
-	// 리뷰 리스트
-	if(isset($_REQUEST['pg']) == false)
-		$pg = "1";
-	else
-		$pg = $_REQUEST['pg'];
-
-	if (!$pg) {
-		$pg = "1";
-	}
-	$page_size = 10;  // 한 페이지에 나타날 개수
-	$block_size = 10; // 한 화면에 나타낼 페이지 번호 개수
 ?>
   <body>
 <input type="hidden" id="hd_sales_price" value="<?=$real_price?>">
@@ -104,8 +96,8 @@
 	if ($goods_info['discount_price'])
 	{
 ?>
-                      <span class="price sale"><?=$goods_info['sales_price']?>원</span>
-                      <span class="sale_price"><?=$goods_info['discount_price']?>원</span>
+                      <span class="price sale"><?=number_format($goods_info['sales_price'])?>원</span>
+                      <span class="sale_price"><?=number_format($goods_info['discount_price'])?>원</span>
                       <span class="sale_pctg">[<?=$percent_num?>%]</span>
 <?
 	}else{
@@ -125,14 +117,31 @@
                     </div>
                     <div class="block_line">
                       <span class="left_text">수량</span>
+<?
+	if ($current_cnt < 1)
+	{
+?>
+                      <input type="text" name="select_amount" id="buy_cnt" value="품 절" readonly>
+                      <!-- 품절일시 화살표 아이콘 재입고요청 버튼으로 변경-->
+                      <span class="amount_btn off_stock" style="cursor:pointer;">
+                        재입고요청<span class="restock_arrow"></span>
+                      </span>
+                      <!-- 품절일시 화살표 아이콘 재입고요청 버튼으로 변경-->
+<?
+	}else{
+?>
                       <input type="text" name="select_amount" id="buy_cnt" value="1">
-                      <span class="polygon_double">
+                      <span class="amount_btn">
                         <img src="../images/polygon_double.png" usemap="#amount">
                         <map name="amount" id="amount">
                           <area shape="rect" coords="0,0,9,9" href="#" id="cnt_plus">
                           <area shape="rect" coords="0,10,9,19" href="#" id="cnt_minus">
                         </map>
                       </span>
+<?
+	}
+?>
+
                     </div>
                     <div class="block_line">
 <?

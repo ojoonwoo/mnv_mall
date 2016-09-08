@@ -1,22 +1,41 @@
-<?
-?>
               <form name="frm_execute" method="POST" onsubmit="return checkfrm()">
                 <input type="hidden" name="pg" value="<?=$pg?>">
               </form>
               <div class="related_block">
                 <p class="head_txt">리뷰</p>
-                <table class="pr_view_table">
 <?
 	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_review_table']." WHERE goods_code='".$goods_code."'";
 
 	list($buyer_count) = mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
 
+
+	// 리뷰 리스트
+	if(isset($_REQUEST['pg']) == false)
+		$pg = "1";
+	else
+		$pg = $_REQUEST['pg'];
+
+	if (!$pg) {
+		$pg = "1";
+	}
+
+	if ($buyer_count < 4)
+		$page_size = $buyer_count;  // 한 페이지에 나타날 개수
+	else
+		$page_size = 4;  // 한 페이지에 나타날 개수
+
+	$block_size = 1; // 한 화면에 나타낼 페이지 번호 개수
+
 	//$buyer_count 여부
 	if ($buyer_count > 0)
 	{
+?>
+                <table class="pr_view_table">
+
+<?
 		$PAGE_CLASS = new Page($pg,$buyer_count,$page_size,$block_size);
 
-		$BLOCK_LIST = $PAGE_CLASS->blockList();
+		$BLOCK_LIST = $PAGE_CLASS->blockList7();
 		$PAGE_UNCOUNT = $PAGE_CLASS->page_uncount;
 		$buyer_list_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE 1 AND goods_code='".$goods_code."' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
 		$result = mysqli_query($my_db, $buyer_list_query);
@@ -48,20 +67,19 @@
 <?
 		}
 ?>
+                </table>
 <?
 	}else{
 ?>
+                <table class="pr_view_table board_empty">
                   <tr>
-                    <td class="num">4</td>
-                    <td class="subject">[제품 이름] 예뻐요 마음에 들어요!</td>
-                    <td class="writer">miniver</td>
-                    <td class="date">2016-01-01</td>
+                    <td>게시물이 없습니다</td>
                   </tr>
+                </table>
 <?
 	}
 ?>
 
-                </table>
                 <div class="block_board_btn">
                   <a href="http://localhost/mnv_mall/PC/board/write_review.php?goods_code=<?=$goods_code?>"><input type="button" value="작성하기" class="board_btn" id="write_review"></a>
                   <a href="http://localhost/mnv_mall/PC/board/view_all_review.php"><input type="button" value="목록으로" class="board_btn" id="list_review"></a>

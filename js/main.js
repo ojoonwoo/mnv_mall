@@ -253,3 +253,30 @@ $(document).on("click", "#mycart_link", function(){
 	});
 });
 
+// 재입고 요청 클릭
+$(document).on("click", ".off_stock", function(){
+	var goods_idx	= $("#goods_idx").val();
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/mnv_mall/main_exec.php",
+		data:{
+			"exec"				: "insert_restock",
+			"goods_idx"		: goods_idx
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("재입고가 요청 되었습니다.");
+			}else if (response == "N"){
+				alert("로그인 후 재입고 요청이 가능합니다.");
+			}else{
+				alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+
+

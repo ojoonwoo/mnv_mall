@@ -851,6 +851,10 @@ input {
     margin: 0 auto;
 }
 
+.area_main_middle p img{
+	width:100%;
+}
+
 
 .product_logo {
     text-align: center;
