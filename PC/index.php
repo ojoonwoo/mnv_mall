@@ -48,6 +48,7 @@
       <div id="wrap_content">
         <div class="contents">
 <?
+	print_r($_mnv_PC_url);
 	// 배너 영역
 	include_once $_mnv_PC_url."banner_area.php";
 
