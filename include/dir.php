@@ -1,6 +1,6 @@
 <?
 	// 쇼핑몰 메인 폴더 경로
-	$_mnv_base_dir						= $_SERVER['DOCUMENT_ROOT']."/mnv_mall/";
+	$_mnv_base_dir						= $_SERVER['DOCUMENT_ROOT']."/";
 
 	// 쇼핑몰 루트폴더
 	$_mnv_include_dir_name			= "include";

@@ -1,5 +1,5 @@
 <?
-	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 	print_r($_SERVER['DOCUMENT_ROOT']);
 	if ($_REQUEST['dev'] != true)
