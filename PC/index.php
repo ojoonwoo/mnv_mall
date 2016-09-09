@@ -1,8 +1,11 @@
 <?
 	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_mnv_PC_dir."header.php";
-	echo "작업중입니다...";
-	exit;
+	if ($_REQUEST['dev'] != true)
+	{
+		echo "작업중입니다...";
+		exit;
+	}
 ?>
   <body>
     <div id="wrap_page">
@@ -15,12 +18,12 @@
 	{
 ?>
               <li><a href="#" id="mb_logout"><span>로그아웃</span></a></li>
-              <li><a href="http://localhost/mnv_mall/PC/member/modify_form.php"><span>정보수정</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_dir?>modify_form.php"><span>정보수정</span></a></li>
 <?
 	}else{
 ?>
-              <li><a href="http://localhost/mnv_mall/PC/member/member_login.php"><span>로그인</span></a></li>
-              <li><a href="http://localhost/mnv_mall/PC/member/join_form.php"><span>회원가입</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_dir?>member_login.php"><span>로그인</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_dir?>join_form.php"><span>회원가입</span></a></li>
 <?
 	}
 ?>
@@ -31,7 +34,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="#"><img src="./images/logo.jpg"></a>
+          <a href="#"><img src="<?=$_mnv_PC_images_dir?>logo.jpg"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">
