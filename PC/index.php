@@ -1,5 +1,5 @@
 <?
-	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_mnv_PC_dir."header.php";
 	if ($_REQUEST['dev'] != true)
 	{
@@ -18,12 +18,12 @@
 	{
 ?>
               <li><a href="#" id="mb_logout"><span>로그아웃</span></a></li>
-              <li><a href="<?=$_mnv_PC_member_url?>modify_form.php"><span>정보수정</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_dir?>modify_form.php"><span>정보수정</span></a></li>
 <?
 	}else{
 ?>
-              <li><a href="<?=$_mnv_PC_member_url?>member_login.php"><span>로그인</span></a></li>
-              <li><a href="<?=$_mnv_PC_member_url?>join_form.php"><span>회원가입</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_dir?>member_login.php"><span>로그인</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_dir?>join_form.php"><span>회원가입</span></a></li>
 <?
 	}
 ?>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.jpg"></a>
+          <a href="#"><img src="<?=$_mnv_PC_images_dir?>logo.jpg"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">
@@ -49,16 +49,16 @@
         <div class="contents">
 <?
 	// 배너 영역
-	include_once $_mnv_PC_url."banner_area.php";
+	include_once $_mnv_PC_dir."banner_area.php";
 
 	// 베스트셀러 상품 영역
-	include_once $_mnv_PC_url."best_goods_area.php";
+	include_once $_mnv_PC_dir."best_goods_area.php";
 
 	// 신 상품 영역
-	include_once $_mnv_PC_url."new_goods_area.php";
+	include_once $_mnv_PC_dir."new_goods_area.php";
 
 	// 기획 상품 영역
-	include_once $_mnv_PC_url."plan_goods_area.php";
+	include_once $_mnv_PC_dir."plan_goods_area.php";
 ?>
           <div class="area_list_title">
             <span class="list_title no_line">인스타그램 @chon.life</span>
