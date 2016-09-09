@@ -1,6 +1,6 @@
 <?
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
-	include_once $_mnv_PC_url."header.php";
+	include_once $_mnv_PC_dir."header.php";
 	if ($_REQUEST['dev'] != true)
 	{
 		echo "작업중입니다...";
