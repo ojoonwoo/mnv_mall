@@ -49,4 +49,14 @@
 	$_mnv_lib_url						= $_mnv_base_url . $_mnv_lib_dir_name . "/";
 	$_mnv_PC_url						= $_mnv_base_url . $_mnv_PC_dir_name . "/";
 	$_mnv_MOBILE_url					= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/";
+
+	// 쇼핑몰 PC URL 경로
+	$_mnv_PC_board_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_board_dir_name . "/";
+	$_mnv_PC_css_url					= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_css_dir_name . "/";
+	$_mnv_PC_goods_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_goods_dir_name . "/";
+	$_mnv_PC_images_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_images_dir_name . "/";
+	$_mnv_PC_member_url			= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_member_dir_name . "/";
+	$_mnv__PC_upload_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
+
+
 ?>
