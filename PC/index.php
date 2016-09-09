@@ -40,7 +40,7 @@
           <div class="nav clearfix">
 <?
 	// 상단 카테고리 영역
-	include_once $_mnv_PC_url."cate_navi.php";
+	include_once $_mnv_PC_dir."cate_navi.php";
 ?>
           </div>
         </div>

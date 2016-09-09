@@ -36,7 +36,6 @@
 
           <div class="area_banner">
             <div class="banner_slide">
-			1111223434343
 <?
 	$rolling_banner_info		= select_banner_info("main_rolling_banner");
 
