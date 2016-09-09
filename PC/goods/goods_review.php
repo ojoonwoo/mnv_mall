@@ -1,7 +1,7 @@
-              <form name="frm_execute" method="POST" onsubmit="return checkfrm()">
+              <form name="frm_execute" method="POST">
                 <input type="hidden" name="pg" value="<?=$pg?>">
               </form>
-              <div class="related_block">
+              <div class="related_block" id="review_board_area">
                 <p class="head_txt">리뷰</p>
 <?
 	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_review_table']." WHERE goods_code='".$goods_code."'";

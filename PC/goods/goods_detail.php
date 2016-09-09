@@ -345,9 +345,11 @@
 
 	function pageRun(num)
 	{
-		f = document.frm_execute;
-		f.pg.value = num;
-		f.submit();
+		$('#review_board_area').load(function(){
+			f = document.frm_execute;
+			f.pg.value = num;
+			f.submit();
+		}).fadeIn("slow");
 	}
 
 </script>

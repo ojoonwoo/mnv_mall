@@ -78,6 +78,13 @@
                     </select> -->
                   </td>
                 </tr>
+                <tr>
+                  <td>연관 상품</td>
+                  <td colspan="2">
+                    <input class="form-control" id="related_goods" style="width:50%">
+                    * 상품코드를 입력해 주시고, 2개 이상일시 ;로 구분해 주세요.(PR00001;PR00002)
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table class="table table-striped table-bordered">

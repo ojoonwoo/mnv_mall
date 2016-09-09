@@ -386,6 +386,7 @@ $(document).on("click", "#submit_btn2", function(){
 	var cate_1							= $("#cate_1").val();
 	var cate_2							= $("#cate_2").val();
 	var cate_3							= $("#cate_3").val();
+	var related_goods				= $("#related_goods").val();
 	var goods_name					= $("#goods_name").val();
 	var goods_eng_name			= $("#goods_eng_name").val();
 	var goods_model					= $("#goods_model").val();
@@ -522,6 +523,7 @@ $(document).on("click", "#submit_btn2", function(){
 			"cate_1"						: cate_1,
 			"cate_2"						: cate_2,
 			"cate_3"						: cate_3,
+			"related_goods"			: related_goods,
 			"goods_name"				: goods_name,
 			"goods_eng_name"		: goods_eng_name,
 			"goods_model"			: goods_model,
@@ -562,6 +564,7 @@ $(document).on("click", "#submit_btn3", function(){
 	var cate_1							= $("#cate_1").val();
 	var cate_2							= $("#cate_2").val();
 	var cate_3							= $("#cate_3").val();
+	var related_goods				= $("#related_goods").val();
 	var goods_name					= $("#goods_name").val();
 	var goods_eng_name			= $("#goods_eng_name").val();
 	var goods_model					= $("#goods_model").val();
@@ -700,6 +703,7 @@ $(document).on("click", "#submit_btn3", function(){
 			"cate_1"						: cate_1,
 			"cate_2"						: cate_2,
 			"cate_3"						: cate_3,
+			"related_goods"			: related_goods,
 			"goods_name"				: goods_name,
 			"goods_eng_name"		: goods_eng_name,
 			"goods_model"			: goods_model,
