@@ -177,7 +177,7 @@ $(document).on("click", "#mb_login", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "../../main_exec.php",
 		data:{
 			"exec"				: "member_login",
 			"mb_id"				: mb_id,
@@ -187,7 +187,7 @@ $(document).on("click", "#mb_login", function(){
 			if (response == "Y")
 			{
 				if (pg_referer == "")
-					location.href = "http://localhost/mnv_mall/PC/index.php";
+					location.href = "../index.php";
 				else
 					location.href = pg_referer;
 			}else{
@@ -203,7 +203,7 @@ $(document).on("click", "#mb_logout", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "member_logout"
 		},
@@ -219,7 +219,7 @@ $(document).on("click", "#wish_link", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "add_wishlist",
 			"goods_idx"		: goods_idx
@@ -246,7 +246,7 @@ $(document).on("click", "#mycart_link", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "add_mycart",
 			"goods_idx"		: goods_idx
@@ -263,7 +263,7 @@ $(document).on("click", ".off_stock", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "insert_restock",
 			"goods_idx"		: goods_idx
