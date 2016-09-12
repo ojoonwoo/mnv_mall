@@ -125,11 +125,18 @@ function show_select_brand(id)
 	});
 }
 
+// 브랜드 선택된값 세팅
 function selected_brand(id,brand)
 {
-	alert(brand);
 	$("#"+id).val(brand);
 }
+
+// 판매경로 선택된값 세팅
+function selected_sales_store(id,sales_store)
+{
+	$("#"+id).val(sales_store);
+}
+
 // 카테고리1 선택된값 세팅
 function selected_category(id,cate1_val,cate2_val,cate3_val)
 {

@@ -26,6 +26,7 @@
 <input type="hidden" id="cate2_val" value="<?=$goods_info['cate_2']?>">
 <input type="hidden" id="cate3_val" value="<?=$goods_info['cate_3']?>">
 <input type="hidden" id="brand_val" value="<?=$goods_info['goods_brand']?>">
+<input type="hidden" id="sales_store_val" value="<?=$goods_info['sales_store']?>">
 <input type="hidden" id="goodsimgurl" value="<?=$goods_info['goods_img_url']?>">
 <div id="wrapper">
   <!-- Navigation -->
@@ -347,11 +348,15 @@
 		// 판매 경로 정보
 		show_select_sales_store("sales_store");
 
+		// 세팅된 판매경로 노출
+		selected_sales_store("sales_store",$("#sales_store_val").val());
+
 		// 브랜드 정보
 		show_select_brand("goods_brand");
 
 		// 세팅된 브랜드 노출
 		selected_brand("goods_brand",$("#brand_val").val());
+
 		// 이미지 URL 구분자로 잘라서 배열로 저장
 		//var goods_img		= $("#goodsimgurl").val();
 		//var goods_img_arr	= goods_img.split("||");
