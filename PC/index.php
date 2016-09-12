@@ -66,11 +66,11 @@
           </div>
           <div class="area_insta">
             <div class="inner insta clearfix" id="instafeed">
-              <!-- <div class="insta_box"><a href="#"><img src="./images/insta1.jpg"></a></div>
+              <div class="insta_box"><a href="#"><img src="./images/insta1.jpg"></a></div>
               <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
               <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
               <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
-              <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div> -->
+              <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
             </div>
           </div>
         </div>
