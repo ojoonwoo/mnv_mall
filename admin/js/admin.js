@@ -93,6 +93,22 @@ function show_select_cate1(id)
 	});
 }
 
+// 판매경로 select 새로 생성
+function show_select_sales_store(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_select_sales_store"
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
 // 카테고리1 선택된값 세팅
 function selected_category(id,cate1_val,cate2_val,cate3_val)
 {
@@ -310,40 +326,6 @@ $(document).on("click", "#m_goods_big_descN", function(){
 	$("#mobile_detail_div").hide();
 });
 
-// 관리자 상품 관리 > 재고관리 > 재고 더블클릭
-$(document).on("dblclick", ".stock_td", function(){
-	var thisval	= $(this).html();
-	$(this).attr('class','stock_td_fin');
-	$(this).html("<input class='form-control' value='"+thisval+"'>");
-	$(".stock_td_fin input").focus();
-});
-
-// 관리자 상품 관리 > 재고관리 > 재고 더블클릭 이후 블러처리
-$(document).on("blur", ".stock_td_fin", function(){
-	var thisval	= $(".stock_td_fin input").val();
-
-	$.ajax({
-		type   : "POST",
-		async  : false,
-		url    : "admin_exec.php",
-		data:{
-			"exec"				: "update_stock_info",
-			"goods_code"		: this.id,
-			"goods_stock"		: thisval
-		},
-		success: function(response){
-			if (response == "Y")
-			{
-				$(".stock_td_fin").html(thisval);
-				$(".stock_td_fin").attr('class','stock_td');
-			}else{
-				alert("다시 시도해 주세요.");
-				location.reload();
-			}
-		}
-	});
-});
-
 // 전체 상품 리스트 생성
 function show_goods_list(id)
 {
@@ -361,50 +343,33 @@ function show_goods_list(id)
 	});
 }
 
-// 전체 재고 리스트 생성
-function show_stock_list(id)
-{
-	$.ajax({
-		type   : "POST",
-		async  : false,
-		url    : "admin_exec.php",
-		data:{
-			"exec"	: "show_stock_list",
-			"target"	: id
-		},
-		success: function(response){
-			$("#"+id).html(response);
-		}
-	});
-}
-
-
 // 상품 정보 insert
 $(document).on("click", "#submit_btn2", function(){
 	var showYN						= $(':radio[name="showYN"]:checked').val();
-	var salesYN							= $(':radio[name="salesYN"]:checked').val();
-	var cate_1							= $("#cate_1").val();
-	var cate_2							= $("#cate_2").val();
-	var cate_3							= $("#cate_3").val();
+	var salesYN						= $(':radio[name="salesYN"]:checked').val();
+	var cate_1						= $("#cate_1").val();
+	var cate_2						= $("#cate_2").val();
+	var cate_3						= $("#cate_3").val();
 	var related_goods				= $("#related_goods").val();
-	var goods_name					= $("#goods_name").val();
+	var sales_store					= $("#sales_store").val();
+	var goods_name				= $("#goods_name").val();
 	var goods_eng_name			= $("#goods_eng_name").val();
-	var goods_model					= $("#goods_model").val();
-	var goods_brand					= $("#goods_brand").val();
-	var goods_status					= $(':radio[name="goods_status"]:checked').val();
+	var goods_model				= $("#goods_model").val();
+	var goods_brand				= $("#goods_brand").val();
+	var goods_status				= $(':radio[name="goods_status"]:checked').val();
 	var goods_small_desc			= $("#goods_small_desc").val();
-	var goods_middle_desc			= $("#goods_middle_desc").val();
-	var goods_big_desc				= oEditors.getById["goods_big_desc"].getIR();
+	var goods_middle_desc		= $("#goods_middle_desc").val();
+	var goods_big_desc			= oEditors.getById["goods_big_desc"].getIR();
 	var m_goods_big_descYN		= $(':radio[name="m_goods_big_descYN"]:checked').val();
-	var supply_price					= $("#supply_price").val();
-	var sales_price						= $("#sales_price").val();
+	var supply_price				= $("#supply_price").val();
+	var sales_price					= $("#sales_price").val();
 	var discount_price				= $("#discount_price").val();
 	var saved_priceYN				= $(':radio[name="saved_priceYN"]:checked').val();
-	var goods_optionYN				= $(':radio[name="goods_optionYN"]:checked').val();
+	var goods_optionYN			= $(':radio[name="goods_optionYN"]:checked').val();
 	var goods_option_txt			= "";
-	var goods_stock					= $("#goods_stock").val();
-	var m_goods_big_desc	= "";
-	var saved_price	= "";
+	var goods_stock				= $("#goods_stock").val();
+	var m_goods_big_desc		= "";
+	var saved_price					= "";
 
 	if (cate_1 == "")
 	{
@@ -424,6 +389,12 @@ $(document).on("click", "#submit_btn2", function(){
 		return false;
 	}
 */
+	if (sales_store == "")
+	{
+		alert("판매경로를 선택해주세요.");
+		return false;
+	}
+
 	if (goods_name == "")
 	{
 		alert("상품명을 입력해주세요.");
@@ -517,30 +488,31 @@ $(document).on("click", "#submit_btn2", function(){
 		async  : false,
 		url    : "admin_exec.php",
 		data:{
-			"exec"						: "insert_goods_info",
-			"showYN"					: showYN,
-			"salesYN"					: salesYN,
+			"exec"							: "insert_goods_info",
+			"showYN"						: showYN,
+			"salesYN"						: salesYN,
 			"cate_1"						: cate_1,
 			"cate_2"						: cate_2,
 			"cate_3"						: cate_3,
-			"related_goods"			: related_goods,
+			"related_goods"				: related_goods,
+			"sales_store"					: sales_store,
 			"goods_name"				: goods_name,
-			"goods_eng_name"		: goods_eng_name,
-			"goods_model"			: goods_model,
-			"goods_brand"			: goods_brand,
-			"goods_status"			: goods_status,
+			"goods_eng_name"			: goods_eng_name,
+			"goods_model"				: goods_model,
+			"goods_brand"				: goods_brand,
+			"goods_status"				: goods_status,
 			"goods_small_desc"		: goods_small_desc,
-			"goods_middle_desc"	: goods_middle_desc,
-			"goods_big_desc"		: goods_big_desc,
+			"goods_middle_desc"		: goods_middle_desc,
+			"goods_big_desc"			: goods_big_desc,
 			"m_goods_big_descYN"	: m_goods_big_descYN,
 			"m_goods_big_desc"		: m_goods_big_desc,
 			"supply_price"				: supply_price,
-			"sales_price"				: sales_price,
-			"discount_price"			: discount_price,
-			"saved_priceYN"			: saved_priceYN,
+			"sales_price"					: sales_price,
+			"discount_price"				: discount_price,
+			"saved_priceYN"				: saved_priceYN,
 			"saved_price"				: saved_price,
-			"goods_optionYN"		: goods_optionYN,
-			"goods_option_txt"		: goods_option_txt,
+			"goods_optionYN"			: goods_optionYN,
+			"goods_option_txt"			: goods_option_txt,
 			"goods_stock"				: goods_stock,
 		},
 		success: function(response){
@@ -560,30 +532,31 @@ $(document).on("click", "#submit_btn2", function(){
 // 상품 정보 update
 $(document).on("click", "#submit_btn3", function(){
 	var showYN						= $(':radio[name="showYN"]:checked').val();
-	var salesYN							= $(':radio[name="salesYN"]:checked').val();
-	var cate_1							= $("#cate_1").val();
-	var cate_2							= $("#cate_2").val();
-	var cate_3							= $("#cate_3").val();
+	var salesYN						= $(':radio[name="salesYN"]:checked').val();
+	var cate_1						= $("#cate_1").val();
+	var cate_2						= $("#cate_2").val();
+	var cate_3						= $("#cate_3").val();
 	var related_goods				= $("#related_goods").val();
-	var goods_name					= $("#goods_name").val();
+	var sales_store					= $("#sales_store").val();
+	var goods_name				= $("#goods_name").val();
 	var goods_eng_name			= $("#goods_eng_name").val();
-	var goods_model					= $("#goods_model").val();
-	var goods_brand					= $("#goods_brand").val();
-	var goods_status					= $(':radio[name="goods_status"]:checked').val();
+	var goods_model				= $("#goods_model").val();
+	var goods_brand				= $("#goods_brand").val();
+	var goods_status				= $(':radio[name="goods_status"]:checked').val();
 	var goods_small_desc			= $("#goods_small_desc").val();
-	var goods_middle_desc			= $("#goods_middle_desc").val();
-	var goods_big_desc				= oEditors.getById["goods_big_desc"].getIR();
+	var goods_middle_desc		= $("#goods_middle_desc").val();
+	var goods_big_desc			= oEditors.getById["goods_big_desc"].getIR();
 	var m_goods_big_descYN		= $(':radio[name="m_goods_big_descYN"]:checked').val();
-	var supply_price					= $("#supply_price").val();
-	var sales_price						= $("#sales_price").val();
+	var supply_price				= $("#supply_price").val();
+	var sales_price					= $("#sales_price").val();
 	var discount_price				= $("#discount_price").val();
 	var saved_priceYN				= $(':radio[name="saved_priceYN"]:checked').val();
-	var goods_optionYN				= $(':radio[name="goods_optionYN"]:checked').val();
+	var goods_optionYN			= $(':radio[name="goods_optionYN"]:checked').val();
 	var goods_option_txt			= "";
-	var goods_stock					= $("#goods_stock").val();
+	var goods_stock				= $("#goods_stock").val();
 	goods_code						= $("#goodscode").val();
-	var m_goods_big_desc	= "";
-	var saved_price	= "";
+	var m_goods_big_desc		= "";
+	var saved_price					= "";
 
 	if (cate_1 == "")
 	{
@@ -697,30 +670,31 @@ $(document).on("click", "#submit_btn3", function(){
 		async  : false,
 		url    : "admin_exec.php",
 		data:{
-			"exec"						: "update_goods_info",
-			"showYN"					: showYN,
-			"salesYN"					: salesYN,
+			"exec"							: "update_goods_info",
+			"showYN"						: showYN,
+			"salesYN"						: salesYN,
 			"cate_1"						: cate_1,
 			"cate_2"						: cate_2,
 			"cate_3"						: cate_3,
-			"related_goods"			: related_goods,
+			"related_goods"				: related_goods,
+			"sales_store"					: sales_store,
 			"goods_name"				: goods_name,
-			"goods_eng_name"		: goods_eng_name,
-			"goods_model"			: goods_model,
-			"goods_brand"			: goods_brand,
-			"goods_status"			: goods_status,
+			"goods_eng_name"			: goods_eng_name,
+			"goods_model"				: goods_model,
+			"goods_brand"				: goods_brand,
+			"goods_status"				: goods_status,
 			"goods_small_desc"		: goods_small_desc,
-			"goods_middle_desc"	: goods_middle_desc,
-			"goods_big_desc"		: goods_big_desc,
+			"goods_middle_desc"		: goods_middle_desc,
+			"goods_big_desc"			: goods_big_desc,
 			"m_goods_big_descYN"	: m_goods_big_descYN,
 			"m_goods_big_desc"		: m_goods_big_desc,
 			"supply_price"				: supply_price,
-			"sales_price"				: sales_price,
-			"discount_price"			: discount_price,
-			"saved_priceYN"			: saved_priceYN,
+			"sales_price"					: sales_price,
+			"discount_price"				: discount_price,
+			"saved_priceYN"				: saved_priceYN,
 			"saved_price"				: saved_price,
-			"goods_optionYN"		: goods_optionYN,
-			"goods_option_txt"		: goods_option_txt,
+			"goods_optionYN"			: goods_optionYN,
+			"goods_option_txt"			: goods_option_txt,
 			"goods_stock"				: goods_stock,
 			"goods_code"				: goods_code,
 		},
@@ -811,6 +785,150 @@ function img_submit3(idx)
 	}); // end ajaxSubmit
 }
 
+// *********************** 재고관리 *********************** //
+
+// 관리자 상품 관리 > 재고관리 > 재고 더블클릭
+$(document).on("dblclick", ".stock_td", function(){
+	var thisval	= $(this).html();
+	$(this).attr('class','stock_td_fin');
+	$(this).html("<input class='form-control' value='"+thisval+"'>");
+	$(".stock_td_fin input").focus();
+});
+
+// 관리자 상품 관리 > 재고관리 > 재고 더블클릭 이후 블러처리
+$(document).on("blur", ".stock_td_fin", function(){
+	var thisval	= $(".stock_td_fin input").val();
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"				: "update_stock_info_bak",
+			"goods_code"		: this.id,
+			"goods_stock"		: thisval
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				$(".stock_td_fin").html(thisval);
+				$(".stock_td_fin").attr('class','stock_td');
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 쇼핑몰 관리 > 상품 관리 > 재고정보 수정 버튼 클릭
+$(document).on("click", "#edit_stock_info_btn", function(){
+	$("#list_stock_info").hide();
+	$("#edit_stock_info").show();
+});
+
+// 쇼핑몰 관리 > 상품 관리 > 재고정보 목록 버튼 클릭
+$(document).on("click", "#list_stock_info_btn", function(){
+	$("#edit_stock_info").hide();
+	$("#list_stock_info").show();
+});
+
+// 쇼핑몰 관리 > 상품 관리 > 재고 관리 > 상품코드 select 변경
+$(document).on("change", "#sel_goodscode", function(){
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"				: "change_stock_goodscode",
+			"goods_code"	: this.value
+		},
+		success: function(response){
+			var res_arr	= response.split("||");
+			$("#stock_name").val(res_arr[0]);
+			$("#stock_cnt").val(res_arr[1]);
+			$("#stock_price").val(res_arr[2]);
+			$("#sales_cnt").val(res_arr[3]);
+			$("#sales_price").val(res_arr[4]);
+		}
+	});
+
+});
+
+// 상품코드 가져오기 ( select )
+function show_select_goodscode(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_select_goodscode"
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 전체 재고 리스트 생성
+function show_stock_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_stock_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 재고 정보 update
+$(document).on("click", "#submit_btn11", function(){
+	var goods_code			= $("#sel_goodscode").val();
+	var stock_cnt			= $("#stock_cnt").val();
+	var stock_price			= $("#stock_price").val();
+	var sales_cnt				= $("#sales_cnt").val();
+	var sales_price			= $("#sales_price").val();
+	var stock_edit_desc	= $("#stock_edit_desc").val();
+
+	if (stock_edit_desc == "")
+	{
+		alert("재고정보 수정 사유를 입력해주세요.");
+		$("#stock_edit_desc").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "update_stock_info",
+			"goods_code"		: goods_code,
+			"stock_cnt"			: stock_cnt,
+			"stock_price"			: stock_price,
+			"sales_cnt"			: sales_cnt,
+			"sales_price"			: sales_price,
+			"stock_edit_desc"	: stock_edit_desc
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("재고 정보가 수정되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
 
 // *********************** 거래처 *********************** //
 
@@ -926,6 +1044,112 @@ $(document).on("click", "#submit_btn6", function(){
 			if (response == "Y")
 			{
 				alert("거래처 정보가 수정되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// *********************** 판매경로 관리 *********************** //
+
+// 판매경로 정보 insert
+$(document).on("click", "#submit_btn9", function(){
+	var sales_store_name		= $("#sales_store_name").val();
+	var sales_store_media		= $("#sales_store_media").val();
+	var sales_store_desc		= $("#sales_store_desc").val();
+
+	if (sales_store_name == "")
+	{
+		alert("판매경로 명을 입력해주세요.");
+		$("#sales_store_name").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"						: "insert_sales_store_info",
+			"sales_store_name"		: sales_store_name,
+			"sales_store_media"		: sales_store_media,
+			"sales_store_desc"		: sales_store_desc
+		},
+		success: function(response){
+			alert(response);
+			if (response == "Y")
+			{
+				alert("판매경로 정보가 입력 되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 쇼핑몰 관리 > 판매경로 관리 > 판매경로 추가 버튼 클릭
+$(document).on("click", "#add_sales_store_btn", function(){
+	$("#list_sales_store").hide();
+	$("#add_sales_store").show();
+});
+
+// 쇼핑몰 관리 > 판매경로 관리 > 판매경로 목록 버튼 클릭
+$(document).on("click", "#list_sales_store_btn", function(){
+	$("#add_sales_store").hide();
+	$("#list_sales_store").show();
+});
+
+// 전체 판매경로 리스트 생성
+function show_sales_store_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_sales_store_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 판매경로 정보 update
+$(document).on("click", "#submit_btn10", function(){
+	var idx							= $("#idx").val();
+	var sales_store_name		= $("#sales_store_name").val();
+	var sales_store_media		= $("#sales_store_media").val();
+	var sales_store_desc		= $("#sales_store_desc").val();
+
+	if (sales_store_name == "")
+	{
+		alert("판매경로 명을 입력해주세요.");
+		$("#sales_store_name").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"						: "update_sales_store_info",
+			"idx"						: idx,
+			"sales_store_name"		: sales_store_name,
+			"sales_store_media"	: sales_store_media,
+			"sales_store_desc"		: sales_store_desc
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("판매경로 정보가 수정되었습니다.");
 				location.reload();
 			}else{
 				alert("다시 시도해 주세요.");

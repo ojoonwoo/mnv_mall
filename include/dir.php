@@ -1,6 +1,5 @@
 <?
 	// 쇼핑몰 메인 폴더 경로
-	//$_mnv_base_dir					= $_SERVER['DOCUMENT_ROOT']."/mnv_mall/";
 	$_mnv_base_dir						= $_SERVER['DOCUMENT_ROOT']."/";
 
 	// 쇼핑몰 루트폴더
@@ -49,6 +48,8 @@
 	$_mnv_lib_url						= $_mnv_base_url . $_mnv_lib_dir_name . "/";
 	$_mnv_PC_url						= $_mnv_base_url . $_mnv_PC_dir_name . "/";
 	$_mnv_MOBILE_url					= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/";
+	$_mnv_uploads_url					= $_mnv_base_url . $_mnv_uploads_dir_name . "/";
+	$_mnv_uploads2_url				= $_mnv_base_url . $_mnv_uploads2_dir_name . "/";
 
 	// 쇼핑몰 PC URL 경로
 	$_mnv_PC_board_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_board_dir_name . "/";

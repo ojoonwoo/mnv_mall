@@ -99,6 +99,21 @@
                     </select> -->
                   </td>
                 </tr>
+                <tr>
+                  <td>연관 상품</td>
+                  <td colspan="2">
+                    <input class="form-control" id="related_goods" style="width:50%" value="<?=$goods_info['related_goods']?>">
+                    * 상품코드를 입력해 주시고, 2개 이상일시 ;로 구분해 주세요.(PR00001;PR00002)
+                  </td>
+                </tr>
+                <tr>
+                  <td>판매 경로</td>
+                  <td colspan="2">
+                    <select class="form-control" id="sales_store">
+                      <option value="">선택하세요</option>
+                    </select>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table class="table table-striped table-bordered">
@@ -324,6 +339,10 @@
 		show_select_cate1("cate_1");
 		// 세팅된 카테고리 노출
 		selected_category("cate_1",$("#cate1_val").val(),$("#cate2_val").val(),$("#cate3_val").val());
+
+		// 판매 경로 정보
+		show_select_sales_store("sales_store");
+
 		// 이미지 URL 구분자로 잘라서 배열로 저장
 		//var goods_img		= $("#goodsimgurl").val();
 		//var goods_img_arr	= goods_img.split("||");

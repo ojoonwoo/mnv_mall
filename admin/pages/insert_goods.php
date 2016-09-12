@@ -85,6 +85,14 @@
                     * 상품코드를 입력해 주시고, 2개 이상일시 ;로 구분해 주세요.(PR00001;PR00002)
                   </td>
                 </tr>
+                <tr>
+                  <td>판매 경로</td>
+                  <td colspan="2">
+                    <select class="form-control" id="sales_store">
+                      <option value="">선택하세요</option>
+                    </select>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table class="table table-striped table-bordered">
@@ -287,6 +295,9 @@
 	$(document).ready(function() {
 		// 1번 카테고리 정보
 		show_select_cate1("cate_1");
+
+		// 판매 경로 정보
+		show_select_sales_store("sales_store");
 	});
 
 	nhn.husky.EZCreator.createInIFrame({

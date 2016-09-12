@@ -38,7 +38,6 @@
             <div class="banner_slide">
 <?
 	$rolling_banner_info		= select_banner_info("main_rolling_banner");
-
 	foreach ($rolling_banner_info as $key => $val)
 	{
 		$val['banner_img_url']	= str_replace("../../","",$val['banner_img_url']);
@@ -51,8 +50,8 @@
 ?>
             </div>
             <div class="banner_list clearfix">
-              <div class="banner"><a href="#"><div class="banner_bg1"><span class="over_txt">촌의 감각</span></div></a></div>
-              <div class="banner"><a href="#"><div class="banner_bg2"><span class="over_txt">매거진, 촌</span></div></a></div>
-              <div class="banner"><a href="#"><div class="banner_bg3"><span class="over_txt">느린 그릇</span></div></a></div>
+              <div class="banner"><a href="#"><img src="./images/main_banner1.png" alt="배너_촌의 감각"></a></div>
+              <div class="banner"><a href="#"><img src="./images/main_banner2.png" alt="배너_매거진, 촌"></a></div>
+              <div class="banner"><a href="#"><img src="./images/main_banner3.png" alt="배너_느린 그릇"></a></div>
             </div>
           </div>

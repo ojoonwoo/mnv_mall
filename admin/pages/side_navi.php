@@ -28,6 +28,9 @@
           <li>
             <a href="purchasing.php">거래처 관리</a>
           </li>
+          <li>
+            <a href="sales_store.php">판매경로 관리</a>
+          </li>
         </ul>
         <!-- /.nav-second-level -->
       </li>

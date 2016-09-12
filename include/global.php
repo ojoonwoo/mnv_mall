@@ -5,18 +5,21 @@
 *
 */
 
-	$_gl['site_option_table']					= "site_option";					// 사이트 옵션 테이블
+	$_gl['site_option_table']				= "site_option";					// 사이트 옵션 테이블
 	$_gl['banner_info_table']				= "banner_info";					// 배너 정보 테이블
 	$_gl['banner_config_info_table']		= "banner_config_info";		// 배너 기본 설정 파일
-	$_gl['category_info_table']				= "category_info";				// 카테고리 정보 테이블
-	$_gl['goods_info_table']					= "goods_info";					// 상품 정보 테이블
-	$_gl['grade_info_table']					= "grade_info";					// 회원 등급 정보 테이블
-	$_gl['admin_info_table']					= "admin_info";					// 관리자 계정 정보 테이블
+	$_gl['category_info_table']			= "category_info";				// 카테고리 정보 테이블
+	$_gl['goods_info_table']				= "goods_info";					// 상품 정보 테이블
+	$_gl['grade_info_table']				= "grade_info";					// 회원 등급 정보 테이블
+	$_gl['admin_info_table']				= "admin_info";					// 관리자 계정 정보 테이블
 	$_gl['goodscode_info_table']			= "goodscode_info";			// 상품코드 정보 테이블
 	$_gl['member_info_table']				= "member_info";				// 회원 정보 테이블
 	$_gl['purchasing_info_table']			= "purchasing_info";			// 거래처 정보 테이블
 	$_gl['board_review_table']				= "board_review";				// 리뷰 게시판 테이블
-	$_gl['wishlist_info_table']				= "wishlist_info";					// 위시리스트 테이블
-	$_gl['restock_info_table']				= "restock_info";					// 재입고 요청 테이블
+	$_gl['wishlist_info_table']				= "wishlist_info";				// 위시리스트 테이블
+	$_gl['restock_info_table']				= "restock_info";				// 재입고 요청 테이블
+	$_gl['sales_store_info_table']			= "sales_store_info";			// 판매 경로 테이블
+	$_gl['stock_change_log_table']		= "stock_change_log";			// 재고 변경 로그 테이블
+
 
 ?>

@@ -112,15 +112,16 @@
   </body>
 </html>
 <script>
-$(document).ready(function() {
 	$('.banner_slide').bxSlider({
-		pager: true,
+		mode:"fade",
+		pager: false,
 		controls:false,
-		slideWidth: 500,
+		//slideWidth: 500,
 		autoControls: false,
 		auto: true,
 		infiniteLoop: true
 	});
+$(document).ready(function() {
 });
 /*
     var feed = new Instafeed({
