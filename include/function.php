@@ -322,4 +322,18 @@ function select_cate2_info($cate_1, $cate_2)
 
 	return $data['cate_name'];
 }
+
+// 판매경로 이름 가져오기
+function sales_store_name($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT sales_store_name FROM ".$_gl['sales_store_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data['sales_store_name'];
+
+}
 ?>

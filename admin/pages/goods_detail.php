@@ -25,6 +25,7 @@
 <input type="hidden" id="cate1_val" value="<?=$goods_info['cate_1']?>">
 <input type="hidden" id="cate2_val" value="<?=$goods_info['cate_2']?>">
 <input type="hidden" id="cate3_val" value="<?=$goods_info['cate_3']?>">
+<input type="hidden" id="brand_val" value="<?=$goods_info['goods_brand']?>">
 <input type="hidden" id="goodsimgurl" value="<?=$goods_info['goods_img_url']?>">
 <div id="wrapper">
   <!-- Navigation -->
@@ -144,7 +145,10 @@
                 <tr>
                   <td>브랜드명</td>
                   <td colspan="2">
-                    <input class="form-control" id="goods_brand" style="width:100%" value="<?=$goods_info['goods_brand']?>">
+                    <!-- <input class="form-control" id="goods_brand" style="width:100%" value="<?=$goods_info['goods_brand']?>"> -->
+                    <select class="form-control" id="goods_brand">
+                      <option value="">선택하세요</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -343,6 +347,11 @@
 		// 판매 경로 정보
 		show_select_sales_store("sales_store");
 
+		// 브랜드 정보
+		show_select_brand("goods_brand");
+
+		// 세팅된 브랜드 노출
+		selected_brand("goods_brand",$("#brand_val").val());
 		// 이미지 URL 구분자로 잘라서 배열로 저장
 		//var goods_img		= $("#goodsimgurl").val();
 		//var goods_img_arr	= goods_img.split("||");

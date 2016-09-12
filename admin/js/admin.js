@@ -109,6 +109,27 @@ function show_select_sales_store(id)
 	});
 }
 
+// 판매경로 select 새로 생성
+function show_select_brand(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_select_brand"
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+function selected_brand(id,brand)
+{
+	alert(brand);
+	$("#"+id).val(brand);
+}
 // 카테고리1 선택된값 세팅
 function selected_category(id,cate1_val,cate2_val,cate3_val)
 {
@@ -941,14 +962,14 @@ $(document).on("click", "#submit_btn5", function(){
 
 	if (purchasing_name == "")
 	{
-		alert("거래처 명을 입력해주세요.");
+		alert("브랜드 명을 입력해주세요.");
 		$("#purchasing_name").focus();
 		return false;
 	}
 
 	if (purchasing_phone == "")
 	{
-		alert("거래처 전화번호를 입력해주세요.");
+		alert("브랜드 전화번호를 입력해주세요.");
 		$("#purchasing_phone").focus();
 		return false;
 	}
@@ -967,7 +988,7 @@ $(document).on("click", "#submit_btn5", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				alert("거래처 정보가 입력 되었습니다.");
+				alert("브랜드 정보가 입력 되었습니다.");
 				location.reload();
 			}else{
 				alert("다시 시도해 주세요.");
@@ -1016,14 +1037,14 @@ $(document).on("click", "#submit_btn6", function(){
 
 	if (purchasing_name == "")
 	{
-		alert("거래처 명을 입력해주세요.");
+		alert("브랜드 명을 입력해주세요.");
 		$("#purchasing_name").focus();
 		return false;
 	}
 
 	if (purchasing_phone == "")
 	{
-		alert("거래처 전화번호를 입력해주세요.");
+		alert("브랜드 전화번호를 입력해주세요.");
 		$("#purchasing_phone").focus();
 		return false;
 	}
@@ -1043,7 +1064,7 @@ $(document).on("click", "#submit_btn6", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				alert("거래처 정보가 수정되었습니다.");
+				alert("브랜드 정보가 수정되었습니다.");
 				location.reload();
 			}else{
 				alert("다시 시도해 주세요.");

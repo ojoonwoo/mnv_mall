@@ -79,6 +79,17 @@
 			echo $innerHTML;
 		break;
 
+		case "show_select_brand" :
+			$store_query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE 1 ORDER BY idx ASC";
+			$store_result		= mysqli_query($my_db, $store_query);
+			$innerHTML	= "<option value=''>선택하세요</option>";
+			while ($store_data	= mysqli_fetch_array($store_result))
+			{
+				$innerHTML	.= "<option value='".$store_data['purchasing_name']."'>".$store_data['purchasing_name']."</option>";
+			}
+			echo $innerHTML;
+		break;
+
 		case "show_select_sales_store" :
 			$store_query		= "SELECT * FROM ".$_gl['sales_store_info_table']." WHERE 1 ORDER BY idx ASC";
 			$store_result		= mysqli_query($my_db, $store_query);
@@ -345,12 +356,12 @@
 			$list_result		= mysqli_query($my_db, $list_query);
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
-			$innerHTML	.= "<th>거래처명</th>";
-			$innerHTML	.= "<th>거래처 주소</th>";
-			$innerHTML	.= "<th>거래처 전화번호</th>";
-			$innerHTML	.= "<th>거래처 특이사항</th>";
-			$innerHTML	.= "<th>거래처 등록일자</th>";
-			$innerHTML	.= "<th>거래처 최근 정보수정일자</th>";
+			$innerHTML	.= "<th>브랜드명</th>";
+			$innerHTML	.= "<th>브랜드 주소</th>";
+			$innerHTML	.= "<th>브랜드 전화번호</th>";
+			$innerHTML	.= "<th>브랜드 특이사항</th>";
+			$innerHTML	.= "<th>브랜드 등록일자</th>";
+			$innerHTML	.= "<th>브랜드 최근 정보수정일자</th>";
 			$innerHTML	.= "<th></th>";
 			$innerHTML	.= "</tr>";
 			$innerHTML	.= "</thead>";
@@ -412,7 +423,7 @@
 			$list_result		= mysqli_query($my_db, $list_query);
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
-			$innerHTML	.= "<th>순번</th>";
+			$innerHTML	.= "<th>판매경로</th>";
 			$innerHTML	.= "<th>진열상태</th>";
 			$innerHTML	.= "<th>판매상태</th>";
 			$innerHTML	.= "<th>상품 코드</th>";
@@ -420,7 +431,7 @@
 			$innerHTML	.= "<th>모델명</th>";
 			$innerHTML	.= "<th>판매가</th>";
 			$innerHTML	.= "<th>재고</th>";
-			$innerHTML	.= "<th>등록일/수정일</th>";
+			$innerHTML	.= "<th>등록일</th>";
 			$innerHTML	.= "<th></th>";
 			$innerHTML	.= "</tr>";
 			$innerHTML	.= "</thead>";
@@ -428,8 +439,10 @@
 			//$i	= 1;
 			while ($list_data = mysqli_fetch_array($list_result))
 			{
+				// 판매경로 이름 불러오기
+				$sales_store	= sales_store_name($list_data['sales_store']);
 				$innerHTML	.= "<tr>";
-				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>".$sales_store."</td>";
 				$innerHTML	.= "<td>".$list_data['showYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['salesYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
@@ -437,7 +450,7 @@
 				$innerHTML	.= "<td>".$list_data['goods_model']."</td>";
 				$innerHTML	.= "<td>".$list_data['sales_price']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_stock']."</td>";
-				$innerHTML	.= "<td>".$list_data['goods_regdate']."/".$list_data['goods_latedate']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_regdate']."</td>";
 				$innerHTML	.= "<td><a href='./goods_detail.php?goodscode=".$list_data['goods_code']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_goods' data-goodscode='".$list_data['goods_code']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;

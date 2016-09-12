@@ -123,7 +123,9 @@
                 <tr>
                   <td>브랜드명</td>
                   <td colspan="2">
-                    <input class="form-control" id="goods_brand" style="width:100%">
+                    <select class="form-control" id="goods_brand">
+                      <option value="">선택하세요</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -295,9 +297,10 @@
 	$(document).ready(function() {
 		// 1번 카테고리 정보
 		show_select_cate1("cate_1");
-
 		// 판매 경로 정보
 		show_select_sales_store("sales_store");
+		// 브랜드 정보
+		show_select_brand("goods_brand");
 	});
 
 	nhn.husky.EZCreator.createInIFrame({

@@ -26,7 +26,7 @@
             <a href="banner.php">배너 관리</a>
           </li>
           <li>
-            <a href="purchasing.php">거래처 관리</a>
+            <a href="purchasing.php">브랜드 관리</a>
           </li>
           <li>
             <a href="sales_store.php">판매경로 관리</a>

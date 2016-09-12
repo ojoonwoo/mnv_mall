@@ -30,14 +30,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">거래처 관리</h1>
+          <h1 class="page-header">브랜드 관리</h1>
         </div>
         <!-- /.col-lg-12 -->
       </div>
       <!-- /.row -->
       <!-- /.panel-heading -->
-      <button type="button" class="btn btn-outline btn-primary btn-lg" id="add_purchasing_btn">거래처 추가</button>
-      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_purchasing_btn">거래처 목록</button>
+      <button type="button" class="btn btn-outline btn-primary btn-lg" id="add_purchasing_btn">브랜드 추가</button>
+      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_purchasing_btn">브랜드 목록</button>
       <div class="panel-body">
         <div class="panel-body">
           <div class="table-responsive" id="add_purchasing">
@@ -50,32 +50,32 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>* 거래처명</td>
+                  <td>* 브랜드명</td>
                   <td colspan="2">
                     <input class="form-control" id="purchasing_name" style="width:100%">
                   </td>
                 </tr>
                 <tr>
-                  <td>거래처 주소</td>
+                  <td>브랜드 주소</td>
                   <td>
                     <input class="form-control" id="purchasing_addr" style="width:100%">
                   </td>
                 </tr>
                 <tr>
-                  <td>* 거래처 전화번호</td>
+                  <td>* 브랜드 전화번호</td>
                   <td>
                     <input class="form-control" id="purchasing_phone" style="width:100%">
                   </td>
                 </tr>
                 <tr>
-                  <td>거래처 특이사항</td>
+                  <td>브랜드 특이사항</td>
                   <td>
                     <textarea class="form-control" id="purchasing_desc" rows="3" style="width:100%"></textarea>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn5">거래처 정보 입력</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn5">브랜드 정보 입력</button>
           </div>
           <!-- /.table-responsive -->
           <div class="table-responsive" id="list_purchasing" style="display:none;">
