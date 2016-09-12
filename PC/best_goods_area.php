@@ -10,7 +10,7 @@
 		$val['goods_img_url']	= str_replace("../../","",$val['goods_img_url']);
 ?>
             <div class="product">
-              <a href="http://localhost/mnv_mall/PC/goods/goods_detail.php?goods_code=<?=$val['goods_code']?>"><img src="<?=$val['goods_img_url']?>" style="width:220px"></a>
+              <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$val['goods_code']?>"><img src="<?=$val['goods_img_url']?>" style="width:220px"></a>
               <div class="prd_info"><span class="prd_name">제품명</span></div>
             </div>
 <?
