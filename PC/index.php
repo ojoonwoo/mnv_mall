@@ -19,12 +19,12 @@
 	{
 ?>
               <li><a href="#" id="mb_logout"><span>로그아웃</span></a></li>
-              <li><a href="<?=$_mnv_PC_member_dir?>modify_form.php"><span>정보수정</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_url?>modify_form.php"><span>정보수정</span></a></li>
 <?
 	}else{
 ?>
-              <li><a href="<?=$_mnv_PC_member_dir?>member_login.php"><span>로그인</span></a></li>
-              <li><a href="<?=$_mnv_PC_member_dir?>join_form.php"><span>회원가입</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_url?>member_login.php"><span>로그인</span></a></li>
+              <li><a href="<?=$_mnv_PC_member_url?>join_form.php"><span>회원가입</span></a></li>
 <?
 	}
 ?>
