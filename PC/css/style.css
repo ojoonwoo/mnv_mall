@@ -1038,10 +1038,6 @@ input {
     vertical-align: top;
 }
 
-
-
-
-
 .product_dt_branding {
     
 }
@@ -1087,7 +1083,6 @@ input {
     padding-left: 30px;
 }
 
-
 .pr_view_table .open_content p {
     line-height: 18px;
 }
@@ -1129,7 +1124,6 @@ input {
     padding: 3px 0;
 }
 
-
 .product.n4.rt .prd_info .prd_name {
     font-size: 14px;
     font-weight: 600;
@@ -1144,8 +1138,6 @@ input {
     line-height: 16px;
     letter-spacing: 0;
 }
-
-
 
 .block_board_btn {
     float: right;
@@ -1524,8 +1516,10 @@ input {
     padding-top: 18px;
 }
 
-.info .info_txt .option {
+.option {
+    font-size: 13px;
     padding-top: 8px;
+    padding-left: 3px;
     color: #888888;
 }
 
@@ -1615,6 +1609,30 @@ input {
     margin-left: 0;
 }
 
+.block_title.alignC h3 {
+    font-size: 17px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.block_title.alignC p {
+    font-size: 14px;
+    letter-spacing: -1px;
+}
+
+.block_title.alignC p span {
+    color: #196a24;
+    font-weight: 600;
+}
+
+.mypage_board_list.order tbody tr {
+    height: 90px;
+}
+
+.mypage_board_list.order tbody td {
+    font-size: 14px;
+}
 /* order */
 
 /* start footer */
@@ -1870,17 +1888,34 @@ div {
     font-weight: 700;
 }
 
+.button_custom {
+    border: 1px solid #b88b5b;
+    background-color: #ffffff;
+    color: #b88b5b;
+    width: 120px;
+    height: 40px;
+}
+
 /* component design */
 
 /* 기타 */
 .nopadd {
     padding: 0 !important;
 }
+.noborder {
+    border: none !important;
+}
 .grey {
     background-color: #8d8d8d;
 }
 .alignC {
     text-align: center !important;
+}
+.alignL {
+    text-align: left !important;
+}
+.v_middle {
+    vertical-align: middle;
 }
 .dateTerm {
     width: 160px !important;
@@ -1893,20 +1928,32 @@ div {
 .fontColor {
     color: #b88b5b;
 }
+.borderT {
+    border-top: 1px solid #b88b5b;
+}
 .mt30 {
     margin-top: 30px;
 }
 .mt40 {
     margin-top: 40px;
 }
+.mt75 {
+    margin-top: 75px;
+}
 .mt15 {
     margin-top: 15px;
+}
+.mb20 {
+    margin-bottom: 20px !important;
 }
 .mr10 {
     margin-right: 10px;
 }
 .pt40 {
     padding-top: 40px;
+}
+.pl30 {
+    padding-left: 30px;
 }
 .active_underLine {
     text-decoration: underline;
@@ -1920,6 +1967,9 @@ div {
 .atMark {
     font-size: 16px;
     margin: 0 2px;
+}
+.bold {
+    font-weight: bold;
 }
 
 /* 기타 */
