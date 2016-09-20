@@ -20,6 +20,8 @@
 	$_gl['restock_info_table']				= "restock_info";				// 재입고 요청 테이블
 	$_gl['sales_store_info_table']			= "sales_store_info";			// 판매 경로 테이블
 	$_gl['stock_change_log_table']		= "stock_change_log";			// 재고 변경 로그 테이블
+	$_gl['event_info_table']				= "event_info";					// 이벤트 테이블
+	$_gl['post_info_table']					= "post_info";					// 포스트 테이블
 
 
 ?>

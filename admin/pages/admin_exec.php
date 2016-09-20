@@ -193,6 +193,88 @@
 			echo $flag;
 		break;
 
+		case "insert_event_info" :
+			$event_title			= $_REQUEST['event_title'];
+			$event_startdate	= $_REQUEST['event_startdate'];
+			$event_enddate		= $_REQUEST['event_enddate'];
+			$event_contents	= $_REQUEST['event_contents'];
+
+			if ($event_startdate < date("Y-m-d"))
+			{
+				$flag	= "SN";	// 이벤트 시작일이 현재 날짜보다 작을경우
+			}
+			else if ($event_enddate < $event_startdate)
+			{
+				$flag	= "EN";	// 이벤트 종료일이 시작일보다 작을경우
+			}else{
+				$event_query		= "INSERT INTO ".$_gl['event_info_table']."(event_title, event_startdate, event_enddate, event_contents, event_regdate) values('".$event_title."','".$event_startdate."','".$event_enddate."','".$event_contents."','".date("Y-m-d H:i:s")."')";
+				$event_result		= mysqli_query($my_db, $event_query);
+
+				if ($event_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
+			}
+			echo $flag;
+		break;
+
+		case "update_event_info" :
+			$idx					= $_REQUEST['idx'];
+			$event_title			= $_REQUEST['event_title'];
+			$event_startdate	= $_REQUEST['event_startdate'];
+			$event_enddate		= $_REQUEST['event_enddate'];
+			$event_contents	= $_REQUEST['event_contents'];
+
+			if ($event_startdate < date("Y-m-d"))
+			{
+				$flag	= "SN";	// 이벤트 시작일이 현재 날짜보다 작을경우
+			}
+			else if ($event_enddate < $event_startdate)
+			{
+				$flag	= "EN";	// 이벤트 종료일이 시작일보다 작을경우
+			}else{
+				$event_query		= "UPDATE ".$_gl['event_info_table']." SET event_title='".$event_title."', event_startdate='".$event_startdate."', event_enddate='".$event_enddate."', event_contents='".$event_contents."', event_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+				$event_result		= mysqli_query($my_db, $event_query);
+
+				if ($event_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
+			}
+			echo $flag;
+		break;
+
+		case "insert_post_info" :
+			$post_title			= $_REQUEST['post_title'];
+			$post_contents		= $_REQUEST['post_contents'];
+
+			$post_query		= "INSERT INTO ".$_gl['post_info_table']."(post_title, post_contents, post_regdate) values('".$post_title."','".$post_contents."','".date("Y-m-d H:i:s")."')";
+			$post_result		= mysqli_query($my_db, $post_query);
+
+			if ($post_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "update_post_info" :
+			$idx					= $_REQUEST['idx'];
+			$post_title			= $_REQUEST['post_title'];
+			$post_contents		= $_REQUEST['post_contents'];
+
+			$post_query		= "UPDATE ".$_gl['post_info_table']." SET post_title='".$post_title."', post_contents='".$post_contents."', post_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+			$post_result		= mysqli_query($my_db, $post_query);
+
+			if ($post_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
 		case "update_cate_info" :
 			$idx						= $_REQUEST['idx']; 
 			$cate_name			= $_REQUEST['cate_name']; 
@@ -343,6 +425,60 @@
 				$innerHTML	.= "<td>".$list_data['cate_accessYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_date']."</td>";
 				$innerHTML	.= "<td><a href='./category_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' onclick='delete_goods(".$list_data['goods_name'].",".$list_data['goods_code'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
+		case "show_event_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['event_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>이벤트 제목</th>";
+			$innerHTML	.= "<th>이벤트 기간</th>";
+			$innerHTML	.= "<th>이벤트 등록일</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['event_title']."</td>";
+				$innerHTML	.= "<td>".substr($list_data['event_startdate'],0,10)." ~ ".substr($list_data['event_enddate'],0,10)."</td>";
+				$innerHTML	.= "<td>".$list_data['event_regdate']."</td>";
+				$innerHTML	.= "<td><a href='./event_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' onclick='delete_event(".$list_data['idx'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
+		case "show_post_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>포스트 제목</th>";
+			$innerHTML	.= "<th>포스트 등록일</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['post_title']."</td>";
+				$innerHTML	.= "<td>".$list_data['post_regdate']."</td>";
+				$innerHTML	.= "<td><a href='./post_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' onclick='delete_post(".$list_data['idx'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
 			}

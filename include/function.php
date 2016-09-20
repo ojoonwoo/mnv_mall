@@ -35,6 +35,32 @@ function select_goods_info($goodscode)
 	return $data;
 }
 
+// 해당 이벤트 가져오기 (idx)
+function select_event_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['event_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
+// 해당 포스트 가져오기 (idx)
+function select_post_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
 // 해당 카테고리 정보 가져오기 (idx)
 function select_category_info($idx)
 {

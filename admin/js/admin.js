@@ -4,6 +4,253 @@
 *
 */
 
+// *********************** 포스트 *********************** //
+
+// 이벤트 & 포스트 관리 > 포스트 추가 버튼 클릭
+$(document).on("click", "#add_post_btn", function(){
+	$("#list_post").hide();
+	$("#add_post").show();
+});
+
+// 이벤트 & 포스트 관리 > 포스트 목록 버튼 클릭
+$(document).on("click", "#list_post_btn", function(){
+	$("#add_post").hide();
+	$("#list_post").show();
+});
+
+// 포스트 정보 insert
+$(document).on("click", "#submit_btn14", function(){
+	var post_title				= $("#post_title").val();
+	var post_contents			= oEditors.getById["post_contents"].getIR();
+
+	if (post_title == "")
+	{
+		alert("포스트 제목을 입력해주세요.");
+		$("#post_title").focus();
+		return false;
+	}
+
+	if (post_contents == "")
+	{
+		alert("포스트 내용을 입력해주세요.");
+		$("#post_contents").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "insert_post_info",
+			"post_title"			: post_title,
+			"post_contents"		: post_contents
+		},
+		success: function(response){
+			alert(response);
+			if (response == "Y")
+			{
+				alert("포스트가 추가 되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 포스트 정보 update
+$(document).on("click", "#submit_btn15", function(){
+	var idx						= $("#idx").val();
+	var post_title				= $("#post_title").val();
+	var post_contents			= oEditors.getById["post_contents"].getIR();
+
+	if (post_title == "")
+	{
+		alert("포스트 제목을 입력해주세요.");
+		$("#post_title").focus();
+		return false;
+	}
+
+	if (post_contents == "")
+	{
+		alert("포스트 내용을 입력해주세요.");
+		$("#post_contents").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "update_post_info",
+			"idx"					: idx,
+			"post_title"			: post_title,
+			"post_contents"		: post_contents
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("포스트 정보가 수정 되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 전체 이벤트 리스트 생성
+function show_post_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_post_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// *********************** 이벤트 *********************** //
+
+// 이벤트 & 포스트 관리 > 이벤트 추가 버튼 클릭
+$(document).on("click", "#add_event_btn", function(){
+	$("#list_event").hide();
+	$("#add_event").show();
+});
+
+// 이벤트 & 포스트 관리 > 이벤트 목록 버튼 클릭
+$(document).on("click", "#list_event_btn", function(){
+	$("#add_event").hide();
+	$("#list_event").show();
+});
+
+// 이벤트 정보 insert
+$(document).on("click", "#submit_btn12", function(){
+	var event_title				= $("#event_title").val();
+	var event_startdate			= $("#event_startdate").val();
+	var event_enddate			= $("#event_enddate").val();
+	var event_contents			= oEditors.getById["event_contents"].getIR();
+
+	if (event_title == "")
+	{
+		alert("이벤트 제목을 입력해주세요.");
+		$("#event_title").focus();
+		return false;
+	}
+
+	if (event_contents == "")
+	{
+		alert("이벤트 내용을 입력해주세요.");
+		$("#event_contents").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "insert_event_info",
+			"event_title"			: event_title,
+			"event_startdate"	: event_startdate,
+			"event_enddate"	: event_enddate,
+			"event_contents"	: event_contents
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("이벤트가 추가 되었습니다.");
+				location.reload();
+			}else if (response == "SN"){
+				alert("이벤트 시작일이 현재날짜보다 작으면 안됩니다.");
+			}else if (response == "EN"){
+				alert("이벤트 종료일은 시작일보다 작으면 안됩니다.");
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 이벤트 정보 update
+$(document).on("click", "#submit_btn13", function(){
+	var idx						= $("#idx").val();
+	var event_title				= $("#event_title").val();
+	var event_startdate			= $("#event_startdate").val();
+	var event_enddate			= $("#event_enddate").val();
+	var event_contents			= oEditors.getById["event_contents"].getIR();
+
+	if (event_title == "")
+	{
+		alert("이벤트 제목을 입력해주세요.");
+		$("#event_title").focus();
+		return false;
+	}
+
+	if (event_contents == "")
+	{
+		alert("이벤트 내용을 입력해주세요.");
+		$("#event_contents").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "update_event_info",
+			"idx"					: idx,
+			"event_title"			: event_title,
+			"event_startdate"	: event_startdate,
+			"event_enddate"	: event_enddate,
+			"event_contents"	: event_contents
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("이벤트 정보가 수정 되었습니다.");
+				location.reload();
+			}else if (response == "SN"){
+				alert("이벤트 시작일이 현재날짜보다 작으면 안됩니다.");
+			}else if (response == "EN"){
+				alert("이벤트 종료일은 시작일보다 작으면 안됩니다.");
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 전체 이벤트 리스트 생성
+function show_event_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"	: "show_event_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
 // *********************** 카테고리 *********************** //
 
 // 1차 카테고리 선택 메뉴 show
