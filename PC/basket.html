@@ -128,6 +128,13 @@
                         <input type="button" value="위시리스트 담기" class="board_btn">
                       </td>
                     </tr>
+                    <!-- 장바구니 담은 상품 없을때 -->
+<!--
+                    <tr style="height:120px;">
+                      <td colspan="5">주문내역이 없습니다.</td>
+                    </tr>
+-->
+                    <!-- 장바구니 담은 상품 없을때 -->
                   </tbody>
                 </table>
               </div>
@@ -137,37 +144,39 @@
                   <input type="button" value="선택상품삭제" class="button_custom">
                 </div>
               </div>
-              <div class="block_order_price">
-                <div class="inner clearfix">
-                  <div class="price_block">
-                    <h2>총 주문 금액</h2>
+              <div><!-- 장바구니 담은 상품 없을때 -->
+                <div class="block_order_price">
+                  <div class="inner clearfix">
+                    <div class="price_block">
+                      <h2>총 주문 금액</h2>
+                    </div>
+                    <div class="charImg">
+                      <span class="bar1 long"></span>
+                    </div>
+                    <div class="price_block">
+                      <h3>총 주문금액</h3>
+                      <h3 class="total_order">80,000원</h3>
+                    </div>
+                    <div class="charImg">
+                      <img src="./images/spec_plus.png">
+                    </div>
+                    <div class="price_block">
+                      <h3>배송비</h3>
+                      <h3 class="shipping">2,500원</h3>
+                    </div>
+                    <div class="charImg">
+                      <img src="./images/spec_equal.png">
+                    </div>
+                    <div class="price_block">
+                      <h3>총 결제금액</h3>
+                      <h3 class="total_payment">82,500원</h3>
+                    </div>
                   </div>
-                  <div class="charImg">
-                    <span class="bar1 long"></span>
-                  </div>
-                  <div class="price_block">
-                    <h3>총 주문금액</h3>
-                    <h3 class="total_order">80,000원</h3>
-                  </div>
-                  <div class="charImg">
-                    <img src="./images/spec_plus.png">
-                  </div>
-                  <div class="price_block">
-                    <h3>배송비</h3>
-                    <h3 class="shipping">2,500원</h3>
-                  </div>
-                  <div class="charImg">
-                    <img src="./images/spec_equal.png">
-                  </div>
-                  <div class="price_block">
-                    <h3>총 결제금액</h3>
-                    <h3 class="total_payment">82,500원</h3>
-                  </div>
+                </div><!-- 장바구니 담은 상품 없을때 -->
+                <div class="block_btn mt40">
+                  <input type="button" class="button_default mr10" value="계속 쇼핑하기">
+                  <input type="button" class="button_default onColor" value="주문하기">
                 </div>
-              </div>
-              <div class="block_btn mt40">
-                <input type="button" class="button_default mr10" value="계속 쇼핑하기">
-                <input type="button" class="button_default onColor" value="주문하기">
               </div>
             </div>
             <div class="area_main_bottom">
