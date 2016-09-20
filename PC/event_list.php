@@ -91,7 +91,7 @@
 	$i	= 0;
 	foreach($event_info as $key => $val)
 	{
-		if ($i / 2 == 0)
+		if ($i % 2 == 0)
 		{
 ?>
               <div class="listBox clearfix">
@@ -100,42 +100,25 @@
 ?>
                 <div class="eventBox">
                   <div class="boxInImg">
-                    <a href="#"><img src="images/event_list1.png" alt="감자"></a>
+                    <a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$val['idx']?>"><img src="<?=$val['event_img_url']?>" alt="<?=$val['event_title']?>"></a>
                   </div>
                   <div class="boxInTxt">
-                    <h3>감자캐고 먹자 이벤트</h3>
-                    <p>2016.8.20 ~ 2016.10.31</p>
+                    <h3><?=$val['event_title']?></h3>
+                    <p><?=str_replace("-",".",substr($val['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($val['event_enddate'],0,10))?></p>
                   </div>
                 </div>
-                <div class="eventBox">
-                  <div class="boxInImg">
-                    <a href="#"><img src="images/event_list1.png" alt="감자"></a>
-                  </div>
-                  <div class="boxInTxt">
-                    <h3>감자캐고 먹자 이벤트</h3>
-                    <p>2016.8.20 ~ 2016.10.31</p>
-                  </div>
-                </div>
+<?
+		if ($i % 2 != 0 || $event_count == $i+1)
+		{
+?>
               </div>
 <?
+		}
+		$i++;
 	}
 ?>
               <div class="block_board_pager pt40">
-                <span>
-                  <a href="#"><img src="<?=$_mnv_PC_images_url?>arrow_left_double.png"></a>
-                </span>
-                <span>
-                  <a href="#"><img src="<?=$_mnv_PC_images_url?>arrow_left_single.png"></a>
-                </span>
-                <a href="#"><span>1</span></a>
-                <a href="#"><span>2</span></a>
-                <a href="#"><span>3</span></a>
-                <span>
-                  <a href="#"><img src="<?=$_mnv_PC_images_url?>arrow_right_single.png"></a>
-                </span>
-                <span>
-                  <a href="#"><img src="<?=$_mnv_PC_images_url?>arrow_right_double.png"></a>
-                </span>
+                <div class="pageing"><?php echo $BLOCK_LIST?></div>
               </div>
             </div>
             <div class="area_main_bottom">

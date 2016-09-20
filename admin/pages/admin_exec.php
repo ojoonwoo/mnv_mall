@@ -209,9 +209,10 @@
 			}else{
 				$event_query		= "INSERT INTO ".$_gl['event_info_table']."(event_title, event_startdate, event_enddate, event_contents, event_regdate) values('".$event_title."','".$event_startdate."','".$event_enddate."','".$event_contents."','".date("Y-m-d H:i:s")."')";
 				$event_result		= mysqli_query($my_db, $event_query);
+				$id_num				= mysqli_insert_id($my_db);
 
 				if ($event_result)
-					$flag	= "Y";
+					$flag	= $id_num;
 				else
 					$flag	= "N";
 			}
@@ -250,9 +251,10 @@
 
 			$post_query		= "INSERT INTO ".$_gl['post_info_table']."(post_title, post_contents, post_regdate) values('".$post_title."','".$post_contents."','".date("Y-m-d H:i:s")."')";
 			$post_result		= mysqli_query($my_db, $post_query);
+			$id_num			= mysqli_insert_id($my_db);
 
 			if ($post_result)
-				$flag	= "Y";
+				$flag	= $id_num;
 			else
 				$flag	= "N";
 
