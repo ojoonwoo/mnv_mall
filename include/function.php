@@ -35,6 +35,32 @@ function select_goods_info($goodscode)
 	return $data;
 }
 
+// 해당 이벤트 가져오기 (idx)
+function select_event_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['event_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
+// 해당 포스트 가져오기 (idx)
+function select_post_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
 // 해당 카테고리 정보 가져오기 (idx)
 function select_category_info($idx)
 {
@@ -42,6 +68,19 @@ function select_category_info($idx)
 	global $my_db;
 
 	$query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
+// 해당 판매경로 정보 가져오기 (idx)
+function select_sales_store_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['sales_store_info_table']." WHERE idx='".$idx."'";
 	$result		= mysqli_query($my_db, $query);
 	$data			= mysqli_fetch_array($result);
 
@@ -282,5 +321,45 @@ function create_cartid()
 	$randcode = md5( mktime() . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] ); ;
 
 	return $randcode; // 난수 생성
+}
+
+// 카테고리1 이름 가져오기
+function select_cate1_info($cate_1)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT cate_name FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2=0 AND cate_3=0";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data['cate_name'];
+}
+
+// 카테고리2 이름 가져오기
+function select_cate2_info($cate_1, $cate_2)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT cate_name FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2='".$cate_2."' AND cate_3=0";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data['cate_name'];
+}
+
+// 판매경로 이름 가져오기
+function sales_store_name($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT sales_store_name FROM ".$_gl['sales_store_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data['sales_store_name'];
+
 }
 ?>

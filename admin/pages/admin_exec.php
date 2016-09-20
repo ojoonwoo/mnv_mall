@@ -47,6 +47,27 @@
 			echo $flag;
 		break;
 
+		case "change_stock_goodscode" :
+			$goods_code	= $_REQUEST['goods_code'];
+
+			$goods_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+			$goods_data			= mysqli_fetch_array($goods_result);
+
+			$return_data			= $goods_data['goods_name']."||".$goods_data['goods_stock']."||".$goods_data['supply_price']."||".$goods_data['goods_sales_cnt']."||".$goods_data['sales_price'];
+			echo $return_data;
+		break;
+		case "show_select_goodscode" :
+			$goods_query		= "SELECT * FROM ".$_gl['goods_info_table']."";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+			$innerHTML	= "<option value=''>선택하세요</option>";
+			while ($goods_data	= mysqli_fetch_array($goods_result))
+			{
+				$innerHTML	.= "<option value='".$goods_data['goods_code']."'>".$goods_data['goods_code']."</option>";
+			}
+			echo $innerHTML;
+		break;
+
 		case "show_select_grade" :
 			$grade_query		= "SELECT * FROM ".$_gl['grade_info_table']."";
 			$grade_result		= mysqli_query($my_db, $grade_query);
@@ -54,6 +75,28 @@
 			while ($grade_data	= mysqli_fetch_array($grade_result))
 			{
 				$innerHTML	.= "<option value='".$grade_data['grade_name']."'>".$grade_data['grade_name']."</option>";
+			}
+			echo $innerHTML;
+		break;
+
+		case "show_select_brand" :
+			$store_query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE 1 ORDER BY idx ASC";
+			$store_result		= mysqli_query($my_db, $store_query);
+			$innerHTML	= "<option value=''>선택하세요</option>";
+			while ($store_data	= mysqli_fetch_array($store_result))
+			{
+				$innerHTML	.= "<option value='".$store_data['purchasing_name']."'>".$store_data['purchasing_name']."</option>";
+			}
+			echo $innerHTML;
+		break;
+
+		case "show_select_sales_store" :
+			$store_query		= "SELECT * FROM ".$_gl['sales_store_info_table']." WHERE 1 ORDER BY idx ASC";
+			$store_result		= mysqli_query($my_db, $store_query);
+			$innerHTML	= "<option value=''>선택하세요</option>";
+			while ($store_data	= mysqli_fetch_array($store_result))
+			{
+				$innerHTML	.= "<option value='".$store_data['idx']."'>".$store_data['sales_store_name']."</option>";
 			}
 			echo $innerHTML;
 		break;
@@ -150,6 +193,88 @@
 			echo $flag;
 		break;
 
+		case "insert_event_info" :
+			$event_title			= $_REQUEST['event_title'];
+			$event_startdate	= $_REQUEST['event_startdate'];
+			$event_enddate		= $_REQUEST['event_enddate'];
+			$event_contents	= $_REQUEST['event_contents'];
+
+			if ($event_startdate < date("Y-m-d"))
+			{
+				$flag	= "SN";	// 이벤트 시작일이 현재 날짜보다 작을경우
+			}
+			else if ($event_enddate < $event_startdate)
+			{
+				$flag	= "EN";	// 이벤트 종료일이 시작일보다 작을경우
+			}else{
+				$event_query		= "INSERT INTO ".$_gl['event_info_table']."(event_title, event_startdate, event_enddate, event_contents, event_regdate) values('".$event_title."','".$event_startdate."','".$event_enddate."','".$event_contents."','".date("Y-m-d H:i:s")."')";
+				$event_result		= mysqli_query($my_db, $event_query);
+
+				if ($event_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
+			}
+			echo $flag;
+		break;
+
+		case "update_event_info" :
+			$idx					= $_REQUEST['idx'];
+			$event_title			= $_REQUEST['event_title'];
+			$event_startdate	= $_REQUEST['event_startdate'];
+			$event_enddate		= $_REQUEST['event_enddate'];
+			$event_contents	= $_REQUEST['event_contents'];
+
+			if ($event_startdate < date("Y-m-d"))
+			{
+				$flag	= "SN";	// 이벤트 시작일이 현재 날짜보다 작을경우
+			}
+			else if ($event_enddate < $event_startdate)
+			{
+				$flag	= "EN";	// 이벤트 종료일이 시작일보다 작을경우
+			}else{
+				$event_query		= "UPDATE ".$_gl['event_info_table']." SET event_title='".$event_title."', event_startdate='".$event_startdate."', event_enddate='".$event_enddate."', event_contents='".$event_contents."', event_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+				$event_result		= mysqli_query($my_db, $event_query);
+
+				if ($event_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
+			}
+			echo $flag;
+		break;
+
+		case "insert_post_info" :
+			$post_title			= $_REQUEST['post_title'];
+			$post_contents		= $_REQUEST['post_contents'];
+
+			$post_query		= "INSERT INTO ".$_gl['post_info_table']."(post_title, post_contents, post_regdate) values('".$post_title."','".$post_contents."','".date("Y-m-d H:i:s")."')";
+			$post_result		= mysqli_query($my_db, $post_query);
+
+			if ($post_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "update_post_info" :
+			$idx					= $_REQUEST['idx'];
+			$post_title			= $_REQUEST['post_title'];
+			$post_contents		= $_REQUEST['post_contents'];
+
+			$post_query		= "UPDATE ".$_gl['post_info_table']." SET post_title='".$post_title."', post_contents='".$post_contents."', post_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+			$post_result		= mysqli_query($my_db, $post_query);
+
+			if ($post_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
 		case "update_cate_info" :
 			$idx						= $_REQUEST['idx']; 
 			$cate_name			= $_REQUEST['cate_name']; 
@@ -199,28 +324,32 @@
 		case "insert_goods_info" :
 			$showYN						= $_REQUEST['showYN'];
 			$salesYN						= $_REQUEST['salesYN'];
-			$cate_1							= $_REQUEST['cate_1'];
-			$cate_2							= $_REQUEST['cate_2'];
-			$cate_3							= $_REQUEST['cate_3'];
-			$goods_name					= $_REQUEST['goods_name'];
+			$cate_1						= $_REQUEST['cate_1'];
+			$cate_2						= $_REQUEST['cate_2'];
+			$cate_3						= $_REQUEST['cate_3'];
+			$related_goods				= $_REQUEST['related_goods'];
+			$sales_store					= $_REQUEST['sales_store'];
+			$goods_name				= $_REQUEST['goods_name'];
 			$goods_eng_name			= $_REQUEST['goods_eng_name'];
 			$goods_model				= $_REQUEST['goods_model'];
-			$goods_brand					= $_REQUEST['goods_brand'];
-			$goods_status					= $_REQUEST['goods_status'];
+			$goods_brand				= $_REQUEST['goods_brand'];
+			$goods_status				= $_REQUEST['goods_status'];
 			$goods_small_desc			= $_REQUEST['goods_small_desc'];
 			$goods_middle_desc		= $_REQUEST['goods_middle_desc'];
-			$goods_big_desc				= $_REQUEST['goods_big_desc'];
-			$m_goods_big_descYN		= $_REQUEST['m_goods_big_descYN'];
-			$m_goods_big_desc			= $_REQUEST['m_goods_big_desc'];
-			$supply_price					= $_REQUEST['supply_price'];
+			$goods_big_desc			= $_REQUEST['goods_big_desc'];
+			$m_goods_big_descYN	= $_REQUEST['m_goods_big_descYN'];
+			$m_goods_big_desc		= $_REQUEST['m_goods_big_desc'];
+			$supply_price				= $_REQUEST['supply_price'];
 			$sales_price					= $_REQUEST['sales_price'];
 			$saved_priceYN				= $_REQUEST['saved_priceYN'];
 			$saved_price					= $_REQUEST['saved_price'];
+			$discount_price				= $_REQUEST['discount_price'];
 			$goods_optionYN			= $_REQUEST['goods_optionYN'];
 			$goods_option_txt			= $_REQUEST['goods_option_txt'];
-			$goods_stock					= $_REQUEST['goods_stock'];
-			$goods_code					= create_goodscode();
-			$goods_query		= "INSERT INTO ".$_gl['goods_info_table']."(showYN,salesYN,cate_1,cate_2,cate_3,goods_name,goods_eng_name,goods_code,goods_model,goods_brand,goods_status,goods_small_desc,goods_middle_desc,goods_big_desc,m_goods_big_descYN,m_goods_big_desc,supply_price,sales_price,saved_priceYN,saved_price,goods_optionYN,goods_option_txt,goods_stock,goods_regdate) values('".$showYN."','".$salesYN."','".$cate_1."','".$cate_2."','".$cate_3."','".$goods_name."','".$goods_eng_name."','".$goods_code."','".$goods_model."','".$goods_brand."','".$goods_status."','".$goods_small_desc."','".$goods_middle_desc."','".$goods_big_desc."','".$m_goods_big_descYN."','".$m_goods_big_desc."','".$supply_price."','".$sales_price."','".$saved_priceYN."','".$saved_price."','".$goods_optionYN."','".$goods_option_txt."','".$goods_stock."','".date("Y-m-d H:i:s")."')";
+			$goods_stock				= $_REQUEST['goods_stock'];
+			$goods_code				= create_goodscode();
+
+			$goods_query		= "INSERT INTO ".$_gl['goods_info_table']."(showYN,salesYN,cate_1,cate_2,cate_3,related_goods,sales_store,goods_name,goods_eng_name,goods_code,goods_model,goods_brand,goods_status,goods_small_desc,goods_middle_desc,goods_big_desc,m_goods_big_descYN,m_goods_big_desc,supply_price,sales_price,discount_price,saved_priceYN,saved_price,goods_optionYN,goods_option_txt,goods_stock,goods_regdate) values('".$showYN."','".$salesYN."','".$cate_1."','".$cate_2."','".$cate_3."','".$related_goods."','".$sales_store."','".$goods_name."','".$goods_eng_name."','".$goods_code."','".$goods_model."','".$goods_brand."','".$goods_status."','".$goods_small_desc."','".$goods_middle_desc."','".$goods_big_desc."','".$m_goods_big_descYN."','".$m_goods_big_desc."','".$supply_price."','".$sales_price."','".$discount_price."','".$saved_priceYN."','".$saved_price."','".$goods_optionYN."','".$goods_option_txt."','".$goods_stock."','".date("Y-m-d H:i:s")."')";
 			$goods_result		= mysqli_query($my_db, $goods_query);
 			if ($goods_result)
 				$flag	= "Y||".$goods_code;
@@ -232,28 +361,31 @@
 		case "update_goods_info" :
 			$showYN						= $_REQUEST['showYN'];
 			$salesYN						= $_REQUEST['salesYN'];
-			$cate_1							= $_REQUEST['cate_1'];
-			$cate_2							= $_REQUEST['cate_2'];
-			$cate_3							= $_REQUEST['cate_3'];
-			$goods_name					= $_REQUEST['goods_name'];
+			$cate_1						= $_REQUEST['cate_1'];
+			$cate_2						= $_REQUEST['cate_2'];
+			$cate_3						= $_REQUEST['cate_3'];
+			$related_goods				= $_REQUEST['related_goods'];
+			$sales_store					= $_REQUEST['sales_store'];
+			$goods_name				= $_REQUEST['goods_name'];
 			$goods_eng_name			= $_REQUEST['goods_eng_name'];
 			$goods_model				= $_REQUEST['goods_model'];
-			$goods_brand					= $_REQUEST['goods_brand'];
-			$goods_status					= $_REQUEST['goods_status'];
+			$goods_brand				= $_REQUEST['goods_brand'];
+			$goods_status				= $_REQUEST['goods_status'];
 			$goods_small_desc			= $_REQUEST['goods_small_desc'];
 			$goods_middle_desc		= $_REQUEST['goods_middle_desc'];
-			$goods_big_desc				= $_REQUEST['goods_big_desc'];
-			$m_goods_big_descYN		= $_REQUEST['m_goods_big_descYN'];
-			$m_goods_big_desc			= $_REQUEST['m_goods_big_desc'];
-			$supply_price					= $_REQUEST['supply_price'];
+			$goods_big_desc			= $_REQUEST['goods_big_desc'];
+			$m_goods_big_descYN	= $_REQUEST['m_goods_big_descYN'];
+			$m_goods_big_desc		= $_REQUEST['m_goods_big_desc'];
+			$supply_price				= $_REQUEST['supply_price'];
 			$sales_price					= $_REQUEST['sales_price'];
+			$discount_price				= $_REQUEST['discount_price'];
 			$saved_priceYN				= $_REQUEST['saved_priceYN'];
 			$saved_price					= $_REQUEST['saved_price'];
 			$goods_optionYN			= $_REQUEST['goods_optionYN'];
 			$goods_option_txt			= $_REQUEST['goods_option_txt'];
-			$goods_stock					= $_REQUEST['goods_stock'];
-			$goods_code					= $_REQUEST['goods_code'];
-			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET showYN='".$showYN."',salesYN='".$salesYN."',cate_1='".$cate_1."',cate_2='".$cate_2."',cate_3='".$cate_3."',goods_name='".$goods_name."',goods_eng_name='".$goods_eng_name."',goods_model='".$goods_model."',goods_brand='".$goods_brand."',goods_status='".$goods_status."',goods_small_desc='".$goods_small_desc."',goods_middle_desc='".$goods_middle_desc."',goods_big_desc='".$goods_big_desc."',m_goods_big_descYN='".$m_goods_big_descYN."',m_goods_big_desc='".$m_goods_big_desc."',supply_price='".$supply_price."',sales_price='".$sales_price."',saved_priceYN='".$saved_priceYN."',saved_price='".$saved_price."',goods_optionYN='".$goods_optionYN."',goods_option_txt='".$goods_option_txt."',goods_stock='".$goods_stock."',goods_latedate='".date("Y-m-d H:i:s")."' WHERE goods_code='".$goods_code."'";
+			$goods_stock				= $_REQUEST['goods_stock'];
+			$goods_code				= $_REQUEST['goods_code'];
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET showYN='".$showYN."',salesYN='".$salesYN."',cate_1='".$cate_1."',cate_2='".$cate_2."',cate_3='".$cate_3."',related_goods='".$related_goods."',sales_store='".$sales_store."',goods_name='".$goods_name."',goods_eng_name='".$goods_eng_name."',goods_model='".$goods_model."',goods_brand='".$goods_brand."',goods_status='".$goods_status."',goods_small_desc='".$goods_small_desc."',goods_middle_desc='".$goods_middle_desc."',goods_big_desc='".$goods_big_desc."',m_goods_big_descYN='".$m_goods_big_descYN."',m_goods_big_desc='".$m_goods_big_desc."',supply_price='".$supply_price."',sales_price='".$sales_price."',discount_price='".$discount_price."',saved_priceYN='".$saved_priceYN."',saved_price='".$saved_price."',goods_optionYN='".$goods_optionYN."',goods_option_txt='".$goods_option_txt."',goods_stock='".$goods_stock."',goods_latedate='".date("Y-m-d H:i:s")."' WHERE goods_code='".$goods_code."'";
 			$goods_result		= mysqli_query($my_db, $goods_query);
 			if ($goods_result)
 				$flag	= "Y";
@@ -300,18 +432,72 @@
 			echo $innerHTML;
 		break;
 
+		case "show_event_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['event_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>이벤트 제목</th>";
+			$innerHTML	.= "<th>이벤트 기간</th>";
+			$innerHTML	.= "<th>이벤트 등록일</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['event_title']."</td>";
+				$innerHTML	.= "<td>".substr($list_data['event_startdate'],0,10)." ~ ".substr($list_data['event_enddate'],0,10)."</td>";
+				$innerHTML	.= "<td>".$list_data['event_regdate']."</td>";
+				$innerHTML	.= "<td><a href='./event_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' onclick='delete_event(".$list_data['idx'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
+		case "show_post_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>포스트 제목</th>";
+			$innerHTML	.= "<th>포스트 등록일</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['post_title']."</td>";
+				$innerHTML	.= "<td>".$list_data['post_regdate']."</td>";
+				$innerHTML	.= "<td><a href='./post_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' onclick='delete_post(".$list_data['idx'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
 		case "show_purchasing_list" :
 			$target	= $_REQUEST['target'];
 			$list_query		= "SELECT * FROM ".$_gl['purchasing_info_table']." WHERE 1 ORDER BY idx DESC";
 			$list_result		= mysqli_query($my_db, $list_query);
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
-			$innerHTML	.= "<th>거래처명</th>";
-			$innerHTML	.= "<th>거래처 주소</th>";
-			$innerHTML	.= "<th>거래처 전화번호</th>";
-			$innerHTML	.= "<th>거래처 특이사항</th>";
-			$innerHTML	.= "<th>거래처 등록일자</th>";
-			$innerHTML	.= "<th>거래처 최근 정보수정일자</th>";
+			$innerHTML	.= "<th>브랜드명</th>";
+			$innerHTML	.= "<th>브랜드 주소</th>";
+			$innerHTML	.= "<th>브랜드 전화번호</th>";
+			$innerHTML	.= "<th>브랜드 특이사항</th>";
+			$innerHTML	.= "<th>브랜드 등록일자</th>";
+			$innerHTML	.= "<th>브랜드 최근 정보수정일자</th>";
 			$innerHTML	.= "<th></th>";
 			$innerHTML	.= "</tr>";
 			$innerHTML	.= "</thead>";
@@ -334,21 +520,18 @@
 			echo $innerHTML;
 		break;
 
-		case "show_goods_list" :
+		case "show_sales_store_list" :
 			$target	= $_REQUEST['target'];
-			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY idx DESC";
+
+			$list_query		= "SELECT * FROM ".$_gl['sales_store_info_table']." WHERE 1 ORDER BY idx DESC";
 			$list_result		= mysqli_query($my_db, $list_query);
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
-			$innerHTML	.= "<th>순번</th>";
-			$innerHTML	.= "<th>진열상태</th>";
-			$innerHTML	.= "<th>판매상태</th>";
-			$innerHTML	.= "<th>상품 코드</th>";
-			$innerHTML	.= "<th>상품명</th>";
-			$innerHTML	.= "<th>모델명</th>";
-			$innerHTML	.= "<th>판매가</th>";
-			$innerHTML	.= "<th>재고</th>";
-			$innerHTML	.= "<th>등록일/수정일</th>";
+			$innerHTML	.= "<th>판매경로명</th>";
+			$innerHTML	.= "<th>판매경로 매체명</th>";
+			$innerHTML	.= "<th>판매경로 특이사항</th>";
+			$innerHTML	.= "<th>판매경로 등록일자</th>";
+			$innerHTML	.= "<th>판매경로 최근 정보수정일자</th>";
 			$innerHTML	.= "<th></th>";
 			$innerHTML	.= "</tr>";
 			$innerHTML	.= "</thead>";
@@ -357,15 +540,53 @@
 			while ($list_data = mysqli_fetch_array($list_result))
 			{
 				$innerHTML	.= "<tr>";
-				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>".$list_data['sales_store_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['sales_store_media']."</td>";
+				$innerHTML	.= "<td>".$list_data['sales_store_desc']."</td>";
+				$innerHTML	.= "<td>".$list_data['sales_store_regdate']."</td>";
+				$innerHTML	.= "<td>".$list_data['sales_store_latedate']."</td>";
+				$innerHTML	.= "<td><a href='./sales_store_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_sales_store' data-idx='".$list_data['idx']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
+		case "show_goods_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>판매경로</th>";
+			$innerHTML	.= "<th>진열상태</th>";
+			$innerHTML	.= "<th>판매상태</th>";
+			$innerHTML	.= "<th>상품 코드</th>";
+			$innerHTML	.= "<th>상품명</th>";
+			$innerHTML	.= "<th>모델명</th>";
+			$innerHTML	.= "<th>판매가</th>";
+			$innerHTML	.= "<th>재고</th>";
+			$innerHTML	.= "<th>등록일</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				// 판매경로 이름 불러오기
+				$sales_store	= sales_store_name($list_data['sales_store']);
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$sales_store."</td>";
 				$innerHTML	.= "<td>".$list_data['showYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['salesYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
-				$innerHTML	.= "<td>".$list_data['goods_name']."</td>";
+				$innerHTML	.= "<td><img src='".$list_data['goods_img_url']."' width='80px'>".$list_data['goods_name']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_model']."</td>";
 				$innerHTML	.= "<td>".$list_data['sales_price']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_stock']."</td>";
-				$innerHTML	.= "<td>".$list_data['goods_regdate']."/".$list_data['goods_latedate']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_regdate']."</td>";
 				$innerHTML	.= "<td><a href='./goods_detail.php?goodscode=".$list_data['goods_code']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_goods' data-goodscode='".$list_data['goods_code']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
@@ -391,23 +612,40 @@
 			$list_result		= mysqli_query($my_db, $list_query);
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
-			$innerHTML	.= "<th>순번</th>";
+			$innerHTML	.= "<th>브랜드명</th>";
 			$innerHTML	.= "<th>상품 코드</th>";
 			$innerHTML	.= "<th>상품명</th>";
-			$innerHTML	.= "<th>모델명</th>";
-			$innerHTML	.= "<th>재고</th>";
+			$innerHTML	.= "<th>매입수</th>";
+			$innerHTML	.= "<th>매입금액</th>";
+			$innerHTML	.= "<th>매입총액</th>";
+			$innerHTML	.= "<th>판매수</th>";
+			$innerHTML	.= "<th>판매금액</th>";
+			$innerHTML	.= "<th>판매총액</th>";
+			$innerHTML	.= "<th>현재재고</th>";
 			$innerHTML	.= "</tr>";
 			$innerHTML	.= "</thead>";
 			$innerHTML	.= "<tbody>";
 			//$i	= 1;
 			while ($list_data = mysqli_fetch_array($list_result))
 			{
+				// 매입총액 구하기
+				$total_suply_price	= $list_data['supply_price'] * $list_data['goods_stock'];
+				// 판매총액 구하기
+				$total_sales_price	= $list_data['sales_price'] * $list_data['goods_sales_cnt'];
+				// 현재재고 구하기
+				$current_stock		= $list_data['goods_stock'] - $list_data['goods_sales_cnt'];
 				$innerHTML	.= "<tr>";
-				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>".$list_data['goods_brand']."</td>";
 				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
-				$innerHTML	.= "<td>".$list_data['goods_name']."</td>";
-				$innerHTML	.= "<td>".$list_data['goods_model']."</td>";
-				$innerHTML	.= "<td id='".$list_data['goods_code']."' class='stock_td'>".$list_data['goods_stock']."</td>";
+				$innerHTML	.= "<td><img src='".$list_data['goods_img_url']."' width='80px'>".$list_data['goods_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_stock']."</td>";
+				$innerHTML	.= "<td>".number_format($list_data['supply_price'])." 원</td>";
+				$innerHTML	.= "<td>".number_format($total_suply_price)." 원</td>";
+				$innerHTML	.= "<td>".$list_data['goods_sales_cnt']."</td>";
+				$innerHTML	.= "<td>".number_format($list_data['sales_price'])." 원</td>";
+				$innerHTML	.= "<td>".number_format($total_sales_price)." 원</td>";
+				$innerHTML	.= "<td>".$current_stock."</td>";
+				//$innerHTML	.= "<td id='".$list_data['goods_code']."' class='stock_td'>".$list_data['goods_stock']."</td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
 			}
@@ -416,6 +654,31 @@
 		break;
 
 		case "update_stock_info" :
+			$goods_code		= $_REQUEST['goods_code'];
+			$stock_cnt			= $_REQUEST['stock_cnt'];
+			$stock_price			= $_REQUEST['stock_price'];
+			$sales_cnt			= $_REQUEST['sales_cnt'];
+			$sales_price			= $_REQUEST['sales_price'];
+			$stock_edit_desc	= $_REQUEST['stock_edit_desc'];
+
+			// 상품 재고 정보 UPDATE
+			$stock_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_stock='".$stock_cnt."', supply_price='".$stock_price."', goods_sales_cnt='".$sales_cnt."',sales_price='".$sales_price."' WHERE goods_code='".$goods_code."'"; 
+			$stock_result		= mysqli_query($my_db, $stock_query);
+
+			// 상품 재고 정보 로그 INSERT
+			$stock_query2		= "INSERT INTO ".$_gl['stock_change_log_table']."(goods_code,stock_cnt,stock_price,sales_cnt,sales_price,stock_edit_desc,stock_change_regdate) values('".$goods_code."','".$stock_cnt."','".$stock_price."','".$sales_cnt."','".$sales_price."','".$stock_edit_desc."','".date("Y-m-d H:i:s")."')"; 
+			$stock_result2		= mysqli_query($my_db, $stock_query2);
+
+
+			if ($stock_result2)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "update_stock_info_bak" :
 			$goods_code	= $_REQUEST['goods_code'];
 			$goods_stock	= $_REQUEST['goods_stock'];
 			$stock_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_stock='".$goods_stock."' WHERE goods_code='".$goods_code."'"; 
@@ -425,7 +688,8 @@
 			else
 				$flag	= "N";
 			echo $flag;
-			break;
+		break;
+
 		case "insert_purchasing_info" :
 			$purchasing_name	= $_REQUEST['purchasing_name'];
 			$purchasing_addr	= $_REQUEST['purchasing_addr'];
@@ -449,6 +713,35 @@
 			$purchasing_query		= "UPDATE ".$_gl['purchasing_info_table']." SET purchasing_name='".$purchasing_name."',purchasing_addr='".$purchasing_addr."',purchasing_phone='".$purchasing_phone."',purchasing_desc='".$purchasing_desc."',purchasing_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
 			$purchasing_result		= mysqli_query($my_db, $purchasing_query);
 			if ($purchasing_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+			echo $flag;
+		break;
+
+		case "insert_sales_store_info" :
+			$sales_store_name		= $_REQUEST['sales_store_name'];
+			$sales_store_media		= $_REQUEST['sales_store_media'];
+			$sales_store_desc		= $_REQUEST['sales_store_desc'];
+
+			$sales_store_query		= "INSERT INTO ".$_gl['sales_store_info_table']."(sales_store_name, sales_store_media, sales_store_desc, sales_store_regdate) values('".$sales_store_name."','".$sales_store_media."','".$sales_store_desc."','".date("Y-m-d H:i:s")."');"; 
+			$sales_store_result		= mysqli_query($my_db, $sales_store_query);
+			if ($sales_store_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+			echo $flag;
+		break;
+
+		case "update_sales_store_info" :
+			$idx						= $_REQUEST['idx'];
+			$sales_store_name		= $_REQUEST['sales_store_name'];
+			$sales_store_media		= $_REQUEST['sales_store_media'];
+			$sales_store_desc		= $_REQUEST['sales_store_desc'];
+
+			$sales_store_query		= "UPDATE ".$_gl['sales_store_info_table']." SET sales_store_name='".$sales_store_name."',sales_store_media='".$sales_store_media."',sales_store_desc='".$sales_store_desc."',sales_store_latedate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+			$sales_store_result		= mysqli_query($my_db, $sales_store_query);
+			if ($sales_store_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";

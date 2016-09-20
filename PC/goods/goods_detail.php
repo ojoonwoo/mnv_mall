@@ -1,9 +1,25 @@
 <?
-	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
 	$goods_code	= $_REQUEST['goods_code'];
+	// 상품 정보
 	$goods_info	= select_goods_info($goods_code);
+	// 카테고리 1 정보 가져오기 ( goods_info.cate_1 )
+	$cate1			= select_cate1_info($goods_info['cate_1']);
+	// 카테고리 2 정보 가져오기 ( goods_info.cate_1, goods_info.cate_2 )
+	$cate2			= select_cate2_info($goods_info['cate_1'],$goods_info['cate_2']);
+	// 할인가 퍼센테이지 구하기
+	$percent_num	= ceil(100 - (($goods_info['discount_price'] / $goods_info['sales_price'])*100));
+	// 실제 상품금액 가져오기
+	if ($goods_info['discount_price'] == 0)
+		$real_price	= $goods_info['sales_price'];
+	else
+		$real_price	= $goods_info['discount_price'];
+
+	// 현재 남은 갯수
+	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
+
 	$goods_info['goods_img_url']		= str_replace("../../","../",$goods_info['goods_img_url']);
 	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 	if ($goods_info['goods_optionYN'] == "Y")
@@ -11,66 +27,123 @@
 		$goods_option_arr	= explode("||",$goods_info['goods_option_txt']);
 	}
 
-	// 리뷰 리스트
-	if(isset($_REQUEST['pg']) == false)
-		$pg = "1";
-	else
-		$pg = $_REQUEST['pg'];
-
-	if (!$pg) {
-		$pg = "1";
-	}
-	$page_size = 10;  // 한 페이지에 나타날 개수
-	$block_size = 10; // 한 화면에 나타낼 페이지 번호 개수
-
-	print_r($_SESSION);
 ?>
-<body>
-  <div id="header_area">
-    <a href="http://localhost/mnv_mall/PC/index.php">촌의 감각</a>
+  <body>
+<input type="hidden" id="hd_sales_price" value="<?=$real_price?>">
+<input type="hidden" id="goods_idx" value="<?=$goods_info['idx']?>">
+    <div id="wrap_page">
+      <div id="header">
+        <div class="area_top">
+          <div class="head_bar clearfix">
+            <ul class="user_status">
 <?
 	if ($_SESSION['ss_chon_id'])
 	{
 ?>
-    <a href="#" id="mb_logout">로그아웃</a>
-    <a href="http://localhost/mnv_mall/PC/member/modify_form.php">정보수정</a>
+              <li><a href="#" id="mb_logout"><span>로그아웃</span></a></li>
+              <li><a href="http://localhost/mnv_mall/PC/member/modify_form.php"><span>정보수정</span></a></li>
 <?
 	}else{
 ?>
-    <a href="http://localhost/mnv_mall/PC/member/member_login.php">로그인</a>
-    <a href="http://localhost/mnv_mall/PC/member/join_form.php">회원가입</a>
+              <li><a href="http://localhost/mnv_mall/PC/member/member_login.php"><span>로그인</span></a></li>
+              <li><a href="http://localhost/mnv_mall/PC/member/join_form.php"><span>회원가입</span></a></li>
 <?
 	}
 ?>
-    <a href="#">마이페이지</a>
-    <a href="#">장바구니</a>
-    <a href="#">주문조회</a>
-    <a href="#">매거진 촌</a>
-    <a href="#">인스타그램</a>
-  </div>
+              <li><a href="#"><span>마이페이지</span></a></li>
+              <li><a href="#"><span>장바구니</span></a></li>
+              <li><a href="#"><span>주문조회</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="logo_area">
+          <a href="<?=$_mnv_PC_url?>index.php"><img src="../images/logo.jpg"></a>
+        </div>
+        <div class="area_nav">
+          <div class="nav clearfix">
 <?
 	// 상단 카테고리 영역
-	include_once "../cate_navi.php";
+	include_once $_mnv_PC_dir."cate_navi.php";
 ?>
-<input type="hidden" id="hd_sales_price" value="<?=$goods_info['sales_price']?>">
-<input type="hidden" id="goods_idx" value="<?=$goods_info['idx']?>">
-썸네일 : <img src="<?=$goods_info['goods_img_url']?>" style="width:200px"><br />
-제품명 : <?=$goods_info['goods_name']?><br />
-판매가 : <?=$goods_info['sales_price']?><br />
-상품요약 : <?=$goods_info['goods_small_desc']?><br />
-코드 : <?=$goods_info['goods_code']?><br />
+          </div>
+        </div>
+      </div>
+      <div id="wrap_content">
+        <div class="contents l2 clearfix">
+          <div class="section main">
+            <div class="area_main_top">
+              <div class="area_product_detail clearfix">
+                <div class="product_head img">
+                  <!-- 제품 이미지 -->
+                  <img src="<?=$goods_info['goods_img_url']?>">
+                </div>
+                <div class="product_head info">
+                  <div class="block_info_top">
+                    <div class="block_line cate">
+                        <span class="cate1"><?=$cate1?></span>
+                        <span>></span>
+                        <span class="cate2 current_cate"><?=$cate2?></span>
+                    </div>
+                    <div class="block_line">
+                      <span class="product_name left_text"><?=$goods_info['goods_name']?></span>
+                      <span class="stt_icon1 new">new</span>
+                      <span class="stt_icon1 best">best</span>
+                      <span class="stt_icon1 restock">재입고</span>
+                    </div>
+                    <div class="block_line">
+                      <span class="left_text">판매가</span>
+<?
+	if ($goods_info['discount_price'])
+	{
+?>
+                      <span class="price sale"><?=number_format($goods_info['sales_price'])?>원</span>
+                      <span class="sale_price"><?=number_format($goods_info['discount_price'])?>원</span>
+                      <span class="sale_pctg">[<?=$percent_num?>%]</span>
+<?
+	}else{
+?>
+                      <span class="price"><?=$goods_info['sales_price']?>원</span>
+<?
+	}
+?>
+                    </div>
+                    <div class="block_line">
+                      <span class="left_text">상품요약</span>
+                      <span class="desc"><?=$goods_info['goods_small_desc']?></span>
+                    </div>
+                    <div class="block_line">
+                      <span class="left_text">코드</span>
+                      <span class="code"><?=$goods_info['goods_code']?></span>
+                    </div>
+                    <div class="block_line">
+                      <span class="left_text">수량</span>
 <?
 	if ($current_cnt < 1)
 	{
 ?>
-수량 : 품절 <a href="#">재입고요청</a> 
+                      <input type="text" name="select_amount" id="buy_cnt" value="품 절" readonly>
+                      <!-- 품절일시 화살표 아이콘 재입고요청 버튼으로 변경-->
+                      <span class="amount_btn off_stock" style="cursor:pointer;">
+                        재입고요청<span class="restock_arrow"></span>
+                      </span>
+                      <!-- 품절일시 화살표 아이콘 재입고요청 버튼으로 변경-->
 <?
 	}else{
 ?>
-수량 : <input type="text" value="1" id="buy_cnt"><input type="button" value="+" id="cnt_plus"><input type="button" value="-" id="cnt_minus"><br />
+                      <input type="text" name="select_amount" id="buy_cnt" value="1">
+                      <span class="amount_btn">
+                        <img src="../images/polygon_double.png" usemap="#amount">
+                        <map name="amount" id="amount">
+                          <area shape="rect" coords="0,0,9,9" href="#" id="cnt_plus">
+                          <area shape="rect" coords="0,10,9,19" href="#" id="cnt_minus">
+                        </map>
+                      </span>
 <?
 	}
 ?>
+
+                    </div>
+                    <div class="block_line">
 <?
 	if ($goods_info['goods_optionYN'] == "Y")
 	{
@@ -79,8 +152,13 @@
 			$final_option_arr			= explode("|+|",$val);
 			$final_option__sel_arr	= explode(";",$final_option_arr[1]);
 ?>
-  <?=$final_option_arr[0]?> : 
-  <select>
+                        <span class="left_text">
+                          <?=$final_option_arr[0]?>
+                        </span>
+                        <div class="select_box">
+                          <label for="option_change" class="select_label">[필수]옵션을 선택해주세요</label>
+                          <select name="select_option" id="option_change">
+                            <option value="default" selected="selected">[필수]옵션을 선택해주세요</option>
 <?
 			foreach($final_option__sel_arr as $key2 => $val2)
 			{
@@ -89,112 +167,190 @@
 <?
 			}
 ?>
-  </select>
-  <br />
+                          </select>
+                        </div>
 <?
 		}
 	}
 ?>
-  -----------------------------------------------------------------------------------
-  <br />
-  총 상품금액(수량) <span id="total_price"><?=number_format($goods_info['sales_price'])?></span>원 (<span id="total_cnt">1</span>개) <br />
-  <a href="#">구매하기</a> <a href="#" id="mycart_link">장바구니</a> <a href="#" id="wish_link">위시리스트</a>
-
-  <h1>리뷰 게시판</h1>
-  <form name="frm_execute" method="POST" onsubmit="return checkfrm()">
-    <input type="hidden" name="pg" value="<?=$pg?>">
-  </form>
-  <table id="review_list" class="table table-hover">
-    <thead>
-      <tr>
-        <th>No.</th>
-        <th>subject</th>
-        <th>date/writer</th>
-        <th>hit</th>
-      </tr>
-    </thead>
-    <tbody>
+                    </div>
+                  </div>
+                  <div class="block_info_bottom">
+                    <div class="block_line total clearfix">
+                      <span class="left_text">총 상품금액(수량)</span>
+                      <div class="right_text">
+                        <span class="total_price" id="total_price"><?=number_format($real_price)?>원</span><span class="total_amount" id="total_cnt">(1개)</span>
+                      </div>
+                    </div>
+                    <div class="block_btn clearfix">
+                      <input type="button" class="pr_btn active" value="바로구매">
+                      <input type="button" class="pr_btn" value="장바구니" id="mycart_link">
+                      <input type="button" class="pr_btn" value="위시리스트" id="wish_link">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="area_main_middle">
+              <div class="product_logo">
+                <img src="../images/product_logo.png">
+              </div>
+<?=$goods_info['goods_big_desc'];?>
+              <div class="product_dt_info">
+                <img src="../images/detail_info.jpg">
+              </div>
+              <div class="product_dt_branding">
+                <img src="../images/branding_img.jpg">
+              </div>
+            </div>
+            <div class="area_main_bottom">
+              <div class="related_block">
+                <p class="head_txt mb14">관련상품</p>
+                <div class="list_product clearfix">
+                  <div class="product n4 rt">
+                    <a href="#"><img src="../images/relate1.jpg"></a>
+                    <div class="prd_info">
+                      <span class="prd_name">에디슨 스탠드 조명</span>
+                      <span class="stt_icon2 new">NEW</span>
+                      <span class="prd_price">2,500원</span>
+                      <span class="prd_desc">
+                      디저트접시로, 앞접시로,<br>
+                      반찬접시로 전천후로 활용가능한<br>
+                      접시에요.<br>
+                      테두리에 홈이 파진 모양새가<br>
+                      단조롭지 않고 귀엽답니다!
+                      </span>
+                    </div>
+                  </div>
+                  <div class="product n4 rt">
+                    <a href="#"><img src="../images/relate2.jpg"></a>
+                    <div class="prd_info">
+                      <span class="prd_name">에디슨 스탠드 조명</span>
+                      <span class="stt_icon2 restock">재입고</span>
+                      <span class="prd_price">2,500원</span>
+                      <span class="prd_desc">
+                        디저트접시로, 앞접시로,<br>
+                        반찬접시로 전천후로 활용가능한<br>
+                        접시에요.<br>
+                        테두리에 홈이 파진 모양새가<br>
+                        단조롭지 않고 귀엽답니다!
+                      </span>
+                    </div>
+                  </div>
+                  <div class="product n4 rt">
+                    <a href="#"><img src="../images/relate3.jpg"></a>
+                    <div class="prd_info">
+                      <span class="prd_name">에디슨 스탠드 조명</span>
+                      <span class="stt_icon2 best">BEST</span>
+                      <span class="prd_price">2,500원</span>
+                      <span class="prd_desc">
+                        디저트접시로, 앞접시로,<br>
+                        반찬접시로 전천후로 활용가능한<br>
+                        접시에요.<br>
+                        테두리에 홈이 파진 모양새가<br>
+                        단조롭지 않고 귀엽답니다!
+                      </span>
+                    </div>
+                  </div>
+                  <div class="product n4 rt">
+                    <a href="#"><img src="../images/relate4.jpg"></a>
+                    <div class="prd_info">
+                      <span class="prd_name">에디슨 스탠드 조명</span>
+                      <span class="stt_icon2 best">BEST</span>
+                      <span class="prd_price">2,500원</span>
+                      <span class="prd_desc">
+                        디저트접시로, 앞접시로,<br>
+                        반찬접시로 전천후로 활용가능한<br>
+                        접시에요.<br>
+                        테두리에 홈이 파진 모양새가<br>
+                        단조롭지 않고 귀엽답니다!
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 <?
-	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_review_table']." WHERE goods_code='".$goods_code."'";
+	// 리뷰 영역
+	include_once $_mnv_PC_goods_dir."goods_review.php";
+	// 상품 문의 영역
+	include_once $_mnv_PC_goods_dir."goods_qna.php";
+?>
+            </div>
+          </div>
+          <div class="section side">
+            <div class="side_full_img">
+              <img src="../images/side_full_img1.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="area_infoChon">
+          <div class="inner infoC clearfix">
+            <div class="box_info">
+              <span class="customerC">고객센터</span>
+              <span class="telNum">070-000-0000</span>
+              <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
+              <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
+            </div>
+            <div class="box_info">
+              <span>이메일 : SERVICE@STORE-CHON.COM</span>
+              <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
+            </div>
+            <div class="box_info clearfix">
+              <a href="#"><span class="about_chon">ABOUT 촌의감각</span></a>
+              <a href="#"><span class="sugg">입점문의</span></a>
+              <a href="#"><span class="sugg">제휴문의</span></a>
+              <a href="#"><span class="sugg last">대량구매</span></a>
+            </div>
+            <div class="box_info sns clearfix">
+              <a href="#"><span>인스타그램</span></a>
+              <a href="#"><span>페이스북</span></a>
+              <a href="#"><span>블로그</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="address">
+          <p>company  미니버타이징(주)  address  서울특별시  서초구  방배동  931-9  2F</p>
+          <p>owner  양선혜    business  license  114  87  11622   privacy policy | terms of use</p>
+          <br>
+          <p>@chon all rights reserved</p>
+        </div>
+      </div>
+    </div>
+  </body>
+<script>
+	var cnt=1;
+	jQuery(document).ready(function(){
+		var select = $("select#option_change");
 
-	list($buyer_count) = mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
+		select.change(function(){
+			var select_name = $(this).children("option:selected").text();
+			$(this).siblings("label").text(select_name);
+		});
+	});
 
-	//$buyer_count 여부
-	if ($buyer_count > 0)
-	{
-		$PAGE_CLASS = new Page($pg,$buyer_count,$page_size,$block_size);
-
-		$BLOCK_LIST = $PAGE_CLASS->blockList();
-		$PAGE_UNCOUNT = $PAGE_CLASS->page_uncount;
-		$buyer_list_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE 1 AND goods_code='".$goods_code."' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
-		$result = mysqli_query($my_db, $buyer_list_query);
-
-		//
-		// $result_count = mysqli_query("SELECT count(*) FROM ".$_gl['board_review_table']."", $my_db);
-		// $result_row = mysqli_fetch_row($result_count);
-		// $total_row = $result_row[0];
-
-
-		while ($buyer_data = mysqli_fetch_array($result))
-		{
-			$buyer_info[] = $buyer_data; 
+	function amount_change(type) {
+		var amount = $('#amount_val');
+		if(type=='up'){
+			cnt = cnt+1;
+			$('#amount_val').val(cnt);
+		}else if(type=='down' && cnt>1){
+			cnt = cnt-1;
+			$('#amount_val').val(cnt);
+		}else{
+			cnt = 1;
 		}
-		foreach($buyer_info as $key => $val)
-		{
-?>
-      <tr>
-        <td><?=$PAGE_UNCOUNT--?></td> <!-- No. 하나씩 감소 -->
-          <td>
-          <? if($buyer_info[$key]['depth']>0) { ?>
-            <img height=1 width="<?=$buyer_info[$key]['depth']*7?>">
-          <? } ?>
-            <a href="http://localhost/mnv_mall/PC/board/read_review.php?idx=<?=$buyer_info[$key]['idx']?>&mb_id=<?=$buyer_info[$key]['user_id']?>&goods_code=<?=$buyer_info[$key]['goods_code']?>&pg=<?=$pg?>">
-            <?=$buyer_info[$key]['subject']?>
-            </a>
-        </td>
-        <td><?=$buyer_info[$key]['date']?><br>
-          <?=$buyer_info[$key]['user_id']?>
-        </td>
-        <td><?=$buyer_info[$key]['hit']?></td>
-      </tr>
-<?
 	}
-?>
-      <tr>
-        <td colspan="4"><div class="pageing"><?php echo $BLOCK_LIST?></div></td>
-      </tr>
-      <tr>
-        <td colspan="4">
-          <!-- <a href="write_review.php?id=ojoonwoo&code=test1111">WRITE</a> -->
-          <a href="http://localhost/mnv_mall/PC/board/write_review.php?goods_code=<?=$goods_code?>">WRITE</a>
-          /<a href="http://localhost/mnv_mall/PC/board/view_all_review.php"> VIEW ALL</a>
-        </td>
-      </tr>
-<?
-	}else{
-?>
-      <tr>
-        <td colspan="4">게시글이 없습니다.</td>
-      </tr>
-      <tr>
-        <td colspan="4" align="right">
-          <a href="http://localhost/mnv_mall/PC/board/write_review.php?goods_code=<?=$goods_code?>">WRITE</a>
-          /<a href="http://localhost/mnv_mall/PC/board/view_all_review.php"> VIEW ALL</a>
-        </td>
-      </tr>
-<?
-	}
-?>
-    </tbody>
-  </table>
 
-</body>
-</html>
-<script type="text/javascript">
 	function pageRun(num)
 	{
-		f = document.frm_execute;
-		f.pg.value = num;
-		f.submit();
+		$('#review_board_area').load(function(){
+			f = document.frm_execute;
+			f.pg.value = num;
+			f.submit();
+		}).fadeIn("slow");
 	}
+
 </script>
+</html>

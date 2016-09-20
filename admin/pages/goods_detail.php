@@ -25,6 +25,8 @@
 <input type="hidden" id="cate1_val" value="<?=$goods_info['cate_1']?>">
 <input type="hidden" id="cate2_val" value="<?=$goods_info['cate_2']?>">
 <input type="hidden" id="cate3_val" value="<?=$goods_info['cate_3']?>">
+<input type="hidden" id="brand_val" value="<?=$goods_info['goods_brand']?>">
+<input type="hidden" id="sales_store_val" value="<?=$goods_info['sales_store']?>">
 <input type="hidden" id="goodsimgurl" value="<?=$goods_info['goods_img_url']?>">
 <div id="wrapper">
   <!-- Navigation -->
@@ -99,6 +101,21 @@
                     </select> -->
                   </td>
                 </tr>
+                <tr>
+                  <td>연관 상품</td>
+                  <td colspan="2">
+                    <input class="form-control" id="related_goods" style="width:50%" value="<?=$goods_info['related_goods']?>">
+                    * 상품코드를 입력해 주시고, 2개 이상일시 ;로 구분해 주세요.(PR00001;PR00002)
+                  </td>
+                </tr>
+                <tr>
+                  <td>판매 경로</td>
+                  <td colspan="2">
+                    <select class="form-control" id="sales_store">
+                      <option value="">선택하세요</option>
+                    </select>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table class="table table-striped table-bordered">
@@ -129,7 +146,10 @@
                 <tr>
                   <td>브랜드명</td>
                   <td colspan="2">
-                    <input class="form-control" id="goods_brand" style="width:100%" value="<?=$goods_info['goods_brand']?>">
+                    <!-- <input class="form-control" id="goods_brand" style="width:100%" value="<?=$goods_info['goods_brand']?>"> -->
+                    <select class="form-control" id="goods_brand">
+                      <option value="">선택하세요</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -205,6 +225,12 @@
                   <td>* 판매가</td>
                   <td colspan="2">
                     <input class="form-control" id="sales_price" value="<?=$goods_info['sales_price']?>"> 원
+                  </td>
+                </tr>
+                <tr>
+                  <td>할인가</td>
+                  <td colspan="2">
+                    <input class="form-control" id="discount_price"> 원
                   </td>
                 </tr>
                 <tr>
@@ -318,6 +344,19 @@
 		show_select_cate1("cate_1");
 		// 세팅된 카테고리 노출
 		selected_category("cate_1",$("#cate1_val").val(),$("#cate2_val").val(),$("#cate3_val").val());
+
+		// 판매 경로 정보
+		show_select_sales_store("sales_store");
+
+		// 세팅된 판매경로 노출
+		selected_sales_store("sales_store",$("#sales_store_val").val());
+
+		// 브랜드 정보
+		show_select_brand("goods_brand");
+
+		// 세팅된 브랜드 노출
+		selected_brand("goods_brand",$("#brand_val").val());
+
 		// 이미지 URL 구분자로 잘라서 배열로 저장
 		//var goods_img		= $("#goodsimgurl").val();
 		//var goods_img_arr	= goods_img.split("||");

@@ -131,8 +131,8 @@ $(document).on("click", "#cnt_plus", function(){
 	var ins_cnt	= Number($("#buy_cnt").val()) + 1;
 	var ins_total_price	= Number($("#hd_sales_price").val()) * ins_cnt
 	$("#buy_cnt").val(ins_cnt);
-	$("#total_cnt").html(ins_cnt);
-	$("#total_price").html(numberWithCommas(ins_total_price));
+	$("#total_cnt").html("("+ins_cnt+"개)");
+	$("#total_price").html(numberWithCommas(ins_total_price)+"원");
 });
 
 // 상품 상세 정보 > 수량 감소
@@ -145,8 +145,8 @@ $(document).on("click", "#cnt_minus", function(){
 	}
 	var ins_total_price	= Number($("#hd_sales_price").val()) * ins_cnt
 	$("#buy_cnt").val(ins_cnt);
-	$("#total_cnt").html(ins_cnt);
-	$("#total_price").html(numberWithCommas(ins_total_price));
+	$("#total_cnt").html("("+ins_cnt+"개)");
+	$("#total_price").html(numberWithCommas(ins_total_price)+"원");
 });
 
 // 금액 3자리마다 콤마 찍기
@@ -158,6 +158,7 @@ function numberWithCommas(x) {
 $(document).on("click", "#mb_login", function(){
 	var mb_id					= $("#mb_id").val();
 	var mb_password			= $("#mb_password").val();
+	var pg_referer				= $("#pg_referer").val();
 
 	if (mb_id == "")
 	{
@@ -176,7 +177,7 @@ $(document).on("click", "#mb_login", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "../../main_exec.php",
 		data:{
 			"exec"				: "member_login",
 			"mb_id"				: mb_id,
@@ -185,7 +186,10 @@ $(document).on("click", "#mb_login", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				location.href = "http://localhost/mnv_mall/PC/index.php";
+				if (pg_referer == "")
+					location.href = "../index.php";
+				else
+					location.href = pg_referer;
 			}else{
 				alert("아이디와 비밀번호를 다시 확인하시고, 로그인해주세요..");
 				location.reload();
@@ -199,7 +203,7 @@ $(document).on("click", "#mb_logout", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "member_logout"
 		},
@@ -215,7 +219,7 @@ $(document).on("click", "#wish_link", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "add_wishlist",
 			"goods_idx"		: goods_idx
@@ -242,7 +246,7 @@ $(document).on("click", "#mycart_link", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://localhost/mnv_mall/main_exec.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "add_mycart",
 			"goods_idx"		: goods_idx
@@ -252,3 +256,31 @@ $(document).on("click", "#mycart_link", function(){
 		}
 	});
 });
+
+// 재입고 요청 클릭
+$(document).on("click", ".off_stock", function(){
+	var goods_idx	= $("#goods_idx").val();
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://store-chon.com/main_exec.php",
+		data:{
+			"exec"				: "insert_restock",
+			"goods_idx"		: goods_idx
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("재입고가 요청 되었습니다.");
+			}else if (response == "N"){
+				alert("로그인 후 재입고 요청이 가능합니다.");
+			}else{
+				alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+
+

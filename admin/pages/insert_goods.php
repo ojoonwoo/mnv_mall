@@ -78,6 +78,21 @@
                     </select> -->
                   </td>
                 </tr>
+                <tr>
+                  <td>연관 상품</td>
+                  <td colspan="2">
+                    <input class="form-control" id="related_goods" style="width:50%">
+                    * 상품코드를 입력해 주시고, 2개 이상일시 ;로 구분해 주세요.(PR00001;PR00002)
+                  </td>
+                </tr>
+                <tr>
+                  <td>판매 경로</td>
+                  <td colspan="2">
+                    <select class="form-control" id="sales_store">
+                      <option value="">선택하세요</option>
+                    </select>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table class="table table-striped table-bordered">
@@ -108,7 +123,9 @@
                 <tr>
                   <td>브랜드명</td>
                   <td colspan="2">
-                    <input class="form-control" id="goods_brand" style="width:100%">
+                    <select class="form-control" id="goods_brand">
+                      <option value="">선택하세요</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -184,6 +201,12 @@
                   <td>* 판매가</td>
                   <td colspan="2">
                     <input class="form-control" id="sales_price"> 원
+                  </td>
+                </tr>
+                <tr>
+                  <td>할인가</td>
+                  <td colspan="2">
+                    <input class="form-control" id="discount_price"> 원
                   </td>
                 </tr>
                 <tr>
@@ -274,6 +297,10 @@
 	$(document).ready(function() {
 		// 1번 카테고리 정보
 		show_select_cate1("cate_1");
+		// 판매 경로 정보
+		show_select_sales_store("sales_store");
+		// 브랜드 정보
+		show_select_brand("goods_brand");
 	});
 
 	nhn.husky.EZCreator.createInIFrame({

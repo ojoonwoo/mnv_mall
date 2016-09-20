@@ -38,12 +38,70 @@
       </div>
       <!-- /.row -->
       <!-- /.panel-heading -->
-      <!-- <button type="button" class="btn btn-outline btn-primary btn-lg" id="add_category_btn">카테고리 추가</button>
-      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_category_btn">카테고리 목록</button> -->
+      <button type="button" class="btn btn-outline btn-primary btn-lg" id="edit_stock_info_btn">재고정보 수정</button>
+      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_stock_info_btn">재고정보 목록</button>
       <div class="panel-body">
         <div class="panel-body">
+          <div class="table-responsive" id="edit_stock_info" style="display:none;">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>타이틀</th>
+                  <th>내용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>상품코드 선택</td>
+                  <td colspan="2">
+                    <select class="form-control" id="sel_goodscode">
+                      <option value="">선택하세요</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>상품명</td>
+                  <td>
+                    <input class="form-control" id="stock_name" style="width:100%" readonly>
+                  </td>
+                </tr>
+                <tr>
+                  <td>매입수량</td>
+                  <td>
+                    <input class="form-control" id="stock_cnt"> 개
+                  </td>
+                </tr>
+                <tr>
+                  <td>매입금액</td>
+                  <td>
+                    <input class="form-control" id="stock_price"> 원
+                  </td>
+                </tr>
+                <tr>
+                  <td>판매수량</td>
+                  <td>
+                    <input class="form-control" id="sales_cnt"> 개
+                  </td>
+                </tr>
+                <tr>
+                  <td>판매금액</td>
+                  <td>
+                    <input class="form-control" id="sales_price"> 원
+                  </td>
+                </tr>
+                <tr>
+                  <td>재고정보 수정 사유</td>
+                  <td>
+                    <textarea class="form-control" id="stock_edit_desc" rows="3" style="width:100%"></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn11">재고정보 수정</button>
+          </div>
+
           <!-- /.table-responsive -->
-          <div class="table-responsive">
+          <div class="table-responsive" id="list_stock_info">
             <table width="100%" class="table table-striped table-bordered table-hover" id="stock_list">
             </table>
           </div>
@@ -65,14 +123,14 @@
 	<script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 	<script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 	<script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
-	<script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
-	<script src="../../lib/filer/js/jquery.filer.min.js"></script>
 	<script>
-	var goods_code = null;
 	$(document).ready(function() {
 		// 재고 리스트
 		show_stock_list("stock_list");
+
+		// 상품코드 리스트 가져오기 (select)
+		show_select_goodscode("sel_goodscode");
 
 		// 테이블 api 세팅 
 		var table	= $('#stock_list').DataTable({
@@ -85,14 +143,7 @@
 			"ordering":false,
 			"searching": true
 		});
-		table.on( 'order.dt search.dt', function () {
-			table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-				cell.innerHTML = i+1;
-			} );
-		} ).draw();
 	});
-
-
 	</script>
 
 </body>

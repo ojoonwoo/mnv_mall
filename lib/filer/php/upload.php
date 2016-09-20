@@ -1,5 +1,5 @@
 <?php
-	include_once "../../../config.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	/*
 	if ($_REQUEST['ig'] == "goods")
 		$file_change_name	= $_REQUEST['goodscode'];
@@ -18,7 +18,7 @@ print_r($file_change_name);
 			'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
 			'extensions' => null, //Whitelist for file extension. {null, Array(ex: array('jpg', 'png'))}
 			'required' => false, //Minimum one file is required for upload {Boolean}
-			'uploadDir' => '../../../admin/uploads/'.$_REQUEST['goodscode'].'/', //Upload directory {String}
+			'uploadDir' => '../../../uploads/'.$_REQUEST['goodscode'].'/', //Upload directory {String}
 			'title' => array('name'), //New file name {null, String, Array} *please read documentation in README.md
 			'removeFiles' => true, //Enable file exclusion {Boolean(extra for jQuery.filer), String($_POST field name containing json data with file names)}
 			'perms' => null, //Uploaded file permisions {null, Number}
@@ -36,7 +36,7 @@ print_r($file_change_name);
 			'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
 			'extensions' => null, //Whitelist for file extension. {null, Array(ex: array('jpg', 'png'))}
 			'required' => false, //Minimum one file is required for upload {Boolean}
-			'uploadDir' => '../../../admin/uploads2/'.$_REQUEST['b_idx'].'/', //Upload directory {String}
+			'uploadDir' => '../../../uploads2/'.$_REQUEST['b_idx'].'/', //Upload directory {String}
 			'title' => array('name'), //New file name {null, String, Array} *please read documentation in README.md
 			'removeFiles' => true, //Enable file exclusion {Boolean(extra for jQuery.filer), String($_POST field name containing json data with file names)}
 			'perms' => null, //Uploaded file permisions {null, Number}
@@ -54,6 +54,7 @@ print_r($file_change_name);
         $files = $data['data'];
 		$file_txt	= "";
 		$i			= 0;
+		print_r($files);
 		foreach($files['files'] as $key => $val)
 		{
 			//$file_txt	.= "||".$val;
