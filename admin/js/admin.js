@@ -47,13 +47,13 @@ $(document).on("click", "#submit_btn14", function(){
 			"post_contents"		: post_contents
 		},
 		success: function(response){
-			alert(response);
-			if (response == "Y")
+			if (response == "N")
 			{
-				alert("포스트가 추가 되었습니다.");
+				alert("다시 시도해 주세요.");
 				location.reload();
 			}else{
-				alert("다시 시도해 주세요.");
+				img_submit5(response);
+				alert("포스트가 추가 되었습니다.");
 				location.reload();
 			}
 		}
@@ -167,16 +167,17 @@ $(document).on("click", "#submit_btn12", function(){
 			"event_contents"	: event_contents
 		},
 		success: function(response){
-			if (response == "Y")
+			if (response == "N")
 			{
-				alert("이벤트가 추가 되었습니다.");
+				alert("다시 시도해 주세요.");
 				location.reload();
 			}else if (response == "SN"){
 				alert("이벤트 시작일이 현재날짜보다 작으면 안됩니다.");
 			}else if (response == "EN"){
 				alert("이벤트 종료일은 시작일보다 작으면 안됩니다.");
 			}else{
-				alert("다시 시도해 주세요.");
+				img_submit4(response);
+				alert("이벤트가 추가 되었습니다.");
 				location.reload();
 			}
 		}
@@ -1053,7 +1054,35 @@ function img_submit3(idx)
 		url: '../../lib/filer/php/upload.php?ig=banner&b_idx='+idx,
 		data: stringData,
 		success:function(msg){
-			alert(msg);
+			alert('배너가 등록 되었습니다');
+			self.location.reload();
+		}
+	}); // end ajaxSubmit
+}
+
+function img_submit4(idx)
+{
+	var frm = $('#main_image_frm');
+	var stringData = frm.serialize();
+	frm.ajaxSubmit({
+		type: 'post',
+		url: '../../lib/filer/php/upload.php?ig=event&idx='+idx,
+		data: stringData,
+		success:function(msg){
+			self.location.reload();
+		}
+	}); // end ajaxSubmit
+}
+
+function img_submit5(idx)
+{
+	var frm = $('#main_image_frm');
+	var stringData = frm.serialize();
+	frm.ajaxSubmit({
+		type: 'post',
+		url: '../../lib/filer/php/upload.php?ig=post&idx='+idx,
+		data: stringData,
+		success:function(msg){
 			alert('배너가 등록 되었습니다');
 			self.location.reload();
 		}
@@ -1568,14 +1597,13 @@ $(document).on("click", "#submit_btn7", function(){
 		data:{
 			"exec"							: "insert_banner_info",
 			"banner_name"				: banner_name,
-			"banner_type"					: banner_type,
+			"banner_type"				: banner_type,
 			"banner_value"				: banner_value,
 			"banner_showYN"			: banner_showYN,
 			"banner_show_order"		: banner_show_order,
-			"banner_link_target"			: banner_link_target
+			"banner_link_target"		: banner_link_target
 		},
 		success: function(response){
-			alert(response);
 			if (response == "0")
 			{
 				alert("다시 시도해 주세요.");

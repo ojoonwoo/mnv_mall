@@ -1,6 +1,8 @@
 <?
 	include_once "header.php";
 ?>
+<link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <body>
 
 <div id="wrapper">
@@ -62,6 +64,14 @@
                   </td>
                 </tr>
                 <tr>
+                  <td>이벤트 대표 이미지</td>
+                  <td colspan="2">
+                    <form action="../../lib/filer/php/upload.php" id="main_image_frm" method="post" enctype="multipart/form-data">
+                      <input type="file" name="files[]" id="filer_input" multiple="multiple">
+                    </form>
+                  </td>
+                </tr>
+                <tr>
                   <td colspan="3"> 내 용 </td>
                 </tr>
                 <tr>
@@ -100,6 +110,7 @@
 	<script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
 	<script src="../bower_components/jquery/dist/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+	<script src="../../lib/filer/js/jquery.filer.min.js"></script>
 
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
@@ -145,6 +156,63 @@
 	$( function() {
 		$( "#event_startdate" ).datepicker();
 		$( "#event_enddate" ).datepicker();
+	});
+
+	$('#filer_input').filer({
+		showThumbs: true,
+		templates: {
+			box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+			item: '<li class="jFiler-item">\
+						<div class="jFiler-item-container">\
+							<div class="jFiler-item-inner">\
+								<div class="jFiler-item-thumb">\
+									<div class="jFiler-item-status"></div>\
+									<div class="jFiler-item-info">\
+										<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+										<span class="jFiler-item-others">{{fi-size2}}</span>\
+									</div>\
+									{{fi-image}}\
+								</div>\
+								<div class="jFiler-item-assets jFiler-row">\
+									<ul class="list-inline pull-left"></ul>\
+									<ul class="list-inline pull-right">\
+										<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+									</ul>\
+								</div>\
+							</div>\
+						</div>\
+					</li>',
+			itemAppend: '<li class="jFiler-item">\
+							<div class="jFiler-item-container">\
+								<div class="jFiler-item-inner">\
+									<div class="jFiler-item-thumb">\
+										<div class="jFiler-item-status"></div>\
+										<div class="jFiler-item-info">\
+											<span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+											<span class="jFiler-item-others">{{fi-size2}}</span>\
+										</div>\
+										{{fi-image}}\
+									</div>\
+									<div class="jFiler-item-assets jFiler-row">\
+										<ul class="list-inline pull-left">\
+											<li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+										</ul>\
+										<ul class="list-inline pull-right">\
+											<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+										</ul>\
+									</div>\
+								</div>\
+							</div>\
+						</li>',
+			itemAppendToEnd: false,
+			removeConfirmation: true,
+			_selectors: {
+				list: '.jFiler-items-list',
+				item: '.jFiler-item',
+				remove: '.jFiler-item-trash-action'
+			}
+		},
+		addMore: false
 	});
 
 	</script>
