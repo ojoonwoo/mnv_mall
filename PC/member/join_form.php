@@ -3,6 +3,14 @@
 	include_once $_mnv_PC_dir."header.php";
 ?>
 <body>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   <form id="join_form">
     <h3>기본 정보 입력</h3>
     <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" onblur="dupli_chk(this.value);return false;"> 첫글자 영문 소문자, 나머지 영문소문자/숫자 가능 6 - 12자, (ajax로 실시간 체크)
