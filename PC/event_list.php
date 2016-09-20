@@ -95,7 +95,6 @@
 		{
 ?>
               <div class="listBox clearfix">
-11
 <?
 		}
 ?>
