@@ -383,8 +383,15 @@
 				$_SESSION['ss_chon_cartid']			= $mb_id;
 			}
 			// 추가 수정 작업 해야함
-			$wish_query2 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, wish_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
-			$wish_result2 	= mysqli_query($my_db, $wish_query2);
+			$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, cart_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
+			$cart_result2 	= mysqli_query($my_db, $cart_query2);
+
+			if ($wish_result2)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
 
 		break;
 

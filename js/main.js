@@ -203,7 +203,7 @@ $(document).on("click", "#mb_logout", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://store-chon.com/main_exec.php",
+		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "member_logout"
 		},
@@ -219,7 +219,7 @@ $(document).on("click", "#wish_link", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://store-chon.com/main_exec.php",
+		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "add_wishlist",
 			"goods_idx"		: goods_idx
@@ -227,11 +227,12 @@ $(document).on("click", "#wish_link", function(){
 		success: function(response){
 			if (response == "N")
 			{
-				alert("로그인을 먼저 해 주세요.");
+				alert("로그인 후 관심상품으로 해주세요.");
+				location.href='../member/member_login.php';
 			}else if (response == "D"){
 				alert("이미 위시리스트에 등록한 상품입니다.");
 			}else if (response == "Y"){
-				alert("위시리스트에 등록되었습니다.");
+				alert("관심상품으로 등록되었습니다.");
 			}else{
 				alert("다시 시도해 주세요.");
 			}
@@ -246,12 +247,16 @@ $(document).on("click", "#mycart_link", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://store-chon.com/main_exec.php",
+		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "add_mycart",
 			"goods_idx"		: goods_idx
 		},
 		success: function(response){
+			if (response == "Y")
+			{
+				alert("");
+			}
 			alert(response);
 		}
 	});
@@ -263,7 +268,7 @@ $(document).on("click", ".off_stock", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://store-chon.com/main_exec.php",
+		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "insert_restock",
 			"goods_idx"		: goods_idx

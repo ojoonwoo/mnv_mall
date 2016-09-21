@@ -6,7 +6,7 @@
 	foreach($category_info as $key => $val)
 	{
 ?>
-              <a href="http://localhost/mnv_mall/PC/goods/list.php?cate_no=<?=$val['idx']?>"><span class="cate_name"><?=$val['cate_name']?></span></a>
+              <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>"><span class="cate_name"><?=$val['cate_name']?></span></a>
 <?
 		if ($i < $category_cnt)
 		{

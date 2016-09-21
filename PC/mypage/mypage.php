@@ -2,81 +2,25 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
+
+	if (!$_SESSION['ss_chon_id'])
+	{
+		echo "<script>alert('로그인 후 이용해 주세요.');</script>";
+		echo "<script>location.href='".$_mnv_PC_member_url."member_login.php';</script>";
+	}
 ?>
   <body>
     <div id="wrap_page">
-      <div id="header">
-        <div class="area_top">
-          <div class="head_bar clearfix">
-            <ul class="user_status">
 <?
-	if ($_SESSION['ss_chon_id'])
-	{
+	// 사이트 헤더 영역
+	include_once $_mnv_PC_dir."header_area.php";
 ?>
-              <li><a href="#" id="mb_logout"><span>로그아웃</span></a></li>
-              <li><a href="<?=$_mnv_PC_member_url?>modify_form.php"><span>정보수정</span></a></li>
-<?
-	}else{
-?>
-              <li><a href="<?=$_mnv_PC_member_url?>member_login.php"><span>로그인</span></a></li>
-              <li><a href="<?=$_mnv_PC_member_url?>join_form.php"><span>회원가입</span></a></li>
-<?
-	}
-?>
-              <li><a href="<?=$_mnv_PC_mypage_url?>mypage.php"><span>마이페이지</span></a></li>
-              <li><a href="#"><span>장바구니</span></a></li>
-              <li><a href="#"><span>주문조회</span></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="logo_area">
-          <a href="#"><img src="./images/logo.jpg"></a>
-        </div>
-        <div class="area_nav">
-          <div class="nav clearfix">
-            <div class="left_cate">
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_plate.png" alt="그릇"></span>
-              </a>
-              <span class="bar1"></span>
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_cooking_tools.png" alt="조리도구"></span>
-              </a>
-              <span class="bar1"></span>
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_props.png" alt="소품"></span>
-              </a>
-              <span class="bar1"></span>
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_set.png" alt="세트"></span>
-              </a>
-              <span class="bar1"></span>
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_special.png" alt="스페셜"></span>
-              </a>
-            </div>
-            <div class="right_cate">
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_magazine&chon.png" alt="매거진&촌"></span>
-              </a>
-              <span class="bar2"></span>
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_event.png" alt="이벤트"></span>
-              </a>
-              <span class="bar2"></span>
-              <a href="#">
-                <span class="cate_name"><img src="./images/navi_ask_partnership.png" alt="제휴문의"></span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
       <div id="wrap_content">
         <div class="contents l2 clearfix">
           <div class="section main">
             <div class="area_main_top nopadd">
               <div class="block_title">
-                <p class="cate_title"><img src="./images/cate_title_mypage.png" alt="마이페이지"></p>
+                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_mypage.png" alt="마이페이지"></p>
               </div>
               <div class="mypage_cate_hori">
                 <a href="#"><span>장바구니</span></a>
@@ -97,7 +41,7 @@
                 <div class="mypage_block">
                   <div class="block_inner">
                     <a href="#">
-                      <h2><img src="./images/mypage_cate_title_basket.png" alt="장바구니"></h2>
+                      <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_basket.png" alt="장바구니"></h2>
                       <p>
                       고객님께서 담아두셨던 상품내역을<br>
                       확인하실 수 있습니다.
@@ -108,7 +52,7 @@
                 <div class="mypage_block">
                   <div class="block_inner">
                     <a href="#">
-                      <h2><img src="./images/mypage_cate_title_wish.png" alt="관심상품"></h2>
+                      <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_wish.png" alt="관심상품"></h2>
                       <p>관심상품으로 등록하신 상품의 목록을 보여드립니다.</p>
                     </a>
                   </div>
@@ -116,7 +60,7 @@
                 <div class="mypage_block">
                   <div class="block_inner">
                     <a href="#">
-                      <h2><img src="./images/mypage_cate_title_order.png" alt="주문내역"></h2>
+                      <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_order.png" alt="주문내역"></h2>
                       <p>
                       고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.<br>
                       비회원의 경우, 주문서의 주문번호와 비밀번호로 주문조회가 가능합니다.
@@ -127,7 +71,7 @@
                 <div class="mypage_block">
                   <div class="block_inner">
                     <a href="#">
-                      <h2><img src="./images/mypage_cate_title_coupon.png" alt="쿠폰"></h2>
+                      <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_coupon.png" alt="쿠폰"></h2>
                       <p>고객님이 보유하고 계신 쿠폰내역을 보여드립니다.</p>
                     </a>
                   </div>
@@ -135,7 +79,7 @@
                 <div class="mypage_block">
                   <div class="block_inner">
                     <a href="#">
-                      <h2><img src="./images/mypage_cate_title_qna.png" alt="1대1맞춤상담"></h2>
+                      <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_qna.png" alt="1대1맞춤상담"></h2>
                       <p>
                       고객님의 궁금하신 문의사항에 대하여
                       1:1 맞춤상담 내용을 확인하실 수 있습니다.
@@ -146,7 +90,7 @@
                 <div class="mypage_block">
                   <div class="block_inner">
                     <a href="#">
-                      <h2><img src="./images/mypage_cate_title_modifyInfo.png" alt="개인정보수정"></h2>
+                      <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_modifyInfo.png" alt="개인정보수정"></h2>
                       <p>
                       회원이신 고객님의 개인정보를 관리하는 공간입니다.
                       개인정보를 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다.
@@ -162,7 +106,7 @@
           </div>
           <div class="section side">
             <div class="side_full_img">
-              <img src="./images/side_full_img1.jpg">
+              <img src="<?=$_mnv_PC_images_url?>side_full_img1.jpg">
             </div>
           </div>
         </div>
@@ -171,7 +115,7 @@
         <div class="area_infoChon">
           <div class="inner infoC clearfix">
             <div class="box_info">
-              <span class="customerC"><img src="./images/customer_center.png" alt="고객센터"></span>
+              <span class="customerC"><img src="<?=$_mnv_PC_images_url?>customer_center.png" alt="고객센터"></span>
               <span class="telNum">070-000-0000</span>
               <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
               <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
@@ -181,10 +125,10 @@
               <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
             </div>
             <div class="box_info clearfix">
-              <a href="#"><span class="about_chon"><img src="./images/about_chon.png" alt="about 촌의감각"></span></a>
-              <a href="#"><span class="sugg"><img src="./images/sugg_store.png" alt="입점문의"></span></a>
-              <a href="#"><span class="sugg"><img src="./images/sugg_partnership.png" alt="제휴문의"></span></a>
-              <a href="#"><span class="sugg last"><img src="./images/heavy_buying.png" alt="대량구매"></span></a>
+              <a href="#"><span class="about_chon"><img src="<?=$_mnv_PC_images_url?>about_chon.png" alt="about 촌의감각"></span></a>
+              <a href="#"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_store.png" alt="입점문의"></span></a>
+              <a href="#"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_partnership.png" alt="제휴문의"></span></a>
+              <a href="#"><span class="sugg last"><img src="<?=$_mnv_PC_images_url?>heavy_buying.png" alt="대량구매"></span></a>
             </div>
             <div class="box_info sns clearfix">
               <a href="#"><span>인스타그램</span></a>

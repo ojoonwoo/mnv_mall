@@ -32,42 +32,10 @@
 <input type="hidden" id="hd_sales_price" value="<?=$real_price?>">
 <input type="hidden" id="goods_idx" value="<?=$goods_info['idx']?>">
     <div id="wrap_page">
-      <div id="header">
-        <div class="area_top">
-          <div class="head_bar clearfix">
-            <ul class="user_status">
 <?
-	if ($_SESSION['ss_chon_id'])
-	{
+	// 사이트 헤더 영역
+	include_once $_mnv_PC_dir."header_area.php";
 ?>
-              <li><a href="#" id="mb_logout"><span>로그아웃</span></a></li>
-              <li><a href="http://localhost/mnv_mall/PC/member/modify_form.php"><span>정보수정</span></a></li>
-<?
-	}else{
-?>
-              <li><a href="http://localhost/mnv_mall/PC/member/member_login.php"><span>로그인</span></a></li>
-              <li><a href="http://localhost/mnv_mall/PC/member/join_form.php"><span>회원가입</span></a></li>
-<?
-	}
-?>
-              <li><a href="#"><span>마이페이지</span></a></li>
-              <li><a href="#"><span>장바구니</span></a></li>
-              <li><a href="#"><span>주문조회</span></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="logo_area">
-          <a href="<?=$_mnv_PC_url?>index.php"><img src="../images/logo.jpg"></a>
-        </div>
-        <div class="area_nav">
-          <div class="nav clearfix">
-<?
-	// 상단 카테고리 영역
-	include_once $_mnv_PC_dir."cate_navi.php";
-?>
-          </div>
-        </div>
-      </div>
       <div id="wrap_content">
         <div class="contents l2 clearfix">
           <div class="section main">
