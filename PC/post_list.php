@@ -2,10 +2,6 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
-
-	$event_info	= select_event_info($_REQUEST['idx']);
-	$prev_event_info	= select_event_info($_REQUEST['idx'] - 1);
-	$next_event_info	= select_event_info($_REQUEST['idx'] + 1);
 ?>
   <body>
     <div id="wrap_page">
@@ -34,7 +30,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="#"><img src="./images/logo.jpg"></a>
+          <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.jpg"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">
@@ -50,74 +46,72 @@
           <div class="section main">
             <div class="area_main_top nopadd">
               <div class="block_title">
-                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_event.png" alt="이벤트"></p>
+                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_magzine&chon.png" alt="매거진&촌"></p>
               </div>
             </div>
             <div class="area_main_middle nopadd">
-              <div class="table_block">
-                <div class="block_row">
-                  <div class="block_col head">
-                    <p>제목</p>
-                  </div>
-                  <div class="block_col">
-                    <p><?=$event_info['event_title']?></p>
-                  </div>
-                </div>
-                <div class="block_row">
-                  <div class="block_col head">
-                    <p>작성일</p>
-                  </div>
-                  <div class="block_col">
-                    <p><?=str_replace("-",".",substr($event_info['event_regdate'],0,10))?></p>
-                  </div>
-                </div>
-              </div>
-              <div class="admin_editor">
-                <?=$event_info['event_contents']?>
-              </div>
-              <table class="pr_view_table">
 <?
-	if ($prev_event_info)
-	{
-?>
-                <tr>
-                  <td class="num">
-                    <img src="./images/polygon_single2.png" alt="위로">
-                    <span>이전글</span>
-                  </td>
-                  <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$prev_event_info['idx']?>"><?=$prev_event_info['event_title']?></a></td>
-                  <td class="date dateTerm"><?=str_replace("-",".",substr($prev_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($prev_event_info['event_enddate'],0,10))?></td>
-                </tr>
-<?
+	$post_count_query = "SELECT count(*) FROM ".$_gl['post_info_table']." WHERE 1";
+
+	list($post_count) = mysqli_fetch_array(mysqli_query($my_db, $post_count_query));
+
+	if(isset($_REQUEST['pg']) == false)
+		$pg = "1";
+	else
+		$pg = $_REQUEST['pg'];
+
+	if (!$pg) {
+		$pg = "1";
 	}
 
-	if ($next_event_info)
+	if ($post_count < 8)
+		$page_size = $post_count;  // 한 페이지에 나타날 개수
+	else
+		$page_size = 8;  // 한 페이지에 나타날 개수
+
+	$block_size = 1; // 한 화면에 나타낼 페이지 번호 개수
+
+	$PAGE_CLASS = new Page($pg,$post_count,$page_size,$block_size);
+
+	$BLOCK_LIST = $PAGE_CLASS->blockList7();
+	$PAGE_UNCOUNT = $PAGE_CLASS->page_uncount;
+	$post_list_query = "SELECT * FROM ".$_gl['post_info_table']." WHERE 1 ORDER BY idx DESC LIMIT $PAGE_CLASS->page_start, $page_size";
+	$result = mysqli_query($my_db, $post_list_query);
+
+	while ($post_data = mysqli_fetch_array($result))
+	{
+		$post_info[] = $post_data; 
+	}
+
+	foreach($post_info as $key => $val)
 	{
 ?>
-                <tr>
-                  <td class="num">
-                    <img src="./images/polygon_single.png" alt="아래로">
-                    <span>다음글</span>
-                  </td>
-                  <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$next_event_info['idx']?>"><?=$next_event_info['event_title']?></a></td>
-                  <td class="date dateTerm"><?=str_replace("-",".",substr($next_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($next_event_info['event_enddate'],0,10))?></td>
-                </tr>
+              <div class="list_magazine">
+                <div class="list_inner clearfix">
+                  <div class="magazine_img">
+                    <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$val['idx']?>"><img src="<?=$val['post_img_url']?>" alt="<?=$val['post_title']?>"></a>
+                  </div>
+                  <div class="magazine_txt">
+                    <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$val['idx']?>">
+                      <h3><?=$val['post_title']?>
+                        <span class="number">No.<?=$PAGE_UNCOUNT--?></span>
+                      </h3>
+                      <p><?=$val['post_subtitle']?></p>
+                      <p class="date"><?=str_replace("-",".",substr($val['post_regdate'],0,10))?></p>
+                    </a>
+                  </div>
+                </div>
+              </div>
 <?
 	}
 ?>
-              </table>
-                <!-- 게시물 없을 때
-<table class="pr_view_table board_empty" style="display:none">
-<tr>
-<td>게시물이 없습니다</td>
-</tr>
-</table>
--->
-              <div class="block_board_btn">
-                <a href="<?=$_mnv_PC_url?>event_list.php"><input type="button" value="목록" class="board_btn"></a>
+              <!-- <div class="block_board_btn">
+                <input type="button" value="작성하기" class="board_btn">
+                <input type="button" value="문의하기" class="board_btn">
+              </div> -->
+              <div class="block_board_pager">
+                <div class="pageing"><?php echo $BLOCK_LIST?></div>
               </div>
-            </div>
-            <div class="area_main_bottom">
             </div>
           </div>
           <div class="section side">

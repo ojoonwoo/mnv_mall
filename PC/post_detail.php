@@ -3,9 +3,7 @@
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
-	$event_info	= select_event_info($_REQUEST['idx']);
-	$prev_event_info	= select_event_info($_REQUEST['idx'] - 1);
-	$next_event_info	= select_event_info($_REQUEST['idx'] + 1);
+	$post_info	= select_post_info($_REQUEST['idx']);
 ?>
   <body>
     <div id="wrap_page">
@@ -34,7 +32,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="#"><img src="./images/logo.jpg"></a>
+          <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.jpg"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">
@@ -50,74 +48,30 @@
           <div class="section main">
             <div class="area_main_top nopadd">
               <div class="block_title">
-                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_event.png" alt="이벤트"></p>
+                <p class="cate_title"><img src="./images/cate_title_magzine&chon.png" alt="매거진&촌"></p>
               </div>
             </div>
             <div class="area_main_middle nopadd">
-              <div class="table_block">
-                <div class="block_row">
-                  <div class="block_col head">
-                    <p>제목</p>
-                  </div>
-                  <div class="block_col">
-                    <p><?=$event_info['event_title']?></p>
-                  </div>
-                </div>
-                <div class="block_row">
-                  <div class="block_col head">
-                    <p>작성일</p>
-                  </div>
-                  <div class="block_col">
-                    <p><?=str_replace("-",".",substr($event_info['event_regdate'],0,10))?></p>
-                  </div>
-                </div>
+              <div class="block_title_bg">
+                <h2><?=$post_info['post_title']?></h2>
+                <p>
+                  <span>에디터 : </span><span class="editor">촌의 감각 매니저</span>
+                  <span class="bar1 short grey"></span>
+                  <span>작성일 : </span><span class="current_date"><?=str_replace("-",".",substr($post_info['post_regdate'],0,10))?></span>
+                </p>
               </div>
               <div class="admin_editor">
-                <?=$event_info['event_contents']?>
+                <?=$post_info['post_contents']?>
               </div>
-              <table class="pr_view_table">
-<?
-	if ($prev_event_info)
-	{
-?>
-                <tr>
-                  <td class="num">
-                    <img src="./images/polygon_single2.png" alt="위로">
-                    <span>이전글</span>
-                  </td>
-                  <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$prev_event_info['idx']?>"><?=$prev_event_info['event_title']?></a></td>
-                  <td class="date dateTerm"><?=str_replace("-",".",substr($prev_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($prev_event_info['event_enddate'],0,10))?></td>
-                </tr>
-<?
-	}
-
-	if ($next_event_info)
-	{
-?>
-                <tr>
-                  <td class="num">
-                    <img src="./images/polygon_single.png" alt="아래로">
-                    <span>다음글</span>
-                  </td>
-                  <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$next_event_info['idx']?>"><?=$next_event_info['event_title']?></a></td>
-                  <td class="date dateTerm"><?=str_replace("-",".",substr($next_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($next_event_info['event_enddate'],0,10))?></td>
-                </tr>
-<?
-	}
-?>
-              </table>
-                <!-- 게시물 없을 때
-<table class="pr_view_table board_empty" style="display:none">
-<tr>
-<td>게시물이 없습니다</td>
-</tr>
-</table>
--->
-              <div class="block_board_btn">
-                <a href="<?=$_mnv_PC_url?>event_list.php"><input type="button" value="목록" class="board_btn"></a>
-              </div>
+              <!-- <div class="block_board_btn">
+                <input type="button" value="작성하기" class="board_btn">
+                <input type="button" value="문의하기" class="board_btn">
+              </div> -->
             </div>
             <div class="area_main_bottom">
+              <div class="branding_area">
+                <img src="./images/chon_branding_img.png" alt="촌의 감각">
+              </div>
             </div>
           </div>
           <div class="section side">

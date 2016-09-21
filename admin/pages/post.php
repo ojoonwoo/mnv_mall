@@ -58,6 +58,12 @@
                   </td>
                 </tr>
                 <tr>
+                  <td>포스트 설명</td>
+                  <td colspan="2">
+                    <input class="form-control" id="post_subtitle" style="width:100%">
+                  </td>
+                </tr>
+                <tr>
                   <td>포스트 대표 이미지</td>
                   <td colspan="2">
                     <form action="../../lib/filer/php/upload.php" id="main_image_frm" method="post" enctype="multipart/form-data">

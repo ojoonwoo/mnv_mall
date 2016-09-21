@@ -21,11 +21,19 @@ $(document).on("click", "#list_post_btn", function(){
 // 포스트 정보 insert
 $(document).on("click", "#submit_btn14", function(){
 	var post_title				= $("#post_title").val();
+	var post_subtitle			= $("#post_subtitle").val();
 	var post_contents			= oEditors.getById["post_contents"].getIR();
 
 	if (post_title == "")
 	{
 		alert("포스트 제목을 입력해주세요.");
+		$("#post_title").focus();
+		return false;
+	}
+
+	if (post_subtitle == "")
+	{
+		alert("포스트 설명을 입력해주세요.");
 		$("#post_title").focus();
 		return false;
 	}
@@ -44,6 +52,7 @@ $(document).on("click", "#submit_btn14", function(){
 		data:{
 			"exec"					: "insert_post_info",
 			"post_title"			: post_title,
+			"post_subtitle"		: post_subtitle,
 			"post_contents"		: post_contents
 		},
 		success: function(response){

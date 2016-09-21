@@ -247,9 +247,10 @@
 
 		case "insert_post_info" :
 			$post_title			= $_REQUEST['post_title'];
+			$post_subtitle		= $_REQUEST['post_subtitle'];
 			$post_contents		= $_REQUEST['post_contents'];
 
-			$post_query		= "INSERT INTO ".$_gl['post_info_table']."(post_title, post_contents, post_regdate) values('".$post_title."','".$post_contents."','".date("Y-m-d H:i:s")."')";
+			$post_query		= "INSERT INTO ".$_gl['post_info_table']."(post_title, post_subtitle, post_contents, post_regdate) values('".$post_title."','".$post_subtitle."','".$post_contents."','".date("Y-m-d H:i:s")."')";
 			$post_result		= mysqli_query($my_db, $post_query);
 			$id_num			= mysqli_insert_id($my_db);
 

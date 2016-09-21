@@ -2,11 +2,6 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
-	if ($_REQUEST['dev'] != true)
-	{
-		echo "작업중입니다...";
-		exit;
-	}
 ?>
   <body>
     <div id="wrap_page">
@@ -69,10 +64,10 @@
 		$pg = "1";
 	}
 
-	if ($event_count < 4)
+	if ($event_count < 8)
 		$page_size = $event_count;  // 한 페이지에 나타날 개수
 	else
-		$page_size = 4;  // 한 페이지에 나타날 개수
+		$page_size = 8;  // 한 페이지에 나타날 개수
 
 	$block_size = 1; // 한 화면에 나타낼 페이지 번호 개수
 

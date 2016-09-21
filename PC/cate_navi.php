@@ -19,11 +19,11 @@
 ?>
             </div>
             <div class="right_cate">
-              <a href="#">
+              <a href="<?=$_mnv_PC_url?>post_list.php">
                 <span class="cate_name">매거진, 촌</span>
               </a>
               <span class="bar2"></span>
-              <a href="<?=$_mnv_PC_url?>event_list.php?dev=true">
+              <a href="<?=$_mnv_PC_url?>event_list.php">
                 <span class="cate_name">이벤트</span>
               </a>
               <span class="bar2"></span>
