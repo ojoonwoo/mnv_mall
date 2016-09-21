@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.jpg"></a>
+          <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.png"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">

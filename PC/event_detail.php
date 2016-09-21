@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="#"><img src="./images/logo.jpg"></a>
+          <a href="#"><img src="./images/logo.png"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">

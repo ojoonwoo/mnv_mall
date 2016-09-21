@@ -112,7 +112,7 @@ input {
 }
 
 #header .logo_area{
-    padding: 30px 0;
+    padding: 17px 0 12px;
     width: 1180px;
     margin: 0 auto;
 }
@@ -120,8 +120,12 @@ input {
 #header .logo_area a {
     display: block;
     margin: 0 auto;
-    width: 146px;
-    height: 60px;
+    width: 140px;
+    height: 111px;
+}
+
+#header .logo_area a img {
+    display: block;
 }
 
 #header .area_nav {
@@ -336,7 +340,7 @@ input {
 .contents .area_list_title {
     width: 100%;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 40px;
     padding-bottom: 20px;
 }
 
@@ -360,7 +364,7 @@ input {
 }
 
 .contents .list_product {
-
+    padding-bottom: 40px;
 }
 
 .contents .list_product .product {
@@ -630,9 +634,11 @@ input {
     width: 80px;
 }
 
-.product_name {
+.product_head.info .block_line .product_name {
     font-weight: bold;
     font-size: 15px;
+    width: auto;
+    min-width: 80px;
 }
 
 .stt_icon1 {
@@ -1294,15 +1300,15 @@ input {
 }
 
 .block_line .input_block .rd_txt {
-    font-size: 15px;
+    font-size: 14px;
     color: #000000;
-    margin-right: 3px;
+    margin-right: 4px;
     margin-left: 0;
 }
 
 .block_line .input_block input[type="radio"] {
     margin-right: 20px;
-    vertical-align: middle;
+    vertical-align: -5px;
 }
 
 .block_line .input_block .board_btn {
@@ -2180,7 +2186,7 @@ div {
     margin-bottom: 30px !important;
 }
 .mrl1 {
-    margin: 0 1px;
+    margin: 0 1px !important;
 }
 .mr10 {
     margin-right: 10px;

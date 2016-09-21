@@ -18,42 +18,42 @@
             </div>
           </div>
           <div class="logo_area">
-            <a href="#"><img src="./images/logo.jpg"></a>
+            <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.png"></a>
           </div>
           <div class="area_nav">
             <div class="nav clearfix">
               <div class="left_cate">
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_plate.png" alt="그릇"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_plate.png" alt="그릇"></span>
                 </a>
                 <span class="bar1"></span>
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_cooking_tools.png" alt="조리도구"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_cooking_tools.png" alt="조리도구"></span>
                 </a>
                 <span class="bar1"></span>
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_props.png" alt="소품"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_props.png" alt="소품"></span>
                 </a>
                 <span class="bar1"></span>
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_set.png" alt="세트"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_set.png" alt="세트"></span>
                 </a>
                 <span class="bar1"></span>
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_special.png" alt="스페셜"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_special.png" alt="스페셜"></span>
                 </a>
               </div>
               <div class="right_cate">
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_magazine&chon.png" alt="매거진&촌"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_magazine&chon.png" alt="매거진&촌"></span>
                 </a>
                 <span class="bar2"></span>
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_event.png" alt="이벤트"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_event.png" alt="이벤트"></span>
                 </a>
                 <span class="bar2"></span>
                 <a href="#">
-                  <span class="cate_name"><img src="./images/navi_ask_partnership.png" alt="제휴문의"></span>
+                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_ask_partnership.png" alt="제휴문의"></span>
                 </a>
               </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="section main">
               <div class="area_main_top nopadd">
                 <div class="block_title">
-                  <p class="cate_title"><img src="./images/cate_title_join.png" alt="회원가입"></p>
+                  <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_join.png" alt="회원가입"></p>
                 </div>
               </div>
               <div class="area_main_middle nopadd noborder">
@@ -76,7 +76,7 @@
                         <div class="input_block">
                           <input type="text" class="inputT" id="user_id" name="user_id" onblur="dupli_chk(this.value);return false;">
                           <span>(영문소문자/숫자 6 - 12자)</span>
-                          <span id="check_alert" style="color:#b88b5b;"></span>
+                          <span id="check_alert1" style="color:#b88b5b;letter-spacing:-1px;"></span>
                         </div>
                       </div>
                       <div class="block_line clearfix">
@@ -89,7 +89,8 @@
                       <div class="block_line clearfix pb20">
                         <span class="input_guide">비밀번호확인<span class="fontColor">*</span></span>
                         <div class="input_block">
-                          <input type="password" class="inputT" id="passchk">
+                          <input type="password" class="inputT" id="passchk" onblur="pass_chk(this.value);return false;">
+                          <span id="check_alert2" style="color:#b88b5b;letter-spacing:-1px;"></span>
                         </div>
                       </div>
                       <div class="block_line clearfix">
@@ -133,17 +134,17 @@
                           <span class="fontColor mrl1" style="font-size:15px;">@</span>
                           <input type="text" class="inputT" size="15" id="email2" name="email2">
                           <div class="selectbox email">
-                            <label for="ex_select">직접입력</label>
-                            <select id="ex_select" id="email3" name="email3">
-                              <option selected>직접입력</option>
-                              <option>naver.com</option>
-                              <option>gmail.com</option>
-                              <option>hanmail.net</option>
+                            <label for="email3">직접입력</label>
+                            <select id="email3" name="email3">
+                              <option value="direct" selected>직접입력</option>
+                              <option value="naver.com">naver.com</option>
+                              <option value="gmail.com">gmail.com</option>
+                              <option value="hanmail.net">hanmail.net</option>
                             </select>
                           </div>
                         </div>
                       </div>
-                      <div class="block_line clearfix">
+                      <div class="block_line clearfix" style="height:42px;">
                         <span class="input_guide" style="line-height:normal;">이메일<br>수신여부<span class="fontColor">*</span></span>
                         <div class="input_block" style="line-height:normal;">
                           <span class="rd_txt">수신함</span><input type="radio" name="emailYN" value="Y" checked><span class="rd_txt">수신안함</span><input type="radio" name="emailYN" value="N">
@@ -172,7 +173,7 @@
             </div>
             <div class="section side">
               <div class="side_full_img">
-                <img src="./images/side_full.jpg">
+                <img src="<?=$_mnv_PC_images_url?>side_full.jpg">
               </div>
             </div>
           </div>
@@ -181,7 +182,7 @@
           <div class="area_infoChon">
             <div class="inner infoC clearfix">
               <div class="box_info">
-                <span class="customerC"><img src="./images/customer_center.png" alt="고객센터"></span>
+                <span class="customerC"><img src="<?=$_mnv_PC_images_url?>customer_center.png" alt="고객센터"></span>
                 <span class="telNum">070-000-0000</span>
                 <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
                 <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
@@ -191,10 +192,10 @@
                 <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
               </div>
               <div class="box_info clearfix">
-                <a href="#"><span class="about_chon"><img src="./images/about_chon.png" alt="about 촌의감각"></span></a>
-                <a href="#"><span class="sugg"><img src="./images/sugg_store.png" alt="입점문의"></span></a>
-                <a href="#"><span class="sugg"><img src="./images/sugg_partnership.png" alt="제휴문의"></span></a>
-                <a href="#"><span class="sugg last"><img src="./images/heavy_buying.png" alt="대량구매"></span></a>
+                <a href="#"><span class="about_chon"><img src="<?=$_mnv_PC_images_url?>about_chon.png" alt="about 촌의감각"></span></a>
+                <a href="#"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_store.png" alt="입점문의"></span></a>
+                <a href="#"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_partnership.png" alt="제휴문의"></span></a>
+                <a href="#"><span class="sugg last"><img src="<?=$_mnv_PC_images_url?>heavy_buying.png" alt="대량구매"></span></a>
               </div>
               <div class="box_info sns clearfix">
                 <a href="#"><span>인스타그램</span></a>
@@ -255,16 +256,24 @@ $('#find_addr').on('click', function() {
 	}).open();
 });
 
-$('#email3').on('change', function(){
-	$('#email2').attr('disabled', false);
-	var mail = $('#email3').val();
-	if(mail=="direct") {
-		$('#email2').val('').focus();
-	}else{
-		$('#email2').val('').val(mail);
-		$('#email2').attr('disabled', true);
-	}
+$(document).ready(function() {
+	var select = $("select#email3");
+
+	select.change(function(){
+		var select_name = $(this).children("option:selected").text();
+		$(this).siblings("label").text(select_name);
+		
+		$('#email2').attr('disabled', false);
+		var mail = $('#email3').val();
+		if(mail=="direct") {
+			$('#email2').val('').focus();
+		}else{
+			$('#email2').val('').val(mail);
+			$('#email2').attr('disabled', true);
+		}
+	});
 });
+
 
 $('#submit').on('click', function(){
 	if(id_check == 'Y'){
@@ -280,19 +289,19 @@ $('#submit').on('click', function(){
 			method: 'POST',
 			url: '../../main_exec.php',
 			data: {
-				exec			: "member_join",
+				exec		: "member_join",
 				user_id		: user_id.value,
 				password	: password.value,
 				username	: username.value,
 				zipcode		: zipcode.value,
-				addr1			: addr1.value,
-				addr2			: addr2.value,
+				addr1		: addr1.value,
+				addr2		: addr2.value,
 				email1		: email1.value,
 				email2		: email2.value,
 				emailYN		: $(':radio[name="emailYN"]:checked').val(),
-				tel1			: tel1.value,
-				tel2			: tel2.value,
-				tel3			: tel3.value,
+				tel1		: tel1.value,
+				tel2		: tel2.value,
+				tel3		: tel3.value,
 				phone1		: phone1.value,
 				phone2		: phone2.value,
 				phone3		: phone3.value,
@@ -331,16 +340,26 @@ function dupli_chk(input) {
 			var regExp1 = /^[a-z]{1}[a-z0-9]{5,11}$/;
 			if(res == 'Y' && regExp1.test(input) == true){
 				id_check = 'Y';
-				$('#check_alert').text("사용가능한 아이디입니다.");
+				$('#check_alert1').text("사용가능한 아이디입니다.");
 			}else if(res == 'Y' && regExp1.test(input) == false){
 				id_check = 'N';
-				$('#check_alert').text("사용불가능한 아이디입니다.");
+				$('#check_alert1').text("사용불가능한 아이디입니다.");
 			}else{
 				id_check = 'D';
-				$('#check_alert').text("중복된 아이디입니다.");
+				$('#check_alert1').text("중복된 아이디입니다.");
 			}
 		}
 	});
+}
+function pass_chk(input) {
+	var pass = $('#password').val();
+	if(input != pass){
+		$('#check_alert2').text("비밀번호가 맞지 않습니다.");
+	}else if(input == ''){
+		$('#check_alert2').text("비밀번호를 입력해주세요.");
+	}else{
+		$('#check_alert2').text('');
+	}
 }
 </script>
 </body>
