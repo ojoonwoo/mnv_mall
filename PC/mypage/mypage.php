@@ -23,24 +23,18 @@
                 <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_mypage.png" alt="마이페이지"></p>
               </div>
               <div class="mypage_cate_hori">
-                <a href="#"><span>장바구니</span></a>
-                <span class="bar1 short"></span>
-                <a href="#"><span>위시리스트</span></a>
-                <span class="bar1 short"></span>
-                <a href="#"><span>주문조회</span></a>
-                <span class="bar1 short"></span>
-                <a href="#"><span>쿠폰</span></a>
-                <span class="bar1 short"></span>
-                <a href="#"><span>1대1 문의하기</span></a>
-                <span class="bar1 short"></span>
-                <a href="#"><span>개인정보 수정</span></a>
+                <a href="<?=$_mnv_PC_mypage_url?>mycart.php"><span>장바구니</span></a>
+<?
+	// 마이페이지 헤더 영역
+	include_once $_mnv_PC_mypage_dir."mypage_header.php";
+?>
               </div>
             </div>
             <div class="area_main_middle nopadd noborder">
               <div class="mypage_main">
                 <div class="mypage_block">
                   <div class="block_inner">
-                    <a href="#">
+                    <a href="<?=$_mnv_PC_mypage_url?>mycart.php">
                       <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_basket.png" alt="장바구니"></h2>
                       <p>
                       고객님께서 담아두셨던 상품내역을<br>

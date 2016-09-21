@@ -154,6 +154,20 @@
                       <input type="button" class="pr_btn active" value="바로구매">
                       <input type="button" class="pr_btn" value="장바구니" id="mycart_link">
                       <input type="button" class="pr_btn" value="위시리스트" id="wish_link">
+                      <!-- 장바구니 팝업 -->
+                      <div class="popup_basket" style="display:none;">
+                        <div class="popup_inner">
+                          <div class="area_close"><a href="#">닫기</a></div>
+                          <div class="popup_txt">
+                            <p>장바구니에 담겼습니다<br>지금 확인하시겠어요?</p>
+                          </div>
+                          <div class="popup_btn_block clearfix">
+                            <input type="button" class="pr_btn sm img_continue_shopping">
+                            <input type="button" class="pr_btn sm img_view_basket">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 장바구니 팝업 -->
                     </div>
                   </div>
                 </div>

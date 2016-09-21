@@ -386,7 +386,7 @@
 			$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, cart_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
 			$cart_result2 	= mysqli_query($my_db, $cart_query2);
 
-			if ($wish_result2)
+			if ($cart_result2)
 				$flag	= "Y";
 			else
 				$flag	= "N";

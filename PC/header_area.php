@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="logo_area">
-          <a href="<?=$_mnv_PC_url?>index.php?dev=true"><img src="<?=$_mnv_PC_images_url?>logo.jpg"></a>
+          <a href="<?=$_mnv_PC_url?>index.php?dev=true"><img src="<?=$_mnv_PC_images_url?>logo.png"></a>
         </div>
         <div class="area_nav">
           <div class="nav clearfix">

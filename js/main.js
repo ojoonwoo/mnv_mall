@@ -255,11 +255,23 @@ $(document).on("click", "#mycart_link", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				alert("");
+				$(".popup_basket").show();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
 			}
-			alert(response);
 		}
 	});
+});
+
+// 장바구니 팝업 > 계속 쇼핑하기 클릭
+$(document).on("click", "#img_continue_shopping", function(){
+	$(".popup_basket").hide();
+});
+
+// 장바구니 팝업 > 장바구니보기 클릭
+$(document).on("click", "#img_view_basket", function(){
+	location.href = "../mypage/mycart.php";
 });
 
 // 재입고 요청 클릭
