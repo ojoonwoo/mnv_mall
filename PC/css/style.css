@@ -704,28 +704,36 @@ input {
     display: inline-block;
     width: 180px;
     height: 28px;
+    line-height: 28px;
     background: url(../images/polygon_single.png) 165px center no-repeat; /* 화살표 이미지 */
     border: 1px solid #b88b5b;
     vertical-align: middle;
+    z-index: 1;
 }
 
 #option_change {
     width: 100%;
     height: 28px;
 /*    min-height: 26px;*/
-    line-height: 23px;
-    padding: 0 10px;
+    line-height: 28px;
+/*    padding: 0 10px;*/
     opacity: 0;
     filter: alpha(opacity=0);
+    border: 0;
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .select_label {
     position: absolute;
     font-size: 13px;
     color: #000000;
-    top: 5px;
+    top: 0px;
     left: 5px;
+    line-height: 28px;
     letter-spacing: 0;
+    z-index: -1;
 }
 
 #buy_cnt {
@@ -1174,14 +1182,23 @@ input {
 /* member */
 
 .section.main .block_input {
-    margin-top: 80px;
     display: block;
+    margin-top: 80px;
 }
 
 .block_input .area_input {
     float: left;
 /*    width: 445px;*/
 }
+
+.block_input .area_input.one {
+    float: none;
+    width: 305px;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+/*.area_input.one*/
 
 .area_input.member:first-child {
     padding-left: 100px;
@@ -1211,6 +1228,15 @@ input {
     padding: 4px 0;
     position: relative;
     text-align: center;
+}
+
+.group_input.borderBox {
+}
+
+.group_input.borderBox > p {
+    font-size: 14px;
+    color: #b88b5b;
+    padding: 30px 0;
 }
 
 .group_input label {
@@ -1385,6 +1411,7 @@ input {
 
 .list_magazine .magazine_img a img {
     width: 100%;
+    display: block;
 }
 
 .list_magazine .magazine_txt {
@@ -1614,7 +1641,7 @@ input {
 .mypage_board_list .info {
     display: block;
     text-align: left;
-    padding: 25px 0 15px 30px;
+    padding: 25px 0 25px 30px;
     width: 550px;
 }
 
@@ -1629,9 +1656,17 @@ input {
 .mypage_board_list .total {
     width: 110px;
 }
+
 .info .info_img {
     float: left;
     padding-right: 18px;
+    width: 74px;
+    height: 74px;
+}
+
+.info .info_img img {
+    width: 100%;
+    height: 100%;
 }
 
 .info .info_txt {
@@ -1797,7 +1832,6 @@ input {
 /* wishlist */
 
 .table_block.wish tbody td {
-    height: 90px;
     vertical-align: middle;
 }
 
@@ -2004,7 +2038,6 @@ div {
     width: 100px;
 }
 
-
 .selectbox label {
     position: absolute;
     top: 0px;
@@ -2191,9 +2224,6 @@ div {
 .mr10 {
     margin-right: 10px;
 }
-.ml180 {
-    margin-left: 180px;
-}
 .pt40 {
     padding-top: 40px;
 }
@@ -2234,6 +2264,9 @@ div {
 }
 .blind {
     text-indent: -9999px;
+}
+.borderBox {
+    border: 1px solid #b88b5b;
 }
 
 /* 기타 */
