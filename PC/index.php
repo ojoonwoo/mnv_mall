@@ -30,52 +30,22 @@
 	include_once $_mnv_PC_dir."plan_goods_area.php";
 ?>
           <div class="area_list_title">
-            <span class="list_title no_line">인스타그램 @chon.life</span>
+            <span class="list_title no_line"><img src="./images/title_instagram.png" alt="인스타그램 피드영역"></span>
           </div>
           <div class="area_insta">
-            <div class="inner insta clearfix" id="instafeed">
-              <div class="insta_box"><a href="#"><img src="./images/insta1.jpg"></a></div>
+            <div class="inner insta clearfix" id="instaPics">
+              <!-- <div class="insta_box"><a href="#"><img src="./images/insta1.jpg"></a></div>
               <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
               <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
               <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
-              <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div>
+              <div class="insta_box"><a href="#"><img src="./images/default_insta.jpg"></a></div> -->
             </div>
           </div>
         </div>
       </div>
-      <div id="footer">
-        <div class="area_infoChon">
-          <div class="inner infoC clearfix">
-            <div class="box_info">
-              <span class="customerC">고객센터</span>
-              <span class="telNum">070-000-0000</span>
-              <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
-              <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
-            </div>
-            <div class="box_info">
-              <span>이메일 : SERVICE@STORE-CHON.COM</span>
-              <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
-            </div>
-            <div class="box_info clearfix">
-              <a href="#"><span class="about_chon">ABOUT 촌의감각</span></a>
-              <a href="#"><span class="sugg">입점문의</span></a>
-              <a href="#"><span class="sugg">제휴문의</span></a>
-              <a href="#"><span class="sugg last">대량구매</span></a>
-            </div>
-            <div class="box_info sns clearfix">
-              <a href="#"><span>인스타그램</span></a>
-              <a href="#"><span>페이스북</span></a>
-              <a href="#"><span>블로그</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="address">
-          <p>company  미니버타이징(주)  address  서울특별시  서초구  방배동  931-9  2F</p>
-          <p>owner  양선혜    business  license  114  87  11622   privacy policy | terms of use</p>
-          <br>
-          <p>@chon all rights reserved</p>
-        </div>
-      </div>
+<?
+	include_once $_mnv_PC_dir."footer.php";
+?>
     </div>
   </body>
 </html>
@@ -89,17 +59,36 @@
 		auto: true,
 		infiniteLoop: true
 	});
-$(document).ready(function() {
-});
-/*
-    var feed = new Instafeed({
-        get: 'user',
-        userId: '67d6dbceac9d4e58a6eb002db2b84b05',
-		sortBy:'most-recent',
-		limit:20,
-		template:'',
-		accessToken:
-    });
-    feed.run();
-*/
+
+  jQuery(function($) {  
+        var tocken = "1585368192.533fb37.6b8e7cf2a9dd484088a43b692889bcc5"; /* Access Tocken 입력 */  
+        var count = "5";  
+        $.ajax({  
+            type: "GET",  
+            dataType: "jsonp",  
+            cache: false,  
+            url: "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + tocken + "&count=" + count,  
+            success: function(response) {  
+             if ( response.data.length > 0 ) {  
+                  for(var i = 0; i < response.data.length; i++) {  
+                       var insta = '<div class="insta_box">';  
+                       insta += "<a target='_blank' href='" + response.data[i].link + "'>";  
+                       insta += "<div class'image-layer'>";  
+                       //insta += "<img src='" + response.data[i].images.thumbnail.url + "'>";  
+                       insta += '<img src="' + response.data[i].images.thumbnail.url + '">';  
+                       insta += "</div>";  
+                       //console.log(response.data[i].caption.text);  
+                       insta += "</a>";  
+                       insta += "</div>";  
+                       $("#instaPics").append(insta);  
+                  }  
+             }  
+             $(".insta-box").hover(function(){  
+                  $(this).find(".caption-layer").css({"backbround" : "rgba(255,255,255,0.7)", "display":"block"});  
+             }, function(){  
+                  $(this).find(".caption-layer").css({"display":"none"});  
+             });  
+            }  
+           });  
+   });
 </script>
