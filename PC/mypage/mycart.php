@@ -45,11 +45,17 @@
                 <table class="mypage_board_list">
                   <thead>
                     <tr>
-                      <th>상품정보</th>
-                      <th>판매가격</th>
-                      <th>수량</th>
-                      <th>합계</th>
-                      <th></th>
+                      <th style="width:40px;">
+                        <div class="checks">
+                          <input type="checkbox" id="chk_all">
+                          <label for="chk_all"></label>
+                        </div>
+                      </th>
+                      <th style="width:430px;">상품정보</th>
+                      <th style="width:80px;">판매가격</th>
+                      <th style="width:100px;">수량</th>
+                      <th style="width:120px;">합계</th>
+                      <th style="width:120px;"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -89,6 +95,12 @@
 			}
 ?>
                     <tr>
+                      <td>
+                        <div class="checks">
+                          <input type="checkbox" id="ex_chk">
+                          <label for="ex_chk"></label>
+                        </div>
+                      </td>
                       <td class="info clearfix" style="width:400px;">
                         <div class="info_img">
                           <img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>" width="74px">

@@ -73,7 +73,7 @@
               <div class="mypage_cate_hori nopadd">
                 <a href="#"><span class="active_underLine">장바구니</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>위시리스트</span></a>
+                <a href="#"><span>관심상품</span></a>
                 <span class="bar1 short"></span>
                 <a href="#"><span>주문조회</span></a>
                 <span class="bar1 short"></span>
@@ -94,16 +94,28 @@
                 <table class="mypage_board_list">
                   <thead>
                     <tr>
-                      <th>상품정보</th>
-                      <th>판매가격</th>
-                      <th>수량</th>
-                      <th>합계</th>
-                      <th></th>
+                      <th style="width:40px;">
+                        <div class="checks">
+                          <input type="checkbox" id="chk_all">
+                          <label for="chk_all"></label>
+                        </div>
+                      </th>
+                      <th style="width:430px;">상품정보</th>
+                      <th style="width:80px;">판매가격</th>
+                      <th style="width:100px;">수량</th>
+                      <th style="width:120px;">합계</th>
+                      <th style="width:120px;"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="info clearfix" style="width:400px;">
+                      <td>
+                        <div class="checks">
+                          <input type="checkbox" id="ex_chk">
+                          <label for="ex_chk"></label>
+                        </div>
+                      </td>
+                      <td class="info clearfix">
                         <div class="info_img">
                           <img src="./images/order_list_img1.png" alt="주문상품1">
                         </div>
@@ -114,7 +126,7 @@
                       </td>
                       <td class="price">20,000</td>
                       <td class="count">
-                        <input type="text" name="select_amount" id="amount_val" value="1">
+                        <input type="text" name="select_amount" id="buy_cnt" class="buy_cnt" value="1">
                         <span class="amount_btn">
                           <img src="./images/polygon_double.png" usemap="#amount">
                           <map name="amount" id="amount">
@@ -125,7 +137,7 @@
                       </td>
                       <td class="total">20,000</td>
                       <td style="padding-right:15px;">
-                        <input type="button" value="위시리스트 담기" class="board_btn">
+                        <input type="button" value="관심상품 담기" class="board_btn">
                       </td>
                     </tr>
                     <!-- 장바구니 담은 상품 없을때 -->

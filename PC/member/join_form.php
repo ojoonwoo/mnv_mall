@@ -5,60 +5,10 @@
 ?>
 <body>
       <div id="wrap_page">
-        <div id="header">
-          <div class="area_top">
-            <div class="head_bar clearfix">
-              <ul class="user_status">
-                <li><a href="#"><span>로그인</span></a></li>
-                <li><a href="#"><span>회원가입</span></a></li>
-                <li><a href="#"><span>마이페이지</span></a></li>
-                <li><a href="#"><span>장바구니</span></a></li>
-                <li><a href="#"><span>주문조회</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="logo_area">
-            <a href="#"><img src="<?=$_mnv_PC_images_url?>logo.png"></a>
-          </div>
-          <div class="area_nav">
-            <div class="nav clearfix">
-              <div class="left_cate">
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_plate.png" alt="그릇"></span>
-                </a>
-                <span class="bar1"></span>
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_cooking_tools.png" alt="조리도구"></span>
-                </a>
-                <span class="bar1"></span>
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_props.png" alt="소품"></span>
-                </a>
-                <span class="bar1"></span>
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_set.png" alt="세트"></span>
-                </a>
-                <span class="bar1"></span>
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_special.png" alt="스페셜"></span>
-                </a>
-              </div>
-              <div class="right_cate">
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_magazine&chon.png" alt="매거진&촌"></span>
-                </a>
-                <span class="bar2"></span>
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_event.png" alt="이벤트"></span>
-                </a>
-                <span class="bar2"></span>
-                <a href="#">
-                  <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_ask_partnership.png" alt="제휴문의"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+<?
+	// 사이트 헤더 영역
+	include_once $_mnv_PC_dir."header_area.php";
+?>
         <div id="wrap_content">
           <div class="contents l2 clearfix">
             <div class="section main">
