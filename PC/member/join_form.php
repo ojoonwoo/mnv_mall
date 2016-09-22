@@ -72,7 +72,7 @@
                   <div class="block_bg">
                     <div class="block_copy">
                       <div class="block_line clearfix">
-                        <span class="input_guide">ID<span class="fontColor">*</span></span>
+                        <span class="input_guide">아이디<span class="fontColor">*</span></span>
                         <div class="input_block">
                           <input type="text" class="inputT" id="user_id" name="user_id" onblur="dupli_chk(this.value);return false;">
                           <span>(영문소문자/숫자 6 - 12자)</span>
@@ -108,6 +108,16 @@
                         </div>
                       </div>
                       <div class="block_line clearfix">
+                        <span class="input_guide">일반전화</span>
+                        <div class="input_block">
+                          <input type="text" class="inputT" size="4" id="tel1" name="tel1">
+                          <span class="mrl1">-</span>
+                          <input type="text" class="inputT" size="4" id="tel2" name="tel2">
+                          <span class="mrl1">-</span>
+                          <input type="text" class="inputT" size="4" id="tel3" name="tel3">
+                        </div>
+                      </div>
+                      <div class="block_line clearfix">
                         <span class="input_guide">주소</span>
                         <div class="input_block">
                           <input type="text" class="inputT" size="7" name="zipcode" id="zipcode" placeholder="우편번호" readonly="true">
@@ -117,13 +127,13 @@
                       <div class="block_line clearfix">
                         <span class="input_guide blind">주소2</span>
                         <div class="input_block">
-                          <input type="text" class="inputT" size="40" name="addr1" id="addr1" placeholder="기본주소" readonly="true"><span>기본주소</span>
+                          <input type="text" class="inputT" size="50" name="addr1" id="addr1" placeholder="기본주소" readonly="true"><span>기본주소</span>
                         </div>
                       </div>
                       <div class="block_line clearfix pb20 addr">
                         <span class="input_guide blind">주소3</span>
                         <div class="input_block">
-                          <input type="text" class="inputT" size="40" name="addr2" id="addr2" placeholder="나머지주소"><span>나머지주소(직접입력)</span>
+                          <input type="text" class="inputT" size="50" name="addr2" id="addr2" placeholder="나머지주소"><span>나머지주소(직접입력)</span>
                           <p>미리 입력해두면 주문/배송시 더 간편해집니다.</p>
                         </div>
                       </div>
@@ -149,6 +159,13 @@
                         <div class="input_block" style="line-height:normal;">
                           <span class="rd_txt">수신함</span><input type="radio" name="emailYN" value="Y" checked><span class="rd_txt">수신안함</span><input type="radio" name="emailYN" value="N">
                           <p>쇼핑몰에서 제공하는 제품 및 이벤트 소식을 이메일로 받으실 수 있어요.</p>
+                        </div>
+                      </div>
+                      <div class="block_line clearfix" style="height:42px;">
+                        <span class="input_guide" style="line-height:normal;">문자<br>수신여부<span class="fontColor">*</span></span>
+                        <div class="input_block" style="line-height:normal;">
+                          <span class="rd_txt">수신함</span><input type="radio" name="smsYN" value="Y" checked><span class="rd_txt">수신안함</span><input type="radio" name="smsYN" value="N">
+                          <p>임시 텍스트영역</p>
                         </div>
                       </div>
                       <div class="block_line clearfix">
@@ -325,7 +342,7 @@ $('#submit').on('click', function(){
 
 function dupli_chk(input) {
 	if(input == ""){
-		$('#check_alert').text("아이디를 입력해주세요.");
+		$('#check_alert1').text("아이디를 입력해주세요.");
 		return;
 	}
 
