@@ -538,13 +538,13 @@
 	});
 
 	function amount_change(type) {
-		var amount = $('#amount_val');
+		var amount = $('#buy_cnt');
 		if(type=='up'){
 			cnt = cnt+1;
-			$('#amount_val').val(cnt);
+			$(amount).val(cnt);
 		}else if(type=='down' && cnt>1){
 			cnt = cnt-1;
-			$('#amount_val').val(cnt);
+			$(amount).val(cnt);
 		}else{
 			cnt = 1;
 		}

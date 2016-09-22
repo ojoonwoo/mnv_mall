@@ -108,6 +108,16 @@
                         </div>
                       </div>
                       <div class="block_line clearfix">
+                        <span class="input_guide">일반전화</span>
+                        <div class="input_block">
+                          <input type="text" class="inputT" size="4" id="tel1" name="tel1">
+                          <span class="mrl1">-</span>
+                          <input type="text" class="inputT" size="4" id="tel2" name="tel2">
+                          <span class="mrl1">-</span>
+                          <input type="text" class="inputT" size="4" id="tel3" name="tel3">
+                        </div>
+                      </div>
+                      <div class="block_line clearfix">
                         <span class="input_guide">주소</span>
                         <div class="input_block">
                           <input type="text" class="inputT" size="7" name="zipcode" id="zipcode" placeholder="우편번호" readonly="true">

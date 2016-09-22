@@ -43,6 +43,10 @@ ul {
     margin: 0;
 }
 
+table {
+    table-layout: fixed;
+}
+
 button {
     text-rendering: auto;
     color: initial;
@@ -736,7 +740,7 @@ input {
     z-index: -1;
 }
 
-#buy_cnt {
+.buy_cnt {
     border: 1px solid #b88b5b;
     width: 50px;
     height: 24px;
@@ -1651,6 +1655,7 @@ input {
 
 .mypage_board_list .count {
     width: 110px;
+    padding-left: 10px;
 }
 
 .mypage_board_list .total {
