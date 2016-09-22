@@ -103,7 +103,21 @@
 
 				// result - 메일 발송
 				if($insert_result) {
-					$mail_reult = sendMail("ojoonwoo2@gmail.com", "촌의감각", "회원가입을 축하합니다.", "내용", "ojoonwoo@naver.com", "$username");
+					$mail_result = sendMail(
+						"ojoonwoo2@gmail.com",
+						"촌의감각",
+						"회원가입을 축하합니다.",
+						"<div style='padding: 0;margin: 0 auto;width: 310px;text-align: center;font-size: 13px;font-family: 맑은 고딕, Malgun Gothic;padding-top: 20px;'>
+						<h2 style='padding: 0;margin: 0;font-size: 24px;color: #b88b5b;font-weight: 500;margin-bottom: 15px;'>촌의 감각</h2>
+						<p style='padding: 0;margin: 0;line-height: 17px;margin-bottom: 18px;'>
+						안녕하세요 촌의 감각 입니다.<br>
+						$username($user_id)고객님의 회원가입을 축하드립니다.<br>
+						회원님의 가입정보는 다음과 같습니다.
+						</p>
+						<p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;'><span style='padding: 0;margin: 0;color: #b88b5b;line-height: 36px;vertical-align: middle;'>아이디: $user_id</span></p>
+						<a href='www.store-chon.com' style='padding: 0;margin: 0;text-decoration: none;color: #000;'><p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;background-color: #b88b5b;'><span style='padding: 0;margin: 0;color: #ffffff;line-height: 36px;vertical-align: middle;'>촌의 감각 홈페이지 가기</span></p></a>
+						</div>",
+						"ojoonwoo@naver.com", "$username");
 					$flag = "Y";
 				}else{
 					$flag = "N";
@@ -116,6 +130,7 @@
 
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
+			$password = create_hash($password);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
 			$zipcode = $_POST['zipcode'];
 			$addr1 = $_POST['addr1'];
@@ -168,8 +183,76 @@
 			echo $flag;
 
 		break;
+		
+		case "sear_id":
+			$mb_name = $_REQUEST['mb_name'];
+			$mb_email = $_REQUEST['mb_email'];
+			
+			$query		= "SELECT mb_id FROM ".$_gl['member_info_table']." WHERE mb_name='".$mb_name."' AND mb_email='".$mb_email."'";
+			$result		= mysqli_query($my_db, $query);
+			$data 		= mysqli_fetch_array($result);
+			
+			if($data){
+				$replace_id = substr_replace($data['mb_id'], "***", -3);
+				$flag = "Y||".$replace_id;
+			}else{
+				$flag = "N||none";
+			}
+			
+			echo $flag;
+			
+		break;
+			
+		case "sear_pass":
+			
+			$mb_id = $_REQUEST['mb_id'];
+			$mb_name = $_REQUEST['mb_name'];
+			$mb_email = $_REQUEST['mb_email'];
 
-// 회원수정시 회원본인인지 체크
+			$query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$mb_id."' AND mb_name='".$mb_name."' AND mb_email='".$mb_email."'";
+			$result		= mysqli_query($my_db, $query);
+			$data 		= mysqli_fetch_array($result);
+
+			if($data){
+				$temp_pw = PHPRandom::getHexString(20);
+				$password = create_hash($temp_pw);
+				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."' WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
+				$update_result   = mysqli_query($my_db, $update_query);
+				
+				if($update_result)
+				{
+					$mail_result = sendMail(
+						"ojoonwoo2@gmail.com",
+						"촌의감각",
+						"회원가입을 축하합니다.",
+						"<div style='padding: 0;margin: 0 auto;width: 310px;text-align: center;font-size: 13px;font-family: 맑은 고딕, Malgun Gothic;padding-top: 20px;'>
+						<h2 style='padding: 0;margin: 0;font-size: 24px;color: #b88b5b;font-weight: 500;margin-bottom: 15px;'>촌의 감각</h2>
+						<p style='padding: 0;margin: 0;line-height: 17px;margin-bottom: 18px;'>
+						새롭게 설정된 비밀번호 입니다.<br>
+						로그인 후, 꼭 재설정 해주세요.
+						</p>
+						<p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;'><span style='padding: 0;margin: 0;color: #b88b5b;line-height: 36px;vertical-align: middle;'>새로 발급된 비밀번호: $temp_pw</span></p>
+						<a href='www.store-chon.com' style='padding: 0;margin: 0;text-decoration: none;color: #000;'><p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;background-color: #b88b5b;'><span style='padding: 0;margin: 0;color: #ffffff;line-height: 36px;vertical-align: middle;'>촌의 감각 로그인</span></p></a>
+						</div>",
+						"ojoonwoo@naver.com", "$username");
+					
+					if($mail_result)
+						$flag = "Y"; // 메일 발송까지 완료
+					else
+						$flag = "E"; // 메일 발송 오류
+				}else{
+					$flag = "E"; // 비밀번호 업데이트 오류
+				}
+				
+			}else{
+				$flag = "N"; // 입력한 정보의 회원이 없음
+			}
+
+			echo $flag;
+			
+		break;
+
+// 회원수정시 회원본인인지 체크 --------------------------> 현재 안쓰는 코드
 		case "member_check":
 
 			$m_id = $_REQUEST['m_id'];

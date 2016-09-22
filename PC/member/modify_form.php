@@ -1,5 +1,5 @@
 <?
-	include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
 	$user_data		= select_member_info();
@@ -10,79 +10,200 @@
 	$split_tel		= explode('-', $user_data['mb_telphone']);
 ?>
 <body>
-  <form method="post" id="modify_form">
-    <h3>기본 정보 입력</h3>
-    <strong>아이디 * :</strong> <input type="text" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>" readonly="true"> 
-    <br>
-    <strong>비밀번호 * :</strong> <input type="password" id="password" name="password"> 영문 첫글자 대소문자 나머지 영문대소문자/숫자/특수문자 가능 6 - 12자
-    <br>
-    <strong>비밀번호 확인 * :</strong> <input type="password" id="passchk">
-    <br>
-    <strong>이름 * :</strong> <input type="text" id="username" name="username" value="<?=$user_data['mb_name']?>" style="ime-mode:active">
-    <br>
-    <strong>주소 * :</strong> <input type="text" name="zipcode" id="zipcode" value="<?=$user_data['mb_zipcode']?>" readonly="true"> <input type="button" id="find_addr" value="주소검색">
-    <br>
-    <input type="text" name="addr1" id="addr1" value="<?=$user_data['mb_address1']?>" size="30" readonly="true"> 기본주소
-    <br>
-    <input type="text" name="addr2" id="addr2" value="<?=$user_data['mb_address2']?>"> 나머지주소
-    <br>
-    <strong>휴대전화 * :</strong>
-    <select id="phone1" name="phone1">
-      <option <? if($split_phone[0] == '010') echo 'selected'; ?> value="010">010</option>
-      <option <? if($split_phone[0] == '011') echo 'selected'; ?> value="011">011</option>
-      <option <? if($split_phone[0] == '016') echo 'selected'; ?> value="016">016</option>
-      <option <? if($split_phone[0] == '017') echo 'selected'; ?> value="017">017</option>
-      <option <? if($split_phone[0] == '018') echo 'selected'; ?> value="018">018</option>
-      <option <? if($split_phone[0] == '019') echo 'selected'; ?> value="019">019</option>
-    </select>
-    - <input type="text" id="phone2" name="phone2" value="<?=$split_phone[1]?>"> - <input type="text" id="phone3" name="phone3" value="<?=$split_phone[2]?>">
-    <br>
-    <strong>SMS 수신여부 * :</strong>
-    <input type="radio" name="smsYN" <? if($user_data['mb_smsYN'] == 'Y') echo 'checked'; ?> value="Y">수신함
-    <input type="radio" name="smsYN" <? if($user_data['mb_smsYN'] == 'N') echo 'checked'; ?> value="N">수신안함
-    <br>
-    <strong>이메일 * :</strong>
-    <input type="text" id="email1" name="email1" value="<?=$split_email[0]?>"> @ <input type="text" id="email2" name="email2" value="<?=$split_email[1]?>" readonly="true"> 
-    <select id="email3">
-      <option value="direct">직접입력</option>
-      <option value="gmail.com">gmail.com</option>
-      <option value="naver.com">naver.com</option>
-      <option value="hanmail.net">hanmail.net</option>
-    </select>
-    <br>
-    <strong>이메일 수신여부 * :</strong>
-    <input type="radio" name="emailYN" <? if($user_data['mb_emailYN'] == 'Y') echo 'checked'; ?> value="Y">수신함
-    <input type="radio" name="emailYN" <? if($user_data['mb_emailYN'] == 'N') echo 'checked'; ?> value="N">수신안함
-    <br><br>
-    <h3>추가 정보 입력</h3><br>
-    <strong>생년월일 :</strong> 
-    <input type="text" name="birthY" id="birthY" value="<?=$split_birth[0]?>">년<input type="text" name="birthM" id="birthM" value="<?=$split_birth[1]?>">월<input type="text" name="birthD" id="birthD" value="<?=$split_birth[2]?>">일
-    <br><br>
-    <strong>일반전화 :</strong>
-    <select id="tel1" name="tel1">
-      <option <? if($split_tel[0] == '02') echo 'selected'; ?> value="02">02</option>
-      <option <? if($split_tel[0] == '031') echo 'selected'; ?> value="031">031</option>
-      <option <? if($split_tel[0] == '032') echo 'selected'; ?> value="032">032</option>
-    </select>
-    - <input type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>"> - <input type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
-    <br><br>
-    <input type="button" id="submit" value="수정">&nbsp;&nbsp;&nbsp;
-    <input type="button" id="cancel_modify_member"  value="취소">
-  </form>
+  <div id="wrap_page">
+<?
+	// 사이트 헤더 영역
+	include_once $_mnv_PC_dir."header_area.php";
+?>
+    <div id="wrap_content">
+      <div class="contents l2 clearfix">
+        <div class="section main">
+          <div class="area_main_top nopadd">
+            <div class="block_title">
+              <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_modify.png" alt="회원정보수정"></p>
+            </div>
+          </div>
+          <div class="area_main_middle nopadd noborder">
+            <form id="modify_form">
+              <div class="block_bg">
+                <div class="block_copy">
+                  <div class="block_line clearfix">
+                    <span class="input_guide">아이디<span class="fontColor">*</span></span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>" readonly="true">
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">비밀번호<span class="fontColor">*</span></span>
+                    <div class="input_block">
+                      <input type="password" class="inputT" id="password" name="password">
+                      <span>(영문대소문자/숫자/특수문자 6 - 12자)</span>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix pb20">
+                    <span class="input_guide">비밀번호확인<span class="fontColor">*</span></span>
+                    <div class="input_block">
+                      <input type="password" class="inputT" id="passchk" onblur="pass_chk(this.value);return false;">
+                      <span id="check_alert2" style="color:#b88b5b;letter-spacing:-1px;"></span>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">이름<span class="fontColor">*</span></span>
+                    <div class="input_block"><input type="text" class="inputT" id="username" name="username" value="<?=$user_data['mb_name']?>" style="ime-mode:active"></div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">휴대전화<span class="fontColor">*</span></span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="4" id="phone1" name="phone1" value="<?=$split_phone[0]?>">
+                      <span class="mrl1">-</span>
+                      <input type="text" class="inputT" size="4" id="phone2" name="phone2" value="<?=$split_phone[1]?>">
+                      <span class="mrl1">-</span>
+                      <input type="text" class="inputT" size="4" id="phone3" name="phone3" value="<?=$split_phone[2]?>">
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">일반전화</span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="4" id="tel1" name="tel1" value="<?=$split_tel[0]?>">
+                      <span class="mrl1">-</span>
+                      <input type="text" class="inputT" size="4" id="tel2" name="tel2" value="<?=$split_tel[1]?>">
+                      <span class="mrl1">-</span>
+                      <input type="text" class="inputT" size="4" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">주소</span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="7" name="zipcode" id="zipcode" value="<?=$user_data['mb_zipcode']?>" readonly="true">
+                      <input type="button" class="board_btn" value="우편번호" id="find_addr" value="주소검색">
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide blind">주소2</span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="70" name="addr1" id="addr1" value="<?=$user_data['mb_address1']?>" readonly="true"><span>기본주소</span>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix pb20 addr">
+                    <span class="input_guide blind">주소3</span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="70" name="addr2" id="addr2" value="<?=$user_data['mb_address2']?>"><span>나머지주소(직접입력)</span>
+                      <p>미리 입력해두면 주문/배송시 더 간편해집니다.</p>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">이메일<span class="fontColor">*</span></span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="15" id="email1" name="email1" value="<?=$split_email[0]?>">
+                      <span class="fontColor mrl1" style="font-size:15px;">@</span>
+                      <input type="text" class="inputT" size="15" id="email2" name="email2" value="<?=$split_email[1]?>">
+                      <div class="selectbox email">
+                        <label for="email3">직접입력</label>
+                        <select id="email3" name="email3">
+                          <option value="direct" selected>직접입력</option>
+                          <option value="naver.com">naver.com</option>
+                          <option value="daum.net">daum.net</option>
+                          <option value="nate.com">nate.com</option>
+                          <option value="hotmail.com">hotmail.com</option>
+                          <option value="yahoo.com">yahoo.com</option>
+                          <option value="empas.com">empas.com</option>
+                          <option value="korea.com">korea.com</option>
+                          <option value="dreamwiz.com">dreamwiz.com</option>
+                          <option value="gmail.com">gmail.com</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix" style="height:42px;">
+                    <span class="input_guide" style="line-height:normal;">이메일<br>수신여부<span class="fontColor">*</span></span>
+                    <div class="input_block" style="line-height:normal;">
+                      <span class="rd_txt">수신함</span><input type="radio" name="emailYN" value="Y" <? if($user_data['mb_emailYN'] == 'Y') echo 'checked'; ?>><span class="rd_txt">수신안함</span><input type="radio" name="emailYN" value="N" <? if($user_data['mb_emailYN'] == 'N') echo 'checked'; ?>>
+                      <p>쇼핑몰에서 제공하는 제품 및 이벤트 소식을 이메일로 받으실 수 있어요.</p>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix" style="height:42px;">
+                    <span class="input_guide" style="line-height:normal;">문자<br>수신여부<span class="fontColor">*</span></span>
+                    <div class="input_block" style="line-height:normal;">
+                      <span class="rd_txt">수신함</span><input type="radio" name="smsYN" <? if($user_data['mb_smsYN'] == 'Y') echo 'checked'; ?> value="Y"><span class="rd_txt">수신안함</span><input type="radio" name="smsYN" <? if($user_data['mb_smsYN'] == 'N') echo 'checked'; ?> value="N">
+                      <p>임시 텍스트영역</p>
+                    </div>
+                  </div>
+                  <div class="block_line clearfix">
+                    <span class="input_guide">생년월일</span>
+                    <div class="input_block">
+                      <input type="text" class="inputT" size="7" name="birthY" id="birthY" value="<?=$split_birth[0]?>">
+                      <input type="text" class="inputT" size="7" name="birthM" id="birthM" value="<?=$split_birth[1]?>">
+                      <input type="text" class="inputT" size="7" name="birthD" id="birthD" value="<?=$split_birth[2]?>">
+                      <p>생일에 특별한 쿠폰을 드립니다</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="block_btn mt30">
+                <input type="button" class="button_default onColor" id="submit" value="작성완료">
+                <input type="button" class="button_default" id="cancel_modify_member" value="작성취소">
+              </div>
+            </form>
+          </div>
+          <div class="area_main_bottom">
+
+          </div>
+        </div>
+        <div class="section side">
+          <div class="side_full_img">
+            <img src="<?=$_mnv_PC_images_url?>side_full.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="area_infoChon">
+        <div class="inner infoC clearfix">
+          <div class="box_info">
+            <span class="customerC"><img src="<?=$_mnv_PC_images_url?>customer_center.png" alt="고객센터"></span>
+            <span class="telNum">070-000-0000</span>
+            <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
+            <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
+          </div>
+          <div class="box_info">
+            <span>이메일 : SERVICE@STORE-CHON.COM</span>
+            <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
+          </div>
+          <div class="box_info clearfix">
+            <a href="#"><span class="about_chon"><img src="<?=$_mnv_PC_images_url?>about_chon.png" alt="about 촌의감각"></span></a>
+            <a href="#"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_store.png" alt="입점문의"></span></a>
+            <a href="#"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_partnership.png" alt="제휴문의"></span></a>
+            <a href="#"><span class="sugg last"><img src="<?=$_mnv_PC_images_url?>heavy_buying.png" alt="대량구매"></span></a>
+          </div>
+          <div class="box_info sns clearfix">
+            <a href="#"><span>인스타그램</span></a>
+            <a href="#"><span>페이스북</span></a>
+            <a href="#"><span>블로그</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="address">
+        <p>company  미니버타이징(주)  address  서울특별시  서초구  방배동  931-9  2F</p>
+        <p>owner  양선혜    business  license  114  87  11622   privacy policy | terms of use</p>
+        <br>
+        <p>@chon all rights reserved</p>
+      </div>
+    </div>
+  </div>
+
 <script type="text/javascript">
 	$(window).load(function() {
 		if($('#birthY').val() !== ''){
-			$('#birthY').attr('readonly', 'true');
-			$('#birthM').attr('readonly', 'true');
-			$('#birthD').attr('readonly', 'true');
+			$('#birthY').attr('disabled', 'true');
+			$('#birthM').attr('disabled', 'true');
+			$('#birthD').attr('disabled', 'true');
 		}
 	});
-
+	
 	$('#find_addr').on('click', function() {
 		new daum.Postcode({
 			oncomplete: function(data) {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
 				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
 				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 				var fullAddr = ''; // 최종 주소 변수
@@ -91,7 +212,6 @@
 				// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 					fullAddr = data.roadAddress;
-
 				} else { // 사용자가 지번 주소를 선택했을 경우(J)
 					fullAddr = data.jibunAddress;
 				}
@@ -120,23 +240,31 @@
 		}).open();
 	});
 
-	$('#email3').on('change', function(){
-		$('#email2').attr('disabled', false);
-		var mail = $('#email3').val();
-		if(mail=="direct") {
-			$('#email2').val('').focus();
-		}else{
-			$('#email2').val('').val(mail);
-			$('#email2').attr('disabled', true);
-		}
+	$(document).ready(function() {
+		var select = $("select#email3");
+
+		select.change(function(){
+			var select_name = $(this).children("option:selected").text();
+			$(this).siblings("label").text(select_name);
+
+			$('#email2').attr('disabled', false);
+			var mail = $('#email3').val();
+			if(mail=="direct") {
+				$('#email2').val('').focus();
+			}else{
+				$('#email2').val('').val(mail);
+				$('#email2').attr('disabled', true);
+			}
+		});
 	});
+
 
 	$('#submit').on('click', function(){
 		var val_check = validate('modify');
 		if(val_check){
 			$.ajax({
 				method: 'POST',
-				url: '../main_exec.php',
+				url: '../../main_exec.php',
 				data: {
 					exec        : "member_modify",
 					user_id     : user_id.value,
@@ -162,7 +290,9 @@
 				success: function(res){
 					if(res=='Y'){
 						alert("수정 성공");
-						location.href='./member_index.php';
+						//자동 로그아웃?
+//						location.href='./member_login.php';
+						history.back();
 					}else{
 						alert("수정 실패");
 					}
@@ -171,9 +301,21 @@
 		}
 	});
 
+	function pass_chk(input) {
+		var pass = $('#password').val();
+		if(input != pass){
+			$('#check_alert2').text("비밀번호가 맞지 않습니다.");
+		}else if(input == ''){
+			$('#check_alert2').text("비밀번호를 입력해주세요.");
+		}else{
+			$('#check_alert2').text('');
+		}
+	}
+
 	$(document).on("click", "#cancel_modify_member", function(){
 		history.back();
 	});
 </script>
 </body>
 </html>
+

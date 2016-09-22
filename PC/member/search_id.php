@@ -12,7 +12,7 @@
         <div class="contents l2 clearfix">
           <div class="section main">
             <div class="block_input clearfix">
-              <div class="area_input member ml180">
+              <div class="area_input member one">
                 <div class="area_inner">
                   <h3>아이디찾기</h3>
                   <p>
@@ -24,11 +24,11 @@
                     <input type="text" name="user_name" id="user_name" class="mb_input">
                   </div>
                   <div class="group_input">
-                    <label for="user_pass">이메일</label>
-                    <input type="password" name="user_pass" id="user_pass" class="mb_input">
+                    <label for="user_email">이메일</label>
+                    <input type="text" name="user_email" id="user_email" class="mb_input">
                   </div>
                   <div class="group_input">
-                    <input type="button" class="btn login" value="확인">
+                    <input type="button" class="btn login" id="sear_id" value="확인">
                   </div>
                   <div class="group_input member_action">
                     <a href="<?=$_mnv_PC_member_url?>search_pass.php">비밀번호찾기</a>
@@ -83,13 +83,50 @@
       </div>
     </div>
   </body>
-  <script>
-    jQuery(document).ready(function(){
-      var input = $(".mb_input");
-      input.on('click', function(){
-        $(this).siblings("label").empty();
-      });
-    });
-
-  </script>
+<script>
+	jQuery(document).ready(function(){
+		var input = $(".mb_input");
+		var sear_id = $("#sear_id");
+		var user_name = $("#user_name");
+		var user_email = $("#user_email");
+		
+		input.on('focus', function(){
+			$(this).siblings("label").empty();
+		});
+		
+		sear_id.on('click', function(){
+			if(user_name.val() == '') {
+				alert("이름을 입력해주세요.");
+				return;
+			}
+			if(user_email.val() == '') {
+				alert("이메일을 입력해주세요.");
+				return;
+			}
+			
+			$.ajax({
+				type   : "POST",
+				async  : false,
+				url    : "../../main_exec.php",
+				data:{
+					"exec"			: "sear_id",
+					"mb_name"		: user_name.val(),
+					"mb_email"		: user_email.val()
+				},
+				success: function(response){
+					var resArray = response.split('||');
+					if(resArray[0] == 'Y'){
+						location.href="./search_id2.php?id="+resArray[1];
+					}
+					else
+					{
+						alert("입력하신 정보가 맞지 않거나 회원이 아닙니다.");
+						user_email.val('');
+						user_name.val('').focus();
+					}
+				}
+			});
+		});
+	});
+</script>
 </html>
