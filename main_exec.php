@@ -419,16 +419,17 @@
 
 		case "delete_wishlist" :
 			$goods_idx	= $_REQUEST['goods_idx'];
+			$wish_idx		= $_REQUEST['wish_idx'];
 			$mb_id		= $_SESSION['ss_chon_id'];
 
 			if ($mb_id == "")
 			{
 				$flag	= "N"; // 로그인이 안되어 있을 경우
 			}else{
-				$restock_query2 	= "UPDATE ".$_gl['wishlist_info_table']."(restock_goodsidx, restock_mb_id, restock_regdate) values('".$goods_idx."','".$mb_id."','".date("Y-m-d H:i:s")."')";
-				$restock_result2 	= mysqli_query($my_db, $restock_query2);
+				$wish_query 	= "UPDATE ".$_gl['wishlist_info_table']." SET showYN='N' WHERE idx='".$wish_idx."'";
+				$wish_result 	= mysqli_query($my_db, $wish_query);
 
-				if ($restock_result2)
+				if ($wish_result)
 					$flag	= "Y";
 				else
 					$flag	= "E";
@@ -436,6 +437,26 @@
 
 			echo $flag;
 
+		break;
+
+		case "move_mycart" :
+			$wish_idx		= $_REQUEST['wish_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$wish_query 	= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE idx='".$wish_idx."'";
+			$wish_result 		= mysqli_query($my_db, $wish_query);
+			$wish_data		= mysqli_fetch_array($wish_result);
+
+			$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
+			$cart_result 		= mysqli_query($my_db, $cart_query);
+
+
+			if ($cart_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
 		break;
 	}
 ?>

@@ -26,11 +26,11 @@
                 <span class="bar1 short"></span>
                 <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span>위시리스트</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>주문조회</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>order_status.php"><span>주문조회</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>쿠폰</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>coupon.php"><span>쿠폰</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>1대1 문의하기</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>consult_list.php"><span>1대1 문의하기</span></a>
                 <span class="bar1 short"></span>
                 <a href="#"><span>개인정보 수정</span></a>
               </div>
@@ -123,8 +123,8 @@
                         <!-- <input type="hidden" id="<?=$cart_data['goods_code']?>_current__total_price" value="<?=$current_price?>"> -->
                         <input type="text" name="select_amount" id="<?=$cart_data['goods_code']?>_cnt" class="buy_cnt" value="1">
                         <span class="amount_btn">
-                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
-                          <map name="amount" id="amount">
+                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount_<?=$cart_data['goods_code']?>">
+                          <map name="amount_<?=$cart_data['goods_code']?>" id="amount_<?=$cart_data['goods_code']?>">
                             <area shape="rect" coords="0,0,9,9" href="#" onclick="cart_plus('<?=$cart_data['goods_code']?>');return false;">
                             <area shape="rect" coords="0,10,9,19" href="#" onclick="cart_minus('<?=$cart_data['goods_code']?>');return false;">
                           </map>

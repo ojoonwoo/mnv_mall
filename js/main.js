@@ -375,22 +375,53 @@ $(document).on("click", ".off_stock", function(){
 });
 
 // 마이페이지 > 관심상품 > 삭제 버튼 클릭
-$(document).on("click", "#del_wishlist", function(){
-	var goods_idx	= $("#goods_idx").val();
+$(document).on("click", ".del_wishlist", function(){
+	var goods_idx	= $(this).attr("goods_idx");
+	var wish_idx		= $(this).attr("wish_idx");
+
+	if (confirm("관심 목록에서 삭제 할까요?"))
+	{
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "http://localhost/main_exec.php",
+			data:{
+				"exec"				: "delete_wishlist",
+				"goods_idx"		: goods_idx,
+				"wish_idx"		: wish_idx
+			},
+			success: function(response){
+				if (response == "Y")
+				{
+					alert("관심목록에서 삭제되었습니다.");
+					location.reload();
+				}else if (response == "N"){
+					alert("로그인 후 가능합니다.");
+				}else{
+					alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
+					location.reload();
+				}
+			}
+		});
+	}
+});
+
+// 마이페이지 > 관심상품 > 장바구니 클릭
+$(document).on("click", ".move_mycart", function(){
+	var wish_idx		= $(this).attr("wish_idx");
+
 	$.ajax({
 		type   : "POST",
 		async  : false,
 		url    : "http://localhost/main_exec.php",
 		data:{
-			"exec"				: "delete_wishlist",
-			"goods_idx"		: goods_idx
+			"exec"				: "move_mycart",
+			"wish_idx"		: wish_idx
 		},
 		success: function(response){
 			if (response == "Y")
 			{
-				alert("재입고가 요청 되었습니다.");
-			}else if (response == "N"){
-				alert("로그인 후 재입고 요청이 가능합니다.");
+				location.href = './mycart.php';
 			}else{
 				alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
 				location.reload();
@@ -398,6 +429,3 @@ $(document).on("click", "#del_wishlist", function(){
 		}
 	});
 });
-
-
-
