@@ -1,5 +1,4 @@
 <?
-	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
@@ -23,11 +22,17 @@
                 <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_basket.png" alt="장바구니"></p>
               </div>
               <div class="mypage_cate_hori nopadd">
-                <a href="#"><span class="active_underLine">장바구니</span></a>
-<?
-	// 마이페이지 헤더 영역
-	include_once $_mnv_PC_mypage_dir."mypage_header.php";
-?>
+                <a href="<?=$_mnv_PC_mypage_dir?>mycart.php"><span class="active_underLine">장바구니</span></a>
+                <span class="bar1 short"></span>
+                <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span>위시리스트</span></a>
+                <span class="bar1 short"></span>
+                <a href="#"><span>주문조회</span></a>
+                <span class="bar1 short"></span>
+                <a href="#"><span>쿠폰</span></a>
+                <span class="bar1 short"></span>
+                <a href="#"><span>1대1 문의하기</span></a>
+                <span class="bar1 short"></span>
+                <a href="#"><span>개인정보 수정</span></a>
               </div>
               <div class="main_top_block clearfix">
                 <div class="rt_float">
@@ -48,39 +53,90 @@
                     </tr>
                   </thead>
                   <tbody>
+<?
+	$cart_query		= "SELECT A.goods_option, B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$_SESSION['ss_chon_id']."'";
+	$cart_result		= mysqli_query($my_db, $cart_query);
+	$cart_num		= mysqli_num_rows($cart_result);
+
+	if ($cart_num > 0)
+	{
+		$total_price	= 0;
+		while ($cart_data = mysqli_fetch_array($cart_result))
+		{
+			$cart_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$cart_data['goods_img_url']);
+
+			if ($cart_data['discount_price'] == 0)
+				$current_price	= $cart_data['sales_price'];
+			else
+				$current_price	= $cart_data['discount_price'];
+
+			$total_price			= $total_price + $current_price;
+
+			$goods_option_arr	= explode("||",$cart_data['goods_option']);
+			$goods_option_txt	= "";
+			$i = 0;
+			foreach($goods_option_arr as $key => $val)
+			{
+				$sub_option_arr		= explode("|+|",$val);
+				if ($i == 0)
+					$comma	= "";
+				else if ($i == count($goods_option_arr)-1)
+					$comma	= "";
+				else
+					$comma	= ",";
+				$goods_option_txt	.= $sub_option_arr[1].$comma;
+				$i++;
+			}
+?>
                     <tr>
                       <td class="info clearfix" style="width:400px;">
                         <div class="info_img">
-                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
+                          <img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>" width="74px">
                         </div>
                         <div class="info_txt">
-                          <h3>실용적인 사이즈의 머그컵</h3>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
+                          <h3><?=$cart_data['goods_name']?></h3>
+<?
+	if ($cart_data['goods_optionYN'] == "Y")
+	{
+?>
+                          <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p>
+<?
+	}
+?>
                         </div>
                       </td>
-                      <td class="price">20,000</td>
+                      <td class="price"><?=number_format($current_price)?></td>
                       <td class="count">
-                        <input type="text" name="select_amount" id="amount_val" value="1">
+                        <input type="hidden" id="<?=$cart_data['goods_code']?>_current_price" value="<?=$current_price?>">
+                        <!-- <input type="hidden" id="<?=$cart_data['goods_code']?>_current__total_price" value="<?=$current_price?>"> -->
+                        <input type="text" name="select_amount" id="<?=$cart_data['goods_code']?>_cnt" class="buy_cnt" value="1">
                         <span class="amount_btn">
                           <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
                           <map name="amount" id="amount">
-                            <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
-                            <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
+                            <area shape="rect" coords="0,0,9,9" href="#" onclick="cart_plus('<?=$cart_data['goods_code']?>');return false;">
+                            <area shape="rect" coords="0,10,9,19" href="#" onclick="cart_minus('<?=$cart_data['goods_code']?>');return false;">
                           </map>
                         </span>
                       </td>
-                      <td class="total">20,000</td>
+                      <td class="total" id="<?=$cart_data['goods_code']?>_total_price"><?=number_format($current_price)?></td>
                       <td style="padding-right:15px;">
                         <input type="button" value="위시리스트 담기" class="board_btn">
                       </td>
                     </tr>
+<?
+		}
+		$total_pay_price	= $total_price + $site_option['default_delivery_price'];
+
+	}else{
+?>
                     <!-- 장바구니 담은 상품 없을때 -->
-<!--
                     <tr style="height:120px;">
                       <td colspan="5">주문내역이 없습니다.</td>
                     </tr>
--->
                     <!-- 장바구니 담은 상품 없을때 -->
+<?
+	}
+?>
                   </tbody>
                 </table>
               </div>
@@ -91,6 +147,9 @@
                 </div>
               </div>
               <div><!-- 장바구니 담은 상품 없을때 -->
+                <input type="hidden" id="hidden_total_price" value="<?=$total_price?>">
+                <input type="hidden" id="hidden_delivery_price" value="<?=$site_option['default_delivery_price']?>">
+                <input type="hidden" id="hidden_total_pay_price" value="<?=$total_pay_price?>">
                 <div class="block_order_price">
                   <div class="inner clearfix">
                     <div class="price_block">
@@ -101,26 +160,26 @@
                     </div>
                     <div class="price_block">
                       <h3>총 주문금액</h3>
-                      <h3 class="total_order">80,000원</h3>
+                      <h3 class="total_order"><?=number_format($total_price)?>원</h3>
                     </div>
                     <div class="charImg">
                       <img src="<?=$_mnv_PC_images_url?>spec_plus.png">
                     </div>
                     <div class="price_block">
                       <h3>배송비</h3>
-                      <h3 class="shipping">2,500원</h3>
+                      <h3 class="shipping"><?=number_format($site_option['default_delivery_price'])?>원</h3>
                     </div>
                     <div class="charImg">
                       <img src="<?=$_mnv_PC_images_url?>spec_equal.png">
                     </div>
                     <div class="price_block">
                       <h3>총 결제금액</h3>
-                      <h3 class="total_payment">82,500원</h3>
+                      <h3 class="total_payment"><?=number_format($total_pay_price)?>원</h3>
                     </div>
                   </div>
                 </div><!-- 장바구니 담은 상품 없을때 -->
                 <div class="block_btn mt40">
-                  <input type="button" class="button_default mr10" value="계속 쇼핑하기">
+                  <a href="<?=$_mnv_PC_url?>index.php"><input type="button" class="button_default mr10" value="계속 쇼핑하기"></a>
                   <input type="button" class="button_default onColor" value="주문하기">
                 </div>
               </div>

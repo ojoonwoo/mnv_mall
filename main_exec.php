@@ -345,8 +345,9 @@
 		break;
 
 		case "add_wishlist" :
-			$goods_idx	= $_REQUEST['goods_idx'];
-			$mb_id		= $_SESSION['ss_chon_id'];
+			$goods_idx		= $_REQUEST['goods_idx'];
+			$goods_option	= $_REQUEST['goods_option'];
+			$mb_id			= $_SESSION['ss_chon_id'];
 
 			if ($mb_id == "")
 			{
@@ -359,7 +360,7 @@
 				{
 					$flag	= "D";
 				}else{
-					$wish_query2 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, wish_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
+					$wish_query2 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, goods_option, wish_regdate) values('".$mb_id."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
 					$wish_result2 	= mysqli_query($my_db, $wish_query2);
 
 					if ($wish_result2)
@@ -372,9 +373,10 @@
 		break;
 
 		case "add_mycart" :
-			$goods_idx	= $_REQUEST['goods_idx'];
-			$mb_id		= $_SESSION['ss_chon_id'];
-			$cart_id		= $_SESSION['ss_chon_cartid'];
+			$goods_idx		= $_REQUEST['goods_idx'];
+			$goods_option	= $_REQUEST['goods_option'];
+			$mb_id			= $_SESSION['ss_chon_id'];
+			$cart_id			= $_SESSION['ss_chon_cartid'];
 
 			if ($mb_id == "")
 			{
@@ -383,7 +385,7 @@
 				$_SESSION['ss_chon_cartid']			= $mb_id;
 			}
 			// 추가 수정 작업 해야함
-			$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, cart_regdate) values('".$mb_id."','".$goods_idx."','".date("Y-m-d H:i:s")."')";
+			$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
 			$cart_result2 	= mysqli_query($my_db, $cart_query2);
 
 			if ($cart_result2)
@@ -413,6 +415,27 @@
 			}
 
 			echo $flag;
+		break;
+
+		case "delete_wishlist" :
+			$goods_idx	= $_REQUEST['goods_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			if ($mb_id == "")
+			{
+				$flag	= "N"; // 로그인이 안되어 있을 경우
+			}else{
+				$restock_query2 	= "UPDATE ".$_gl['wishlist_info_table']."(restock_goodsidx, restock_mb_id, restock_regdate) values('".$goods_idx."','".$mb_id."','".date("Y-m-d H:i:s")."')";
+				$restock_result2 	= mysqli_query($my_db, $restock_query2);
+
+				if ($restock_result2)
+					$flag	= "Y";
+				else
+					$flag	= "E";
+			}
+
+			echo $flag;
+
 		break;
 	}
 ?>

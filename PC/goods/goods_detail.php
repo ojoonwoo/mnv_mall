@@ -31,6 +31,8 @@
   <body>
 <input type="hidden" id="hd_sales_price" value="<?=$real_price?>">
 <input type="hidden" id="goods_idx" value="<?=$goods_info['idx']?>">
+<input type="hidden" id="goods_optionYN" value="<?=$goods_info['goods_optionYN']?>">
+
     <div id="wrap_page">
 <?
 	// 사이트 헤더 영역
@@ -111,37 +113,39 @@
 ?>
 
                     </div>
-                    <div class="block_line">
 <?
 	if ($goods_info['goods_optionYN'] == "Y")
 	{
+		$i	= 0;
 		foreach($goods_option_arr as $key => $val)
 		{
 			$final_option_arr			= explode("|+|",$val);
-			$final_option__sel_arr	= explode(";",$final_option_arr[1]);
+			$final_option_sel_arr	= explode(";",$final_option_arr[1]);
 ?>
+                    <div class="block_line">
                         <span class="left_text">
                           <?=$final_option_arr[0]?>
                         </span>
                         <div class="select_box">
-                          <label for="option_change" class="select_label">[필수]옵션을 선택해주세요</label>
-                          <select name="select_option" id="option_change">
+                          <label for="option_change<?=$i?>" class="select_label">[필수]옵션을 선택해주세요</label>
+                          <select name="select_option" id="option_change<?=$i?>" class="option_change">
                             <option value="default" selected="selected">[필수]옵션을 선택해주세요</option>
 <?
-			foreach($final_option__sel_arr as $key2 => $val2)
+			foreach($final_option_sel_arr as $key2 => $val2)
 			{
 ?>
-    <option><?=$val2?></option>
+                            <option value="<?=$final_option_arr[0]."|+|".$val2?>"><?=$val2?></option>
 <?
 			}
 ?>
                           </select>
                         </div>
+                    </div>
 <?
+			$i++;
 		}
 	}
 ?>
-                    </div>
                   </div>
                   <div class="block_info_bottom">
                     <div class="block_line total clearfix">
@@ -157,13 +161,13 @@
                       <!-- 장바구니 팝업 -->
                       <div class="popup_basket" style="display:none;">
                         <div class="popup_inner">
-                          <div class="area_close"><a href="#">닫기</a></div>
+                          <div class="area_close"><a href="javascript:$('.popup_basket').hide();">닫기</a></div>
                           <div class="popup_txt">
                             <p>장바구니에 담겼습니다<br>지금 확인하시겠어요?</p>
                           </div>
                           <div class="popup_btn_block clearfix">
-                            <input type="button" class="pr_btn sm img_continue_shopping">
-                            <input type="button" class="pr_btn sm img_view_basket">
+                            <input type="button" class="pr_btn sm img_continue_shopping" onclick="javascript:$('.popup_basket').hide();return false;">
+                            <input type="button" class="pr_btn sm img_view_basket" onclick="javascript:location.href='../mypage/mycart.php';">
                           </div>
                         </div>
                       </div>
@@ -304,12 +308,21 @@
 <script>
 	var cnt=1;
 	jQuery(document).ready(function(){
-		var select = $("select#option_change");
+<?
+	$i	= 0;
+	foreach($goods_option_arr as $key => $val)
+	{
+?>
+		var select = $("select#option_change<?=$i?>");
 
 		select.change(function(){
 			var select_name = $(this).children("option:selected").text();
 			$(this).siblings("label").text(select_name);
 		});
+<?
+		$i++;
+	}
+?>
 	});
 
 	function amount_change(type) {

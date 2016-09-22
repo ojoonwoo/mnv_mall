@@ -126,6 +126,41 @@ function chk(re, e, msg) {
 	return false;
 }
 
+// 장바구니 > 수량 증가
+function cart_plus(code)
+{
+	var ins_cnt	= Number($("#"+code+"_cnt").val()) + 1;
+	$("#"+code+"_cnt").val(ins_cnt);
+	var ins_total_price	= Number($("#"+code+"_current_price").val()) * ins_cnt;
+	
+	var ins_final_price	= Number($("#hidden_total_price").val()) + Number($("#"+code+"_current_price").val());
+	$("#hidden_total_price").val(ins_final_price);
+	$("#"+code+"_total_price").html(numberWithCommas(ins_total_price));
+	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
+	ins_final_price	= ins_final_price + Number($("#hidden_delivery_price").val());
+	$(".total_payment").html(numberWithCommas(ins_final_price)+"원");
+}
+
+// 장바구니 > 수량 감소
+function cart_minus(code)
+{
+	var ins_cnt	= Number($("#"+code+"_cnt").val()) - 1;
+	if (ins_cnt < 1)
+	{
+		alert("최소 주문 수량은 1개입니다.");
+		ins_cnt	= 1;
+		return false;
+	}
+	$("#"+code+"_cnt").val(ins_cnt);
+	var ins_total_price	= Number($("#"+code+"_current_price").val()) * ins_cnt;
+	var ins_final_price	= Number($("#hidden_total_price").val()) - Number($("#"+code+"_current_price").val());
+	$("#hidden_total_price").val(ins_final_price);
+	$("#"+code+"_total_price").html(numberWithCommas(ins_total_price));
+	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
+	ins_final_price	= ins_final_price + Number($("#hidden_delivery_price").val());
+	$(".total_payment").html(numberWithCommas(ins_final_price)+"원");
+}
+
 // 상품 상세 정보 > 수량 증가
 $(document).on("click", "#cnt_plus", function(){
 	var ins_cnt	= Number($("#buy_cnt").val()) + 1;
@@ -216,13 +251,33 @@ $(document).on("click", "#mb_logout", function(){
 // 위시리스트 클릭
 $(document).on("click", "#wish_link", function(){
 	var goods_idx	= $("#goods_idx").val();
+	var goods_optionYN		= $("#goods_optionYN").val();
+	var option_txt				= "";
+	
+	if (goods_optionYN == "Y")
+	{
+		for (var k=0;k<5 ;k++ )
+		{
+			if ($("#option_change"+k).val() == "default")
+			{
+				alert("필수 옵션을 선택해 주세요.");
+				return false;
+			}else if ($("#option_change"+k).val() == undefined){
+				option_txt		+= "";
+			}else{
+				option_txt		+= "||"+$("#option_change"+k).val();
+			}
+		}
+	}
+
 	$.ajax({
 		type   : "POST",
 		async  : false,
 		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "add_wishlist",
-			"goods_idx"		: goods_idx
+			"goods_idx"		: goods_idx,
+			"goods_option"	: option_txt
 		},
 		success: function(response){
 			if (response == "N")
@@ -243,14 +298,34 @@ $(document).on("click", "#wish_link", function(){
 
 // 장바구니 클릭
 $(document).on("click", "#mycart_link", function(){
-	var goods_idx	= $("#goods_idx").val();
+	var goods_idx				= $("#goods_idx").val();
+	var goods_optionYN		= $("#goods_optionYN").val();
+	var option_txt				= "";
+	
+	if (goods_optionYN == "Y")
+	{
+		for (var k=0;k<5 ;k++ )
+		{
+			if ($("#option_change"+k).val() == "default")
+			{
+				alert("필수 옵션을 선택해 주세요.");
+				return false;
+			}else if ($("#option_change"+k).val() == undefined){
+				option_txt		+= "";
+			}else{
+				option_txt		+= "||"+$("#option_change"+k).val();
+			}
+		}
+	}
+
 	$.ajax({
 		type   : "POST",
 		async  : false,
 		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "add_mycart",
-			"goods_idx"		: goods_idx
+			"goods_idx"		: goods_idx,
+			"goods_option"	: option_txt
 		},
 		success: function(response){
 			if (response == "Y")
@@ -283,6 +358,31 @@ $(document).on("click", ".off_stock", function(){
 		url    : "http://localhost/main_exec.php",
 		data:{
 			"exec"				: "insert_restock",
+			"goods_idx"		: goods_idx
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("재입고가 요청 되었습니다.");
+			}else if (response == "N"){
+				alert("로그인 후 재입고 요청이 가능합니다.");
+			}else{
+				alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 마이페이지 > 관심상품 > 삭제 버튼 클릭
+$(document).on("click", "#del_wishlist", function(){
+	var goods_idx	= $("#goods_idx").val();
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/main_exec.php",
+		data:{
+			"exec"				: "delete_wishlist",
 			"goods_idx"		: goods_idx
 		},
 		success: function(response){

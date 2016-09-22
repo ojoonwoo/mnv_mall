@@ -113,6 +113,18 @@
                     </select>
                   </td>
                 </tr>
+                <tr>
+                  <td>기본 배송비</td>
+                  <td>
+                    <input type="text" id="default_delivery_price" value="<?=$shop_info['default_delivery_price'][0]?>"> 원
+                  </td>
+                  <td>
+                    <select id="default_saved_priceYN">
+                      <option value="Y" <?if ($shop_info['default_delivery_price'][1]=="Y"){?>selected<?}?>>사용</option>
+                      <option value="N" <?if ($shop_info['default_delivery_price'][1]=="N"){?>selected<?}?>>미사용</option>
+                    </select>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn8">수 정</button>
