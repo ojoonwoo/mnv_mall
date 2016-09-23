@@ -1,6 +1,11 @@
 <?
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
+
+	if ($_SESSION['ss_chon_id'])
+	{
+		echo "<script>location.href='".$_mnv_PC_url."index.php';</script>";
+	}
 ?>
   <body>
     <input type="hidden" id="pg_referer" value="<?=$_SERVER['HTTP_REFERER']?>">

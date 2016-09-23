@@ -2,11 +2,6 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
-	if ($_REQUEST['dev'] != true)
-	{
-		echo "작업중입니다...";
-		exit;
-	}
 ?>
   <body>
     <div id="wrap_page">

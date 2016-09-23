@@ -2,6 +2,9 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
+
+	$cate_no	= $_REQUEST['cate_no'];
+	$sub_cate_info	= sub_category_info($cate_no);
 ?>
   <body>
     <div id="wrap_page">
@@ -20,33 +23,47 @@
                 <span class="list_title pr_head"><img src="../images/left_title_best.png" alt="베스트"></span>
               </div>
               <div class="list_product clearfix">
+<?
+	$best_goods_info		= select_best_goods_info($site_option['best_goods_flag'],4);
+	$i	= 0;
+	foreach ($best_goods_info as $key => $val)
+	{
+		$val['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$val['goods_img_url']);
+?>
                 <div class="product n4">
-                  <a href="#"><img src="../images/product_n4_1.jpg"></a>
-                  <div class="prd_info"><span class="prd_name">제품명</span></div>
+                  <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$val['goods_code']?>"><img src="<?=$val['goods_img_url']?>"></a>
+                  <div class="prd_info"><span class="prd_name"><?=$val['goods_name']?></span></div>
                 </div>
-                <div class="product n4">
-                  <a href="#"><img src="../images/product_n4_2.jpg"></a>
-                  <div class="prd_info"><span class="prd_name">제품명</span></div>
-                </div>
-                <div class="product n4">
-                  <a href="#"><img src="../images/product_n4_default.jpg"></a>
-                  <div class="prd_info"><span class="prd_name">제품명</span></div>
-                </div>
-                <div class="product n4">
-                  <a href="#"><img src="../images/product_n4_default.jpg"></a>
-                  <div class="prd_info"><span class="prd_name">제품명</span></div>
-                </div>
+<?
+	}
+?>
               </div>
             </div>
             <div class="area_main_middle">
               <div class="detail_menu">
                 <div class="nav clearfix">
                   <div class="left_cate">
+<?
+	$i = 1;
+	$sub_cate_num	= count($sub_cate_info);
+	foreach($sub_cate_info as $key => $val)
+	{
+		$sub_cate_arr	= explode("||",$val);
+?>
                     <a href="#">
-                      <span class="cate_name">접시<span class="cate_amount">(3)</span></span>
+                      <span class="cate_name"><?=$sub_cate_arr[0]?><span class="cate_amount">(<?=$sub_cate_arr[1]?>)</span></span>
                     </a>
+<?
+		if ($i != $sub_cate_num)
+		{
+?>
                     <span class="bar3"></span>
-                    <a href="#">
+<?
+		}
+		$i++;
+	}
+?>
+                    <!-- <a href="#">
                       <span class="cate_name">밥공기<span class="cate_amount">(2)</span></span>
                     </a>
                     <span class="bar3"></span>
@@ -56,7 +73,7 @@
                     <span class="bar3"></span>
                     <a href="#">
                       <span class="cate_name">컵<span class="cate_amount">(10)</span></span>
-                    </a>
+                    </a> -->
                   </div>
                   <div class="right_cate">
                     <a href="#">

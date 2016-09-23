@@ -450,6 +450,19 @@
 			$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
 			$cart_result 		= mysqli_query($my_db, $cart_query);
 
+			if ($cart_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "delete_all_cart" :
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE mb_id='".$mb_id."' AND cart_regdate >= date_add(now(), interval -3 day)";
+			$cart_result 		= mysqli_query($my_db, $cart_query);
 
 			if ($cart_result)
 				$flag	= "Y";
@@ -457,6 +470,34 @@
 				$flag	= "N";
 
 			echo $flag;
+		break;
+
+		case "delete_chk_cart" :
+			$mb_id		= $_SESSION['ss_chon_id'];
+			$chk_idx		= $_REQUEST['chk_idx'];
+
+			$chk_idx_arr		= explode(",",$chk_idx);
+
+			$i = 0;
+			foreach($chk_idx_arr as $key => $val)
+			{
+				if ($i == 0)
+				{
+					$i++;
+					continue;
+				}
+				$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE idx='".$val."' AND mb_id='".$mb_id."'";
+				$cart_result 		= mysqli_query($my_db, $cart_query);
+				$i++;
+			}
+
+			if ($cart_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+
 		break;
 	}
 ?>

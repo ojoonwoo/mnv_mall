@@ -17,8 +17,8 @@
 	}
 ?>
               <li><a href="<?=$_mnv_PC_mypage_url?>mypage.php"><span>마이페이지</span></a></li>
-              <li><a href="#"><span>장바구니</span></a></li>
-              <li><a href="#"><span>주문조회</span></a></li>
+              <li><a href="<?=$_mnv_PC_mypage_url?>mycart.php"><span>장바구니</span></a></li>
+              <li><a href="<?=$_mnv_PC_mypage_url?>order_status.php"><span>주문조회</span></a></li>
             </ul>
           </div>
         </div>

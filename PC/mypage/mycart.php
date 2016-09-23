@@ -60,7 +60,7 @@
                   </thead>
                   <tbody>
 <?
-	$cart_query		= "SELECT A.goods_option, B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$_SESSION['ss_chon_id']."'";
+	$cart_query		= "SELECT A.goods_option, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$_SESSION['ss_chon_id']."' AND A.showYN='Y'";
 	$cart_result		= mysqli_query($my_db, $cart_query);
 	$cart_num		= mysqli_num_rows($cart_result);
 
@@ -97,8 +97,8 @@
                     <tr>
                       <td>
                         <div class="checks">
-                          <input type="checkbox" id="ex_chk">
-                          <label for="ex_chk"></label>
+                          <input type="checkbox" id="<?=$cart_data['cart_idx']?>_ex_chk" name="chk">
+                          <label for="<?=$cart_data['cart_idx']?>_ex_chk"></label>
                         </div>
                       </td>
                       <td class="info clearfix" style="width:400px;">
@@ -119,18 +119,18 @@
                       </td>
                       <td class="price"><?=number_format($current_price)?></td>
                       <td class="count">
-                        <input type="hidden" id="<?=$cart_data['goods_code']?>_current_price" value="<?=$current_price?>">
+                        <input type="hidden" id="<?=$cart_data['cart_idx']?>_current_price" value="<?=$current_price?>">
                         <!-- <input type="hidden" id="<?=$cart_data['goods_code']?>_current__total_price" value="<?=$current_price?>"> -->
-                        <input type="text" name="select_amount" id="<?=$cart_data['goods_code']?>_cnt" class="buy_cnt" value="1">
+                        <input type="text" name="select_amount" id="<?=$cart_data['cart_idx']?>_cnt" class="buy_cnt" value="1">
                         <span class="amount_btn">
-                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount_<?=$cart_data['goods_code']?>">
-                          <map name="amount_<?=$cart_data['goods_code']?>" id="amount_<?=$cart_data['goods_code']?>">
-                            <area shape="rect" coords="0,0,9,9" href="#" onclick="cart_plus('<?=$cart_data['goods_code']?>');return false;">
-                            <area shape="rect" coords="0,10,9,19" href="#" onclick="cart_minus('<?=$cart_data['goods_code']?>');return false;">
+                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount_<?=$cart_data['cart_idx']?>">
+                          <map name="amount_<?=$cart_data['cart_idx']?>" id="amount_<?=$cart_data['cart_idx']?>">
+                            <area shape="rect" coords="0,0,9,9" href="#" onclick="cart_plus('<?=$cart_data['cart_idx']?>');return false;">
+                            <area shape="rect" coords="0,10,9,19" href="#" onclick="cart_minus('<?=$cart_data['cart_idx']?>');return false;">
                           </map>
                         </span>
                       </td>
-                      <td class="total" id="<?=$cart_data['goods_code']?>_total_price"><?=number_format($current_price)?></td>
+                      <td class="total" id="<?=$cart_data['cart_idx']?>_total_price"><?=number_format($current_price)?></td>
                       <td style="padding-right:15px;">
                         <input type="button" value="위시리스트 담기" class="board_btn">
                       </td>
@@ -143,7 +143,7 @@
 ?>
                     <!-- 장바구니 담은 상품 없을때 -->
                     <tr style="height:120px;">
-                      <td colspan="5">주문내역이 없습니다.</td>
+                      <td colspan="6">상품이 없습니다.</td>
                     </tr>
                     <!-- 장바구니 담은 상품 없을때 -->
 <?
@@ -154,8 +154,8 @@
               </div>
               <div class="block_btn clearfix mt15">
                 <div class="lt_float">
-                  <input type="button" value="모두삭제" class="button_custom">
-                  <input type="button" value="선택상품삭제" class="button_custom">
+                  <input type="button" value="모두삭제" class="button_custom" id="cart_all_del">
+                  <input type="button" value="선택상품삭제" class="button_custom" id="cart_chk_del">
                 </div>
               </div>
               <div><!-- 장바구니 담은 상품 없을때 -->
@@ -213,3 +213,11 @@
     </div>
   </body>
 </html>
+        if($("#checkall").prop("checked")){
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+            $("input[name=chk]").prop("checked",true);
+            //클릭이 안되있으면
+        }else{
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+            $("input[name=chk]").prop("checked",false);
+        }
