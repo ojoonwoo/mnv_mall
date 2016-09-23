@@ -582,5 +582,72 @@
 			echo $flag;
 
 		break;
+
+		case "show_cate_goods_list" :
+			$cate1			= $_REQUEST['cate1'];
+			$cate2			= $_REQUEST['cate2'];
+
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2='".$cate2."' ORDER BY idx DESC limit 16";
+			$list_result		= mysqli_query($my_db, $list_query);
+
+			$innerHTML	= "";
+			$i = 0;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$list_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$list_data['goods_img_url']);
+
+				if ($i % 4 == 0)
+					$innerHTML		.= '<div class="list_product clearfix">';
+
+				$innerHTML		.= '<div class="product n4">';
+				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
+				$innerHTML		.= '<div class="prd_info">';
+				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
+				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_code']).'</span>';
+				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
+				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
+				$innerHTML		.= '</div></div>';
+
+				if ($i == 3 || $i == 7 || $i == 11 || $i == 15)
+					$innerHTML		.= '</div>';
+				$i++;
+			}
+
+			echo $innerHTML;
+		break;
+
+		case "show_cate_goods_list_sort" :
+			$cate1			= $_REQUEST['cate1'];
+			$cate2			= $_REQUEST['cate2'];
+			$sort				= $_REQUEST['sort'];
+
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2='".$cate2."' ORDER BY ".$sort." limit 16";
+			$list_result		= mysqli_query($my_db, $list_query);
+
+			$innerHTML	= "";
+			$i = 0;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$list_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$list_data['goods_img_url']);
+
+				if ($i % 4 == 0)
+					$innerHTML		.= '<div class="list_product clearfix">';
+
+				$innerHTML		.= '<div class="product n4">';
+				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
+				$innerHTML		.= '<div class="prd_info">';
+				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
+				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_code']).'</span>';
+				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
+				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
+				$innerHTML		.= '</div></div>';
+
+				if ($i == 3 || $i == 7 || $i == 11 || $i == 15)
+					$innerHTML		.= '</div>';
+				$i++;
+			}
+
+			echo $innerHTML;
+		break;
 	}
 ?>

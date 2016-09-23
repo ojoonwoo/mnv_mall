@@ -140,8 +140,8 @@
                 </div>
               </div>
               <div class="block_btn mt30">
-                <input type="button" class="button_default onColor" id="submit" value="작성완료">
-                <input type="button" class="button_default" id="cancel_modify_member" value="작성취소">
+                <input type="button" class="button_default onColor" id="submit" value="수정완료">
+                <input type="button" class="button_default" id="cancel_modify_member" value="수정취소">
               </div>
             </form>
           </div>
@@ -289,7 +289,7 @@
 				},
 				success: function(res){
 					if(res=='Y'){
-						alert("수정 성공");
+						alert("개인정보를 수정 하였습니다.");
 						//자동 로그아웃?
 //						location.href='./member_login.php';
 						history.back();

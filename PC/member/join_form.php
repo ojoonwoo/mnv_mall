@@ -2,6 +2,12 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
+
+	if ($_SESSION['ss_chon_id'])
+	{
+		echo "<script>location.href='".$_mnv_PC_url."index.php';</script>";
+	}
+
 ?>
 <body>
       <div id="wrap_page">

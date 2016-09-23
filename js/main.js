@@ -126,6 +126,44 @@ function chk(re, e, msg) {
 	return false;
 }
 
+function show_sub_cate(cate1, cate2)
+{
+	sub_cate1	= cate1;
+	sub_cate2	= cate2;
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"				: "show_cate_goods_list",
+			"cate1"			: cate1,
+			"cate2"			: cate2
+		},
+		success: function(response){
+			$("#sort_goods_area").html(response);
+		}
+	});
+}
+
+function show_sub_cate_sort(sort)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"				: "show_cate_goods_list_sort",
+			"sort"				: sort,
+			"cate1"			: sub_cate1,
+			"cate2"			: sub_cate2
+		},
+		success: function(response){
+			$("#sort_goods_area").html(response);
+		}
+	});
+
+}
+
 // 장바구니 > 수량 증가
 function cart_plus(code)
 {
