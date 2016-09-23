@@ -73,10 +73,10 @@ function validate(ref)
 
 
 	// 우편번호, 주소 검사
-	if(zipcode.value == '' || addr1.value == '') {
-		alert("주소를 입력해주세요.");
-		return false;
-	}
+//	if(zipcode.value == '' || addr1.value == '') {
+//		alert("주소를 입력해주세요.");
+//		return false;
+//	}
 
 
 	// 전화번호 검사

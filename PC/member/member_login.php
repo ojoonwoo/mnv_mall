@@ -37,7 +37,7 @@
                      <span class="bar1 short"></span>
                      <a href="<?=$_mnv_PC_member_url?>search_pass.php">비밀번호찾기</a>
                      <span class="bar1 short"></span>
-                     <a href="<?=$_mnv_PC_member_url?>join_frm.php">회원가입</a>
+                     <a href="<?=$_mnv_PC_member_url?>join_form.php">회원가입</a>
                    </div>
                  </div>
               </div>
@@ -104,7 +104,7 @@
 <script>
 	jQuery(document).ready(function(){
 		var input = $(".mb_input");
-		input.on('click', function(){
+		input.on('focus', function(){
 			$(this).siblings("label").empty();
 		});
 	});

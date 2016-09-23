@@ -88,7 +88,7 @@
                 </div>
                 <div class="mypage_block">
                   <div class="block_inner">
-                    <a href="#">
+                    <a href="<?=$_mnv_PC_member_url?>modify_form.php">
                       <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_modifyInfo.png" alt="개인정보수정"></h2>
                       <p>
                       회원이신 고객님의 개인정보를 관리하는 공간입니다.
