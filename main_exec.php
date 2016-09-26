@@ -541,6 +541,34 @@
 			echo $flag;
 		break;
 
+		case "move_wishlist" :
+			$cart_idx		= $_REQUEST['cart_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$cart_query		= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE idx='".$cart_idx."'";
+			$cart_result		= mysqli_query($my_db, $cart_query);
+			$cart_data		= mysqli_fetch_array($cart_result);
+
+			$wish_query		= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE goods_idx='".$cart_data['goods_idx']."'";
+			$wish_result		= mysqli_query($my_db, $wish_query);
+			$wish_num		= mysqli_num_rows($wish_result);
+
+			if ($wish_num > 0)
+			{
+				$flag	= "D";
+			}else{
+				$wish2_query 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, goods_option, wish_regdate) values('".$mb_id."','".$cart_data['goods_idx']."','".$cart_data['goods_option']."','".date("Y-m-d H:i:s")."')";
+				$wish2_result 		= mysqli_query($my_db, $wish2_query);
+
+				if ($wish2_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
+			}
+
+			echo $flag;
+		break;
+
 		case "delete_all_cart" :
 			$mb_id		= $_SESSION['ss_chon_id'];
 
@@ -580,6 +608,16 @@
 				$flag	= "N";
 
 			echo $flag;
+
+		break;
+
+		case "update_cart_cnt" :
+			$cart_idx		= $_REQUEST['cart_idx'];
+			$goods_cnt	= $_REQUEST['goods_cnt'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt='".$goods_cnt."' WHERE idx='".$cart_idx."' AND mb_id='".$mb_id."'";
+			$cart_result 		= mysqli_query($my_db, $cart_query);
 
 		break;
 

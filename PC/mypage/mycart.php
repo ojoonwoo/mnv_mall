@@ -60,7 +60,7 @@
                   </thead>
                   <tbody>
 <?
-	$cart_query		= "SELECT A.goods_option, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$_SESSION['ss_chon_id']."' AND A.showYN='Y'";
+	$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$_SESSION['ss_chon_id']."' AND A.showYN='Y'";
 	$cart_result		= mysqli_query($my_db, $cart_query);
 	$cart_num		= mysqli_num_rows($cart_result);
 
@@ -72,11 +72,15 @@
 			$cart_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$cart_data['goods_img_url']);
 
 			if ($cart_data['discount_price'] == 0)
-				$current_price	= $cart_data['sales_price'];
-			else
-				$current_price	= $cart_data['discount_price'];
+			{
+				$current_price			= $cart_data['sales_price'];
+				$current_sum_price		= $cart_data['sales_price'] * $cart_data['goods_cnt'];
+			}else{
+				$current_price			= $cart_data['discount_price'];
+				$current_sum_price		= $cart_data['discount_price'] * $cart_data['goods_cnt'];
+			}
 
-			$total_price			= $total_price + $current_price;
+			$total_price			= $total_price + $current_sum_price;
 
 			$goods_option_arr	= explode("||",$cart_data['goods_option']);
 			$goods_option_txt	= "";
@@ -121,7 +125,7 @@
                       <td class="count">
                         <input type="hidden" id="<?=$cart_data['cart_idx']?>_current_price" value="<?=$current_price?>">
                         <!-- <input type="hidden" id="<?=$cart_data['goods_code']?>_current__total_price" value="<?=$current_price?>"> -->
-                        <input type="text" name="select_amount" id="<?=$cart_data['cart_idx']?>_cnt" class="buy_cnt" value="1">
+                        <input type="text" name="select_amount" id="<?=$cart_data['cart_idx']?>_cnt" class="buy_cnt" value="<?=$cart_data['goods_cnt']?>">
                         <span class="amount_btn">
                           <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount_<?=$cart_data['cart_idx']?>">
                           <map name="amount_<?=$cart_data['cart_idx']?>" id="amount_<?=$cart_data['cart_idx']?>">
@@ -130,9 +134,9 @@
                           </map>
                         </span>
                       </td>
-                      <td class="total" id="<?=$cart_data['cart_idx']?>_total_price"><?=number_format($current_price)?></td>
+                      <td class="total" id="<?=$cart_data['cart_idx']?>_total_price"><?=number_format($current_sum_price)?></td>
                       <td style="padding-right:15px;">
-                        <input type="button" value="위시리스트 담기" class="board_btn">
+                        <input type="button" value="위시리스트 담기" class="board_btn move_wishlist" cart_idx="<?=$cart_data['cart_idx']?>" >
                       </td>
                     </tr>
 <?
@@ -192,7 +196,7 @@
                 </div><!-- 장바구니 담은 상품 없을때 -->
                 <div class="block_btn mt40">
                   <a href="<?=$_mnv_PC_url?>index.php"><input type="button" class="button_default mr10" value="계속 쇼핑하기"></a>
-                  <input type="button" class="button_default onColor" value="주문하기">
+                  <a href="<?=$_mnv_PC_order_url?>order.php?ordertype=cart"><input type="button" class="button_default onColor" value="주문하기"></a>
                 </div>
               </div>
             </div>
@@ -213,11 +217,3 @@
     </div>
   </body>
 </html>
-        if($("#checkall").prop("checked")){
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-            $("input[name=chk]").prop("checked",true);
-            //클릭이 안되있으면
-        }else{
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-            $("input[name=chk]").prop("checked",false);
-        }

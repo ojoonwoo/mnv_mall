@@ -177,6 +177,17 @@ function cart_plus(code)
 	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
 	ins_final_price	= ins_final_price + Number($("#hidden_delivery_price").val());
 	$(".total_payment").html(numberWithCommas(ins_final_price)+"원");
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"				: "update_cart_cnt",
+			"cart_idx"			: code,
+			"goods_cnt"		: ins_cnt
+		}
+	});
 }
 
 // 장바구니 > 수량 감소
@@ -197,6 +208,17 @@ function cart_minus(code)
 	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
 	ins_final_price	= ins_final_price + Number($("#hidden_delivery_price").val());
 	$(".total_payment").html(numberWithCommas(ins_final_price)+"원");
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "../../main_exec.php",
+		data:{
+			"exec"				: "update_cart_cnt",
+			"cart_idx"			: code,
+			"goods_cnt"		: ins_cnt
+		}
+	});
 }
 
 // 상품 상세 정보 > 수량 증가
@@ -583,4 +605,70 @@ $(document).on("click", ".move_mycart", function(){
 			}
 		}
 	});
+});
+
+// 마이페이지 > 장바구니 > 위시리스트 담기 클릭
+$(document).on("click", ".move_wishlist", function(){
+	var cart_idx		= $(this).attr("cart_idx");
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/main_exec.php",
+		data:{
+			"exec"				: "move_wishlist",
+			"cart_idx"		: cart_idx
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				if (confirm("관심 상품에 상품이 등록되었습니다. 지금 확인하시겠습니까?"))
+				{
+					location.href = './wishlist.php';
+				}
+			}else if (response == "D"){
+				alert("이미 관심상품에 등록하신 상품입니다..");
+			}else{
+				alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+
+// 주문하기 > 주문자 정보와 동일 클릭
+$(document).on("click", "#same_order", function(){
+	var order_zipcode			= $("#order_zipcode").val();
+	var order_name				= $("#order_name").val();
+	var order_address1			= $("#order_address1").val();
+	var order_address2			= $("#order_address2").val();
+	var order_phone1			= $("#order_phone1").val();
+	var order_phone2			= $("#order_phone2").val();
+	var order_phone3			= $("#order_phone3").val();
+	var order_email1			= $("#order_email1").val();
+	var order_email2			= $("#order_email2").val();
+
+	$("#deliver_zipcode").val(order_zipcode);
+	$("#deliver_name").val(order_name);
+	$("#deliver_address1").val(order_address1);
+	$("#deliver_address2").val(order_address2);
+	$("#deliver_phone1").val(order_phone1);
+	$("#deliver_phone2").val(order_phone2);
+	$("#deliver_phone3").val(order_phone3);
+	$("#deliver_email1").val(order_email1);
+	$("#deliver_email2").val(order_email2);
+});
+
+// 주문하기 > 새로운 배송지 클릭
+$(document).on("click", "#new_address", function(){
+	$("#deliver_zipcode").val("");
+	$("#deliver_name").val("");
+	$("#deliver_address1").val("");
+	$("#deliver_address2").val("");
+	$("#deliver_phone1").val("");
+	$("#deliver_phone2").val("");
+	$("#deliver_phone3").val("");
+	$("#deliver_email1").val("");
+	$("#deliver_email2").val("");
 });

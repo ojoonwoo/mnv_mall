@@ -35,6 +35,19 @@ function select_goods_info($goodscode)
 	return $data;
 }
 
+// 해당 상품정보 가져오기 (idx)
+function select_idx_goods_info($idx)
+{
+	global $_gl;
+	global $my_db;
+
+	$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE idx='".$idx."'";
+	$result		= mysqli_query($my_db, $query);
+	$data			= mysqli_fetch_array($result);
+
+	return $data;
+}
+
 // 해당 이벤트 가져오기 (idx)
 function select_event_info($idx)
 {
@@ -379,6 +392,22 @@ function sales_store_name($idx)
 	$data			= mysqli_fetch_array($result);
 
 	return $data['sales_store_name'];
+}
 
+function select_order_goods($ordertype)
+{
+	global $_gl;
+	global $my_db;
+
+	if ($ordertype == "cart")
+	{
+		$order_query		= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE cart_regdate >= date_add(now(), interval -3 day) AND mb_id='".$_SESSION['ss_chon_id']."' AND showYN='Y'";
+		$order_result		= mysqli_query($my_db, $order_query);
+		while ($order_data = mysqli_fetch_array($order_result))
+		{
+			$res_data[]	= $order_data;
+		}
+	}
+	return $res_data;
 }
 ?>
