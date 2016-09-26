@@ -467,9 +467,22 @@
 			}else{
 				$_SESSION['ss_chon_cartid']			= $mb_id;
 			}
-			// 추가 수정 작업 해야함
-			$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
-			$cart_result2 	= mysqli_query($my_db, $cart_query2);
+
+			$cart_query 	= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE mb_id='".$_SESSION['ss_chon_cartid']."' AND goods_idx='".$goods_idx."' AND goods_option='".$goods_option."' AND showYN='Y' AND cart_regdate >= date_add(now(), interval -3 day)";
+			$cart_result 	= mysqli_query($my_db, $cart_query);
+			$cart_num 	= mysqli_num_rows($cart_result);
+
+			if ($cart_num > 0)
+			{
+				$cart_data	= mysqli_fetch_array($cart_result);
+
+				$cart_query2		= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+1 WHERE idx='".$cart_data['idx']."'";
+				$cart_result2		= mysqli_query($my_db, $cart_query2);
+			}else{
+				// 추가 수정 작업 해야함
+				$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
+				$cart_result2 	= mysqli_query($my_db, $cart_query2);
+			}
 
 			if ($cart_result2)
 				$flag	= "Y";

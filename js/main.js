@@ -354,54 +354,6 @@ $(document).on("click", "#mb_logout", function(){
 	});
 });
 
-// 위시리스트 클릭
-$(document).on("click", "#wish_link", function(){
-	var goods_idx	= $("#goods_idx").val();
-	var goods_optionYN		= $("#goods_optionYN").val();
-	var option_txt				= "";
-	
-	if (goods_optionYN == "Y")
-	{
-		for (var k=0;k<5 ;k++ )
-		{
-			if ($("#option_change"+k).val() == "default")
-			{
-				alert("필수 옵션을 선택해 주세요.");
-				return false;
-			}else if ($("#option_change"+k).val() == undefined){
-				option_txt		+= "";
-			}else{
-				option_txt		+= "||"+$("#option_change"+k).val();
-			}
-		}
-	}
-
-	$.ajax({
-		type   : "POST",
-		async  : false,
-		url    : "http://localhost/main_exec.php",
-		data:{
-			"exec"				: "add_wishlist",
-			"goods_idx"		: goods_idx,
-			"goods_option"	: option_txt
-		},
-		success: function(response){
-			if (response == "N")
-			{
-				alert("로그인 후 관심상품으로 해주세요.");
-				location.href='../member/member_login.php';
-			}else if (response == "D"){
-				alert("이미 위시리스트에 등록한 상품입니다.");
-			}else if (response == "Y"){
-				alert("관심상품으로 등록되었습니다.");
-			}else{
-				alert("다시 시도해 주세요.");
-			}
-			//location.reload();
-		}
-	});
-});
-
 // 장바구니 > 전체선택/해제 체크박스 클릭
 $(document).on("click", "#chk_all", function(){
 	if($("#chk_all").prop("checked"))
@@ -473,6 +425,54 @@ $(document).on("click", "#cart_chk_del", function(){
 	}
 });
 
+// 위시리스트 클릭
+$(document).on("click", "#wish_link", function(){
+	var goods_idx	= $("#goods_idx").val();
+	var goods_optionYN		= $("#goods_optionYN").val();
+	var option_txt				= "";
+	
+	if (goods_optionYN == "Y")
+	{
+		for (var k=0;k<5 ;k++ )
+		{
+			if ($("#option_change"+k).val() == "default")
+			{
+				alert("필수 옵션을 선택해 주세요.");
+				return false;
+			}else if ($("#option_change"+k).val() == undefined){
+				option_txt		+= "";
+			}else{
+				option_txt		+= "||"+$("#option_change"+k).val();
+			}
+		}
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/main_exec.php",
+		data:{
+			"exec"				: "add_wishlist",
+			"goods_idx"		: goods_idx,
+			"goods_option"	: option_txt
+		},
+		success: function(response){
+			if (response == "N")
+			{
+				alert("로그인 후 관심상품으로 해주세요.");
+				location.href='../member/member_login.php';
+			}else if (response == "D"){
+				alert("이미 위시리스트에 등록한 상품입니다.");
+			}else if (response == "Y"){
+				alert("관심상품으로 등록되었습니다.");
+			}else{
+				alert("다시 시도해 주세요.");
+			}
+			//location.reload();
+		}
+	});
+});
+
 // 장바구니 클릭
 $(document).on("click", "#mycart_link", function(){
 	var goods_idx				= $("#goods_idx").val();
@@ -508,6 +508,49 @@ $(document).on("click", "#mycart_link", function(){
 			if (response == "Y")
 			{
 				$(".popup_basket").show();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 상품 상세 > 바로구매 클릭
+$(document).on("click", "#order_link", function(){
+	var goods_idx				= $("#goods_idx").val();
+	var goods_optionYN		= $("#goods_optionYN").val();
+	var option_txt				= "";
+	
+	if (goods_optionYN == "Y")
+	{
+		for (var k=0;k<5 ;k++ )
+		{
+			if ($("#option_change"+k).val() == "default")
+			{
+				alert("필수 옵션을 선택해 주세요.");
+				return false;
+			}else if ($("#option_change"+k).val() == undefined){
+				option_txt		+= "";
+			}else{
+				option_txt		+= "||"+$("#option_change"+k).val();
+			}
+		}
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://localhost/main_exec.php",
+		data:{
+			"exec"				: "add_mycart",
+			"goods_idx"		: goods_idx,
+			"goods_option"	: option_txt
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				location.href="http://localhost/PC/order/order.php?ordertype=cart"
 			}else{
 				alert("다시 시도해 주세요.");
 				location.reload();

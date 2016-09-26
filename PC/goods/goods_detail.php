@@ -56,9 +56,26 @@
                     </div>
                     <div class="block_line">
                       <span class="product_name left_text"><?=$goods_info['goods_name']?></span>
+<?
+	if ($goods_info['goods_new_flag'] == "Y")
+	{
+?>
                       <span class="stt_icon1 new">new</span>
+<?
+	}
+	if ($goods_info['goods_best_flag'] == "Y")
+	{
+?>
                       <span class="stt_icon1 best">best</span>
+<?
+	}
+	if ($goods_info['goods_restock_flag'] == "Y")
+	{
+?>
                       <span class="stt_icon1 restock">재입고</span>
+<?
+	}
+?>
                     </div>
                     <div class="block_line">
                       <span class="left_text">판매가</span>
@@ -100,7 +117,7 @@
 <?
 	}else{
 ?>
-                      <input type="text" name="select_amount" id="buy_cnt" value="1">
+                      <input type="text" name="select_amount" id="buy_cnt" class="buy_cnt" value="1">
                       <span class="amount_btn">
                         <img src="../images/polygon_double.png" usemap="#amount">
                         <map name="amount" id="amount">
@@ -155,7 +172,7 @@
                       </div>
                     </div>
                     <div class="block_btn clearfix">
-                      <input type="button" class="pr_btn active" value="바로구매">
+                      <input type="button" class="pr_btn active" value="바로구매" id="order_link">
                       <input type="button" class="pr_btn" value="장바구니" id="mycart_link">
                       <input type="button" class="pr_btn" value="위시리스트" id="wish_link">
                       <!-- 장바구니 팝업 -->

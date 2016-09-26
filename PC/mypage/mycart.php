@@ -107,10 +107,10 @@
                       </td>
                       <td class="info clearfix" style="width:400px;">
                         <div class="info_img">
-                          <img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>" width="74px">
+                          <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>" width="74px"></a>
                         </div>
                         <div class="info_txt">
-                          <h3><?=$cart_data['goods_name']?></h3>
+                          <h3><a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><?=$cart_data['goods_name']?></a></h3>
 <?
 	if ($cart_data['goods_optionYN'] == "Y")
 	{
