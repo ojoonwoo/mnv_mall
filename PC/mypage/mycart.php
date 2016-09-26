@@ -1,12 +1,13 @@
 <?
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
-
+/*
 	if (!$_SESSION['ss_chon_id'])
 	{
 		echo "<script>alert('로그인 후 이용해 주세요.');</script>";
 		echo "<script>location.href='".$_mnv_PC_member_url."member_login.php';</script>";
 	}
+*/
 ?>
   <body>
     <div id="wrap_page">
