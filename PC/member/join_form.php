@@ -292,7 +292,7 @@
 				},
 				success: function(res){
 					if(res=='Y'){
-						alert("가입 성공");
+						alert("환영합니다! 회원 가입되셨습니다. 로그인 후 이용해 주세요.");
 						location.href='./member_login.php';
 					}else{
 						alert("가입 실패");
