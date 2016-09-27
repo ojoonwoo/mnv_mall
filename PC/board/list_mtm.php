@@ -47,7 +47,7 @@
                   </thead>
                   <tbody>
 <?
-	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_mtm_table']."";
+	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_mtm_table']." WHERE user_id='".$user_id."'";
 
 	list($buyer_count) = mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
 

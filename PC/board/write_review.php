@@ -63,9 +63,9 @@
                   </div>
                 </div>
               </div>
-              <div class="admin_editor" style="text-align:left;">
+              <div class="admin_editor" style="text-align:left;padding-top:0;">
                 <!-- 사용자 에디터 삽입 영역 -->
-                <textarea name="content"  id="content" rows="10" cols="100" style="width:100%; height:412px; display:none;"></textarea>
+                <textarea name="content" id="content" rows="10" cols="100" style="width:100%; height:412px; display:none;"></textarea>
                 <!-- 사용자 에디터 삽입 영역 -->
               </div>
               <div class="block_btn mt30">
@@ -125,7 +125,7 @@
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "content",
-		sSkinURI: "../../lib/smarteditor/SmartEditor2Skin.html",  
+		sSkinURI: "../../lib/smarteditor/SmartEditor2Skin.html",
 		htParams : {
 			bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,   // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -170,7 +170,6 @@
 				content     : content
 			},
 			success: function(res){
-				console.log(res);
 				if(res == "Y")
 				{
 					alert("리뷰가 등록되었습니다.");

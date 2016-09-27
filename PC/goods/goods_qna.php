@@ -92,7 +92,6 @@
 ?>
                 <div class="block_board_btn">
                   <a href="<?=$_mnv_PC_board_url?>write_qna.php?goods_code=<?=$goods_code?>"><input type="button" value="작성하기" class="board_btn" id="write_qna"></a>
-                  <a href="<?=$_mnv_PC_board_url?>list_qna.php"><input type="button" value="목록으로" class="board_btn" id="list_qna"></a>
                 </div>
                 <div class="block_board_pager">
                   <div class="pageing"><?php echo $BLOCK_LIST?></div>

@@ -67,7 +67,7 @@
 		$BLOCK_LIST = $PAGE_CLASS->blockList7();
 		$PAGE_UNCOUNT = $PAGE_CLASS->page_uncount;
 		//	$buyer_list_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE 1 ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
-		$buyer_list_query = "SELECT * FROM ".$_gl['board_notice_table']." WHERE 1 AND user_id='admin' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
+		$buyer_list_query = "SELECT * FROM ".$_gl['board_notice_table']." WHERE 1 AND user_id='admin2' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
 
 		$result = mysqli_query($my_db, $buyer_list_query);
 
@@ -79,15 +79,9 @@
 		{
 ?>
                     <tr>
-                      <td class="no"><?=$PAGE_UNCOUNT--;?></td>
-                      <td class="subject"><a href="#">6월 무이자 행사 이벤트</a></td>
-                      <td class="writer">촌의감각</td>
-                      <td class="date">2016.09.01</td>
-                    </tr>
-                    <tr>
-                      <td class="no">9</td>
+                      <td class="no"><?=$buyer_info[$key]['idx']?></td>
                       <td class="subject">
-                        <a href="<?=$_mnv_PC_board_url?>read_notice.php?idx=<?=$buyer_info[$key]['idx']?>&pg=<?=$pg?>">옐로아이디 추가하고 쿠폰받자!
+                        <a href="<?=$_mnv_PC_board_url?>read_notice.php?idx=<?=$buyer_info[$key]['idx']?>&pg=<?=$pg?>">
                         <?=$buyer_info[$key]['subject']?>
                         </a>
                       </td>
