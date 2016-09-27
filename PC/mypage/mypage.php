@@ -30,7 +30,7 @@
                 <span class="bar1 short"></span>
                 <a href="<?=$_mnv_PC_mypage_dir?>coupon.php"><span>쿠폰</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>consult_list.php"><span>1대1 문의하기</span></a>
+                <a href="<?=$_mnv_PC_board_dir?>list_mtm.php"><span>1대1 문의하기</span></a>
                 <span class="bar1 short"></span>
                 <a href="#"><span>개인정보 수정</span></a>
               </div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="mypage_block">
                   <div class="block_inner">
-                    <a href="<?=$_mnv_PC_mypage_dir?>consult_list.php">
+                    <a href="<?=$_mnv_PC_board_url?>list_mtm.php">
                       <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_qna.png" alt="1대1맞춤상담"></h2>
                       <p>
                       고객님의 궁금하신 문의사항에 대하여

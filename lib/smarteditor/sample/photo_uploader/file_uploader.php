@@ -27,7 +27,8 @@ if(bSuccessUpload) {
 		$url .= "&bNewLine=true";
 		$url .= "&sFileName=".urlencode(urlencode($name));
 		// $url .= "&sFileURL=upload/".urlencode(urlencode($name));
-		$url .= "&sFileURL=http://localhost:80/mnv_mall/PC/upload/".urlencode(urlencode($name));
+//		$url .= "&sFileURL=http://localhost:80/mnv_mall/PC/upload/".urlencode(urlencode($name)); 임시 수정했습니다
+		$url .= "&sFileURL=http://localhost:80/PC/upload/".urlencode(urlencode($name));
 	}
 }
 // FAILED

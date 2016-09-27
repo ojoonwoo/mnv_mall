@@ -3,18 +3,6 @@
 	include_once $_mnv_PC_dir."header.php";
 
 	$user_id			= $_SESSION['ss_chon_id'];
-	$goods_code	= $_REQUEST['goods_code'];
-	$goods_info = select_goods_info($goods_code);
-
-	if ($goods_info['discount_price'] == 0)
-		$real_price	= $goods_info['sales_price'];
-	else
-		$real_price	= $goods_info['discount_price'];
-
-	// 현재 남은 갯수
-	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
-
-	$goods_info['goods_img_url']	= str_replace("../../","../",$goods_info['goods_img_url']);
 ?>
   <body>
     <div id="wrap_page">
@@ -27,58 +15,63 @@
           <div class="section main">
             <div class="area_main_top nopadd">
               <div class="block_title">
-                <p class="cate_title"><img src="../images/cate_title_review.png" alt="리뷰"></p>
-              </div>
-              <div class="product_modBox mb20">
-                <div class="inner clearfix">
-                  <div class="box img"><img src="<?=$goods_info['goods_img_url']?>"></div>
-                  <div class="box txt">
-                    <div class="boxHead">
-                      <p class="name"><?=$goods_info['goods_name']?></p>
-                      <p class="price"><?=$goods_info['sales_price']?>￦</p>
-                    </div>
-                    <div class="boxTail">
-                      <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$goods_info['goods_code']?>"><span class="span_btn">상품 상세보기<span class="arrow"></span></span></a>
-                    </div>
-                  </div>
-                </div>
+                <p class="cate_title"><img src="../images/cate_title_consult.png" alt="1대1 문의"></p>
               </div>
             </div>
             <div class="area_main_middle nopadd">
               <div class="table_block">
                 <div class="block_row">
                   <div class="block_col head">
-                    <p>제목</p>
+                    <p>질문유형</p>
                   </div>
                   <div class="block_col">
-                    <input class="inputT" type="text" size="70" placeholder="제목" name="subject" id="subject">
+                    <div class="selectbox">
+                      <label for="qType">질문유형을 선택해주세요.</label>
+                      <select id="qType" name="qType">
+                        <option value="none" selected>질문유형을 선택해주세요.</option>
+                        <option value="shipping">배송문의</option>
+                        <option value="payment">결제문의</option>
+                        <option value="other">기타</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <div class="block_row">
                   <div class="block_col head">
-                    <p>작성자</p>
+                    <p>제목</p>
                   </div>
                   <div class="block_col">
-                    <input class="inputT" type="text" size="15" name="user_id" id="user_id" value="<?=$user_id?>" readonly>
+                    <input class="inputT" type="text" size="70" id="subjectMTM">
+                  </div>
+                </div>
+                <div class="block_row">
+                  <div class="block_col head">
+                    <p>메일로 답변받기</p>
+                  </div>
+                  <div class="block_col">
+                    <input class="inputT" type="text" size="30" name="emailMTM" id="emailMTM" disabled>
+                    <div class="checks">
+                      <input type="checkbox" id="emailChk">
+                      <label for="emailChk">답변받기</label>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="admin_editor" style="text-align:left;">
-                <!-- 사용자 에디터 삽입 영역 -->
+              <div class="insert_editor">
                 <textarea name="content"  id="content" rows="10" cols="100" style="width:100%; height:412px; display:none;"></textarea>
-                <!-- 사용자 에디터 삽입 영역 -->
               </div>
               <div class="block_btn mt30">
-                <input type="button" class="button_default onColor mr10" id="write_rev" value="작성완료">
-                <input type="button" class="button_default" value="취소">
+                <input type="button" class="button_default mr10" value="취소">
+                <input type="button" class="button_default onColor" id="write_mtm" value="작성완료">
               </div>
             </div>
             <div class="area_main_bottom">
+
             </div>
           </div>
           <div class="section side">
             <div class="side_full_img">
-              <img src="../images/side_full.jpg">
+              <img src="../images/side_full_img1.jpg">
             </div>
           </div>
         </div>
@@ -141,21 +134,46 @@
 		},
 		fCreator: "createSEditor2"
 	});
+	
+	$(document).ready(function(){
+		var emailChk = $('#emailChk');
+		var email    = $('#emailMTM');
+		emailChk.on('click', function(){
+			if(emailChk.is(':checked')){
+				email.attr('disabled', false);
+				email.focus();
+			}else{
+				email.attr('disabled', true);
+			}
+		});
+		
+		var select = $("select#qType");
 
-	$('#write_rev').on('click', function(){
+		select.change(function(){
+			var select_name = $(this).children("option:selected").text();
+			$(this).siblings("label").text(select_name);
+		});
+	});
 
-		var user_id = $('#user_id').val();
-//		var goods_code = $('#goods_code').val();
-		var goods_code = "<?=$goods_info['goods_code']?>";
-		var subject = $('#subject').val();
-		var content = oEditors.getById['content'].getIR();
+	$('#write_mtm').on('click', function(){
 
+		var user_id			= "<?=$user_id?>";
+		//		var goods_code = $('#goods_code').val();
+		var question_type	= $('#qType option:selected').val();
+		var subject 		= $('#subjectMTM').val();
+		var user_email			= $('#emailMTM').val();
+		var content 		= oEditors.getById['content'].getIR();
+		
+		if(question_type == 'none'){
+			alert("질문유형을 선택해주세요.");
+			return;
+		}
 		if(subject == ''){
-			alert("제목을 입력해주세요.")
+			alert("제목을 입력해주세요.");
 			return;
 		}
 		if(content == ''){
-			alert("내용을 입력해주세요.")
+			alert("내용을 입력해주세요.");
 			return;
 		}
 
@@ -163,23 +181,24 @@
 			method: 'POST',
 			url: '../../main_exec.php',
 			data: {
-				exec        : "write_review",
-				user_id     : user_id,
-				goods_code  : goods_code,
-				subject     : subject,
-				content     : content
+				exec          : "write_mtm",
+				user_id       : user_id,
+				user_email    : user_email,
+				question_type : question_type,
+				subject       : subject,
+				content       : content
 			},
 			success: function(res){
 				console.log(res);
 				if(res == "Y")
-				{
-					alert("리뷰가 등록되었습니다.");
-					//location.href="list_review.php";
-					history.back();
-				}else{
-					alert("리뷰 등록 실패");
-					location.reload();
-				}
+			{
+				alert("문의가 등록되었습니다.");
+				//location.href="list_review.php";
+				history.back();
+			}else{
+				alert("문의 등록 실패");
+				location.reload();
+			}
 			}
 		})
 	});

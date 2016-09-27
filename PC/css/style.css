@@ -62,8 +62,8 @@ input {
     cursor: pointer;
 }
 
-.mb14 {
-    margin-bottom: 14px;
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
 #wrap_page {
@@ -1101,7 +1101,7 @@ input {
 }
 
 .pr_view_table .open_content {
-    text-align: left;
+    padding: 12px 0;
     padding-left: 30px;
 }
 
@@ -1374,15 +1374,16 @@ input {
 
 .admin_editor {
     width: 889px;
-    padding-bottom: 40px;
+/*    padding-bottom: 40px;*/
     margin: 0 auto;
-    text-align: center;
-    border-bottom: 1px solid #cccacb;
-    margin-top: 41px;
+/*    text-align: center;*/
+/*    border-bottom: 1px solid #cccacb;*/
+/*    margin-top: 41px;*/
 }
 
 .admin_editor img {
 /*    width: 100%;*/
+    width: auto !important;
 }
 
 .branding_area {
@@ -1485,8 +1486,8 @@ input {
 
 .insert_editor {
     width: 100%;
-    height: 342px;
-    border-bottom: 1px solid #cccacb;
+/*    height: 342px;*/
+/*    border-bottom: 1px solid #cccacb;*/
 }
 /* event */
 
@@ -1869,7 +1870,13 @@ input {
 }
 
 .product_modBox .box.img {
+    width: 148px;
+    height: 148px;
     margin-right: 20px;
+}
+
+.product_modBox .box.img img {
+    width: 100%;
 }
 
 .product_modBox .box.txt {
@@ -2217,6 +2224,9 @@ div {
 .mb10 {
     margin-bottom: 10px !important;
 }
+.mb14 {
+    margin-bottom: 14px;
+}
 .mb20 {
     margin-bottom: 20px !important;
 }
@@ -2228,6 +2238,9 @@ div {
 }
 .mr10 {
     margin-right: 10px;
+}
+.pt20 {
+    padding-top: 20px;
 }
 .pt40 {
     padding-top: 40px;

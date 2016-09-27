@@ -7,7 +7,7 @@
 	$goods_code	= $_REQUEST['goods_code'];
 	$goods_info = select_goods_info($goods_code);
 
-	$s_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
+	$s_query = "SELECT * FROM ".$_gl['board_qna_table']." WHERE idx='".$idx."'";
 	$result = @mysqli_query($my_db, $s_query);
 	$data = @mysqli_fetch_array($result);
 	$og_cont = $data['content'];
@@ -77,7 +77,7 @@
               <!-- 사용자 에디터 삽입 영역 -->
             </div>
             <div class="block_btn mt30">
-              <input type="button" class="button_default onColor mr10" id="edit_rev" value="수정완료">
+              <input type="button" class="button_default onColor mr10" id="edit_qna" value="수정완료">
               <input type="button" class="button_default" value="취소">
             </div>
           </div>
@@ -125,75 +125,75 @@
       </div>
     </div>
   </div>
-<script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script>
-	var oEditors    = [];
-	var m_oEditors  = [];
+  <script type="text/javascript" src="../../lib/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+  <script>
+    var oEditors    = [];
+    var m_oEditors  = [];
 
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef: oEditors,
-		elPlaceHolder: "content",
-		sSkinURI: "../../lib/smarteditor/SmartEditor2Skin.html",  
-		htParams : {
-			bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseVerticalResizer : true,   // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseModeChanger : true,     // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			//aAdditionalFontList : aAdditionalFontSet,   // 추가 글꼴 목록
-			fOnBeforeUnload : function(){
-				//alert("완료!");
-			}
-		}, //boolean
-		fOnAppLoad : function(){
-			//예제 코드
-			//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-			oEditors.getById['content'].setIR(og_content);
-		},
-		fCreator: "createSEditor2"
-	});
+    nhn.husky.EZCreator.createInIFrame({
+      oAppRef: oEditors,
+      elPlaceHolder: "content",
+      sSkinURI: "../../lib/smarteditor/SmartEditor2Skin.html",  
+      htParams : {
+        bUseToolbar : true,       // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+        bUseVerticalResizer : true,   // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+        bUseModeChanger : true,     // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+        //aAdditionalFontList : aAdditionalFontSet,   // 추가 글꼴 목록
+        fOnBeforeUnload : function(){
+          //alert("완료!");
+        }
+      }, //boolean
+      fOnAppLoad : function(){
+        //예제 코드
+        //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+        oEditors.getById['content'].setIR(og_content);
+      },
+      fCreator: "createSEditor2"
+    });
 
-	$('#edit_rev').on('click', function(){
+    $('#edit_qna').on('click', function(){
 
-		var idx		= "<?=$idx?>";
-		var user_id = $('#user_id').val();
-		//		var goods_code = $('#goods_code').val();
-		var goods_code = "<?=$goods_info['goods_code']?>";
-		var subject = $('#subject').val();
-		var content = oEditors.getById['content'].getIR();
+      var idx		= "<?=$idx?>";
+      var user_id = $('#user_id').val();
+      //		var goods_code = $('#goods_code').val();
+      var goods_code = "<?=$goods_info['goods_code']?>";
+      var subject = $('#subject').val();
+      var content = oEditors.getById['content'].getIR();
 
-		if(subject == ''){
-			alert("제목을 입력해주세요.")
-			return;
-		}
-		if(content == ''){
-			alert("내용을 입력해주세요.")
-			return;
-		}
+      if(subject == ''){
+        alert("제목을 입력해주세요.")
+        return;
+      }
+      if(content == ''){
+        alert("내용을 입력해주세요.")
+        return;
+      }
 
-		$.ajax({
-			method: 'POST',
-			url: '../../main_exec.php',
-			data: {
-				exec        : "edit_review",
-				idx         : idx,
-				user_id     : user_id,
-				goods_code  : goods_code,
-				subject     : subject,
-				content     : content
-			},
-			success: function(res){
-				console.log(res);
-				if(res == "Y")
-				{
-					alert("리뷰가 수정되었습니다.");
-					//location.href="list_review.php";
-					history.back();
-				}else{
-					alert("리뷰 수정 실패");
-					location.reload();
-				}
-			}
-		})
-	});
-</script>
+      $.ajax({
+        method: 'POST',
+        url: '../../main_exec.php',
+        data: {
+          exec        : "edit_qna",
+          idx         : idx,
+          user_id     : user_id,
+          goods_code  : goods_code,
+          subject     : subject,
+          content     : content
+        },
+        success: function(res){
+          console.log(res);
+          if(res == "Y")
+          {
+            alert("문의가 수정되었습니다.");
+            //location.href="list_review.php";
+            history.back();
+          }else{
+            alert("문의 수정 실패");
+            location.reload();
+          }
+        }
+      })
+    });
+  </script>
 </body>
 </html>

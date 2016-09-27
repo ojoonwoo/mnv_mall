@@ -23,11 +23,11 @@
                    <h3>LOGIN</h3>
                    <div class="group_input">
                      <label for="user_id">ID</label>
-                     <input type="text" name="mb_id" id="mb_id" class="mb_input">
+                     <input type="text" name="mb_id" id="mb_id" class="mb_input autocomplete-off" autocomplete="off">
                    </div>
                    <div class="group_input">
                      <label for="user_pass">PASS</label>
-                     <input type="password" name="mb_password" id="mb_password" class="mb_input">
+                     <input type="password" name="mb_password" id="mb_password" class="mb_input autocomplete-off" autocomplete="off">
                    </div>
                    <div class="group_input">
                      <input type="button" class="btn login" id="mb_login" value="로그인">
@@ -103,6 +103,9 @@
   </body>
 <script>
 	jQuery(document).ready(function(){
+//		setTimeout(function(){
+//			$('.autocomplete-off').val('');
+//		}, 15);
 		var input = $(".mb_input");
 		input.on('focus', function(){
 			$(this).siblings("label").empty();
