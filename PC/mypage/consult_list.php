@@ -22,15 +22,15 @@
                 <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_consult.png" alt="1대1 문의"></p>
               </div>
               <div class="mypage_cate_hori">
-                <a href="<?=$_mnv_PC_mypage_dir?>mycart.php"><span class="active_underLine">장바구니</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>mycart.php"><span>장바구니</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span>위시리스트</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span>관심상품</span></a>
                 <span class="bar1 short"></span>
                 <a href="<?=$_mnv_PC_mypage_dir?>order_status.php"><span>주문조회</span></a>
                 <span class="bar1 short"></span>
                 <a href="<?=$_mnv_PC_mypage_dir?>coupon.php"><span>쿠폰</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>consult_list.php"><span>1대1 문의하기</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>consult_list.php"><span class="active_underLine">1대1 문의하기</span></a>
                 <span class="bar1 short"></span>
                 <a href="#"><span>개인정보 수정</span></a>
               </div>

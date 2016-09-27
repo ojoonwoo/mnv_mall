@@ -66,7 +66,7 @@
 
 		$total_price			= $total_price + $current_sum_price;
 
-		$goods_option_arr	= explode("||",$goods_info['goods_option']);
+		$goods_option_arr	= explode("||",$val['goods_option']);
 		$goods_option_txt	= "";
 		$i = 0;
 		foreach($goods_option_arr as $key2 => $val2)
