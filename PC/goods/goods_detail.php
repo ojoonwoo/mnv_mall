@@ -176,7 +176,7 @@
                     <div class="block_btn clearfix">
                       <input type="button" class="pr_btn active" value="바로구매" id="order_link">
                       <input type="button" class="pr_btn" value="장바구니" id="mycart_link">
-                      <input type="button" class="pr_btn" value="위시리스트" id="wish_link">
+                      <input type="button" class="pr_btn" value="관심상품" id="wish_link">
                       <!-- 장바구니 팝업 -->
                       <div class="popup_basket" style="display:none;">
                         <div class="popup_inner">
@@ -212,66 +212,31 @@
               <div class="related_block">
                 <p class="head_txt mb14">관련상품</p>
                 <div class="list_product clearfix">
+<?
+	$related_goods_arr		= explode(";",$goods_info['related_goods']);
+
+	foreach($related_goods_arr as $key => $val)
+	{
+		$related_goods_info	= select_goods_info($val);
+		$related_goods_info['goods_img_url']		= str_replace("../../","../",$related_goods_info['goods_img_url']);
+		if ($val != "")
+		{
+?>
                   <div class="product n4 rt">
-                    <a href="#"><img src="../images/relate1.jpg"></a>
+                    <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$related_goods_info['goods_code']?>"><img src="<?=$related_goods_info['goods_img_url']?>"></a>
                     <div class="prd_info">
-                      <span class="prd_name">에디슨 스탠드 조명</span>
+                      <span class="prd_name"><?=$related_goods_info['goods_name']?></span>
                       <span class="stt_icon2 new">NEW</span>
-                      <span class="prd_price">2,500원</span>
+                      <span class="prd_price"><?=number_format($related_goods_info['discount_price'])?>원</span>
                       <span class="prd_desc">
-                      디저트접시로, 앞접시로,<br>
-                      반찬접시로 전천후로 활용가능한<br>
-                      접시에요.<br>
-                      테두리에 홈이 파진 모양새가<br>
-                      단조롭지 않고 귀엽답니다!
+                      <?=$related_goods_info['goods_small_desc']?>
                       </span>
                     </div>
                   </div>
-                  <div class="product n4 rt">
-                    <a href="#"><img src="../images/relate2.jpg"></a>
-                    <div class="prd_info">
-                      <span class="prd_name">에디슨 스탠드 조명</span>
-                      <span class="stt_icon2 restock">재입고</span>
-                      <span class="prd_price">2,500원</span>
-                      <span class="prd_desc">
-                        디저트접시로, 앞접시로,<br>
-                        반찬접시로 전천후로 활용가능한<br>
-                        접시에요.<br>
-                        테두리에 홈이 파진 모양새가<br>
-                        단조롭지 않고 귀엽답니다!
-                      </span>
-                    </div>
-                  </div>
-                  <div class="product n4 rt">
-                    <a href="#"><img src="../images/relate3.jpg"></a>
-                    <div class="prd_info">
-                      <span class="prd_name">에디슨 스탠드 조명</span>
-                      <span class="stt_icon2 best">BEST</span>
-                      <span class="prd_price">2,500원</span>
-                      <span class="prd_desc">
-                        디저트접시로, 앞접시로,<br>
-                        반찬접시로 전천후로 활용가능한<br>
-                        접시에요.<br>
-                        테두리에 홈이 파진 모양새가<br>
-                        단조롭지 않고 귀엽답니다!
-                      </span>
-                    </div>
-                  </div>
-                  <div class="product n4 rt">
-                    <a href="#"><img src="../images/relate4.jpg"></a>
-                    <div class="prd_info">
-                      <span class="prd_name">에디슨 스탠드 조명</span>
-                      <span class="stt_icon2 best">BEST</span>
-                      <span class="prd_price">2,500원</span>
-                      <span class="prd_desc">
-                        디저트접시로, 앞접시로,<br>
-                        반찬접시로 전천후로 활용가능한<br>
-                        접시에요.<br>
-                        테두리에 홈이 파진 모양새가<br>
-                        단조롭지 않고 귀엽답니다!
-                      </span>
-                    </div>
-                  </div>
+<?
+		}
+	}
+?>
                 </div>
               </div>
 <?
@@ -289,39 +254,9 @@
           </div>
         </div>
       </div>
-      <div id="footer">
-        <div class="area_infoChon">
-          <div class="inner infoC clearfix">
-            <div class="box_info">
-              <span class="customerC">고객센터</span>
-              <span class="telNum">070-000-0000</span>
-              <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
-              <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
-            </div>
-            <div class="box_info">
-              <span>이메일 : SERVICE@STORE-CHON.COM</span>
-              <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
-            </div>
-            <div class="box_info clearfix">
-              <a href="#"><span class="about_chon">ABOUT 촌의감각</span></a>
-              <a href="#"><span class="sugg">입점문의</span></a>
-              <a href="#"><span class="sugg">제휴문의</span></a>
-              <a href="#"><span class="sugg last">대량구매</span></a>
-            </div>
-            <div class="box_info sns clearfix">
-              <a href="#"><span>인스타그램</span></a>
-              <a href="#"><span>페이스북</span></a>
-              <a href="#"><span>블로그</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="address">
-          <p>company  미니버타이징(주)  address  서울특별시  서초구  방배동  931-9  2F</p>
-          <p>owner  양선혜    business  license  114  87  11622   privacy policy | terms of use</p>
-          <br>
-          <p>@chon all rights reserved</p>
-        </div>
-      </div>
+<?
+	include_once $_mnv_PC_dir."footer.php";
+?>
     </div>
   </body>
 <script>
