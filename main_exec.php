@@ -117,7 +117,7 @@
 						<p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;'><span style='padding: 0;margin: 0;color: #b88b5b;line-height: 36px;vertical-align: middle;'>아이디: $user_id</span></p>
 						<a href='www.store-chon.com' style='padding: 0;margin: 0;text-decoration: none;color: #000;'><p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;background-color: #b88b5b;'><span style='padding: 0;margin: 0;color: #ffffff;line-height: 36px;vertical-align: middle;'>촌의 감각 홈페이지 가기</span></p></a>
 						</div>",
-						"ojoonwoo@naver.com", "$username");
+						"$email", "$username");
 					$flag = "Y";
 				}else{
 					$flag = "N";
