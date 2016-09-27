@@ -95,7 +95,7 @@
 	if ($login_id == "")
 	{
 ?>
-                  <a href="#" onclick="alert('로그인 후 이용해 주세요.');location.href='<?=$_mnv_PC_member_url?>'member_login.php"><input type="button" value="작성하기" class="board_btn" id="write_qna"></a>
+                  <a href="#" onclick="alert('로그인 후 이용해 주세요.');location.href='<?=$_mnv_PC_member_url?>member_login.php';"><input type="button" value="작성하기" class="board_btn" id="write_qna"></a>
 <?
 	}else{
 ?>
