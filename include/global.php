@@ -16,6 +16,8 @@
 	$_gl['member_info_table']				= "member_info";				// 회원 정보 테이블
 	$_gl['purchasing_info_table']			= "purchasing_info";			// 거래처 정보 테이블
 	$_gl['board_review_table']				= "board_review";				// 리뷰 게시판 테이블
+	$_gl['board_qna_table']					= "board_qna";					// 문의사항 게시판 테이블
+	$_gl['board_mtm_table']					= "board_mtm";					// 1대1문의 게시판 테이블
 	$_gl['wishlist_info_table']				= "wishlist_info";				// 위시리스트 테이블
 	$_gl['mycart_info_table']				= "mycart_info";					// 마이카트 테이블
 	$_gl['restock_info_table']				= "restock_info";				// 재입고 요청 테이블

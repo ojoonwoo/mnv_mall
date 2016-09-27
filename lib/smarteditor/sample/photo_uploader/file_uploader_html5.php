@@ -33,7 +33,8 @@
 			$sFileInfo .= "&bNewLine=true";
 			$sFileInfo .= "&sFileName=".$filename;
 			// $sFileInfo .= "&sFileURL=upload/".$file->name;
-			$sFileInfo .= "&sFileURL=http://localhost:80/mnv_mall/PC/upload/".$file->name;
+//			$sFileInfo .= "&sFileURL=http://localhost:80/mnv_mall/PC/upload/".$file->name; 임시 수정했습니다.
+			$sFileInfo .= "&sFileURL=http://localhost:80/PC/upload/".$file->name;
 		}
 
 		echo $sFileInfo;

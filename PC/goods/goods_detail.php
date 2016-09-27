@@ -2,6 +2,8 @@
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
+	$login_id = $_SESSION['ss_chon_id'];
+
 	$goods_code	= $_REQUEST['goods_code'];
 	// 상품 정보
 	$goods_info	= select_goods_info($goods_code);
@@ -310,8 +312,9 @@
 	jQuery(document).ready(function(){
 <?
 	$i	= 0;
-	foreach($goods_option_arr as $key => $val)
-	{
+	if(is_array($goods_option_arr)) {
+		foreach($goods_option_arr as $key => $val)
+		{
 ?>
 		var select = $("select#option_change<?=$i?>");
 
@@ -320,9 +323,15 @@
 			$(this).siblings("label").text(select_name);
 		});
 <?
-		$i++;
+			$i++;
+		}
 	}
 ?>
+		$(".open_board").on("click", function(){
+			var target = $(this).parent().parent("tr").next(".hidden_board");
+			$(target).slideToggle();
+			$(".hidden_board").not(target).css("display", "none");
+		});
 	});
 
 	function amount_change(type) {
@@ -345,6 +354,22 @@
 			f.pg.value = num;
 			f.submit();
 		}).fadeIn("slow");
+	}
+	
+	function edit_review(user_id, idx, goodsCode)
+	{
+		if(user_id == "<?=$login_id?>")
+			location.href="<?=$_mnv_PC_board_url?>edit_review.php?idx="+idx+"&goods_code="+goodsCode;
+		else
+			alert("본인만 수정가능합니다.");
+	}
+	
+	function edit_qna(user_id, idx, goodsCode)
+	{
+		if(user_id == "<?=$login_id?>")
+			location.href="<?=$_mnv_PC_board_url?>edit_qna.php?idx="+idx+"&goods_code="+goodsCode;
+		else
+			alert("본인만 수정가능합니다.");
 	}
 
 </script>

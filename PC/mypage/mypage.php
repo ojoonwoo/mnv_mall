@@ -72,7 +72,7 @@
                 </div>
                 <div class="mypage_block">
                   <div class="block_inner">
-                    <a href="#">
+                    <a href="<?=$_mnv_PC_board_url?>list_mtm.php">
                       <h2><img src="<?=$_mnv_PC_images_url?>mypage_cate_title_qna.png" alt="1대1맞춤상담"></h2>
                       <p>
                       고객님의 궁금하신 문의사항에 대하여

@@ -1,28 +1,20 @@
 <?
-	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
-	include_once $_mnv_PC_dir."header.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
+include_once $_mnv_PC_dir."header.php";
 
-	$user_id			= $_SESSION['ss_chon_id'];
-	$idx		= $_REQUEST['idx'];
-	$goods_code	= $_REQUEST['goods_code'];
-	$goods_info = select_goods_info($goods_code);
+$user_id			= $_SESSION['ss_chon_id'];
+$goods_code	= $_REQUEST['goods_code'];
+$goods_info = select_goods_info($goods_code);
 
-	$s_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
-	$result = @mysqli_query($my_db, $s_query);
-	$data = @mysqli_fetch_array($result);
-	$og_cont = $data['content'];
+if ($goods_info['discount_price'] == 0)
+  $real_price	= $goods_info['sales_price'];
+else
+  $real_price	= $goods_info['discount_price'];
 
-	echo "<script> var og_content = '$og_cont' </script>";
+// 현재 남은 갯수
+$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 
-	if ($goods_info['discount_price'] == 0)
-	  $real_price	= $goods_info['sales_price'];
-	else
-	  $real_price	= $goods_info['discount_price'];
-
-	// 현재 남은 갯수
-	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
-
-	$goods_info['goods_img_url']	= str_replace("../../","../",$goods_info['goods_img_url']);
+$goods_info['goods_img_url']	= str_replace("../../","../",$goods_info['goods_img_url']);
 ?>
 <body>
   <div id="wrap_page">
@@ -59,7 +51,7 @@
                   <p>제목</p>
                 </div>
                 <div class="block_col">
-                  <input class="inputT" type="text" size="70" placeholder="제목" name="subject" id="subject" value="<?=$data['subject']?>">
+                  <input class="inputT" type="text" size="70" placeholder="제목" name="subject" id="subject">
                 </div>
               </div>
               <div class="block_row">
@@ -77,7 +69,7 @@
               <!-- 사용자 에디터 삽입 영역 -->
             </div>
             <div class="block_btn mt30">
-              <input type="button" class="button_default onColor mr10" id="edit_rev" value="수정완료">
+              <input type="button" class="button_default onColor mr10" id="write_qna" value="작성완료">
               <input type="button" class="button_default" value="취소">
             </div>
           </div>
@@ -140,20 +132,18 @@
 			bUseModeChanger : true,     // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 			//aAdditionalFontList : aAdditionalFontSet,   // 추가 글꼴 목록
 			fOnBeforeUnload : function(){
-				//alert("완료!");
+			//alert("완료!");
 			}
 		}, //boolean
 		fOnAppLoad : function(){
-			//예제 코드
-			//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-			oEditors.getById['content'].setIR(og_content);
+		//예제 코드
+		//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 		},
 		fCreator: "createSEditor2"
 	});
 
-	$('#edit_rev').on('click', function(){
+	$('#write_qna').on('click', function(){
 
-		var idx		= "<?=$idx?>";
 		var user_id = $('#user_id').val();
 		//		var goods_code = $('#goods_code').val();
 		var goods_code = "<?=$goods_info['goods_code']?>";
@@ -162,35 +152,34 @@
 
 		if(subject == ''){
 			alert("제목을 입력해주세요.")
-			return;
+		return;
 		}
 		if(content == ''){
 			alert("내용을 입력해주세요.")
-			return;
+		return;
 		}
 
 		$.ajax({
 			method: 'POST',
 			url: '../../main_exec.php',
 			data: {
-				exec        : "edit_review",
-				idx         : idx,
+				exec        : "write_qna",
 				user_id     : user_id,
 				goods_code  : goods_code,
 				subject     : subject,
 				content     : content
 			},
 			success: function(res){
-				console.log(res);
-				if(res == "Y")
-				{
-					alert("리뷰가 수정되었습니다.");
-					//location.href="list_review.php";
-					history.back();
-				}else{
-					alert("리뷰 수정 실패");
-					location.reload();
-				}
+			console.log(res);
+			if(res == "Y")
+			{
+				alert("문의가 등록되었습니다.");
+				//location.href="list_review.php";
+				history.back();
+			}else{
+				alert("문 등록 실패");
+				location.reload();
+			}
 			}
 		})
 	});

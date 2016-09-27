@@ -6,7 +6,7 @@
 <?
 	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_review_table']." WHERE goods_code='".$goods_code."'";
 
-	list($buyer_count) = mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
+	list($buyer_count) = @mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
 
 
 	// 리뷰 리스트
@@ -42,13 +42,13 @@
 
 		while ($buyer_data = mysqli_fetch_array($result))
 		{
-			$buyer_info[] = $buyer_data; 
+			$buyer_info[] = $buyer_data;
 		}
 		foreach($buyer_info as $key => $val)
 		{
 ?>
-                  <tr>
-                    <td class="num"><?=$PAGE_UNCOUNT--?></td>
+                  <tr class="visible_board">
+                    <td class="num"><?=$PAGE_UNCOUNT--;?></td>
                     <td class="subject">
 <?
 	if($buyer_info[$key]['depth']>0)
@@ -58,14 +58,27 @@
 <?
 	}
 ?>
-                      <a href="http://localhost/mnv_mall/PC/board/read_review.php?idx=<?=$buyer_info[$key]['idx']?>&mb_id=<?=$buyer_info[$key]['user_id']?>&goods_code=<?=$buyer_info[$key]['goods_code']?>&pg=<?=$pg?>">
-            <?=$buyer_info[$key]['subject']?>
+
+                      <a href="javascript:void(0);" class="open_board">
+						<?=$buyer_info[$key]['subject']?>
                       </a>
+                    </td>
                     <td class="writer"><?=$buyer_info[$key]['user_id']?></td>
                     <td class="date"><?=substr($buyer_info[$key]['date'],0,10)?></td>
                   </tr>
+                  <!--                  본문 영역 hide                  -->
+                  <tr class="hidden_board" style="display:none;">
+                    <td class="open_content" colspan="4">
+                      <?=$buyer_info[$key]['content']?>
+                      <div style="text-align:right;">
+                        <input type="button" value="수정하기" class="board_btn" onclick="edit_review('<?=$buyer_info[$key]['user_id']?>','<?=$buyer_info[$key]['idx']?>','<?=$buyer_info[$key]['goods_code']?>');">
+                      </div>
+                    </td>
+                  </tr>
+					<!--                  본문 영역 hide                  -->
 <?
 		}
+		unset($buyer_info);
 ?>
                 </table>
 <?
@@ -81,8 +94,8 @@
 ?>
 
                 <div class="block_board_btn">
-                  <a href="http://localhost/mnv_mall/PC/board/write_review.php?goods_code=<?=$goods_code?>"><input type="button" value="작성하기" class="board_btn" id="write_review"></a>
-                  <a href="http://localhost/mnv_mall/PC/board/view_all_review.php"><input type="button" value="목록으로" class="board_btn" id="list_review"></a>
+                  <a href="<?=$_mnv_PC_board_url?>write_review.php?goods_code=<?=$goods_code?>"><input type="button" value="작성하기" class="board_btn" id="write_review"></a>
+                  <a href="<?=$_mnv_PC_board_url?>list_review.php"><input type="button" value="목록으로" class="board_btn" id="list_review"></a>
                 </div>
                 <div class="block_board_pager">
                   <div class="pageing"><?php echo $BLOCK_LIST?></div>
