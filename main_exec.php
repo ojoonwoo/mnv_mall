@@ -654,9 +654,22 @@
 			}else{
 				$_SESSION['ss_chon_cartid']			= $mb_id;
 			}
-			// 추가 수정 작업 해야함
-			$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
-			$cart_result2 	= mysqli_query($my_db, $cart_query2);
+
+			$cart_query 	= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE mb_id='".$_SESSION['ss_chon_cartid']."' AND goods_idx='".$goods_idx."' AND goods_option='".$goods_option."' AND showYN='Y' AND cart_regdate >= date_add(now(), interval -3 day)";
+			$cart_result 	= mysqli_query($my_db, $cart_query);
+			$cart_num 	= mysqli_num_rows($cart_result);
+
+			if ($cart_num > 0)
+			{
+				$cart_data	= mysqli_fetch_array($cart_result);
+
+				$cart_query2		= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+1 WHERE idx='".$cart_data['idx']."'";
+				$cart_result2		= mysqli_query($my_db, $cart_query2);
+			}else{
+				// 추가 수정 작업 해야함
+				$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$_SESSION['ss_chon_cartid']."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
+				$cart_result2 	= mysqli_query($my_db, $cart_query2);
+			}
 
 			if ($cart_result2)
 				$flag	= "Y";
@@ -689,16 +702,17 @@
 
 		case "delete_wishlist" :
 			$goods_idx	= $_REQUEST['goods_idx'];
+			$wish_idx		= $_REQUEST['wish_idx'];
 			$mb_id		= $_SESSION['ss_chon_id'];
 
 			if ($mb_id == "")
 			{
 				$flag	= "N"; // 로그인이 안되어 있을 경우
 			}else{
-				$restock_query2 	= "UPDATE ".$_gl['wishlist_info_table']."(restock_goodsidx, restock_mb_id, restock_regdate) values('".$goods_idx."','".$mb_id."','".date("Y-m-d H:i:s")."')";
-				$restock_result2 	= mysqli_query($my_db, $restock_query2);
+				$wish_query 	= "UPDATE ".$_gl['wishlist_info_table']." SET showYN='N' WHERE idx='".$wish_idx."'";
+				$wish_result 	= mysqli_query($my_db, $wish_query);
 
-				if ($restock_result2)
+				if ($wish_result)
 					$flag	= "Y";
 				else
 					$flag	= "E";
@@ -706,6 +720,172 @@
 
 			echo $flag;
 
+		break;
+
+		case "move_mycart" :
+			$wish_idx		= $_REQUEST['wish_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$wish_query 	= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE idx='".$wish_idx."'";
+			$wish_result 		= mysqli_query($my_db, $wish_query);
+			$wish_data		= mysqli_fetch_array($wish_result);
+
+			$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
+			$cart_result 		= mysqli_query($my_db, $cart_query);
+
+			if ($cart_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "move_wishlist" :
+			$cart_idx		= $_REQUEST['cart_idx'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$cart_query		= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE idx='".$cart_idx."'";
+			$cart_result		= mysqli_query($my_db, $cart_query);
+			$cart_data		= mysqli_fetch_array($cart_result);
+
+			$wish_query		= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE goods_idx='".$cart_data['goods_idx']."'";
+			$wish_result		= mysqli_query($my_db, $wish_query);
+			$wish_num		= mysqli_num_rows($wish_result);
+
+			if ($wish_num > 0)
+			{
+				$flag	= "D";
+			}else{
+				$wish2_query 	= "INSERT INTO ".$_gl['wishlist_info_table']."(mb_id, goods_idx, goods_option, wish_regdate) values('".$mb_id."','".$cart_data['goods_idx']."','".$cart_data['goods_option']."','".date("Y-m-d H:i:s")."')";
+				$wish2_result 		= mysqli_query($my_db, $wish2_query);
+
+				if ($wish2_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
+			}
+
+			echo $flag;
+		break;
+
+		case "delete_all_cart" :
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE mb_id='".$mb_id."' AND cart_regdate >= date_add(now(), interval -3 day)";
+			$cart_result 		= mysqli_query($my_db, $cart_query);
+
+			if ($cart_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
+
+		case "delete_chk_cart" :
+			$mb_id		= $_SESSION['ss_chon_id'];
+			$chk_idx		= $_REQUEST['chk_idx'];
+
+			$chk_idx_arr		= explode(",",$chk_idx);
+
+			$i = 0;
+			foreach($chk_idx_arr as $key => $val)
+			{
+				if ($i == 0)
+				{
+					$i++;
+					continue;
+				}
+				$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE idx='".$val."' AND mb_id='".$mb_id."'";
+				$cart_result 		= mysqli_query($my_db, $cart_query);
+				$i++;
+			}
+
+			if ($cart_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+
+		break;
+
+		case "update_cart_cnt" :
+			$cart_idx		= $_REQUEST['cart_idx'];
+			$goods_cnt	= $_REQUEST['goods_cnt'];
+			$mb_id		= $_SESSION['ss_chon_id'];
+
+			$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt='".$goods_cnt."' WHERE idx='".$cart_idx."' AND mb_id='".$mb_id."'";
+			$cart_result 		= mysqli_query($my_db, $cart_query);
+
+		break;
+
+		case "show_cate_goods_list" :
+			$cate1			= $_REQUEST['cate1'];
+			$cate2			= $_REQUEST['cate2'];
+
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2='".$cate2."' ORDER BY idx DESC limit 16";
+			$list_result		= mysqli_query($my_db, $list_query);
+
+			$innerHTML	= "";
+			$i = 0;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$list_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$list_data['goods_img_url']);
+
+				if ($i % 4 == 0)
+					$innerHTML		.= '<div class="list_product clearfix">';
+
+				$innerHTML		.= '<div class="product n4">';
+				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
+				$innerHTML		.= '<div class="prd_info">';
+				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
+				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
+				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
+				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
+				$innerHTML		.= '</div></div>';
+
+				if ($i == 3 || $i == 7 || $i == 11 || $i == 15)
+					$innerHTML		.= '</div>';
+				$i++;
+			}
+
+			echo $innerHTML;
+		break;
+
+		case "show_cate_goods_list_sort" :
+			$cate1			= $_REQUEST['cate1'];
+			$cate2			= $_REQUEST['cate2'];
+			$sort				= $_REQUEST['sort'];
+
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2='".$cate2."' ORDER BY ".$sort." limit 16";
+			$list_result		= mysqli_query($my_db, $list_query);
+
+			$innerHTML	= "";
+			$i = 0;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$list_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$list_data['goods_img_url']);
+
+				if ($i % 4 == 0)
+					$innerHTML		.= '<div class="list_product clearfix">';
+
+				$innerHTML		.= '<div class="product n4">';
+				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
+				$innerHTML		.= '<div class="prd_info">';
+				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
+				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_code']).'</span>';
+				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
+				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
+				$innerHTML		.= '</div></div>';
+
+				if ($i == 3 || $i == 7 || $i == 11 || $i == 15)
+					$innerHTML		.= '</div>';
+				$i++;
+			}
+
+			echo $innerHTML;
 		break;
 	}
 ?>

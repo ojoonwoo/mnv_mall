@@ -4,6 +4,102 @@
 *
 */
 
+// *********************** 베스트 상품 관리 *********************** //
+
+// 베스트 상품 정보 insert
+$(document).on("click", "#submit_btn16", function(){
+	var post_title				= $("#post_title").val();
+	var post_subtitle			= $("#post_subtitle").val();
+	var post_contents			= oEditors.getById["post_contents"].getIR();
+
+	if (post_title == "")
+	{
+		alert("포스트 제목을 입력해주세요.");
+		$("#post_title").focus();
+		return false;
+	}
+
+	if (post_subtitle == "")
+	{
+		alert("포스트 설명을 입력해주세요.");
+		$("#post_title").focus();
+		return false;
+	}
+
+	if (post_contents == "")
+	{
+		alert("포스트 내용을 입력해주세요.");
+		$("#post_contents").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "insert_post_info",
+			"post_title"			: post_title,
+			"post_subtitle"		: post_subtitle,
+			"post_contents"		: post_contents
+		},
+		success: function(response){
+			if (response == "N")
+			{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}else{
+				img_submit5(response);
+				alert("포스트가 추가 되었습니다.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 베스트 상품 정보 update
+$(document).on("click", "#submit_btn17", function(){
+	var idx						= $("#idx").val();
+	var post_title				= $("#post_title").val();
+	var post_contents			= oEditors.getById["post_contents"].getIR();
+
+	if (post_title == "")
+	{
+		alert("포스트 제목을 입력해주세요.");
+		$("#post_title").focus();
+		return false;
+	}
+
+	if (post_contents == "")
+	{
+		alert("포스트 내용을 입력해주세요.");
+		$("#post_contents").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "update_post_info",
+			"idx"					: idx,
+			"post_title"			: post_title,
+			"post_contents"		: post_contents
+		},
+		success: function(response){
+			if (response == "Y")
+			{
+				alert("포스트 정보가 수정 되었습니다.");
+				location.reload();
+			}else{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}
+		}
+	});
+});
+
 // *********************** 포스트 *********************** //
 
 // 이벤트 & 포스트 관리 > 포스트 추가 버튼 클릭

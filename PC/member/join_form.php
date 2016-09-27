@@ -2,6 +2,12 @@
 	//include_once $_SERVER['DOCUMENT_ROOT']."/mnv_mall/config.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
+
+	if ($_SESSION['ss_chon_id'])
+	{
+		echo "<script>location.href='".$_mnv_PC_url."index.php';</script>";
+	}
+
 ?>
 <body>
       <div id="wrap_page">
@@ -286,7 +292,7 @@
 				},
 				success: function(res){
 					if(res=='Y'){
-						alert("가입 성공");
+						alert("환영합니다! 회원 가입되셨습니다. 로그인 후 이용해 주세요.");
 						location.href='./member_login.php';
 					}else{
 						alert("가입 실패");

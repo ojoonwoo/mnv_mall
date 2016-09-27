@@ -22,6 +22,7 @@
 	$_mnv_member_dir_name			= "member";
 	$_mnv_mypage_dir_name			= "mypage";
 	$_mnv_upload_dir_name			= "upload";
+	$_mnv_order_dir_name			= "order";
 
 	// 쇼핑몰 루트폴더 경로
 	$_mnv_include_dir					= $_mnv_base_dir . $_mnv_include_dir_name . "/";
@@ -42,7 +43,8 @@
 	$_mnv_PC_images_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_images_dir_name . "/";
 	$_mnv_PC_member_dir			= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_member_dir_name . "/";
 	$_mnv_PC_member_dir			= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_mypage_dir_name . "/";
-	$_mnv__PC_upload_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
+	$_mnv_PC_upload_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
+	$_mnv_PC_order_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_order_dir_name . "/";
 
 	// 쇼핑몰 메인 URL 경로
 	$_mnv_base_url						= "http://".$_SERVER['SERVER_NAME']."/";
@@ -66,5 +68,6 @@
 	$_mnv_PC_images_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_images_dir_name . "/";
 	$_mnv_PC_member_url			= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_member_dir_name . "/";
 	$_mnv_PC_mypage_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_mypage_dir_name . "/";
-	$_mnv__PC_upload_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
+	$_mnv_PC_upload_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
+	$_mnv_PC_order_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_order_dir_name . "/";
 ?>

@@ -19,18 +19,18 @@
           <div class="section main">
             <div class="area_main_top nopadd">
               <div class="block_title">
-                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_wishlist.png" alt="위시리스트"></p>
+                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_wishlist.png" alt="관심상품"></p>
               </div>
               <div class="mypage_cate_hori">
                 <a href="<?=$_mnv_PC_mypage_dir?>mycart.php"><span>장바구니</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span class="active_underLine">위시리스트</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span class="active_underLine">관심상품</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>주문조회</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>order_status.php"><span>주문조회</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>쿠폰</span></a>
+                <a href="<?=$_mnv_PC_mypage_dir?>coupon.php"><span>쿠폰</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>1대1 문의하기</span></a>
+                <a href="<?=$_mnv_PC_board_url?>list_mtm.php"><span>1대1 문의하기</span></a>
                 <span class="bar1 short"></span>
                 <a href="#"><span>개인정보 수정</span></a>
               </div>
@@ -40,14 +40,14 @@
                 <table class="mypage_board_list">
                   <thead>
                     <tr>
-                      <th style="width:360px;">상품정보</th>
-                      <th style="width:340px;">판매가격</th>
-                      <th style="width:290px;"></th>
+                      <th style="width:390px;">상품정보</th>
+                      <th style="width:270px;">판매가격</th>
+                      <th style="width:230px;"></th>
                     </tr>
                   </thead>
                   <tbody>
 <?
-	$wish_query		= "SELECT A.goods_option, A.idx wish_idx, B.* FROM ".$_gl['wishlist_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.mb_id='".$_SESSION['ss_chon_id']."'";
+	$wish_query		= "SELECT A.goods_option, A.idx wish_idx, B.* FROM ".$_gl['wishlist_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.mb_id='".$_SESSION['ss_chon_id']."' AND A.showYN='Y'";
 	$wish_result		= mysqli_query($my_db, $wish_query);
 	$wish_num		= mysqli_num_rows($wish_result);
 	if ($wish_num > 0)
@@ -79,8 +79,8 @@
 			}
 ?>
                     <tr>
-                      <input type="hidden" id="goods_idx" value="<?=$wish_data['idx']?>">
-                      <input type="hidden" id="wish_idx" value="<?=$wish_data['wish_idx']?>">
+                      <!-- <input type="hidden" id="goods_idx" value="<?=$wish_data['idx']?>">
+                      <input type="hidden" id="wish_idx" value="<?=$wish_data['wish_idx']?>"> -->
                       <td class="info clearfix" style="width:400px;">
                         <div class="info_img">
                           <img src="<?=$wish_data['goods_img_url']?>" alt="<?=$wish_data['goods_name']?>" style="width:75px">
@@ -99,9 +99,9 @@
                       </td>
                       <td class="price"><?=number_format($current_price)?></td>
                       <td style="padding-right:45px;text-align:right;">
-                        <input type="button" value="주문하기" class="board_btn" id="wish_order">
-                        <input type="button" value="장바구니" class="board_btn white" id="move_mycart">
-                        <input type="button" value="삭제" class="board_btn white" id="del_wishlist">
+                        <input type="button" value="주문하기" class="board_btn wish_order">
+                        <input type="button" value="장바구니" class="board_btn white move_mycart" wish_idx="<?=$wish_data['wish_idx']?>">
+                        <input type="button" value="삭제" class="board_btn white del_wishlist" wish_idx="<?=$wish_data['wish_idx']?>" goods_idx="<?=$wish_data['idx']?>">
                       </td>
                     </tr>
 <?
