@@ -26,7 +26,7 @@
                 <span class="bar1 short"></span>
                 <a href="<?=$_mnv_PC_mypage_dir?>coupon.php"><span>쿠폰</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_board_dir?>list_mtm.php"><span class="active_underLine">1대1 문의하기</span></a>
+                <a href="<?=$_mnv_PC_board_url?>list_mtm.php"><span class="active_underLine">1대1 문의하기</span></a>
                 <span class="bar1 short"></span>
                 <a href="#"><span>개인정보 수정</span></a>
               </div>
