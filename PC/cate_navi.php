@@ -3,6 +3,7 @@
 	$category_info	= select_all_category_info("main");
 	$category_cnt	= count($category_info);
 	$i = 1;
+
 	foreach($category_info as $key => $val)
 	{
 ?>

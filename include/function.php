@@ -401,7 +401,12 @@ function select_order_goods($ordertype)
 
 	if ($ordertype == "cart")
 	{
-		$order_query		= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE cart_regdate >= date_add(now(), interval -3 day) AND mb_id='".$_SESSION['ss_chon_id']."' AND showYN='Y'";
+		if ($_SESSION['ss_chon_id'])
+			$order_id	= $_SESSION['ss_chon_id'];
+		else
+			$order_id	= $_SESSION['ss_chon_cartid'];
+
+		$order_query		= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE cart_regdate >= date_add(now(), interval -3 day) AND mb_id='".$order_id."' AND showYN='Y'";
 		$order_result		= mysqli_query($my_db, $order_query);
 		while ($order_data = mysqli_fetch_array($order_result))
 		{

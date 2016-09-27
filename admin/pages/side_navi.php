@@ -25,12 +25,6 @@
           <li>
             <a href="banner.php">배너 관리</a>
           </li>
-          <li>
-            <a href="purchasing.php">브랜드 관리</a>
-          </li>
-          <li>
-            <a href="sales_store.php">판매경로 관리</a>
-          </li>
         </ul>
         <!-- /.nav-second-level -->
       </li>
@@ -45,6 +39,21 @@
           </li>
           <li>
             <a href="stock_list.php">재고 관리</a>
+          </li>
+          <li>
+            <a href="purchasing.php">브랜드 관리</a>
+          </li>
+          <li>
+            <a href="sales_store.php">판매경로 관리</a>
+          </li>
+          <li>
+            <a href="best_goods_manage.php">베스트 상품 관리 (미완성)</a>
+          </li>
+          <li>
+            <a href="new_goods_manage.php">신 상품 관리 (미완성)</a>
+          </li>
+          <li>
+            <a href="plan_goods_manage.php">스페셜 상품 관리 (미완성)</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->

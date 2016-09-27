@@ -1168,7 +1168,7 @@
 				$flag = "N";
 			}
 
-			echo $flag;	
+			echo $flag;
 
 		break;
 

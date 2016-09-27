@@ -411,7 +411,6 @@ $(document).on("click", "#cart_chk_del", function(){
 					"chk_idx"			: chk_idx
 				},
 				success: function(response){
-					alert(response);
 					if (response == "Y")
 					{
 						location.reload();

@@ -61,7 +61,12 @@
                   </thead>
                   <tbody>
 <?
-	$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$_SESSION['ss_chon_id']."' AND A.showYN='Y'";
+	if ($_SESSION['ss_chon_id'])
+		$cart_id	= $_SESSION['ss_chon_id'];
+	else
+		$cart_id	= $_SESSION['ss_chon_cartid'];
+
+	$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.mb_id='".$cart_id."' AND A.showYN='Y'";
 	$cart_result		= mysqli_query($my_db, $cart_query);
 	$cart_num		= mysqli_num_rows($cart_result);
 

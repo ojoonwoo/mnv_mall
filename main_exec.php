@@ -480,7 +480,7 @@
 				$cart_result2		= mysqli_query($my_db, $cart_query2);
 			}else{
 				// 추가 수정 작업 해야함
-				$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
+				$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$_SESSION['ss_chon_cartid']."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
 				$cart_result2 	= mysqli_query($my_db, $cart_query2);
 			}
 

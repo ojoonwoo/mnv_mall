@@ -309,7 +309,7 @@
                       <p>총 주문금액</p>
                     </div>
                     <div class="block_col">
-                      <p>20,000</p>
+                      <p><?=number_format($current_sum_price)?></p>
                     </div>
                   </div>
                   <div class="block_row">
@@ -317,7 +317,7 @@
                       <p>배송비</p>
                     </div>
                     <div class="block_col">
-                      <p>2,500</p>
+                      <p><?=number_format($site_option['default_delivery_price'])?></p>
                     </div>
                   </div>
                   <div class="block_row">
@@ -325,7 +325,7 @@
                       <p>총 결제금액</p>
                     </div>
                     <div class="block_col">
-                      <p>22,500</p>
+                      <p><?=number_format($total_pay_price)?></p>
                     </div>
                   </div>
                 </div>

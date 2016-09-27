@@ -11,5 +11,5 @@
     <script type="text/javascript" src="<?=$_mnv_js_url?>instafeed.min.js"></script>
     <script type="text/javascript" src="<?=$_mnv_js_url?>selectivizr-min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <title>Document</title>
+    <title>촌 의 감 각</title>
   </head>
