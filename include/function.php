@@ -297,11 +297,14 @@ function sendMail($EMAIL, $NAME, $SUBJECT, $CONTENT, $MAILTO, $MAILTONAME){
 	$address = $MAILTO;
 	$mail->AddAddress($address, $MAILTONAME);
 
+/*
 	if(!$mail->Send()) {
 		echo "E";
 	} else {
 		echo "Y";
 	}
+*/
+	$mail->Send();
 }
 
 // 해당 거래처 정보 가져오기 (idx)

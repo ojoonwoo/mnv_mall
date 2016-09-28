@@ -264,11 +264,13 @@
 						</div>
 						</div>",
 						"$mb_email", "$username");
-					
+					/*
 					if($mail_result == "Y")
 						$flag = "Y"; // 메일 발송까지 완료
 					else
 						$flag = "E"; // 메일 발송 오류
+					*/
+					$flag = "Y"; // 메일 발송까지 완료
 				}else{
 					$flag = "E"; // 비밀번호 업데이트 오류
 				}
