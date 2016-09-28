@@ -132,7 +132,7 @@
 
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
-			$password = create_hash($password);
+			//$password = create_hash($password);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
 			$zipcode = $_POST['zipcode'];
 			$addr1 = $_POST['addr1'];
@@ -174,7 +174,7 @@
 
 				$birth = $birthY . $birthM . $birthD;
 
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."',mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
+				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."'),mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
 				$update_result   = mysqli_query($my_db, $update_query);
 
 				if($update_result) {
@@ -217,8 +217,8 @@
 
 			if($data){
 				$temp_pw = PHPRandom::getHexString(20);
-				$password = create_hash($temp_pw);
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."' WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
+				//$password = create_hash($temp_pw);
+				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."') WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
 				$update_result   = mysqli_query($my_db, $update_query);
 				
 				if($update_result)
