@@ -106,7 +106,7 @@
 				// result - 메일 발송
 				if($insert_result) {
 					$mail_result = sendMail(
-						"ojoonwoo2@gmail.com",
+						"yh.kim@minivertising.kr",
 						"촌의감각",
 						"회원가입을 축하합니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 60px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
