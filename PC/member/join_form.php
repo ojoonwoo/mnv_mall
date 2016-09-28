@@ -291,11 +291,13 @@
 					birthD		: $('#birthD').val()
 				},
 				success: function(res){
+					alert(res);
 					if(res=='Y'){
 						alert("환영합니다! 회원 가입되셨습니다. 로그인 후 이용해 주세요.");
 						location.href='./member_login.php';
 					}else{
-						alert("가입 실패");
+						alert("접속자가 많아 지연되고 있습니다. 다시 시도해 주세요.");
+						location.reload();
 					}
 				}
 			});

@@ -68,7 +68,7 @@
                   <td colspan="2">
                     <form action="../../lib/filer/php/upload.php" id="main_image_frm" method="post" enctype="multipart/form-data">
                       <input type="file" name="files[]" id="filer_input" multiple="multiple">
-                    </form>
+                    </form> ( 이미지 사이즈 : 435 x 226px)
                   </td>
                 </tr>
                 <tr>

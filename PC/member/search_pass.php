@@ -124,7 +124,9 @@
 					"mb_email"		: user_email.val()
 				},
 				success: function(response){
+					alert(response);
 					if(response == 'Y'){
+						alert("입력하신 메일 주소로 비밀번호 재설정 메일을 보내드렸습니다. 감사합니다.");
 						location.href="./member_login.php";
 					}
 					else if(response == 'N'){

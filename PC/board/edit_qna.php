@@ -43,7 +43,7 @@
                 <div class="box txt">
                   <div class="boxHead">
                     <p class="name"><?=$goods_info['goods_name']?></p>
-                    <p class="price"><?=$goods_info['sales_price']?>￦</p>
+                    <p class="price">￦<?=number_format($goods_info['sales_price'])?></p>
                   </div>
                   <div class="boxTail">
                     <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$goods_info['goods_code']?>"><span class="span_btn">상품 상세보기<span class="arrow"></span></span></a>

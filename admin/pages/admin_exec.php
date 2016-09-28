@@ -1428,12 +1428,12 @@
 				$update_result = mysqli_query($my_db, $update_query);
 				if($update_result && $user_email != ''){
 					$mail_result = sendMail(
-						"ojoonwoo2@gmail.com",
+						"yh.kim@minivertising.kr",
 						"촌의감각",
 						"문의하신 내용의 답변드립니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 35px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
 						<h2>
-							<img src='www.store-chon/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
+							<img src='http://www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
 						</h2>
 						<span style='display: inline-block;width: 18px;height: 1px;background-color: #b88b5b;margin: 15px 0'></span>
 						<p style='line-height: 18px;margin-bottom: 18px;font-size: 14px'>
@@ -1470,7 +1470,7 @@
 						<p style='margin: 0;padding-bottom: 4px;padding-top: 10px'>Copyright@CHON. ALL RIGHTS RESERVED.</p>
 						</div>
 						</div>",
-						"$email", "$username");
+						"$user_email", "$username");
 				$flag = "Y";
 				}
 			}else{

@@ -10,9 +10,11 @@
 	$parent_depth = $parent_data['depth'];
 	$parent_gID = $parent_data['group_id'];
 
-	$parent_subject = "RE:" . $parent_data['subject'];
+	$parent_subject = $parent_data['subject'];
 	$parent_content = $parent_data['content'];
-	echo "<script> var og_content = '<br><br><br><br>[ Original Message ]<br>'+'$parent_content'+'<br>' </script>";
+
+	//echo "<script> var og_content = '<br><br><br><br>[ Original Message ]<br>'+'$parent_content'+'<br>' </script>";
+	echo "<script> var og_content = '';</script>";
 ?>
 <link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 <link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />

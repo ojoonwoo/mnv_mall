@@ -91,7 +91,7 @@
 <?
 	}else{
 ?>
-                      <span class="price"><?=$goods_info['sales_price']?>원</span>
+                      <span class="price"><?=number_format($goods_info['sales_price'])?>원</span>
 <?
 	}
 ?>
@@ -174,9 +174,9 @@
                       </div>
                     </div>
                     <div class="block_btn clearfix">
-                      <input type="button" class="pr_btn active" value="바로구매" id="order_link">
-                      <input type="button" class="pr_btn" value="장바구니" id="mycart_link">
-                      <input type="button" class="pr_btn" value="관심상품" id="wish_link">
+                      <input type="button" class="pr_btn img_purchase" id="order_link">
+                      <input type="button" class="pr_btn img_basket" id="mycart_link">
+                      <input type="button" class="pr_btn img_wishlist" id="wish_link">
                       <!-- 장바구니 팝업 -->
                       <div class="popup_basket" style="display:none;">
                         <div class="popup_inner">

@@ -281,10 +281,10 @@ function sendMail($EMAIL, $NAME, $SUBJECT, $CONTENT, $MAILTO, $MAILTONAME){
 	$mail->CharSet    = "utf-8";
 	$mail->SMTPAuth   = true;                  // enable SMTP authentication
 	$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-	$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+	$mail->Host       = "smtp.naver.com";      // sets GMAIL as the SMTP server
 	$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
-	$mail->Username   = "ojoonwoo2@gmail.com";             // GMAIL username
-	$mail->Password   = "5wnsdn23";              // GMAIL password
+	$mail->Username   = "yh.kim@minivertising.kr";             // GMAIL username
+	$mail->Password   = "dudfks88";              // GMAIL password
 
 	$mail->SetFrom($EMAIL, $NAME);
 
@@ -297,11 +297,13 @@ function sendMail($EMAIL, $NAME, $SUBJECT, $CONTENT, $MAILTO, $MAILTONAME){
 	$address = $MAILTO;
 	$mail->AddAddress($address, $MAILTONAME);
 
-	// if(!$mail->Send()) {
-	// 	echo "Mailer Error: " . $mail->ErrorInfo;
-	// } else {
-	// 	echo "Message sent!";
-	// }
+/*
+	if(!$mail->Send()) {
+		echo "E";
+	} else {
+		echo "Y";
+	}
+*/
 	$mail->Send();
 }
 

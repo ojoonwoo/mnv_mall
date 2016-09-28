@@ -15,7 +15,14 @@
               <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$val['goods_code']?>"><img src="<?=$val['goods_img_url']?>"></a>
               <div class="prd_info">
                 <span class="prd_name"><?=$val['goods_name']?></span>
+<?
+	if ($val['sales_price'] != $val['discount_price'])
+	{
+?>
                 <span class="prd_price"><?=number_format($val['sales_price'])?></span>
+<?
+	}
+?>
                 <span class="prd_sale"><?=number_format($val['discount_price'])?></span>
                 <span class="prd_desc"><?=$val['goods_small_desc']?></span>
               </div>

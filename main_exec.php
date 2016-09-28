@@ -7,11 +7,13 @@
 			$mb_id				= $_REQUEST["mb_id"];
 			$mb_password	= $_REQUEST["mb_password"];
 
-			$login_query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$mb_id."'";
+			$login_query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$mb_id."' AND mb_password=MD5('".$mb_password."')";
 			$login_result		= mysqli_query($my_db, $login_query);
 			$login_data		= mysqli_fetch_array($login_result);
+
 			// 암호 검증
-			if (validate_password($mb_password,$login_data['mb_password']))
+			//if (validate_password($mb_password,$login_data['mb_password']))
+			if ($mb_id == $login_data['mb_id'])
 			{
 				$update_query		= "UPDATE ".$_gl['member_info_table']." SET mb_logindate='".date("Y-m-d H:i:s")."' WHERE mb_id='".$login_data['mb_id']."'";
 				$update_result		= mysqli_query($my_db, $update_query);
@@ -49,7 +51,7 @@
 		case "member_join":
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
-			$password = create_hash($password);
+			//$password = create_hash($password);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
 			$zipcode = $_POST['zipcode'];
 			$addr1 = $_POST['addr1'];
@@ -97,19 +99,19 @@
 				$grade = "silver";
 
 
-				$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."','".$password."','".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
+				$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."',MD5('".$password."'),'".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
 				$insert_result   = mysqli_query($my_db, $insert_query);
 
 
 				// result - 메일 발송
 				if($insert_result) {
 					$mail_result = sendMail(
-						"ojoonwoo2@gmail.com",
+						"yh.kim@minivertising.kr",
 						"촌의감각",
 						"회원가입을 축하합니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 60px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
 						<h2>
-						<img src='www.store-chon/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
+						<img src='http://www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
 						</h2>
 						<span style='display: inline-block;width: 18px;height: 1px;background-color: #b88b5b;margin: 15px 0'></span>
 						<p style='line-height: 18px;margin-bottom: 18px;font-size: 14px'>
@@ -121,7 +123,7 @@
 						<span style='display: block;color: #b88b5b;vertical-align: middle;font-size: 15px;letter-spacing: -1px;'>아이디:&nbsp;&nbsp;<span style='color: #b88b5b;letter-spacing: normal;font-weight: bold;'>$user_id</span></span>
 
 						</p>
-						<a href='www.store-chon/PC/index.php' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 홈페이지 가기</span></p></a>
+						<a href='http://www.store-chon.com/' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 홈페이지 가기</span></p></a>
 						</div>
 						<div style='background-color: #f9f3ec;width: 600px;height: 154px;margin: 0 auto;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;'>
 						<div style='padding: 20px 38px;text-align: left;font-size: 12px'>
@@ -144,7 +146,7 @@
 
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
-			$password = create_hash($password);
+			//$password = create_hash($password);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
 			$zipcode = $_POST['zipcode'];
 			$addr1 = $_POST['addr1'];
@@ -186,7 +188,7 @@
 
 				$birth = $birthY . $birthM . $birthD;
 
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."',mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
+				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."'),mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
 				$update_result   = mysqli_query($my_db, $update_query);
 
 				if($update_result) {
@@ -229,19 +231,19 @@
 
 			if($data){
 				$temp_pw = PHPRandom::getHexString(20);
-				$password = create_hash($temp_pw);
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password='".$password."' WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
+				//$password = create_hash($temp_pw);
+				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$temp_pw."') WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
 				$update_result   = mysqli_query($my_db, $update_query);
 				
 				if($update_result)
 				{
 					$mail_result = sendMail(
-						"ojoonwoo2@gmail.com",
+						"yh.kim@minivertising.kr",
 						"촌의감각",
 						"비밀번호가 변경되었습니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 60px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
 						<h2>
-						<img src='www.store-chon/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
+						<img src='http://www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
 						</h2>
 						<span style='display: inline-block;width: 18px;height: 1px;background-color: #b88b5b;margin: 15px 0'></span>
 						<p style='line-height: 18px;margin-bottom: 18px;font-size: 14px'>
@@ -260,13 +262,15 @@
 						<p style='margin: 0;padding-bottom: 4px'>기타 관련 사항은 고객센터(070-4888-3580) 또는 촌의 감각 쇼핑몰에서 문의 바랍니다.</p>
 						<p style='margin: 0;padding-bottom: 4px;padding-top: 10px'>Copyright@CHON. ALL RIGHTS RESERVED.</p>
 						</div>
-						</div>',
-						"ojoonwoo@naver.com", "$username");
-					
-					if($mail_result)
+						</div>",
+						"$mb_email", "$username");
+					/*
+					if($mail_result == "Y")
 						$flag = "Y"; // 메일 발송까지 완료
 					else
 						$flag = "E"; // 메일 발송 오류
+					*/
+					$flag = "Y"; // 메일 발송까지 완료
 				}else{
 					$flag = "E"; // 비밀번호 업데이트 오류
 				}
@@ -902,7 +906,7 @@
 				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
 				$innerHTML		.= '<div class="prd_info">';
 				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
-				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_code']).'</span>';
+				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
 				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
 				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
 				$innerHTML		.= '</div></div>';

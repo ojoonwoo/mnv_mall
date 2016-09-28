@@ -41,7 +41,7 @@
 </html>
 <script>
 	$('.banner_slide').bxSlider({
-		mode:"fade",
+		mode:"horizontal",
 		pager: false,
 		controls:false,
 		//slideWidth: 500,
