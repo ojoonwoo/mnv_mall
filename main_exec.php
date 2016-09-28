@@ -265,19 +265,19 @@
 						</div>",
 						"$mb_email", "$username");
 					
-					if($mail_result)
+					if($mail_result == "Y")
 						$flag = "Y"; // 메일 발송까지 완료
 					else
-						$flag = "E1"; // 메일 발송 오류
+						$flag = "E"; // 메일 발송 오류
 				}else{
-					$flag = "E2"; // 비밀번호 업데이트 오류
+					$flag = "E"; // 비밀번호 업데이트 오류
 				}
 				
 			}else{
 				$flag = "N"; // 입력한 정보의 회원이 없음
 			}
 
-			echo $mail_result;
+			echo $flag;
 			
 		break;
 
