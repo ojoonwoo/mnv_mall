@@ -22,17 +22,17 @@
                 <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_wishlist.png" alt="관심상품"></p>
               </div>
               <div class="mypage_cate_hori">
-                <a href="<?=$_mnv_PC_mypage_dir?>mycart.php"><span>장바구니</span></a>
+                <a href="<?=$_mnv_PC_mypage_url?>mycart.php"><span>장바구니</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>wishlist.php"><span class="active_underLine">관심상품</span></a>
+                <a href="<?=$_mnv_PC_mypage_url?>wishlist.php"><span class="active_underLine">관심상품</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>order_status.php"><span>주문조회</span></a>
+                <a href="<?=$_mnv_PC_mypage_url?>order_status.php"><span>주문조회</span></a>
                 <span class="bar1 short"></span>
-                <a href="<?=$_mnv_PC_mypage_dir?>coupon.php"><span>쿠폰</span></a>
+                <a href="<?=$_mnv_PC_mypage_url?>coupon.php"><span>쿠폰</span></a>
                 <span class="bar1 short"></span>
                 <a href="<?=$_mnv_PC_board_url?>list_mtm.php"><span>1대1 문의하기</span></a>
                 <span class="bar1 short"></span>
-                <a href="#"><span>개인정보 수정</span></a>
+                <a href="<?=$_mnv_PC_member_url?>modify_form.php"><span>개인정보 수정</span></a>
               </div>
             </div>
             <div class="area_main_middle nopadd">
