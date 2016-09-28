@@ -111,7 +111,7 @@
 						"회원가입을 축하합니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 60px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
 						<h2>
-						<img src='www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
+						<img src='http://www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
 						</h2>
 						<span style='display: inline-block;width: 18px;height: 1px;background-color: #b88b5b;margin: 15px 0'></span>
 						<p style='line-height: 18px;margin-bottom: 18px;font-size: 14px'>
@@ -123,7 +123,7 @@
 						<span style='display: block;color: #b88b5b;vertical-align: middle;font-size: 15px;letter-spacing: -1px;'>아이디:&nbsp;&nbsp;<span style='color: #b88b5b;letter-spacing: normal;font-weight: bold;'>$user_id</span></span>
 
 						</p>
-						<a href='www.store-chon.com/PC/index.php' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 홈페이지 가기</span></p></a>
+						<a href='http://www.store-chon.com/PC/index.php' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 홈페이지 가기</span></p></a>
 						</div>
 						<div style='background-color: #f9f3ec;width: 600px;height: 154px;margin: 0 auto;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;'>
 						<div style='padding: 20px 38px;text-align: left;font-size: 12px'>
@@ -243,7 +243,7 @@
 						"비밀번호가 변경되었습니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 60px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
 						<h2>
-						<img src='www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
+						<img src='http://www.store-chon.com/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
 						</h2>
 						<span style='display: inline-block;width: 18px;height: 1px;background-color: #b88b5b;margin: 15px 0'></span>
 						<p style='line-height: 18px;margin-bottom: 18px;font-size: 14px'>
