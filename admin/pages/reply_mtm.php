@@ -172,7 +172,7 @@
         p_thread       : <?=$parent_thread?>,
         p_depth        : <?=$parent_depth?>,
         parent_gID     : <?=$parent_gID?>,
-        parent_content : <?=$parent_content?>,
+        parent_content : "<?=$parent_content?>",
         parent_date    : "<?=$parent_data['date']?>",
         content        : content
       },
