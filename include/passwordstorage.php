@@ -1,6 +1,8 @@
 <?php
+
 class InvalidHashException extends Exception {}
 class CannotPerformOperationException extends Exception {}
+
 class PasswordStorage
 {
     // These constants may be changed without breaking existing hashes.
@@ -8,6 +10,7 @@ class PasswordStorage
     const PBKDF2_ITERATIONS = 64000;
     const PBKDF2_SALT_BYTES = 24;
     const PBKDF2_OUTPUT_BYTES = 18;
+
     // These constants define the encoding and may not be changed.
     const HASH_SECTIONS = 5;
     const HASH_ALGORITHM_INDEX = 0;
@@ -15,6 +18,7 @@ class PasswordStorage
     const HASH_SIZE_INDEX = 2;
     const HASH_SALT_INDEX = 3;
     const HASH_PBKDF2_INDEX = 4;
+
     /**
      * Hash a password with PBKDF2
      * 
@@ -47,6 +51,7 @@ class PasswordStorage
                 "Random number generator failed. Not safe to proceed."
             );
         }
+
         $PBKDF2_Output = self::pbkdf2(
             self::PBKDF2_HASH_ALGORITHM,
             $password,
@@ -55,6 +60,7 @@ class PasswordStorage
             self::PBKDF2_OUTPUT_BYTES,
             true
         );
+
         return self::PBKDF2_HASH_ALGORITHM .
             ":" .
             self::PBKDF2_ITERATIONS .
@@ -86,24 +92,28 @@ class PasswordStorage
                 "Fields are missing from the password hash."
             );
         }
+
         $pbkdf2 = \base64_decode($params[self::HASH_PBKDF2_INDEX], true);
         if ($pbkdf2 === false) {
             throw new InvalidHashException(
                 "Base64 decoding of pbkdf2 output failed."
             );
         }
+
         $salt_raw = \base64_decode($params[self::HASH_SALT_INDEX], true);
         if ($salt_raw === false) {
             throw new InvalidHashException(
                 "Base64 decoding of salt failed."
             );
         }
+
         $storedOutputSize = (int) $params[self::HASH_SIZE_INDEX];
         if (self::ourStrlen($pbkdf2) !== $storedOutputSize) {
             throw new InvalidHashException(
                 "PBKDF2 output length doesn't match stored output length."
             );
         }
+
         $iterations = (int) $params[self::HASH_ITERATION_INDEX];
         if ($iterations < 1) {
             throw new InvalidHashException(
@@ -186,12 +196,14 @@ class PasswordStorage
         // Coerce strings to integers with no information loss or overflow
         $count += 0;
         $key_length += 0;
+
         $algorithm = \strtolower($algorithm);
         if (!\in_array($algorithm, \hash_algos(), true)) {
             throw new CannotPerformOperationException(
                 "Invalid or unsupported hash algorithm."
             );
         }
+
         // Whitelist, or we could end up with people using CRC32.
         $ok_algorithms = array(
             "sha1", "sha224", "sha256", "sha384", "sha512",
@@ -202,6 +214,7 @@ class PasswordStorage
                 "Algorithm is not a secure cryptographic hash function."
             );
         }
+
         if ($count <= 0 || $key_length <= 0) {
             throw new CannotPerformOperationException(
                 "Invalid PBKDF2 parameters."
@@ -238,11 +251,13 @@ class PasswordStorage
             return \bin2hex(self::ourSubstr($output, 0, $key_length));
         }
     }
+
     /*
      * We need these strlen() and substr() functions because when
      * 'mbstring.func_overload' is set in php.ini, the standard strlen() and
      * substr() are replaced by mb_strlen() and mb_substr().
      */
+
     /**
      * Calculate the length of a string
      * 
@@ -272,6 +287,7 @@ class PasswordStorage
             return \strlen($str);
         }
     }
+
     /**
      * Substring
      * 
@@ -303,8 +319,10 @@ class PasswordStorage
                     $length = -$start;
                 }
             }
+
             return \mb_substr($str, $start, $length, '8bit');
         }
+
         // Unlike mb_substr(), substr() doesn't accept NULL for length
         if (isset($length)) {
             return \substr($str, $start, $length);
