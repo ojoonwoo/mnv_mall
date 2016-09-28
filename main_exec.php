@@ -789,7 +789,7 @@
 			$cart_result		= mysqli_query($my_db, $cart_query);
 			$cart_data		= mysqli_fetch_array($cart_result);
 
-			$wish_query		= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE goods_idx='".$cart_data['goods_idx']."'";
+			$wish_query		= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE goods_idx='".$cart_data['goods_idx']."' AND mb_id='".$mb_id."' AND showYN='Y'";
 			$wish_result		= mysqli_query($my_db, $wish_query);
 			$wish_num		= mysqli_num_rows($wish_result);
 
