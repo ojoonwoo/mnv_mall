@@ -50,7 +50,7 @@
 		case "member_join":
 			$user_id = preg_replace("/\s+/", "", $_POST['user_id']);
 			$password = preg_replace("/\s+/", "", $_POST['password']);
-			$password = create_hash($password);
+			//$password = create_hash($password);
 			$username = preg_replace("/\s+/", "", $_POST['username']);
 			$zipcode = $_POST['zipcode'];
 			$addr1 = $_POST['addr1'];
@@ -98,7 +98,7 @@
 				$grade = "silver";
 
 
-				$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."','".$password."','".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
+				$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."',MD5('".$password."'),'".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
 				$insert_result   = mysqli_query($my_db, $insert_query);
 
 
