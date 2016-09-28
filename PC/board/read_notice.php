@@ -9,11 +9,11 @@
 	$board_result	= mysqli_query($my_db, $board_query);
 	$board_data		= mysqli_fetch_array($board_result);
 
-	$prev_query		= "SELECT * FROM ".$_gl['board_notice_table']." WHERE idx < '".$idx."' AND depth=0 ORDER BY idx LIMIT 1";
+	$prev_query		= "SELECT * FROM ".$_gl['board_notice_table']." WHERE idx < '".$idx."' AND depth=0 AND showYN='Y' ORDER BY idx LIMIT 1";
 	$prev_result	= mysqli_query($my_db, $prev_query);
 	$prev_data		= mysqli_fetch_array($prev_result);
 
-	$next_query		= "SELECT * FROM ".$_gl['board_notice_table']." WHERE idx > '".$idx."' AND depth=0 ORDER BY idx LIMIT 1";
+	$next_query		= "SELECT * FROM ".$_gl['board_notice_table']." WHERE idx > '".$idx."' AND depth=0 AND showYN='Y' ORDER BY idx LIMIT 1";
 	$next_result	= mysqli_query($my_db, $next_query);
 	$next_data		= mysqli_fetch_array($next_result);
 ?>

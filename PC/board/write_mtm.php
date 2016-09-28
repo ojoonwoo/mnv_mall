@@ -161,7 +161,7 @@
 		//		var goods_code = $('#goods_code').val();
 		var question_type	= $('#qType option:selected').val();
 		var subject 		= $('#subjectMTM').val();
-		var user_email			= $('#emailMTM').val();
+		var user_email		= $('#emailMTM').val();
 		var content 		= oEditors.getById['content'].getIR();
 		
 		if(question_type == 'none'){

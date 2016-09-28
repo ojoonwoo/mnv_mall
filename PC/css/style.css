@@ -1103,6 +1103,7 @@ input:-webkit-autofill {
 .pr_view_table .open_content {
     padding: 12px 0;
     padding-left: 30px;
+    text-align: initial;
 }
 
 .pr_view_table .open_content p {
