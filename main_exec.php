@@ -218,7 +218,7 @@
 			if($data){
 				$temp_pw = PHPRandom::getHexString(20);
 				//$password = create_hash($temp_pw);
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."') WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
+				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$temp_pw."') WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
 				$update_result   = mysqli_query($my_db, $update_query);
 				
 				if($update_result)
