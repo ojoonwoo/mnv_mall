@@ -762,7 +762,7 @@
 			$wish_data		= mysqli_fetch_array($wish_result);
 
 			$du_cart_query	= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE mb_id='".$wish_data['mb_id']."' AND goods_idx='".$wish_data['goods_idx']."' AND goods_option='".$wish_data['goods_option']."' AND showYN='Y'";
-			$du_cart_result	= mysqli_fetch_array($mb_db, $du_cart_query);
+			$du_cart_result	= mysqli_query($mb_db, $du_cart_query);
 			$du_cart_cnt		= mysqli_num_rows($du_cart_result);
 
 			if ($du_cart_cnt > 0)
