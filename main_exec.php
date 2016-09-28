@@ -22,7 +22,7 @@
 			}else{
 				$flag	= "N";
 			}
-			echo $flag;
+			echo $login_query;
 		break;
 
 		case "member_logout" :
