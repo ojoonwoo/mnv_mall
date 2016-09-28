@@ -35,7 +35,7 @@
                   </thead>
                   <tbody>
 <?
-	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_review_table']."";
+	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_notice_table']."";
 
 	list($buyer_count) = @mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
 
@@ -67,7 +67,7 @@
 		$BLOCK_LIST = $PAGE_CLASS->blockList7();
 		$PAGE_UNCOUNT = $PAGE_CLASS->page_uncount;
 		//	$buyer_list_query = "SELECT * FROM ".$_gl['board_review_table']." WHERE 1 ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
-		$buyer_list_query = "SELECT * FROM ".$_gl['board_notice_table']." WHERE 1 AND user_id='admin2' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
+		$buyer_list_query = "SELECT * FROM ".$_gl['board_notice_table']." WHERE 1 AND showYN='Y' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
 
 		$result = mysqli_query($my_db, $buyer_list_query);
 

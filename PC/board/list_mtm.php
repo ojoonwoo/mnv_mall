@@ -89,17 +89,19 @@
 		foreach($buyer_info as $key => $val)
 		{
 			if($buyer_info[$key]['question_type'] == "shipping")
-				$buyer_info[$key]['question_type'] = "배송";
+				$buyer_info[$key]['question_type'] = "[배송]";
 			else if($buyer_info[$key]['question_type'] == "payment")
-				$buyer_info[$key]['question_type'] = "결제";
+				$buyer_info[$key]['question_type'] = "[결제]";
+			else if($buyer_info[$key]['question_type'] == "other")
+				$buyer_info[$key]['question_type'] = "[기타]";
 			else
-				$buyer_info[$key]['question_type'] = "기타";
+				$buyer_info[$key]['question_type'] = "&nbsp;&nbsp;RE:";
 ?>
                     <tr>
                       <td class="date"><?=substr($buyer_info[$key]['date'],0,10)?></td>
                       <td class="subject">
                         <a href="<?=$_mnv_PC_board_url?>read_mtm.php?idx=<?=$buyer_info[$key]['idx']?>&pg=<?=$pg?>">
-                          <?=$buyer_info[$key]['question_type']?>]  <?=$buyer_info[$key]['subject']?>
+                          <?=$buyer_info[$key]['question_type']?>  <?=$buyer_info[$key]['subject']?>
                         </a>
                       </td>
                       <td class="answer"><?=($buyer_info[$key]['answerYN'] == "Y")?"답변완료":"답변대기"?></td>

@@ -1135,6 +1135,191 @@
 			echo $innerHTML;
 
 		break;
+			
+		case "show_qna_list":
+
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['board_qna_table']." WHERE 1 ORDER BY thread DESC";
+			$list_result	= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th><input type='checkbox' name='all_check' id='all_check'></th>";
+			$innerHTML	.= "<th>순번</th>";
+			$innerHTML	.= "<th>상품코드</th>";
+			$innerHTML	.= "<th>제목</th>";
+			$innerHTML	.= "<th>작성자</th>";
+			$innerHTML	.= "<th>작성일시</th>";
+			$innerHTML	.= "<th>조회수</th>";
+			$innerHTML	.= "<th>답변</th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td><input type='checkbox' name='one_check' id='one_check'></td>";
+				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
+				$innerHTML	.= "<td>";
+				if($list_data['depth']>0)
+				{
+					$depth = $list_data['depth']*7;
+					$innerHTML	.= "<img height='1' width=$depth>";
+				}
+				$innerHTML	.= "<a href='./read_qna.php?idx=".$list_data['idx']."'>
+										".$list_data['subject']."
+										</td>";
+				$innerHTML	.= "<td>".$list_data['user_id']."</td>";
+				$innerHTML	.= "<td>".$list_data['date']."</td>";
+				$innerHTML	.= "<td>".$list_data['hit']."</td>";
+				$innerHTML	.= "<td>
+										<a href='./reply_qna.php?idx=".$list_data['idx']."&pg=".$pg."'>
+										<input type='button' value='답변'></a>
+										<a href='./delete_qna.php?idx=".$list_data['idx']."'>
+										<input type='button' value='삭제'></a>
+									</td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+
+		break;
+			
+		case "show_mtm_list":
+
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['board_mtm_table']." WHERE 1 ORDER BY thread DESC";
+			$list_result	= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th><input type='checkbox' name='all_check' id='all_check'></th>";
+			$innerHTML	.= "<th>순번</th>";
+			$innerHTML	.= "<th>질문유형</th>";
+			$innerHTML	.= "<th>제목</th>";
+			$innerHTML	.= "<th>작성자</th>";
+			$innerHTML	.= "<th>답변여부</th>";
+			$innerHTML	.= "<th>이메일 답변 발송여부</th>";
+			$innerHTML	.= "<th>작성일시</th>";
+			$innerHTML	.= "<th>답변</th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$list_data['user_email'] = ($list_data['user_email'] != '')?"Y":"N";
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td><input type='checkbox' name='one_check' id='one_check'></td>";
+				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>".$list_data['question_type']."</td>";
+				$innerHTML	.= "<td>";
+				if($list_data['depth']>0)
+				{
+					$depth = $list_data['depth']*7;
+					$innerHTML	.= "<img height='1' width=$depth>";
+				}
+				$innerHTML	.= "<a href='./read_mtm.php?idx=".$list_data['idx']."'>
+										".$list_data['subject']."
+										</td>";
+				$innerHTML	.= "<td>".$list_data['user_id']."</td>";
+				$innerHTML	.= "<td>".$list_data['answerYN']."</td>";
+				$innerHTML	.= "<td>".$list_data['user_email']."</td>";
+				$innerHTML	.= "<td>".$list_data['date']."</td>";
+				$innerHTML	.= "<td>
+									<a href='./reply_mtm.php?idx=".$list_data['idx']."&pg=".$pg."'>
+									<input type='button' value='답변'></a>
+									<a href='./delete_mtm.php?idx=".$list_data['idx']."'>
+									<input type='button' value='삭제'></a>
+								</td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+
+		break;
+			
+		case "show_notice_list":
+
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['board_notice_table']." WHERE 1 ORDER BY thread DESC";
+			$list_result	= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th><input type='checkbox' name='all_check' id='all_check'></th>";
+			$innerHTML	.= "<th>순번</th>";
+			$innerHTML	.= "<th>제목</th>";
+			$innerHTML	.= "<th>작성자</th>";
+			$innerHTML	.= "<th>작성일시</th>";
+			$innerHTML	.= "<th>조회수</th>";
+			$innerHTML	.= "<th>노출여부</th>";
+			$innerHTML	.= "<th>수정/삭제</th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+			//$i	= 1;
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td><input type='checkbox' name='one_check' id='one_check'></td>";
+				$innerHTML	.= "<td></td>";
+				$innerHTML	.= "<td>";
+				if($list_data['depth']>0)
+				{
+					$depth = $list_data['depth']*7;
+					$innerHTML	.= "<img height='1' width=$depth>";
+				}
+				$innerHTML	.= "<a href='./read_notice.php?idx=".$list_data['idx']."'>
+										".$list_data['subject']."
+										</td>";
+				$innerHTML	.= "<td>".$list_data['user_id']."</td>";
+				$innerHTML	.= "<td>".$list_data['date']."</td>";
+				$innerHTML	.= "<td>".$list_data['hit']."</td>";
+				$innerHTML	.= "<td>".$list_data['showYN']."</td>";
+				$innerHTML	.= "<td>
+									<a href='./edit_notice.php?idx=".$list_data['idx']."&pg=".$pg."'>
+									<input type='button' value='수정'></a>
+									<a href='./delete_notice.php?idx=".$list_data['idx']."'>
+									<input type='button' value='삭제'></a>
+								</td>";
+				$innerHTML	.= "</tr>";
+				//$i++;
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+
+		break;
+			
+		case "write_notice":
+			
+			$user_id = $_REQUEST['user_id'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+			$showYN  = $_REQUEST['showYN'];
+
+			$s_query = "SELECT max(thread) AS thread, max(idx) FROM ".$_gl['board_notice_table']."";
+			$max_thread_result = mysqli_query($my_db, $s_query);
+			$max_thread_fetch = mysqli_fetch_row($max_thread_result);
+
+			$max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
+			$max_idx = $max_thread_fetch[1]+1;
+
+			$i_query = "INSERT INTO ".$_gl['board_notice_table']."(group_id, thread, depth, user_id, subject, content, showYN, date, ipaddr) 
+			VALUES('".$max_idx."','".$max_thread."',0,'".$user_id."','".$subject."','".$content."','".$showYN."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
+
+			$i_result = mysqli_query($my_db, $i_query); // 글 저장
+
+			if($i_result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+			
+		break;
 
 		case "reply_review":
 
@@ -1171,6 +1356,130 @@
 			echo $flag;
 
 		break;
+			
+		case "reply_qna":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+			$p_thread = $_REQUEST['p_thread'];
+			$p_depth = $_REQUEST['p_depth'];
+			$parent_gID = $_REQUEST['parent_gID'];
+
+			$prev_parent_thread = ceil($p_thread/1000)*1000 - 1000; // 올림
+
+			//원본글보다는 작고 위값보다는 큰 글들의 thread 값을 모두 1씩 낮춘다.
+			//만약 부모글이 2000이면 prev_parent_thread는 1000이므로 2000> x >1000 인 x 글들을 모두 -1 한다.
+
+			$u_query = "UPDATE ".$_gl['board_qna_table']." SET thread=thread-1 WHERE thread > '".$prev_parent_thread."' AND thread < '".$p_thread."'";
+			$result = mysqli_query ($my_db, $u_query); 
+
+			//원본글보다는 1 작은 값으로 답글을 등록한다.
+			//원본글의 바로 밑에 등록되게 된다.
+			//depth는 원본글의 depth + 1 이다. 원본글이 3(이글도 답글)이면 답글은 4가된다.
+			$i_query = "INSERT INTO ".$_gl['board_qna_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+							VALUES ('".$parent_gID."','".$p_thread."'-1,'".$p_depth."'+1,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
+			$result = mysqli_query($my_db, $i_query);
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+			
+		case "reply_mtm":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$user_email = $_REQUEST['user_email'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+			$p_thread = $_REQUEST['p_thread'];
+			$p_depth = $_REQUEST['p_depth'];
+			$parent_gID = $_REQUEST['parent_gID'];
+			$parent_content = $_REQUEST['parent_content'];
+			$parent_date = $_REQUEST['parent_date'];
+
+			$prev_parent_thread = ceil($p_thread/1000)*1000 - 1000; // 올림
+
+			//원본글보다는 작고 위값보다는 큰 글들의 thread 값을 모두 1씩 낮춘다.
+			//만약 부모글이 2000이면 prev_parent_thread는 1000이므로 2000> x >1000 인 x 글들을 모두 -1 한다.
+
+			$u_query = "UPDATE ".$_gl['board_mtm_table']." SET thread=thread-1 WHERE thread > '".$prev_parent_thread."' AND thread < '".$p_thread."'";
+			$result = mysqli_query($my_db, $u_query); 
+
+			$answerYN = "Y";
+			
+			//원본글보다는 1 작은 값으로 답글을 등록한다.
+			//원본글의 바로 밑에 등록되게 된다.
+			//depth는 원본글의 depth + 1 이다. 원본글이 3(이글도 답글)이면 답글은 4가된다.
+			$i_query = "INSERT INTO ".$_gl['board_mtm_table']."(group_id, thread, depth, user_id, user_email, subject, content, date, ipaddr) 
+							VALUES ('".$parent_gID."','".$p_thread."'-1,'".$p_depth."'+1,'".$user_id."','".$user_email."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
+			$result = mysqli_query($my_db, $i_query);
+
+			if($result){
+				$update_query = "UPDATE ".$_gl['board_mtm_table']." SET answerYN='".$answerYN."' WHERE group_id='".$parent_gID."'";
+				$update_result = mysqli_query($my_db, $update_query);
+				if($update_result && $user_email != ''){
+					$mail_result = sendMail(
+						"ojoonwoo2@gmail.com",
+						"촌의감각",
+						"문의하신 내용의 답변드립니다.",
+						"<div style='width: 600px;margin: 0 auto;margin-bottom: 35px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
+						<h2>
+							<img src='www.store-chon/PC/images/mail_title_logo.png' alt='촌의감각' style='width: 116px;height: 92px'/>
+						</h2>
+						<span style='display: inline-block;width: 18px;height: 1px;background-color: #b88b5b;margin: 15px 0'></span>
+						<p style='line-height: 18px;margin-bottom: 18px;font-size: 14px'>
+						문의하신 내용의 답변드립니다.
+						</p>
+						</div>
+						<div style='margin:0 auto;width:570px;border-top:1px solid #b88b5b;border-bottom:1px solid #b88b5b;font-size:13px;margin-bottom:35px;'>
+						<div style='border-bottom:1px solid #cccacb;'>
+						<div style='padding: 14px 16px;'>
+						<span style='display:inline-block;color:#b88b5b;vertical-align:top;padding-right:12px;'>문의날짜</span>
+						<span style='display:inline-block;width:400px;line-height:19px;'>$parent_date.09.20</span>
+						</div>
+						</div>
+						<div style='border-bottom:1px solid #cccacb;'>
+						<div style='padding: 14px 16px;'>
+						<span style='display:inline-block;color:#b88b5b;vertical-align:top;padding-right:12px;'>문의내용</span>
+						<span style='display:inline-block;width:400px;line-height:19px;'>$parent_content</span>
+						</div>
+						</div>
+						<div>
+						<div style='padding: 14px 16px;'>
+						<span style='display:inline-block;color:#b88b5b;vertical-align:top;padding-right:12px;'>답변내용</span>
+						<span style='display:inline-block;text-align:left;width:430px;line-height:19px;'>$content</span>
+						</div>
+						</div>
+						</div>
+						<div style='margin:0 auto;text-align:center;margin-bottom:60px;'>
+						<a href='http://store-chon.com/PC/member/member_login.php' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 로그인</span></p></a>
+						</div>
+						<div style='background-color: #f9f3ec;width: 600px;height: 154px;margin: 0 auto;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;'>
+						<div style='padding: 20px 38px;text-align: left;font-size: 12px'>
+						<p style='margin: 0;padding-bottom: 4px'>본 메일은 발신전용입니다.</p>
+						<p style='margin: 0;padding-bottom: 4px'>기타 관련 사항은 고객센터(070-4888-3580) 또는 촌의 감각 쇼핑몰에서 문의 바랍니다.</p>
+						<p style='margin: 0;padding-bottom: 4px;padding-top: 10px'>Copyright@CHON. ALL RIGHTS RESERVED.</p>
+						</div>
+						</div>",
+						"$email", "$username");
+				$flag = "Y";
+				}
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
 
 		case "edit_review":
 
@@ -1187,6 +1496,58 @@
 			// $max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
 
 			$u_query = "UPDATE ".$_gl['board_review_table']." SET subject='".$subject."', content='".$content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+			$u_result = mysqli_query ($my_db, $u_query); // 글 수정
+			if($u_result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+			
+		case "edit_qna":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$goods_code = $_REQUEST['goods_code'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+
+			// $s_query = "SELECT max(thread) AS thread FROM ".$_gl['board_review_table']."";
+			// $max_thread_result = mysqli_query($my_db, $s_query);
+			// $max_thread_fetch = mysqli_fetch_row($max_thread_result);
+
+			// $max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
+
+			$u_query = "UPDATE ".$_gl['board_qna_table']." SET subject='".$subject."', content='".$content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+			$u_result = mysqli_query ($my_db, $u_query); // 글 수정
+			if($u_result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+
+		break;
+			
+		case "edit_notice":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$subject = $_REQUEST['subject'];
+			$content = $_REQUEST['content'];
+			$showYN  = $_REQUEST['showYN'];
+
+			// $s_query = "SELECT max(thread) AS thread FROM ".$_gl['board_review_table']."";
+			// $max_thread_result = mysqli_query($my_db, $s_query);
+			// $max_thread_fetch = mysqli_fetch_row($max_thread_result);
+
+			// $max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
+
+			$u_query = "UPDATE ".$_gl['board_notice_table']." SET user_id='".$user_id."', subject='".$subject."', content='".$content."',showYN='".$showYN."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
 			$u_result = mysqli_query ($my_db, $u_query); // 글 수정
 			if($u_result){
 				$flag = "Y";
@@ -1232,6 +1593,68 @@
 				$query = "DELETE FROM ".$_gl['board_review_table']." WHERE idx='".$idx."'";
 				$result = mysqli_query($my_db, $query); // 글 삭제 (답변글 X)
 			}
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
+			
+		case "delete_qna":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$group_id	 = $_REQUEST['group_id'];
+			$goods_code = $_REQUEST['goods_code'];
+
+			$del_subject = "삭제된 글입니다.";
+			$del_content = "삭제된 글입니다.";
+
+			// 모든 글에서의 내용 뽑아내서 치환할경우
+			// $query = "SELECT * FROM ".$_gl['board_review_table']." WHERE idx = '".$idx."'";
+			// $result = mysqli_query($my_db, $query);
+			// $target = mysqli_fetch_array($result); // 지울 제목, 내용
+
+			// $query = "SELECT * FROM ".$_gl['board_review_table']." WHERE group_id = '".$group_id."'";
+			// $result = mysqli_query($my_db, $query);
+			// while ($array = mysqli_fetch_array($result)) {
+			// 	$contentArr[][] = str_replace($target['content'], $del_content, $array['content']);
+			// }
+			// print_r($contentArr);
+
+			$query = "SELECT * FROM ".$_gl['board_qna_table']." WHERE group_id = '".$group_id."'";
+			$result = mysqli_query($my_db, $query);
+			$rows = mysqli_num_rows($result);
+
+			if($rows>1)
+			{
+				$query = "UPDATE ".$_gl['board_qna_table']." SET subject='".$del_subject."', content='".$del_content."', date='".date('Y-m-d H:i:s')."', ipaddr='".$_SERVER['REMOTE_ADDR']."' WHERE idx='".$idx."'";
+				$result = mysqli_query($my_db, $query); // 글 수정 (답변글 존재)
+			}else{
+				$query = "DELETE FROM ".$_gl['board_qna_table']." WHERE idx='".$idx."'";
+				$result = mysqli_query($my_db, $query); // 글 삭제 (답변글 X)
+			}
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
+			
+		case "delete_notice":
+
+			$user_id = $_REQUEST['user_id'];
+			$idx	 = $_REQUEST['idx'];
+			$group_id	 = $_REQUEST['group_id'];
+
+			$query = "UPDATE ".$_gl['board_notice_table']." SET showYN='N' WHERE idx='".$idx."'";
+			$result = mysqli_query($my_db, $query); // 공지사항 비노출로 변경
 
 			if($result){
 				$flag = "Y";
