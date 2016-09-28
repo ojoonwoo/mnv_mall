@@ -236,7 +236,7 @@
 						<p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;'><span style='padding: 0;margin: 0;color: #b88b5b;line-height: 36px;vertical-align: middle;'>새로 발급된 비밀번호: $temp_pw</span></p>
 						<a href='www.store-chon.com' style='padding: 0;margin: 0;text-decoration: none;color: #000;'><p style='padding: 0;margin: 0;border: 1px solid #b88b5b;height: 36px;margin-bottom: 15px;background-color: #b88b5b;'><span style='padding: 0;margin: 0;color: #ffffff;line-height: 36px;vertical-align: middle;'>촌의 감각 로그인</span></p></a>
 						</div>",
-						"ojoonwoo@naver.com", "$username");
+						"$mb_email", "$username");
 					
 					if($mail_result)
 						$flag = "Y"; // 메일 발송까지 완료
