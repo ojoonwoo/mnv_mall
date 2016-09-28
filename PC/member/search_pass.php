@@ -124,6 +124,7 @@
 					"mb_email"		: user_email.val()
 				},
 				success: function(response){
+					alert(response);
 					if(response == 'Y'){
 						location.href="./member_login.php";
 					}
