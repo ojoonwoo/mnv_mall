@@ -262,7 +262,7 @@
 						<p style='margin: 0;padding-bottom: 4px'>기타 관련 사항은 고객센터(070-4888-3580) 또는 촌의 감각 쇼핑몰에서 문의 바랍니다.</p>
 						<p style='margin: 0;padding-bottom: 4px;padding-top: 10px'>Copyright@CHON. ALL RIGHTS RESERVED.</p>
 						</div>
-						</div>',
+						</div>",
 						"ojoonwoo@naver.com", "$username");
 					
 					if($mail_result)
