@@ -906,7 +906,7 @@
 				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
 				$innerHTML		.= '<div class="prd_info">';
 				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
-				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_code']).'</span>';
+				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
 				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
 				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
 				$innerHTML		.= '</div></div>';
