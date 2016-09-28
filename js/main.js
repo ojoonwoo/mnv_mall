@@ -268,7 +268,7 @@ $(document).on("click", "#mb_login", function(){
 		$("#mb_password").focus();
 		return false;
 	}
-
+alert(mb_password);
 	$.ajax({
 		type   : "POST",
 		async  : false,
