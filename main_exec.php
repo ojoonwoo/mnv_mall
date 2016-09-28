@@ -123,7 +123,7 @@
 						<span style='display: block;color: #b88b5b;vertical-align: middle;font-size: 15px;letter-spacing: -1px;'>아이디:&nbsp;&nbsp;<span style='color: #b88b5b;letter-spacing: normal;font-weight: bold;'>$user_id</span></span>
 
 						</p>
-						<a href='http://www.store-chon.com/PC/index.php' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 홈페이지 가기</span></p></a>
+						<a href='http://www.store-chon.com/' style='text-decoration: none;color: #000'><p style='background-color: #b88b5b;margin: 0 auto;width: 186px;padding: 14px 0'><span style='display: block;color: #fff;vertical-align: middle;font-size: 15px;letter-spacing: -1px'>촌의 감각 홈페이지 가기</span></p></a>
 						</div>
 						<div style='background-color: #f9f3ec;width: 600px;height: 154px;margin: 0 auto;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;'>
 						<div style='padding: 20px 38px;text-align: left;font-size: 12px'>
@@ -238,7 +238,7 @@
 				if($update_result)
 				{
 					$mail_result = sendMail(
-						"ojoonwoo2@gmail.com",
+						"yh.kim@minivertising.kr",
 						"촌의감각",
 						"비밀번호가 변경되었습니다.",
 						"<div style='width: 600px;margin: 0 auto;margin-bottom: 60px;margin-top: 60px;font-family: &quot;맑은 고딕&quot;, &quot;Malgun Gothic&quot;;text-align: center'>
@@ -263,7 +263,7 @@
 						<p style='margin: 0;padding-bottom: 4px;padding-top: 10px'>Copyright@CHON. ALL RIGHTS RESERVED.</p>
 						</div>
 						</div>",
-						"ojoonwoo@naver.com", "$username");
+						"$mb_email", "$username");
 					
 					if($mail_result)
 						$flag = "Y"; // 메일 발송까지 완료
