@@ -1470,7 +1470,7 @@
 						<p style='margin: 0;padding-bottom: 4px;padding-top: 10px'>Copyright@CHON. ALL RIGHTS RESERVED.</p>
 						</div>
 						</div>",
-						"$email", "$username");
+						"$user_email", "$username");
 				$flag = "Y";
 				}
 			}else{
