@@ -639,6 +639,7 @@ $(document).on("click", ".move_mycart", function(){
 			"wish_idx"		: wish_idx
 		},
 		success: function(response){
+			alert(response);
 			if (response == "Y")
 			{
 				location.href = './mycart.php';

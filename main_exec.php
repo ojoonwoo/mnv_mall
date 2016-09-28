@@ -778,7 +778,7 @@
 			else
 				$flag	= "N";
 
-			echo $flag;
+			echo $du_cart_query;
 		break;
 
 		case "move_wishlist" :
