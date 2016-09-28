@@ -279,6 +279,7 @@ $(document).on("click", "#mb_login", function(){
 			"mb_password"	: mb_password
 		},
 		success: function(response){
+				alert(response);
 			if (response == "Y")
 			{
 				if (pg_referer == "")
