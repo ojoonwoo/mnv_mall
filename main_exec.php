@@ -10,7 +10,7 @@
 			$login_query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$mb_id."'";
 			$login_result		= mysqli_query($my_db, $login_query);
 			$login_data		= mysqli_fetch_array($login_result);
-			print_r($login_data['mb_password']);
+
 			// 암호 검증
 			if (validate_password($mb_password,$login_data['mb_password']))
 			{
