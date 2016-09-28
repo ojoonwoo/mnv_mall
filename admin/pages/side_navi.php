@@ -86,7 +86,13 @@
             <a href="list_review.php">리뷰 게시판</a>
           </li>
           <li>
-            <a href="login.html">Login Page</a>
+            <a href="list_qna.php">Q&A 게시판</a>
+          </li>
+          <li>
+            <a href="list_mtm.php">1대1 문의 게시판</a>
+          </li>
+          <li>
+            <a href="list_notice.php">공지사항 게시판</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->

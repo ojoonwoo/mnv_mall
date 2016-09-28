@@ -1374,6 +1374,7 @@ input:-webkit-autofill {
 
 .admin_editor {
     width: 889px;
+    padding: 20px 0;
 /*    padding-bottom: 40px;*/
     margin: 0 auto;
 /*    text-align: center;*/

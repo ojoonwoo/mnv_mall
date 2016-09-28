@@ -71,7 +71,7 @@
                 </div>
               </div>
             </div>
-            <div class="admin_editor" style="text-align:left;">
+            <div class="admin_editor" style="text-align:left;padding-top:0;">
               <!-- 사용자 에디터 삽입 영역 -->
               <textarea name="content"  id="content" rows="10" cols="100" style="width:100%; height:412px; display:none;"></textarea>
               <!-- 사용자 에디터 삽입 영역 -->

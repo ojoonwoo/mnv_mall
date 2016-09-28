@@ -91,7 +91,7 @@
 <?
 	}else{
 ?>
-                      <span class="price"><?=$goods_info['sales_price']?>원</span>
+                      <span class="price"><?=number_format($goods_info['sales_price'])?>원</span>
 <?
 	}
 ?>
