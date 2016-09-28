@@ -277,7 +277,7 @@
 				$flag = "N"; // 입력한 정보의 회원이 없음
 			}
 
-			echo $flag;
+			echo $mail_result;
 			
 		break;
 
