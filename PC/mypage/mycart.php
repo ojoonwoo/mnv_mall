@@ -147,6 +147,8 @@
                     </tr>
 <?
 		}
+		if ($total_price > 49999)
+			$site_option['default_delivery_price']	= 0;
 		$total_pay_price	= $total_price + $site_option['default_delivery_price'];
 
 	}else{
