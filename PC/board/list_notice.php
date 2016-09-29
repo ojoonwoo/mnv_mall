@@ -152,3 +152,14 @@
     </div>
   </body>
 </html>
+<script type="text/javascript">
+	function pageRun(num)
+	{
+		//$('#review_board_area').load(function(){
+			f = document.frm_execute;
+			f.pg.value = num;
+			f.submit();
+		//}).fadeIn("slow");
+	}
+
+</script>
