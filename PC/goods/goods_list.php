@@ -147,6 +147,6 @@ var sub_cate1	= null;
 var sub_cate2	= null;
 
 $(document).ready(function(){
-	show_sub_cate('<?=$cate_no?>','1');
+	show_sub_cate('<?=$cate_no?>','0');
 });
 </script>
