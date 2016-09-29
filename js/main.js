@@ -174,7 +174,8 @@ function cart_plus(code)
 	var ins_final_price	= Number($("#hidden_total_price").val()) + Number($("#"+code+"_current_price").val());
 	if (ins_final_price > 49999)
 		$("#hidden_delivery_price").val("0");
-
+	else
+		$("#hidden_delivery_price").val("2500");
 	$("#hidden_total_price").val(ins_final_price);
 	$("#"+code+"_total_price").html(numberWithCommas(ins_total_price));
 	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
@@ -208,6 +209,8 @@ function cart_minus(code)
 	var ins_final_price	= Number($("#hidden_total_price").val()) - Number($("#"+code+"_current_price").val());
 	if (ins_final_price > 49999)
 		$("#hidden_delivery_price").val("0");
+	else
+		$("#hidden_delivery_price").val("2500");
 
 	$("#hidden_total_price").val(ins_final_price);
 	$("#"+code+"_total_price").html(numberWithCommas(ins_total_price));
