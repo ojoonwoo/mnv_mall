@@ -86,8 +86,8 @@
                       <option <? if($split_phone[0] == '018') echo 'selected'; ?> value="018">018</option>
                       <option <? if($split_phone[0] == '019') echo 'selected'; ?> value="019">019</option>
                     </select>
-                    - <input class="form-control" type="text" id="phone2" name="phone2" value="<?=$split_phone[1]?>">
-                    - <input class="form-control" type="text" id="phone3" name="phone3" value="<?=$split_phone[2]?>">
+                    - <input class="form-control" type="text" id="phone2" name="phone2" value="<?=$split_phone[1]?>" size="10">
+                    - <input class="form-control" type="text" id="phone3" name="phone3" value="<?=$split_phone[2]?>" size="10">
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2">SMS 수신여부</label>
@@ -126,9 +126,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="col-sm-2">생년월일</label>
-                    <input class="form-control" type="text" name="birthY" id="birthY" value="<?=$split_birth[0]?>"> <span>년</span> 
-                    <input class="form-control" type="text" name="birthM" id="birthM" value="<?=$split_birth[1]?>"> <span>월</span> 
-                    <input class="form-control" type="text" name="birthD" id="birthD" value="<?=$split_birth[2]?>"> <span>일</span>
+                    <input class="form-control" type="text" name="birthY" id="birthY" value="<?=$split_birth[0]?>" size="10"> <span>년</span> 
+                    <input class="form-control" type="text" name="birthM" id="birthM" value="<?=$split_birth[1]?>" size="10"> <span>월</span> 
+                    <input class="form-control" type="text" name="birthD" id="birthD" value="<?=$split_birth[2]?>" size="10"> <span>일</span>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2">일반전화</label>
@@ -137,7 +137,7 @@
                       <option <? if($split_tel[0] == '031') echo 'selected'; ?> value="031">031</option>
                       <option <? if($split_tel[0] == '032') echo 'selected'; ?> value="032">032</option>
                     </select>
-                    <span>-</span> <input class="form-control" type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>"> <span>-</span> <input class="form-control" type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>">
+                    <span>-</span> <input class="form-control" type="text" id="tel2" name="tel2" value="<?=$split_tel[1]?>" size="10"> <span>-</span> <input class="form-control" type="text" id="tel3" name="tel3" value="<?=$split_tel[2]?>" size="10">
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2">등급</label>

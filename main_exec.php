@@ -32,7 +32,7 @@
 		break;
 
 		// 회원가입시 아이디 중복체크
-		case "duplicate_check": 
+		case "duplicate_check":
 
 			$input = $_REQUEST['input'];
 

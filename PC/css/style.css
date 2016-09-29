@@ -1340,7 +1340,7 @@ input:-webkit-autofill {
 
 .block_line .input_block input[type="radio"] {
     margin-right: 20px;
-    vertical-align: -5px;
+    vertical-align: bottom;
 }
 
 .block_line .input_block .board_btn {
