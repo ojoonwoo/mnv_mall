@@ -121,7 +121,7 @@
                   </div>
                   <div class="price_block">
                     <h3>총 주문금액</h3>
-                    <h3 class="total_order"><?=number_format($current_sum_price)?>원</h3>
+                    <h3 class="total_order"><?=number_format($total_price)?>원</h3>
                   </div>
                   <div class="charImg">
                     <img src="<?=$_mnv_PC_images_url?>spec_plus.png">
@@ -300,7 +300,7 @@
                       <p>총 주문금액</p>
                     </div>
                     <div class="block_col">
-                      <p><?=number_format($current_sum_price)?></p>
+                      <p><?=number_format($total_price)?></p>
                     </div>
                   </div>
                   <div class="block_row">
