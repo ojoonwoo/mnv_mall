@@ -114,7 +114,7 @@ $data = @mysqli_fetch_array($result);
 			data: {
 				exec        : "delete_notice",
 				idx         : <?=$data['idx']?>,
-				user_id     : <?=$data['user_id']?>,
+				user_id     : "<?=$data['user_id']?>"
 			},
 			success: function(res){
 				if(res == "Y")
