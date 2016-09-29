@@ -181,7 +181,7 @@ function cart_plus(code)
 	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
 	ins_final_price	= ins_final_price + Number($("#hidden_delivery_price").val());
 	$(".total_payment").html(numberWithCommas(ins_final_price)+"원");
-
+	$(".shipping").html(numberWithCommas(Number($("#hidden_delivery_price").val()))+"원");
 	$.ajax({
 		type   : "POST",
 		async  : false,
@@ -217,6 +217,7 @@ function cart_minus(code)
 	$(".total_order").html(numberWithCommas(ins_final_price)+"원");
 	ins_final_price	= ins_final_price + Number($("#hidden_delivery_price").val());
 	$(".total_payment").html(numberWithCommas(ins_final_price)+"원");
+	$(".shipping").html(numberWithCommas(Number($("#hidden_delivery_price").val()))+"원");
 
 	$.ajax({
 		type   : "POST",
