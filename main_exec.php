@@ -883,6 +883,7 @@
 					$current_price	= $list_data['sales_price'];
 				else
 					$current_price	= $list_data['discount_price'];
+
 				if ($i % 4 == 0)
 					$innerHTML		.= '<div class="list_product clearfix">';
 
@@ -890,7 +891,8 @@
 				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
 				$innerHTML		.= '<div class="prd_info">';
 				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
-				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
+				if ($list_data['sales_price'] != $current_price)
+					$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
 				$innerHTML		.= '<span class="prd_sale">'.number_format($current_price).'</span>';
 				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
 				$innerHTML		.= '</div></div>';
@@ -922,6 +924,11 @@
 			{
 				$list_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$list_data['goods_img_url']);
 
+				if ($list_data['discount_price'] == 0)
+					$current_price	= $list_data['sales_price'];
+				else
+					$current_price	= $list_data['discount_price'];
+
 				if ($i % 4 == 0)
 					$innerHTML		.= '<div class="list_product clearfix">';
 
@@ -929,8 +936,9 @@
 				$innerHTML		.= '<a href="'.$_mnv_PC_goods_url.'goods_detail.php?goods_code='.$list_data['goods_code'].'"><img src="'.$list_data['goods_img_url'].'" style="width:205px;height:205px"></a>';
 				$innerHTML		.= '<div class="prd_info">';
 				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
-				$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
-				$innerHTML		.= '<span class="prd_sale">'.number_format($list_data['discount_price']).'</span>';
+				if ($list_data['sales_price'] != $current_price)
+					$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
+				$innerHTML		.= '<span class="prd_sale">'.number_format($current_price).'</span>';
 				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
 				$innerHTML		.= '</div></div>';
 
