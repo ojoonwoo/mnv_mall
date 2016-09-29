@@ -120,7 +120,7 @@ function chk(re, e, msg) {
 		return true;
 	}
 
-	alert(msg);
+	//alert(msg);
 	e.value = "";
 	e.focus();
 	return false;
@@ -289,7 +289,6 @@ $(document).on("click", "#mb_login", function(){
 			"mb_password"	: mb_password
 		},
 		success: function(response){
-			alert(response);
 			if (response == "Y")
 			{
 				if (pg_referer == "")

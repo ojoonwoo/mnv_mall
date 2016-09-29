@@ -162,7 +162,7 @@ function select_best_goods_info($goods_flag, $goods_num)
 		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY goods_sales_cnt DESC limit ".$goods_num."";
 		$result		= mysqli_query($my_db, $query);
 	}else{
-		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_best_flag='Y' ORDER BY idx DESC";
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_best_flag='Y' ORDER BY goods_sequence DESC";
 		$result		= mysqli_query($my_db, $query);
 	}
 
@@ -185,7 +185,7 @@ function select_new_goods_info($goods_flag, $goods_num)
 		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY goods_regdate DESC limit ".$goods_num."";
 		$result		= mysqli_query($my_db, $query);
 	}else{
-		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_new_flag='Y' ORDER BY idx DESC";
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_new_flag='Y' ORDER BY goods_sequence DESC";
 		$result		= mysqli_query($my_db, $query);
 	}
 
@@ -208,7 +208,7 @@ function select_plan_goods_info($goods_flag, $goods_num)
 		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 ORDER BY goods_regdate DESC limit ".$goods_num."";
 		$result		= mysqli_query($my_db, $query);
 	}else{
-		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_plan_flag='Y' ORDER BY idx DESC";
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_plan_flag='Y' ORDER BY goods_sequence DESC";
 		$result		= mysqli_query($my_db, $query);
 	}
 
@@ -231,7 +231,7 @@ function select_cate_best_goods_info($cate_no, $goods_flag, $goods_num)
 		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND cate_1='".$cate_no."' ORDER BY goods_sales_cnt DESC limit ".$goods_num."";
 		$result		= mysqli_query($my_db, $query);
 	}else{
-		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND goods_cate_flag='Y' ORDER BY idx DESC";
+		$query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE 1 AND cate_1='".$cate_no."' AND goods_cate_flag='Y' ORDER BY goods_sequence DESC";
 		$result		= mysqli_query($my_db, $query);
 	}
 
