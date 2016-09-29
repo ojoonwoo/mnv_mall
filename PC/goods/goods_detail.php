@@ -202,7 +202,92 @@
               </div>
 <?=$goods_info['goods_big_desc'];?>
               <div class="product_dt_info">
-                <img src="../images/detail_info.jpg">
+                <div class="dt_info_top">
+                  <div class="caution_txt ceramics">
+                    <h2>수작업으로 만들어진 도자기들은,</h2>
+                    <p>무늬와 사이즈가 상세 설명과 차이가 있을 수 있어요.<br>
+                      제작공정 과정 중 유약이 흐른 자국, 미세한 돌기, 기포 구멍 등이 발생할 수 있어요.<br>도자기 흙 또는 유약에 포함된 철 성분으로 인해 검은 점이 생성될 수 있어요.
+                    </p>
+                  </div>
+                  <div class="caution_list clearfix">
+                    <div class="caution_block">
+                      <div class="caution_img">
+                        <img src="../images/caution_img1.png" alt="유약 자국">
+                      </div>
+                      <div class="caution_ex_txt">
+                        <span>유약이 흐른 자국</span>
+                      </div>
+                    </div>
+                    <div class="caution_block">
+                      <div class="caution_img">
+                        <img src="../images/caution_img2.png" alt="기포 구멍">
+                      </div>
+                      <div class="caution_ex_txt">
+                        <span>기포가 빠져나간 구멍</span>
+                      </div>
+                    </div>
+                    <div class="caution_block">
+                      <div class="caution_img">
+                        <img src="../images/caution_img3.png" alt="미세 돌기">
+                      </div>
+                      <div class="caution_ex_txt">
+                        <span>미세한 돌기</span>
+                      </div>
+                    </div>
+                    <div class="caution_block">
+                      <div class="caution_img">
+                        <img src="../images/caution_img4.png" alt="철 성분 검은 점">
+                      </div>
+                      <div class="caution_ex_txt">
+                        <span>철 성분으로 인한 검은 점</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dt_info_bottom">
+                  <div class="dt_info_bottom_bg">
+                    <div class="dt_info_bottom_inner">
+                      <h2 class="dt_guide_headline">
+                        <img src="../images/guide_alert_ico.png" alt="주의">
+                        <span>아래의 내용을 확인해주세요</span>
+                      </h2>
+                      <div class="dt_guide_cnts">
+                        <div class="dt_guide_cnts_inner">
+                          <div class="guide_block">
+                            <h4><img src="../images/guide_dot_img.png">주문배송안내</h4>
+                            <p><span>-</span><span>배송기간은 입금 확인일로부터 주말, 공휴일을 제외하고 약 1~3일 정도 소요됩니다.</span></p>
+                            <p><span>-</span><span>5만원 미만 구매시 2,500원의 배송료가 추가됩니다.</span></p>
+                            <p><span>-</span><span>제주도 및 도서 산간 지역은 별도의 추가요금이 발생할 수 있습니다.</span></p>
+                            <p><span>-</span><span>상품 준비 기간에 따라 배송일자가 달라 질 수 있습니다.</span></p>
+                            <p><span>-</span><span>택배 : 로젠택배   /   배송비 : 2,500원</span></p>
+                          </div>
+                          <div class="guide_block">
+                            <h4><img src="../images/guide_dot_img.png">교환/반품안내</h4>
+                            <p><span>-</span><span>상품하자, 오배송으로 인한 교환 및 반품시 상품 수령 후 7일 이내 교환처리 해드립니다.</span></p>
+                            <p><span>-</span><span>단순 고객 변심에 의한 교환은 왕복 택배비 5,000원을 동봉하여 주시기 바랍니다.</span></p>
+                            <p><span>-</span><span>반품은 배송비를 지불하셨다면 편도 택배비 2,500원, 무료배송 받으셨다면 왕복 택배비 5,000원을 동봉하여 주시기 바랍니다.<br>
+                              (반품신청 기간은 제품을 받은 날부터 3일 이내로 신청해주셔야 반품이 가능합니다.)</span></p>
+                            <p><span>-</span><span>모든 교환 및 반품은 먼저 고객센터로 교환/반품 의사를 밝혀주셔야하며, 로젠택배를 이용해 반품을 신청해주세요.</span></p>
+                          </div>
+                          <div class="guide_block">
+                            <h4><img src="../images/guide_dot_img.png">교환/반품이 불가한 경우</h4>
+                            <p><span>-</span><span>교환/반품 기간이 경과된 경우</span></p>
+                            <p><span>-</span><span>교환 및 반품 의사를 동봉하지 않은 경우</span></p>
+                            <p><span>-</span><span>고객의 부주의로 인해 상품이 훼손된 경우 / 사용흔적이 있거나 판매가 불가한 경우</span></p>
+                            <p><span>-</span><span>이벤트 및 세일상품</span></p>
+                          </div>
+                          <div class="guide_block">
+                            <h4><img src="../images/guide_dot_img.png">고객센터</h4>
+                            <p><span>-</span><span>전화 : 070-000-0000</span></p>
+                            <p><span>-</span><span>교환 및 반품주소 : 서울특별시 서초구 방배동 931-9 2F</span></p>
+                            <p><span>-</span><span>고객 상담시간 : 평일 오전 10시 30분 ~오후 5시 (토요일, 일요일 및 공휴일 휴무)
+                              </span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="product_dt_branding">
                 <img src="../images/branding_img.jpg">
