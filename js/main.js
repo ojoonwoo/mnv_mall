@@ -532,6 +532,7 @@ $(document).on("click", "#mycart_link", function(){
 $(document).on("click", "#order_link", function(){
 	var goods_idx				= $("#goods_idx").val();
 	var goods_optionYN		= $("#goods_optionYN").val();
+	var buy_cnt					= $("#buy_cnt").val();
 	var option_txt				= "";
 	
 	if (goods_optionYN == "Y")
@@ -557,6 +558,7 @@ $(document).on("click", "#order_link", function(){
 		data:{
 			"exec"				: "add_mycart",
 			"goods_idx"		: goods_idx,
+			"buy_cnt"			: buy_cnt,
 			"goods_option"	: option_txt
 		},
 		success: function(response){
