@@ -865,7 +865,7 @@
 			$cate1			= $_REQUEST['cate1'];
 			$cate2			= $_REQUEST['cate2'];
 
-			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2='".$cate2."' ORDER BY idx DESC limit 16";
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' ORDER BY idx DESC limit 16";
 			$list_result		= mysqli_query($my_db, $list_query);
 
 			$innerHTML	= "";
