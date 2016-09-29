@@ -163,7 +163,7 @@
                     <p>주소<span class="fontColor">*</span></p>
                   </div>
                   <div class="block_col line3">
-                    <input class="inputT" type="text" size="6" id="order_zipcode" value="<?=$member_info['mb_zipcode']?>"> - <input class="inputT" type="text" size="6">
+                    <input class="inputT" type="text" size="6" id="order_zipcode" value="<?=$member_info['mb_zipcode']?>">
                     <input type="button" value="우편번호" class="inputB"><br>
                     <input class="inputT" type="text" size="50" id="order_address1" value="<?=$member_info['mb_address1']?>"><span class="address_comment">기본주소</span><br>
                     <input class="inputT" type="text" size="50" id="order_address2" value="<?=$member_info['mb_address2']?>"><span class="address_comment">나머지주소(직접입력)</span>
@@ -242,7 +242,7 @@
                       <p>주소<span class="fontColor">*</span></p>
                     </div>
                     <div class="block_col line3">
-                      <input class="inputT" type="text" size="6" id="deliver_zipcode"> - <input class="inputT" type="text" size="6">
+                      <input class="inputT" type="text" size="6" id="deliver_zipcode">
                       <input type="button" value="우편번호" class="inputB"><br>
                       <input class="inputT" type="text" size="50" id="deliver_address1"><span class="address_comment">기본주소</span><br>
                       <input class="inputT" type="text" size="50" id="deliver_address2"><span class="address_comment">나머지주소(직접입력)</span>
