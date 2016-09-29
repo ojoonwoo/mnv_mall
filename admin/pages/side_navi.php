@@ -47,13 +47,13 @@
             <a href="sales_store.php">판매경로 관리</a>
           </li>
           <li>
-            <a href="best_goods_manage.php">베스트 상품 관리 (미완성)</a>
+            <a href="best_goods_manage.php">베스트 상품 관리</a>
           </li>
           <li>
-            <a href="new_goods_manage.php">신 상품 관리 (미완성)</a>
+            <a href="new_goods_manage.php">신 상품 관리</a>
           </li>
           <li>
-            <a href="plan_goods_manage.php">스페셜 상품 관리 (미완성)</a>
+            <a href="plan_goods_manage.php">스페셜 상품 관리</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->
@@ -105,6 +105,15 @@
           </li>
           <li>
             <a href="post.php">포스트 관리</a>
+          </li>
+        </ul>
+        <!-- /.nav-second-level -->
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-files-o fa-fw"></i> 통 계 ( 결제 후 작업 예정 )<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="#">작업예정</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->

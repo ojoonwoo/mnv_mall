@@ -6,30 +6,34 @@
 
 // *********************** 베스트 상품 관리 *********************** //
 
+// 베스트 상품 관리 > 베스트 상품 추가 버튼 클릭
+$(document).on("click", "#add_best_goods_btn", function(){
+	$("#list_best_goods").hide();
+	$("#add_best_goods").show();
+});
+
+// 베스트 상품 관리 > 베스트 상품 목록 버튼 클릭
+$(document).on("click", "#list_best_goods_btn", function(){
+	$("#add_best_goods").hide();
+	$("#list_best_goods").show();
+});
+
 // 베스트 상품 정보 insert
 $(document).on("click", "#submit_btn16", function(){
-	var post_title				= $("#post_title").val();
-	var post_subtitle			= $("#post_subtitle").val();
-	var post_contents			= oEditors.getById["post_contents"].getIR();
+	var goods_code			= $("#goods_code").val();
+	var goods_sequence	= $("#goods_sequence").val();
 
-	if (post_title == "")
+	if (goods_code == "")
 	{
-		alert("포스트 제목을 입력해주세요.");
-		$("#post_title").focus();
+		alert("상품코드를 입력해주세요.");
+		$("#goods_code").focus();
 		return false;
 	}
 
-	if (post_subtitle == "")
+	if (goods_sequence == "")
 	{
-		alert("포스트 설명을 입력해주세요.");
-		$("#post_title").focus();
-		return false;
-	}
-
-	if (post_contents == "")
-	{
-		alert("포스트 내용을 입력해주세요.");
-		$("#post_contents").focus();
+		alert("노출순서를 입력해주세요.");
+		$("#goods_sequence").focus();
 		return false;
 	}
 
@@ -38,10 +42,121 @@ $(document).on("click", "#submit_btn16", function(){
 		async  : false,
 		url    : "admin_exec.php",
 		data:{
-			"exec"					: "insert_post_info",
-			"post_title"			: post_title,
-			"post_subtitle"		: post_subtitle,
-			"post_contents"		: post_contents
+			"exec"					: "insert_best_goods_info",
+			"goods_code"		: goods_code,
+			"goods_sequence"	: goods_sequence
+		},
+		success: function(response){
+			alert(response);
+			if (response == "N")
+			{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}else{
+				alert("베스트 상품이 선택 되었습니다.");
+				location.reload();
+			}
+		}
+	});
+});
+
+// 전체 베스트 상품 리스트 생성
+function show_best_goods_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"		: "show_best_goods_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 베스트 상품 관리 > 베스타 상품 목록 > 순서 blur
+$(document).on("blur", ".edit_best_goods", function(){
+	var goods_code			= $(this).attr('edit_code');
+	var goods_sequence	= $(this).val();
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "edit_best_goods",
+			"goods_code"		: goods_code,
+			"goods_sequence"	: goods_sequence
+		}
+	});
+});
+
+// 베스트 상품 관리 > 베스타 상품 목록 > 삭제 버튼 클릭
+$(document).on("blur", ".del_best_goods", function(){
+	var goods_code			= $(this).attr('del_code');
+
+	if (confirm("베스트 상품에서 제외할까요?"))
+	{
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "admin_exec.php",
+			data:{
+				"exec"					: "delete_best_goods",
+				"goods_code"		: goods_code
+			},
+			success: function(response){
+				alert("베스트상품에서 제외되었습니다.");
+				location.reload();
+			}
+		});
+	}
+});
+
+// *********************** 신 상품 관리 *********************** //
+
+// 신 상품 관리 > 신 상품 추가 버튼 클릭
+$(document).on("click", "#add_new_goods_btn", function(){
+	$("#list_new_goods").hide();
+	$("#add_new_goods").show();
+});
+
+// 신 상품 관리 > 신 상품 목록 버튼 클릭
+$(document).on("click", "#list_new_goods_btn", function(){
+	$("#add_new_goods").hide();
+	$("#list_new_goods").show();
+});
+
+// 신 상품 정보 insert
+$(document).on("click", "#submit_btn17", function(){
+	var goods_code			= $("#goods_code").val();
+	var goods_sequence	= $("#goods_sequence").val();
+
+	if (goods_code == "")
+	{
+		alert("상품코드를 입력해주세요.");
+		$("#goods_code").focus();
+		return false;
+	}
+
+	if (goods_sequence == "")
+	{
+		alert("노출순서를 입력해주세요.");
+		$("#goods_sequence").focus();
+		return false;
+	}
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "insert_new_goods_info",
+			"goods_code"		: goods_code,
+			"goods_sequence"	: goods_sequence
 		},
 		success: function(response){
 			if (response == "N")
@@ -49,31 +164,100 @@ $(document).on("click", "#submit_btn16", function(){
 				alert("다시 시도해 주세요.");
 				location.reload();
 			}else{
-				img_submit5(response);
-				alert("포스트가 추가 되었습니다.");
+				alert("신 상품이 선택 되었습니다.");
 				location.reload();
 			}
 		}
 	});
 });
 
-// 베스트 상품 정보 update
-$(document).on("click", "#submit_btn17", function(){
-	var idx						= $("#idx").val();
-	var post_title				= $("#post_title").val();
-	var post_contents			= oEditors.getById["post_contents"].getIR();
+// 전체 신 상품 리스트 생성
+function show_new_goods_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"		: "show_new_goods_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
 
-	if (post_title == "")
+// 신 상품 관리 > 신 상품 목록 > 수정 버튼 클릭
+$(document).on("blur", ".edit_new_goods", function(){
+	var goods_code			= $(this).attr('edit_code');
+	var goods_sequence	= $(this).val();
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "edit_new_goods",
+			"goods_code"		: goods_code,
+			"goods_sequence"	: goods_sequence
+		}
+	});
+
+});
+
+// 신 상품 관리 > 신 상품 목록 > 삭제 버튼 클릭
+$(document).on("blur", ".del_new_goods", function(){
+	var goods_code			= $(this).attr('del_code');
+
+	if (confirm("신 상품에서 제외할까요?"))
 	{
-		alert("포스트 제목을 입력해주세요.");
-		$("#post_title").focus();
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "admin_exec.php",
+			data:{
+				"exec"					: "delete_new_goods",
+				"goods_code"		: goods_code
+			},
+			success: function(response){
+				alert("신상품에서 제외되었습니다.");
+				location.reload();
+			}
+		});
+	}
+});
+
+// *********************** 스페셜 상품 관리 *********************** //
+
+// 스페셜 상품 관리 > 스페셜 상품 추가 버튼 클릭
+$(document).on("click", "#add_plan_goods_btn", function(){
+	$("#list_plan_goods").hide();
+	$("#add_plan_goods").show();
+});
+
+// 스페셜 상품 관리 > 스페셜 상품 목록 버튼 클릭
+$(document).on("click", "#list_plan_goods_btn", function(){
+	$("#add_plan_goods").hide();
+	$("#list_plan_goods").show();
+});
+
+// 스페셜 상품 정보 insert
+$(document).on("click", "#submit_btn18", function(){
+	var goods_code			= $("#goods_code").val();
+	var goods_sequence	= $("#goods_sequence").val();
+
+	if (goods_code == "")
+	{
+		alert("상품코드를 입력해주세요.");
+		$("#goods_code").focus();
 		return false;
 	}
 
-	if (post_contents == "")
+	if (goods_sequence == "")
 	{
-		alert("포스트 내용을 입력해주세요.");
-		$("#post_contents").focus();
+		alert("노출순서를 입력해주세요.");
+		$("#goods_sequence").focus();
 		return false;
 	}
 
@@ -82,22 +266,78 @@ $(document).on("click", "#submit_btn17", function(){
 		async  : false,
 		url    : "admin_exec.php",
 		data:{
-			"exec"					: "update_post_info",
-			"idx"					: idx,
-			"post_title"			: post_title,
-			"post_contents"		: post_contents
+			"exec"					: "insert_plan_goods_info",
+			"goods_code"		: goods_code,
+			"goods_sequence"	: goods_sequence
 		},
 		success: function(response){
-			if (response == "Y")
+			if (response == "N")
 			{
-				alert("포스트 정보가 수정 되었습니다.");
+				alert("다시 시도해 주세요.");
 				location.reload();
 			}else{
-				alert("다시 시도해 주세요.");
+				alert("스페셜 상품이 선택 되었습니다.");
 				location.reload();
 			}
 		}
 	});
+});
+
+// 전체 스페셜 상품 리스트 생성
+function show_plan_goods_list(id)
+{
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"		: "show_plan_goods_list",
+			"target"	: id
+		},
+		success: function(response){
+			$("#"+id).html(response);
+		}
+	});
+}
+
+// 스페셜 상품 관리 > 스페셜 상품 목록 > 수정 버튼 클릭
+$(document).on("blur", ".edit_plan_goods", function(){
+	var goods_code			= $(this).attr('edit_code');
+	var goods_sequence	= $(this).val();
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"					: "edit_plan_goods",
+			"goods_code"		: goods_code,
+			"goods_sequence"	: goods_sequence
+		}
+	});
+
+});
+
+// 스페셜 상품 관리 > 스페셜 상품 목록 > 삭제 버튼 클릭
+$(document).on("blur", ".del_plan_goods", function(){
+	var goods_code			= $(this).attr('del_code');
+
+	if (confirm("스페셜 상품에서 제외할까요?"))
+	{
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "admin_exec.php",
+			data:{
+				"exec"					: "delete_plan_goods",
+				"goods_code"		: goods_code
+			},
+			success: function(response){
+				alert("스페셜상품에서 제외되었습니다.");
+				location.reload();
+			}
+		});
+	}
 });
 
 // *********************** 포스트 *********************** //

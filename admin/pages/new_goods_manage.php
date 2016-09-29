@@ -30,17 +30,17 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">베스트 상품 관리</h1>
+          <h1 class="page-header">신 상품 관리</h1>
         </div>
         <!-- /.col-lg-12 -->
       </div>
       <!-- /.row -->
       <!-- /.panel-heading -->
-      <button type="button" class="btn btn-outline btn-primary btn-lg" id="add_best_goods_btn">베스트 상품 추가</button>
-      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_best_goods_btn">베스트 상품 목록</button>
+      <button type="button" class="btn btn-outline btn-primary btn-lg" id="add_new_goods_btn">신 상품 추가</button>
+      <button type="button" class="btn btn-outline btn-success btn-lg" id="list_new_goods_btn">신 상품 목록</button>
       <div class="panel-body">
         <div class="panel-body">
-          <div class="table-responsive" id="add_best_goods">
+          <div class="table-responsive" id="add_new_goods">
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
@@ -63,11 +63,11 @@
                 </tr>
               </tbody>
             </table>
-            <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn16">베스트 상품 정보 입력</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn17">신 상품 정보 입력</button>
           </div>
           <!-- /.table-responsive -->
-          <div class="table-responsive" id="list_best_goods" style="display:none;">
-            <table width="100%" class="table table-striped table-bordered table-hover" id="best_goods_list">
+          <div class="table-responsive" id="list_new_goods" style="display:none;">
+            <table width="100%" class="table table-striped table-bordered table-hover" id="new_goods_list">
             </table>
           </div>
           <!-- /.table-responsive -->
@@ -92,13 +92,11 @@
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
 	$(document).ready(function() {
-		// 1번 카테고리 정보
-		show_select_cate1("cate_1");
 		// 카테고리 리스트
-		show_best_goods_list("best_goods_list");
+		show_new_goods_list("new_goods_list");
 
 		// 테이블 api 세팅 
-		var table	= $('#best_goods_list').DataTable({
+		var table	= $('#new_goods_list').DataTable({
 			"columnDefs": [ {
 				"searchable": false,
 				"orderable": false,

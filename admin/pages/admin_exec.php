@@ -397,6 +397,138 @@
 			echo $flag;
 		break;
 
+		case "edit_best_goods" :
+			$goods_code		= $_REQUEST['goods_code'];
+			$goods_sequence	= $_REQUEST['goods_sequence'];
+
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_sequence='".$goods_sequence."' WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		break;
+
+		case "edit_new_goods" :
+			$goods_code		= $_REQUEST['goods_code'];
+			$goods_sequence	= $_REQUEST['goods_sequence'];
+
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_sequence='".$goods_sequence."' WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		break;
+
+		case "edit_plan_goods" :
+			$goods_code		= $_REQUEST['goods_code'];
+			$goods_sequence	= $_REQUEST['goods_sequence'];
+
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_sequence='".$goods_sequence."' WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		break;
+
+		case "delete_best_goods" :
+			$goods_code		= $_REQUEST['goods_code'];
+
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_sequence='0',goods_best_flag='N' WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		break;
+
+		case "delete_new_goods" :
+			$goods_code		= $_REQUEST['goods_code'];
+
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_sequence='0',goods_new_flag='N' WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		break;
+
+		case "delete_plan_goods" :
+			$goods_code		= $_REQUEST['goods_code'];
+
+			$goods_query		= "UPDATE ".$_gl['goods_info_table']." SET goods_sequence='0',goods_plan_flag='N' WHERE goods_code='".$goods_code."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		break;
+
+		case "show_best_goods_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE goods_best_flag='Y' ORDER BY goods_sequence ASC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>상품명</th>";
+			$innerHTML	.= "<th>상품코드</th>";
+			$innerHTML	.= "<th>상품브랜드</th>";
+			$innerHTML	.= "<th>순서</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['goods_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_brand']."</td>";
+				$innerHTML	.= "<td><input class='form-control edit_best_goods' value='".$list_data['goods_sequence']."' edit_code='".$list_data['goods_code']."'></td>";
+				$innerHTML	.= "<td><button type='button' class='btn btn-danger del_best_goods' del_code='".$list_data['goods_code']."'>삭제</button></td>";
+				$innerHTML	.= "</tr>";
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
+		case "show_new_goods_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE goods_new_flag='Y' ORDER BY goods_sequence ASC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>상품명</th>";
+			$innerHTML	.= "<th>상품코드</th>";
+			$innerHTML	.= "<th>상품브랜드</th>";
+			$innerHTML	.= "<th>순서</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['goods_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_brand']."</td>";
+				$innerHTML	.= "<td><input class='form-control edit_new_goods' value='".$list_data['goods_sequence']."' edit_code='".$list_data['goods_code']."'></td>";
+				$innerHTML	.= "<td><button type='button' class='btn btn-danger del_new_goods' del_code='".$list_data['goods_code']."'>삭제</button></td>";
+				$innerHTML	.= "</tr>";
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
+		case "show_plan_goods_list" :
+			$target	= $_REQUEST['target'];
+			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE goods_plan_flag='Y' ORDER BY goods_sequence ASC";
+			$list_result		= mysqli_query($my_db, $list_query);
+			$innerHTML	= "<thead>";
+			$innerHTML	.= "<tr>";
+			$innerHTML	.= "<th>상품명</th>";
+			$innerHTML	.= "<th>상품코드</th>";
+			$innerHTML	.= "<th>상품브랜드</th>";
+			$innerHTML	.= "<th>순서</th>";
+			$innerHTML	.= "<th></th>";
+			$innerHTML	.= "</tr>";
+			$innerHTML	.= "</thead>";
+			$innerHTML	.= "<tbody>";
+
+			while ($list_data = mysqli_fetch_array($list_result))
+			{
+				$innerHTML	.= "<tr>";
+				$innerHTML	.= "<td>".$list_data['goods_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
+				$innerHTML	.= "<td>".$list_data['goods_brand']."</td>";
+				$innerHTML	.= "<td><input class='form-control edit_plan_goods' value='".$list_data['goods_sequence']."' edit_code='".$list_data['goods_code']."'></td>";
+				$innerHTML	.= "<td><button type='button' class='btn btn-danger del_plan_goods' del_code='".$list_data['goods_code']."'>삭제</button></td>";
+				$innerHTML	.= "</tr>";
+			}
+			$innerHTML	.= "</tbody>";
+			echo $innerHTML;
+		break;
+
 		case "show_category_list" :
 			$target	= $_REQUEST['target'];
 			$list_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE 1 ORDER BY cate_1 ASC, cate_2 ASC, cate_3 ASC";
@@ -1664,6 +1796,55 @@
 
 			echo $flag;
 		break;
+
+		case "insert_best_goods_info":
+			$goods_code			= $_REQUEST['goods_code'];
+			$goods_sequence		= $_REQUEST['goods_sequence'];
+
+			$query = "UPDATE ".$_gl['goods_info_table']." SET goods_best_flag='Y', goods_sequence='".$goods_sequence."' WHERE goods_code='".$goods_code."'";
+			$result = mysqli_query($my_db, $query); // 공지사항 비노출로 변경
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
+
+		case "insert_new_goods_info":
+			$goods_code			= $_REQUEST['goods_code'];
+			$goods_sequence		= $_REQUEST['goods_sequence'];
+
+			$query = "UPDATE ".$_gl['goods_info_table']." SET goods_new_flag='Y', goods_sequence='".$goods_sequence."' WHERE goods_code='".$goods_code."'";
+			$result = mysqli_query($my_db, $query); // 공지사항 비노출로 변경
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
+
+		case "insert_plan_goods_info":
+			$goods_code			= $_REQUEST['goods_code'];
+			$goods_sequence		= $_REQUEST['goods_sequence'];
+
+			$query = "UPDATE ".$_gl['goods_info_table']." SET goods_plan_flag='Y', goods_sequence='".$goods_sequence."' WHERE goods_code='".$goods_code."'";
+			$result = mysqli_query($my_db, $query); // 공지사항 비노출로 변경
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
+
 	}
 
 ?>
