@@ -53,7 +53,7 @@
                     <input type="text" name="nmb_ordernumber" id="nmb_ordernumber" class="mb_input">
                   </div>
                   <div class="group_input">
-                    <input type="button" class="btn login" value="조회">
+                    <input type="button" class="btn login" value="조회" onclick="alert('결제모듈 적용할때 같이 작업할 예정');return false;">
                   </div>
                 </div>
               </div>
