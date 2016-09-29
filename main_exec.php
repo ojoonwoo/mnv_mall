@@ -761,9 +761,18 @@
 			$wish_result 		= mysqli_query($my_db, $wish_query);
 			$wish_data		= mysqli_fetch_array($wish_result);
 
-			$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
-			$cart_result 		= mysqli_query($my_db, $cart_query);
+			$du_cart_query	= "SELECT * FROM ".$_gl['mycart_info_table']." WHERE mb_id='".$wish_data['mb_id']."' AND goods_idx='".$wish_data['goods_idx']."' AND goods_option='".$wish_data['goods_option']."' AND showYN='Y'";
+			$du_cart_result	= mysqli_query($my_db, $du_cart_query);
+			$du_cart_cnt		= mysqli_num_rows($du_cart_result);
 
+			if ($du_cart_cnt > 0)
+			{
+				$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+1 WHERE mb_id='".$wish_data['mb_id']."' AND goods_idx='".$wish_data['goods_idx']."' AND goods_option='".$wish_data['goods_option']."' AND showYN='Y'";
+				$cart_result 		= mysqli_query($my_db, $cart_query);
+			}else{
+				$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
+				$cart_result 		= mysqli_query($my_db, $cart_query);
+			}
 			if ($cart_result)
 				$flag	= "Y";
 			else
@@ -780,7 +789,7 @@
 			$cart_result		= mysqli_query($my_db, $cart_query);
 			$cart_data		= mysqli_fetch_array($cart_result);
 
-			$wish_query		= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE goods_idx='".$cart_data['goods_idx']."'";
+			$wish_query		= "SELECT * FROM ".$_gl['wishlist_info_table']." WHERE goods_idx='".$cart_data['goods_idx']."' AND mb_id='".$mb_id."' AND showYN='Y'";
 			$wish_result		= mysqli_query($my_db, $wish_query);
 			$wish_num		= mysqli_num_rows($wish_result);
 

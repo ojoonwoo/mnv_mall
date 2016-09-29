@@ -459,10 +459,10 @@ $(document).on("click", "#wish_link", function(){
 		success: function(response){
 			if (response == "N")
 			{
-				alert("로그인 후 관심상품에 등록해 주세요.");
+				alert("로그인 후 관심상품으로 해주세요.");
 				location.href='../member/member_login.php';
 			}else if (response == "D"){
-				alert("이미 관심상품에 등록한 상품입니다.");
+				alert("이미 위시리스트에 등록한 상품입니다.");
 			}else if (response == "Y"){
 				alert("관심상품으로 등록되었습니다.");
 			}else{
@@ -639,6 +639,7 @@ $(document).on("click", ".move_mycart", function(){
 			"wish_idx"		: wish_idx
 		},
 		success: function(response){
+			console.log(response);
 			if (response == "Y")
 			{
 				location.href = './mycart.php';
