@@ -676,6 +676,7 @@
 		case "add_mycart" :
 			$goods_idx		= $_REQUEST['goods_idx'];
 			$goods_option	= $_REQUEST['goods_option'];
+			$buy_cnt			= $_REQUEST['buy_cnt'];
 			$mb_id			= $_SESSION['ss_chon_id'];
 			$cart_id			= $_SESSION['ss_chon_cartid'];
 
@@ -694,11 +695,11 @@
 			{
 				$cart_data	= mysqli_fetch_array($cart_result);
 
-				$cart_query2		= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+1 WHERE idx='".$cart_data['idx']."'";
+				$cart_query2		= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+".$buy_cnt." WHERE idx='".$cart_data['idx']."'";
 				$cart_result2		= mysqli_query($my_db, $cart_query2);
 			}else{
 				// 추가 수정 작업 해야함
-				$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$_SESSION['ss_chon_cartid']."','".$goods_idx."','".$goods_option."','".date("Y-m-d H:i:s")."')";
+				$cart_query2 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, goods_cnt, cart_regdate) values('".$_SESSION['ss_chon_cartid']."','".$goods_idx."','".$goods_option."','".$buy_cnt."','".date("Y-m-d H:i:s")."')";
 				$cart_result2 	= mysqli_query($my_db, $cart_query2);
 			}
 
