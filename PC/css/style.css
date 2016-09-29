@@ -15,13 +15,13 @@ html {
     line-height: 15px;
     width: 100%;
     min-width: 1180px;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
     font-size: 12px;
     line-height: 1.267em;
 /*    overflow-x:hidden;*/
-
 }
 
 a {
@@ -74,6 +74,7 @@ input:-webkit-autofill {
 #wrap_content {
     width: 1180px;
     margin: 0 auto;
+    min-height: 500px;
 }
 
 /* start header */

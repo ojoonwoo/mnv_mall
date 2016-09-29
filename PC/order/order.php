@@ -101,16 +101,7 @@
                         </div>
                       </td>
                       <td class="price"><?=number_format($current_price)?></td>
-                      <td class="count">
-                        <input type="text" name="select_amount" class="buy_cnt" id="buy_cnt1" value="<?=$val['goods_cnt']?>">
-                        <span class="amount_btn">
-                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#order_1">
-                          <map name="order_1" id="order_1">
-                            <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up', 1);return false;";>
-                            <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down', 1);return false;";>
-                          </map>
-                        </span>
-                      </td>
+                      <td class="count"><?=$val['goods_cnt']?></td>
                       <td class="total"><?=number_format($current_sum_price)?></td>
                     </tr>
 <?
