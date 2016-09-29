@@ -1832,7 +1832,7 @@ input:-webkit-autofill {
 }
 
 .block_copy .inputB {
-    padding: 8px 30px;
+    padding: 0 30px;
     margin-left: 4px;
 }
 
@@ -2080,7 +2080,8 @@ div {
 .inputT {
     height: auto;  /* 높이 초기화 */
     line-height: normal;  /* line-height 초기화 */
-    padding: 6px 7px;  /* 여백 설정 */
+    padding: 0 7px;  /* 여백 설정 */
+    height: 30px;
 /*    border: 1px solid #b88b5b;*/
     border: 1px solid #b9b1a5;
     vertical-align: middle;
@@ -2095,9 +2096,9 @@ div {
 }
 
 .inputB {
-    height: auto;
+    height: 30px;
     line-height: normal;
-    padding: 8px 7px;
+    padding: 0 7px;
     background-color: #b88b5b;
     color: #ffffff;
     vertical-align: middle;
