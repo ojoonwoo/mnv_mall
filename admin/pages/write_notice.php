@@ -59,7 +59,7 @@ include_once "header.php";
 										<input class="form-control" type="text" id="subject" name="subject">
 									</div>
 									<div class="form-group">
-										<label class="col-sm-2">제목</label>
+										<label class="col-sm-2">노출여부</label>
 										<input class="form-control" type="text" id="showYN" name="showYN" value="Y">
 									</div>
 									<div class="form-group">
