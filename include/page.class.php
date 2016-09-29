@@ -358,6 +358,50 @@ class Page
 		$block_str .= '';
 		return $block_str;
 	}
+	function blockList8( $str = "pageRun2(")
+	{
+		$b_start = $this->block_start;
+		$block_str = "";
+
+		$block_str .= '';
+		//-- 이전 블럭
+		if($this->block != 1)
+		{
+			$temp = $this->block_start - 1;
+			$block_str .= '<span><a href="#" onclick="' . $str . $temp . ');return false;"><img src="../images/arrow_left_single.png"></a></span>';
+		}
+
+		//--블럭 리스트
+		$arrBlock = array();
+		while($b_start <= $this->block_end && $b_start <= $this->page_count )
+		{
+			$arrBlock[] = 	$b_start++;
+		}
+		
+		for($i = 0; $i < count($arrBlock); $i++)
+		{
+			if($this->pg != $arrBlock[$i])
+			{
+				$block_str .= '<a href="javascript:void(0);" onclick="'. $str.$arrBlock[$i] . ');return false;"><span>' . $arrBlock[$i] . '</span></a>';
+			}
+			else
+			{
+				$block_str .= '<a href="javascript:void(0);" onclick="'. $str.$arrBlock[$i] . ');return false;"><span>' . $arrBlock[$i] . '</span></a>';
+			}
+			//if($i < (count($arrBlock) - 1) ) $block_str .= " / ";
+		}
+		
+		//다음 블럭
+		if($this->block != $this->block_count && $this->tot_no != 0){
+			$temp = $this->block_end + 1;
+			$block_str .= '<span><a href="#" onclick="' .$str . $temp . ');return false;"><img src="../images/arrow_right_single.png"></a></span>';
+
+			
+		}
+
+		$block_str .= '';
+		return $block_str;
+	}
 
 }
 

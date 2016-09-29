@@ -301,11 +301,34 @@
 
 	function pageRun(num)
 	{
-		$('#review_board_area').load(function(){
-			f = document.frm_execute;
-			f.pg.value = num;
-			f.submit();
-		}).fadeIn("slow");
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "ajax_goods_review.php",
+			data:{
+				"pg"	: num,
+				"goods_code"	: "<?=$goods_code?>"
+			},
+			success: function(response){
+				$("#review_board_area").html(response);
+			}
+		});
+	}
+	
+	function pageRun2(num)
+	{
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "ajax_goods_qna.php",
+			data:{
+				"pg"	: num,
+				"goods_code"	: "<?=$goods_code?>"
+			},
+			success: function(response){
+				$("#qna_board_area").html(response);
+			}
+		});
 	}
 	
 	function edit_review(user_id, idx, goodsCode)

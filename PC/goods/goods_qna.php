@@ -1,7 +1,4 @@
-               <form name="frm_execute" method="POST">
-                 <input type="hidden" name="pg" value="<?=$pg?>">
-               </form>
-               <div class="related_block">
+               <div class="related_block" id="qna_board_area">
                 <p class="head_txt">상품문의</p>
 <?
 	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_qna_table']." WHERE goods_code='".$goods_code."'";
@@ -34,7 +31,7 @@
 <?
 		$PAGE_CLASS = new Page($pg,$buyer_count,$page_size,$block_size);
 
-		$BLOCK_LIST = $PAGE_CLASS->blockList7();
+		$BLOCK_LIST = $PAGE_CLASS->blockList8();
 		$PAGE_UNCOUNT = $PAGE_CLASS->page_uncount;
 		$buyer_list_query = "SELECT * FROM ".$_gl['board_qna_table']." WHERE 1 AND goods_code='".$goods_code."' ORDER BY thread DESC LIMIT $PAGE_CLASS->page_start, $page_size";
 		$result = mysqli_query($my_db, $buyer_list_query);

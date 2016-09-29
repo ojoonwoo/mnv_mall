@@ -1,6 +1,9 @@
-              <div class="related_block" id="review_board_area">
-                <p class="head_txt">리뷰</p>
 <?
+	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
+?>
+				<p class="head_txt">리뷰</p>
+<?
+	$goods_code	= $_REQUEST['goods_code'];
 	$buyer_count_query = "SELECT count(*) FROM ".$_gl['board_review_table']." WHERE goods_code='".$goods_code."'";
 
 	list($buyer_count) = @mysqli_fetch_array(mysqli_query($my_db, $buyer_count_query));
@@ -108,4 +111,3 @@
                 <div class="block_board_pager">
                   <div class="pageing"><?php echo $BLOCK_LIST?></div>
                 </div>
-              </div>
