@@ -95,10 +95,10 @@
                       </td>
                       <td class="info clearfix">
                         <div class="info_img">
-                          <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><img src="<?=$wish_data['goods_img_url']?>" alt="<?=$wish_data['goods_name']?>" style="width:75px"></a>
+                          <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$wish_data['goods_code']?>"><img src="<?=$wish_data['goods_img_url']?>" alt="<?=$wish_data['goods_name']?>" style="width:75px"></a>
                         </div>
                         <div class="info_txt">
-                          <h3><a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><?=$wish_data['goods_name']?></a></h3>
+                          <h3><a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$wish_data['goods_code']?>"><?=$wish_data['goods_name']?></a></h3>
 <?
 	if ($wish_data['goods_optionYN'] == "Y")
 	{
