@@ -7,23 +7,24 @@
 // 입력값 검사
 function validate(ref)
 {
-	var user_id = document.getElementById('user_id');
-	var password = document.getElementById('password');
-	var passchk = document.getElementById('passchk');
-	var username = document.getElementById('username');
-	var zipcode = document.getElementById('zipcode');
-	var addr1 = document.getElementById('addr1');
-	var addr2 = document.getElementById('addr2');
-	var email1 = document.getElementById('email1');
-	var email2 = document.getElementById('email2');
-	var tel1 = document.getElementById('tel1');
-	var tel2 = document.getElementById('tel2');
-	var tel3 = document.getElementById('tel3');
-	var phone1 = document.getElementById('phone1');
-	var phone2 = document.getElementById('phone2');
-	var phone3 = document.getElementById('phone3');
-	var notice1 = document.getElementById('notice1');
-	var notice2 = document.getElementById('notice2');
+
+	user_id = document.getElementById('user_id');
+	password = document.getElementById('password');
+	passchk = document.getElementById('passchk');
+	username = document.getElementById('username');
+	zipcode = document.getElementById('zipcode');
+	addr1 = document.getElementById('addr1');
+	addr2 = document.getElementById('addr2');
+	email1 = document.getElementById('email1');
+	email2 = document.getElementById('email2');
+	tel1 = document.getElementById('tel1');
+	tel2 = document.getElementById('tel2');
+	tel3 = document.getElementById('tel3');
+	phone1 = document.getElementById('phone1');
+	phone2 = document.getElementById('phone2');
+	phone3 = document.getElementById('phone3');
+	notice1 = document.getElementById('notice1');
+	notice2 = document.getElementById('notice2');
 
 
 	// 아이디 검사
@@ -62,6 +63,7 @@ function validate(ref)
 	// 비밀번호 확인 검사
 	if(password.value!=passchk.value) {
 		alert("비밀번호가 틀립니다");
+		passchk.focus();
 		return false;
 	}
 
@@ -90,12 +92,23 @@ function validate(ref)
 	//        if (!chk(/^[0-9]{4}$/, tel3, "4자리 번호 입력"))
 	//                return false;
 	//        }
+	
+	if (phone1.value == '') {
+		alert("휴대폰번호를 입력해주세요.");
+		phone1.focus();
+		return false;
+	}
 
 	if (phone1.value != '') {
-		if (!chk(/^[0-9]{3,}$/, phone2, "번호 3자리 이상 입력"))
+		if (!chk(/^[0-9]{3,}$/, phone2, "휴대폰번호를 3자리 이상 입력해주세요."))
 			return false;
-		if (!chk(/^[0-9]{4}$/, phone3, "4자리 번호 입력"))
+		if (!chk(/^[0-9]{4}$/, phone3, "휴대폰번호를 4자리 입력해주세요."))
 			return false;
+	}
+	
+	if (email1.value == '' || email2.value == '') {
+		alert("이메일을 입력해주세요.");
+		return false;
 	}
 
 	if (email1.value != '') {
@@ -107,6 +120,8 @@ function validate(ref)
 		// if(!chk(/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/, email1, "이메일 주소가 올바르지 않습니다."))
 		// 	return false;
 	}
+	
+	
 	email1.value = tmp_email;
 	return true;
 }
@@ -120,7 +135,7 @@ function chk(re, e, msg) {
 		return true;
 	}
 
-	//alert(msg);
+	alert(msg);
 	e.value = "";
 	e.focus();
 	return false;

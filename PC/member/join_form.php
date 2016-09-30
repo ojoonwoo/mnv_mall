@@ -195,6 +195,25 @@
 <script type="text/javascript">
 	var val_check;
 	var id_check;
+	
+	var user_id
+	var password
+	var passchk
+	var username
+	var zipcode
+	var addr1;
+	var addr2;
+	var email1;
+	var email2;
+	var tel1;
+	var tel2;
+	var tel3;
+	var phone1;
+	var phone2;
+	var phone3;
+	var notice1;
+	var notice2;
+	
 	$('#find_addr').on('click', function() {
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -291,7 +310,6 @@
 					birthD		: $('#birthD').val()
 				},
 				success: function(res){
-					alert(res);
 					if(res=='Y'){
 						alert("환영합니다! 회원 가입되셨습니다. 로그인 후 이용해 주세요.");
 						location.href='./member_login.php';
