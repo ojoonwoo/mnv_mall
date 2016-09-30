@@ -39,8 +39,13 @@ function validate(ref)
 		// if(!chk(/[0-9]/, user_id, "아이디에 숫자 하나이상포함!"))
 		// 	return false;
 
-		if(!notice1.checked && !notice2.checked){
-			alert("약관에 동의하지 않으셨습니다.");
+		if(!notice1.checked){
+			alert("이용약관 동의를 하지 않으셨습니다.");
+			return false;
+		}
+
+		if(!notice2.checked){
+			alert("개인정보 수집 및 이용 동의를 하지 않으셨습니다.");
 			return false;
 		}
 	}
