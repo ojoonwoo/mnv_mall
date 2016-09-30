@@ -40,8 +40,14 @@
                 <table class="mypage_board_list">
                   <thead>
                     <tr>
-                      <th style="width:390px;">상품정보</th>
-                      <th style="width:270px;">판매가격</th>
+                      <th style="width:40px;">
+                        <div class="checks">
+                          <input type="checkbox" id="chk_all">
+                          <label for="chk_all"></label>
+                        </div>
+                      </th>
+                      <th style="width:370px;">상품정보</th>
+                      <th style="width:250px;">판매가격</th>
                       <th style="width:230px;"></th>
                     </tr>
                   </thead>
@@ -81,7 +87,13 @@
                     <tr>
                       <!-- <input type="hidden" id="goods_idx" value="<?=$wish_data['idx']?>">
                       <input type="hidden" id="wish_idx" value="<?=$wish_data['wish_idx']?>"> -->
-                      <td class="info clearfix" style="width:400px;">
+                      <td>
+                        <div class="checks">
+                          <input type="checkbox" id="<?=$wish_data['wish_idx']?>_ex_chk" name="chk">
+                          <label for="<?=$wish_data['wish_idx']?>?>_ex_chk"></label>
+                        </div>
+                      </td>
+                      <td class="info clearfix">
                         <div class="info_img">
                           <img src="<?=$wish_data['goods_img_url']?>" alt="<?=$wish_data['goods_name']?>" style="width:75px">
                         </div>

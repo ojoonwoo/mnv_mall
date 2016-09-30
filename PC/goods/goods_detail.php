@@ -418,18 +418,12 @@
 	
 	function edit_review(user_id, idx, goodsCode)
 	{
-		if(user_id == "<?=$login_id?>")
-			location.href="<?=$_mnv_PC_board_url?>edit_review.php?idx="+idx+"&goods_code="+goodsCode;
-		else
-			alert("본인만 수정가능합니다.");
+		location.href="<?=$_mnv_PC_board_url?>edit_review.php?idx="+idx+"&goods_code="+goodsCode;
 	}
 	
 	function edit_qna(user_id, idx, goodsCode)
 	{
-		if(user_id == "<?=$login_id?>")
-			location.href="<?=$_mnv_PC_board_url?>edit_qna.php?idx="+idx+"&goods_code="+goodsCode;
-		else
-			alert("본인만 수정가능합니다.");
+		location.href="<?=$_mnv_PC_board_url?>edit_qna.php?idx="+idx+"&goods_code="+goodsCode;
 	}
 
 </script>

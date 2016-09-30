@@ -62,6 +62,7 @@ button {
 input {
     border: none;
     cursor: pointer;
+    font-size: 13px;
 }
 
 input:-webkit-autofill {
@@ -2061,6 +2062,7 @@ div {
     line-height: 30px;
     color: #9a9a9a;
     z-index: -1;
+    font-size: 13px;
 }
 
 .selectbox select {

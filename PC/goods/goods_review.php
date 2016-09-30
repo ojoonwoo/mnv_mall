@@ -67,9 +67,15 @@
                   <tr class="hidden_board" style="display:none;">
                     <td class="open_content" colspan="4">
                       <?=$buyer_info[$key]['content']?>
+<?
+		if(user_id == "<?=$login_id?>") {
+?>
                       <div style="text-align:right;">
                         <input type="button" value="수정하기" class="board_btn" onclick="edit_review('<?=$buyer_info[$key]['user_id']?>','<?=$buyer_info[$key]['idx']?>','<?=$buyer_info[$key]['goods_code']?>');">
                       </div>
+<?
+		}
+?>
                     </td>
                   </tr>
 					<!--                  본문 영역 hide                  -->

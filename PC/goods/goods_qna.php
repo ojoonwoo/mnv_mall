@@ -47,12 +47,12 @@
                     <td class="num"><?=$PAGE_UNCOUNT--;?></td>
                     <td class="subject">
 <?
-	if($buyer_info[$key]['depth']>0)
-	{
+			if($buyer_info[$key]['depth']>0)
+			{
 ?>
                       <img height=1 width="<?=$buyer_info[$key]['depth']*7?>">
 <?
-	}
+			}
 ?>
                       <a href="javascript:void(0);" class="open_board">
 						<?=$buyer_info[$key]['subject']?>
@@ -65,9 +65,15 @@
                   <tr class="hidden_board" style="display:none;">
                     <td class="open_content" colspan="4">
                       <?=$buyer_info[$key]['content']?>
+<?
+			if(user_id == "<?=$login_id?>") {
+?>
                       <div style="text-align:right;">
                         <input type="button" value="수정하기" class="board_btn" onclick="edit_qna('<?=$buyer_info[$key]['user_id']?>','<?=$buyer_info[$key]['idx']?>','<?=$buyer_info[$key]['goods_code']?>');">
                       </div>
+<?
+			}
+?>
                     </td>
                   </tr>
                   <!--                  본문 영역 hide                  -->

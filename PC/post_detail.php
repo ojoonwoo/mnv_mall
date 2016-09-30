@@ -4,6 +4,18 @@
 	include_once $_mnv_PC_dir."header.php";
 
 	$post_info	= select_post_info($_REQUEST['idx']);
+
+	$prev_query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE idx < '".$post_info['idx']."' ORDER BY idx LIMIT 1";
+	$prev_result	= mysqli_query($my_db, $prev_query);
+	$prev_data		= mysqli_fetch_array($prev_result);
+
+	$next_query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE idx > '".$post_info['idx']."' ORDER BY idx LIMIT 1";
+	$next_result	= mysqli_query($my_db, $next_query);
+	$next_data		= mysqli_fetch_array($next_result);
+
+	print_r("현재글".$post_info['idx']);
+	print_r("이전글".$prev_data['idx']);
+	print_r("다음글".$next_data['idx']);
 ?>
   <body>
     <div id="wrap_page">
@@ -35,11 +47,38 @@
                 <input type="button" value="작성하기" class="board_btn">
                 <input type="button" value="문의하기" class="board_btn">
               </div> -->
-            </div>
-            <div class="area_main_bottom">
               <div class="branding_area">
                 <img src="./images/chon_branding_img.png" alt="촌의 감각">
               </div>
+              <table class="pr_view_table">
+                <tr>
+                  <td class="num">
+                    <img src="./images/polygon_single2.png" alt="위로">
+                    <span>이전글</span>
+                  </td>
+                  <td class="subject alignC">
+                    <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$prev_data['idx']?>">
+                      <?=$prev_data['post_title']?>
+                    </a>
+                  </td>
+                  <td class="date dateTerm"><?=substr($prev_data['post_regdate'],0,10)?></td>
+                </tr>
+                <tr>
+                  <td class="num">
+                    <img src="./images/polygon_single.png" alt="아래로">
+                    <span>다음글</span>
+                  </td>
+                  <td class="subject alignC">
+                    <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$next_data['idx']?>">
+                      <?=$next_data['post_title']?>
+                    </a>
+                  </td>
+                  <td class="date dateTerm"><?=substr($next_data['post_regdate'],0,10)?></td>
+                </tr>
+              </table>
+            </div>
+            <div class="area_main_bottom">
+            
             </div>
           </div>
           <div class="section side">

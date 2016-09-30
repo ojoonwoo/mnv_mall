@@ -111,7 +111,7 @@
                           <label for="<?=$cart_data['cart_idx']?>_ex_chk"></label>
                         </div>
                       </td>
-                      <td class="info clearfix" style="width:400px;">
+                      <td class="info clearfix">
                         <div class="info_img">
                           <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>" width="74px"></a>
                         </div>
