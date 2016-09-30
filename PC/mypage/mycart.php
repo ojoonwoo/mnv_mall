@@ -166,8 +166,8 @@
               </div>
               <div class="block_btn clearfix mt15">
                 <div class="lt_float">
-                  <input type="button" value="모두삭제" class="button_custom" id="cart_all_del">
-                  <input type="button" value="선택상품삭제" class="button_custom" id="cart_chk_del">
+                  <input type="button" value="모두삭제" class="button_custom" id="all_chk_del" data-direction="cart">
+                  <input type="button" value="선택상품삭제" class="button_custom" id="one_chk_del" data-direction="cart">
                 </div>
               </div>
               <div><!-- 장바구니 담은 상품 없을때 -->

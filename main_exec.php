@@ -819,11 +819,18 @@
 
 		case "delete_all_cart" :
 			$mb_id		= $_SESSION['ss_chon_id'];
+			$direction	= $_REQUEST['direction'];
 
-			$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE mb_id='".$mb_id."' AND cart_regdate >= date_add(now(), interval -3 day)";
-			$cart_result 		= mysqli_query($my_db, $cart_query);
+			if($direction == "cart")
+			{
+				$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE mb_id='".$mb_id."' AND cart_regdate >= date_add(now(), interval -3 day)";
+				$result 		= mysqli_query($my_db, $cart_query);
+			}else{
+				$wish_query 	= "UPDATE ".$_gl['wishlist_info_table']." SET showYN='N' WHERE mb_id='".$mb_id."'";
+				$result 		= mysqli_query($my_db, $wish_query);
+			}
 
-			if ($cart_result)
+			if ($result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
@@ -834,6 +841,8 @@
 		case "delete_chk_cart" :
 			$mb_id		= $_SESSION['ss_chon_id'];
 			$chk_idx		= $_REQUEST['chk_idx'];
+			$direction	= $_REQUEST['direction'];
+
 
 			$chk_idx_arr		= explode(",",$chk_idx);
 
@@ -845,12 +854,20 @@
 					$i++;
 					continue;
 				}
-				$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE idx='".$val."' AND mb_id='".$mb_id."'";
-				$cart_result 		= mysqli_query($my_db, $cart_query);
-				$i++;
+				
+				if($direction == "cart")
+				{
+					$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE idx='".$val."' AND mb_id='".$mb_id."'";
+					$result 		= mysqli_query($my_db, $cart_query);
+					$i++;
+				}else{
+					$wish_query 	= "UPDATE ".$_gl['wishlist_info_table']." SET showYN='N' WHERE idx='".$val."' AND mb_id='".$mb_id."'";
+					$result 		= mysqli_query($my_db, $wish_query);
+					$i++;
+				}
 			}
 
-			if ($cart_result)
+			if ($result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
