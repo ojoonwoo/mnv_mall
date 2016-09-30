@@ -142,7 +142,7 @@
                       </td>
                       <td class="total" id="<?=$cart_data['cart_idx']?>_total_price"><?=number_format($current_sum_price)?></td>
                       <td style="padding-right:15px;">
-                        <input type="button" value="위시리스트 담기" class="board_btn move_wishlist" cart_idx="<?=$cart_data['cart_idx']?>" >
+                        <input type="button" value="관심상품 담기" class="board_btn move_wishlist" cart_idx="<?=$cart_data['cart_idx']?>" >
                       </td>
                     </tr>
 <?
