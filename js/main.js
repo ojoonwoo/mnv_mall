@@ -39,14 +39,10 @@ function validate(ref)
 		// if(!chk(/[0-9]/, user_id, "아이디에 숫자 하나이상포함!"))
 		// 	return false;
 
-//		if(!notice1.checked){
-//			alert("1번에 동의하지 않으셨습니다.");
-//			return false;
-//		}
-//		if(!notice2.checked){
-//			alert("2번에 동의하지 않으셨습니다.");
-//			return false;
-//		}
+		if(!notice1.checked && !notice2.checked){
+			alert("약관에 동의하지 않으셨습니다.");
+			return false;
+		}
 	}
 
 	// 비밀번호 검사
@@ -369,11 +365,13 @@ $(document).on("click", "#mb_logout", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
+//		url    : "../../main_exec.php",
 		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			"exec"				: "member_logout"
 		},
 		success: function(response){
+//			location.href="../index.php";
 			location.href="http://store-chon.com/PC/index.php";
 		}
 	});
