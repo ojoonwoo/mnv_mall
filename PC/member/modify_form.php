@@ -30,7 +30,7 @@
                   <div class="block_line clearfix">
                     <span class="input_guide">아이디<span class="fontColor">*</span></span>
                     <div class="input_block">
-                      <input type="text" class="inputT" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>" readonly="true">
+                      <input type="text" class="inputT" id="user_id" name="user_id" value="<?=$user_data['mb_id']?>" disabled>
                     </div>
                   </div>
                   <div class="block_line clearfix">

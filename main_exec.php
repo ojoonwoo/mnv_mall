@@ -173,29 +173,33 @@
 				$tel = $tel1 . '-' . $tel2 . '-' . $tel3;
 			}
 
-				$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
+			$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
 
-				if($birthM !== '' && ($birthM < 10 && strlen($birthM) < 2)) {
+			if($birthY != '' && $birthM != '' && $birthD != '') {
+				if($birthM < 10 && strlen($birthM) < 2) {
 					$birthM = "/0".$birthM;
 				}else{
 					$birthM = "/".$birthM;
 				}
-				if($birthD !== '' && ($birthD < 10 && strlen($birthD) < 2)) {
+				if($birthD < 10 && strlen($birthD) < 2) {
 					$birthD = "/0".$birthD;
 				}else{
 					$birthD = "/".$birthD;
 				}
+			}
 
-				$birth = $birthY . $birthM . $birthD;
+			$birth = $birthY . $birthM . $birthD;
+			
+			
 
-				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."'),mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
-				$update_result   = mysqli_query($my_db, $update_query);
+			$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."'),mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
+			$update_result   = mysqli_query($my_db, $update_query);
 
-				if($update_result) {
-					$flag = "Y";
-				}else{
-					$flag = "N";
-				}
+			if($update_result) {
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
 			echo $flag;
 
 		break;
