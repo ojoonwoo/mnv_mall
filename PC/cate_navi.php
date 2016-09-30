@@ -77,7 +77,7 @@
                 <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_event.png" alt="이벤트"></span>
               </a>
               <span class="bar2"></span>
-              <a href="#">
+              <a href="<?=$_mnv_PC_url?>partnership.php">
                 <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_ask_partnership.png" alt="제휴문의"></span>
               </a>
             </div>

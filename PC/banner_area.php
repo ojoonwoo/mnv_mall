@@ -50,7 +50,7 @@
 ?>
             </div>
             <div class="banner_list clearfix">
-              <div class="banner"><a href="#"><img src="./images/main_banner1.png" alt="배너_촌의 감각"></a></div>
+              <div class="banner"><a href="<?=$_mnv_PC_url?>about_chon.php"><img src="./images/main_banner1.png" alt="배너_촌의 감각"></a></div>
               <div class="banner"><a href="<?=$_mnv_PC_url?>post_list.php"><img src="./images/main_banner2.png" alt="배너_매거진, 촌"></a></div>
               <div class="banner"><a href="https://www.instagram.com/chon.life/" target="_blank"><img src="./images/main_banner3.png" alt="배너_느린 그릇"></a></div>
             </div>
