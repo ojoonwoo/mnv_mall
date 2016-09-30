@@ -90,7 +90,7 @@
                       <td>
                         <div class="checks">
                           <input type="checkbox" id="<?=$wish_data['wish_idx']?>_ex_chk" name="chk">
-                          <label for="<?=$wish_data['wish_idx']?>?>_ex_chk"></label>
+                          <label for="<?=$wish_data['wish_idx']?>_ex_chk"></label>
                         </div>
                       </td>
                       <td class="info clearfix">
@@ -130,6 +130,12 @@
 ?>
                   </tbody>
                 </table>
+              </div>
+              <div class="block_btn clearfix mt15">
+                <div class="lt_float">
+                  <input type="button" value="모두삭제" class="button_custom" id="all_chk_del" data-direction="wish">
+                  <input type="button" value="선택상품삭제" class="button_custom" id="one_chk_del" data-direction="wish">
+                </div>
               </div>
               <div class="block_board_pager pt40">
                 <span>

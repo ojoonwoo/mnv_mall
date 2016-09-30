@@ -388,15 +388,17 @@ $(document).on("click", "#chk_all", function(){
 });
 
 // 장바구니 > 모두삭제 클릭
-$(document).on("click", "#cart_all_del", function(){
-	if (confirm("장바구니안의 상품을 모두 삭제하시겠습니까?"))
+$(document).on("click", "#all_chk_del", function(){
+	var direction = $(this).attr("data-direction");
+	if (confirm("상품을 모두 삭제하시겠습니까?"))
 	{
 		$.ajax({
 			type   : "POST",
 			async  : false,
 			url    : "http://store-chon.com/main_exec.php",
 			data:{
-				"exec"				: "delete_all_cart"
+				"exec"				: "delete_all_cart",
+				"direction"			: direction
 			},
 			success: function(response){
 				if (response == "Y")
@@ -412,7 +414,8 @@ $(document).on("click", "#cart_all_del", function(){
 });
 
 // 장바구니 > 선택 삭제 클릭
-$(document).on("click", "#cart_chk_del", function(){
+$(document).on("click", "#one_chk_del", function(){
+	var direction = $(this).attr("data-direction");
 	var chk_idx	= "";
 	$("input[name=chk]:checked").each(function() {
 		var chk_id	= $(this).attr("id");
@@ -425,7 +428,7 @@ $(document).on("click", "#cart_chk_del", function(){
 		alert("선택하신 상품이 없습니다.");
 		return false;
 	}else{
-		if (confirm("장바구니안의 선택하신 상품을 모두 삭제하시겠습니까?"))
+		if (confirm("선택하신 상품을 모두 삭제하시겠습니까?"))
 		{
 			$.ajax({
 				type   : "POST",
@@ -433,6 +436,7 @@ $(document).on("click", "#cart_chk_del", function(){
 				url    : "http://store-chon.com/main_exec.php",
 				data:{
 					"exec"				: "delete_chk_cart",
+					"direction"			: direction,
 					"chk_idx"			: chk_idx
 				},
 				success: function(response){
@@ -448,6 +452,8 @@ $(document).on("click", "#cart_chk_del", function(){
 		}
 	}
 });
+
+
 
 // 위시리스트 클릭
 $(document).on("click", "#wish_link", function(){
