@@ -12,10 +12,6 @@
 	$next_query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE idx > '".$post_info['idx']."' ORDER BY idx LIMIT 1";
 	$next_result	= mysqli_query($my_db, $next_query);
 	$next_data		= mysqli_fetch_array($next_result);
-
-	print_r("현재글".$post_info['idx']);
-	print_r("이전글".$prev_data['idx']);
-	print_r("다음글".$next_data['idx']);
 ?>
   <body>
     <div id="wrap_page">
