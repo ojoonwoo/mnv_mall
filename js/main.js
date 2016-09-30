@@ -501,6 +501,8 @@ $(document).on("click", "#wish_link", function(){
 $(document).on("click", "#mycart_link", function(){
 	var goods_idx				= $("#goods_idx").val();
 	var goods_optionYN		= $("#goods_optionYN").val();
+	var buy_cnt					= $("#buy_cnt").val();
+
 	var option_txt				= "";
 	
 	if (goods_optionYN == "Y")
@@ -526,6 +528,7 @@ $(document).on("click", "#mycart_link", function(){
 		data:{
 			"exec"				: "add_mycart",
 			"goods_idx"		: goods_idx,
+			"buy_cnt"			: buy_cnt,
 			"goods_option"	: option_txt
 		},
 		success: function(response){
@@ -544,6 +547,7 @@ $(document).on("click", "#mycart_link", function(){
 $(document).on("click", "#order_link", function(){
 	var goods_idx				= $("#goods_idx").val();
 	var goods_optionYN		= $("#goods_optionYN").val();
+	var buy_cnt					= $("#buy_cnt").val();
 	var option_txt				= "";
 	
 	if (goods_optionYN == "Y")
@@ -569,6 +573,7 @@ $(document).on("click", "#order_link", function(){
 		data:{
 			"exec"				: "add_mycart",
 			"goods_idx"		: goods_idx,
+			"buy_cnt"			: buy_cnt,
 			"goods_option"	: option_txt
 		},
 		success: function(response){
@@ -654,6 +659,7 @@ $(document).on("click", ".del_wishlist", function(){
 $(document).on("click", ".move_mycart", function(){
 	var wish_idx		= $(this).attr("wish_idx");
 
+
 	$.ajax({
 		type   : "POST",
 		async  : false,
@@ -667,6 +673,11 @@ $(document).on("click", ".move_mycart", function(){
 			if (response == "Y")
 			{
 				location.href = './mycart.php';
+			}else if (response == "D") {
+				if (confirm("이미 장바구니에 있습니다. 장바구니로 이동할까요?"))
+				{
+					location.href = './mycart.php';
+				}
 			}else{
 				alert("사용자가 많아 처리가 지연되고 있습니다. 다시 시도해 주세요.");
 				location.reload();

@@ -119,7 +119,7 @@
 <?
 	}else{
 ?>
-                      <input type="text" name="select_amount" id="buy_cnt" class="buy_cnt" value="1">
+                      <input type="text" name="select_amount" id="buy_cnt" class="buy_cnt" value="1" readonly>
                       <span class="amount_btn">
                         <img src="../images/polygon_double.png" usemap="#amount">
                         <map name="amount" id="amount">

@@ -20,13 +20,13 @@
             <div class="block_input clearfix">
               <div class="area_input member">
                  <div class="area_inner">
-                   <h3>LOGIN</h3>
+                   <h3>로그인</h3>
                    <div class="group_input">
-                     <label for="user_id">ID</label>
+                     <label for="user_id">아이디</label>
                      <input type="text" name="mb_id" id="mb_id" class="mb_input autocomplete-off" autocomplete="off">
                    </div>
                    <div class="group_input">
-                     <label for="user_pass">PASS</label>
+                     <label for="user_pass">비밀번호</label>
                      <input type="password" name="mb_password" id="mb_password" class="mb_input autocomplete-off" autocomplete="off">
                    </div>
                    <div class="group_input">
@@ -53,7 +53,7 @@
                     <input type="text" name="nmb_ordernumber" id="nmb_ordernumber" class="mb_input">
                   </div>
                   <div class="group_input">
-                    <input type="button" class="btn login" value="조회">
+                    <input type="button" class="btn login" value="조회" onclick="alert('결제모듈 적용할때 같이 작업할 예정');return false;">
                   </div>
                 </div>
               </div>
