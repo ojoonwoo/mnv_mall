@@ -66,7 +66,7 @@
                     <td class="open_content" colspan="4">
                       <?=$buyer_info[$key]['content']?>
 <?
-			if(user_id == "<?=$login_id?>") {
+			if($buyer_info[$key]['user_id'] == "<?=$login_id?>") {
 ?>
                       <div style="text-align:right;">
                         <input type="button" value="수정하기" class="board_btn" onclick="edit_qna('<?=$buyer_info[$key]['user_id']?>','<?=$buyer_info[$key]['idx']?>','<?=$buyer_info[$key]['goods_code']?>');">
@@ -106,7 +106,7 @@
 <?
 	}
 ?>
-                  <a href="<?=$_mnv_PC_board_url?>list_qna.php"><input type="button" value="목록으로" class="board_btn" id="list_qna"></a>
+                  <!-- <a href="<?=$_mnv_PC_board_url?>list_qna.php"><input type="button" value="목록으로" class="board_btn" id="list_qna"></a> -->
                 </div>
                 <div class="block_board_pager">
                   <div class="pageing"><?php echo $BLOCK_LIST?></div>
