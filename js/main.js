@@ -486,7 +486,7 @@ $(document).on("click", "#wish_link", function(){
 				alert("로그인 후 관심상품으로 해주세요.");
 				location.href='../member/member_login.php';
 			}else if (response == "D"){
-				alert("이미 위시리스트에 등록한 상품입니다.");
+				alert("이미 관심상품에 등록한 상품입니다.");
 			}else if (response == "Y"){
 				alert("관심상품으로 등록되었습니다.");
 			}else{
