@@ -39,8 +39,13 @@ function validate(ref)
 		// if(!chk(/[0-9]/, user_id, "아이디에 숫자 하나이상포함!"))
 		// 	return false;
 
-		if(!notice1.checked && !notice2.checked){
-			alert("약관에 동의하지 않으셨습니다.");
+		if(!notice1.checked){
+			alert("이용약관 동의를 하지 않으셨습니다.");
+			return false;
+		}
+
+		if(!notice2.checked){
+			alert("개인정보 수집 및 이용 동의를 하지 않으셨습니다.");
 			return false;
 		}
 	}
@@ -490,7 +495,7 @@ $(document).on("click", "#wish_link", function(){
 				alert("로그인 후 관심상품으로 해주세요.");
 				location.href='../member/member_login.php';
 			}else if (response == "D"){
-				alert("이미 위시리스트에 등록한 상품입니다.");
+				alert("이미 관심상품에 등록한 상품입니다.");
 			}else if (response == "Y"){
 				alert("관심상품으로 등록되었습니다.");
 			}else{

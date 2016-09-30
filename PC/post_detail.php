@@ -12,10 +12,6 @@
 	$next_query		= "SELECT * FROM ".$_gl['post_info_table']." WHERE idx > '".$post_info['idx']."' ORDER BY idx LIMIT 1";
 	$next_result	= mysqli_query($my_db, $next_query);
 	$next_data		= mysqli_fetch_array($next_result);
-
-	print_r("현재글".$post_info['idx']);
-	print_r("이전글".$prev_data['idx']);
-	print_r("다음글".$next_data['idx']);
 ?>
   <body>
     <div id="wrap_page">
@@ -57,9 +53,20 @@
                     <span>이전글</span>
                   </td>
                   <td class="subject alignC">
+<?
+	if ($prev_data['post_title'] == "")
+	{
+?>
+                      게시글이 없습니다.
+<?
+	}else{
+?>
                     <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$prev_data['idx']?>">
                       <?=$prev_data['post_title']?>
                     </a>
+<?
+	}
+?>
                   </td>
                   <td class="date dateTerm"><?=substr($prev_data['post_regdate'],0,10)?></td>
                 </tr>
@@ -69,9 +76,20 @@
                     <span>다음글</span>
                   </td>
                   <td class="subject alignC">
+<?
+	if ($next_data['post_title'] == "")
+	{
+?>
+                      게시글이 없습니다.
+<?
+	}else{
+?>
                     <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$next_data['idx']?>">
                       <?=$next_data['post_title']?>
                     </a>
+<?
+	}
+?>
                   </td>
                   <td class="date dateTerm"><?=substr($next_data['post_regdate'],0,10)?></td>
                 </tr>
