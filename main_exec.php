@@ -768,8 +768,10 @@
 
 			if ($du_cart_cnt > 0)
 			{
-				$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+1 WHERE mb_id='".$wish_data['mb_id']."' AND goods_idx='".$wish_data['goods_idx']."' AND goods_option='".$wish_data['goods_option']."' AND showYN='Y'";
-				$cart_result 		= mysqli_query($my_db, $cart_query);
+				// 장바구니에 같은 상품이 있을 경우에 수량 +1 로직 (임시 제거)
+				//$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET goods_cnt=goods_cnt+1 WHERE mb_id='".$wish_data['mb_id']."' AND goods_idx='".$wish_data['goods_idx']."' AND goods_option='".$wish_data['goods_option']."' AND showYN='Y'";
+				//$cart_result 		= mysqli_query($my_db, $cart_query);
+				$flag	= "D";
 			}else{
 				$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
 				$cart_result 		= mysqli_query($my_db, $cart_query);
