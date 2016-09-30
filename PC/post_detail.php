@@ -57,9 +57,20 @@
                     <span>이전글</span>
                   </td>
                   <td class="subject alignC">
+<?
+	if ($prev_data['post_title'] == "")
+	{
+?>
+                      게시글이 없습니다.
+<?
+	}else{
+?>
                     <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$prev_data['idx']?>">
                       <?=$prev_data['post_title']?>
                     </a>
+<?
+	}
+?>
                   </td>
                   <td class="date dateTerm"><?=substr($prev_data['post_regdate'],0,10)?></td>
                 </tr>
@@ -69,9 +80,20 @@
                     <span>다음글</span>
                   </td>
                   <td class="subject alignC">
+<?
+	if ($next_data['post_title'] == "")
+	{
+?>
+                      게시글이 없습니다.
+<?
+	}else{
+?>
                     <a href="<?=$_mnv_PC_url?>post_detail.php?idx=<?=$next_data['idx']?>">
                       <?=$next_data['post_title']?>
                     </a>
+<?
+	}
+?>
                   </td>
                   <td class="date dateTerm"><?=substr($next_data['post_regdate'],0,10)?></td>
                 </tr>
