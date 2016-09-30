@@ -3,7 +3,7 @@
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
-	$event_info	= select_event_info($_REQUEST['idx']);
+	$event_info			= select_event_info($_REQUEST['idx']);
 	$prev_event_info	= select_event_info($_REQUEST['idx'] - 1);
 	$next_event_info	= select_event_info($_REQUEST['idx'] + 1);
 ?>
@@ -44,35 +44,44 @@
                 <?=$event_info['event_contents']?>
               </div>
               <table class="pr_view_table">
-<?
-	if ($prev_event_info)
-	{
-?>
                 <tr>
                   <td class="num">
                     <img src="./images/polygon_single2.png" alt="위로">
                     <span>이전글</span>
                   </td>
-                  <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$prev_event_info['idx']?>"><?=$prev_event_info['event_title']?></a></td>
-                  <td class="date dateTerm"><?=str_replace("-",".",substr($prev_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($prev_event_info['event_enddate'],0,10))?></td>
-                </tr>
 <?
-	}
-
-	if ($next_event_info)
+	if ($prev_event_info)
 	{
 ?>
+                  <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$prev_event_info['idx']?>"><?=$prev_event_info['event_title']?></a></td>
+<?
+	}else{
+?>
+                  <td class="subject alignC">게시글이 없습니다.</td>
+<?
+	}
+?>
+                  <td class="date dateTerm"><?=str_replace("-",".",substr($prev_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($prev_event_info['event_enddate'],0,10))?></td>
+                </tr>
                 <tr>
                   <td class="num">
                     <img src="./images/polygon_single.png" alt="아래로">
                     <span>다음글</span>
                   </td>
+<?
+	if ($next_event_info)
+	{
+?>
                   <td class="subject alignC"><a href="<?=$_mnv_PC_url?>event_detail.php?idx=<?=$next_event_info['idx']?>"><?=$next_event_info['event_title']?></a></td>
-                  <td class="date dateTerm"><?=str_replace("-",".",substr($next_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($next_event_info['event_enddate'],0,10))?></td>
-                </tr>
+<?
+	}else{
+?>
+                  <td class="subject alignC">게시글이 없습니다.</td>
 <?
 	}
 ?>
+                  <td class="date dateTerm"><?=str_replace("-",".",substr($next_event_info['event_startdate'],0,10))?> ~ <?=str_replace("-",".",substr($next_event_info['event_enddate'],0,10))?></td>
+                </tr>
               </table>
                 <!-- 게시물 없을 때
 <table class="pr_view_table board_empty" style="display:none">
