@@ -779,11 +779,12 @@
 			}else{
 				$cart_query 	= "INSERT INTO ".$_gl['mycart_info_table']."(mb_id, goods_idx, goods_option, cart_regdate) values('".$mb_id."','".$wish_data['goods_idx']."','".$wish_data['goods_option']."','".date("Y-m-d H:i:s")."')";
 				$cart_result 		= mysqli_query($my_db, $cart_query);
+
+				if ($cart_result)
+					$flag	= "Y";
+				else
+					$flag	= "N";
 			}
-			if ($cart_result)
-				$flag	= "Y";
-			else
-				$flag	= "N";
 
 			echo $flag;
 		break;
