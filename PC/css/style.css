@@ -492,6 +492,7 @@ input:-webkit-autofill {
     margin: 0 auto;
 }
 
+
 .contents .area_main_top {
     padding-bottom: 50px;
 }
@@ -1860,10 +1861,25 @@ input:-webkit-autofill {
 
 .mypage_board_list.order tbody tr {
     height: 90px;
+    vertical-align: top;
 }
 
 .mypage_board_list.order tbody td {
+    padding-top: 30px;
+    padding-bottom: 20px;
     font-size: 14px;
+}
+
+.mypage_board_list.order td .orderNum {
+    text-decoration: underline;
+}
+
+.mypage_board_list.order td .board_btn.cancel {
+    color: #b88b5b;
+    background-color: #ffffff;
+    border: 1px solid #b88b5b;
+    padding: 4px 8px;
+    margin-top: 6px;
 }
 /* order */
 
@@ -2264,7 +2280,7 @@ div {
     border-top: 1px solid #b88b5b;
 }
 .mt30 {
-    margin-top: 30px;
+    margin-top: 30px !important;
 }
 .mt40 {
     margin-top: 40px;
@@ -2273,7 +2289,7 @@ div {
     margin-top: 75px;
 }
 .mt15 {
-    margin-top: 15px;
+    margin-top: 15px !important;
 }
 .mb10 {
     margin-bottom: 10px !important;
