@@ -25,6 +25,9 @@
           <li>
             <a href="banner.php">배너 관리</a>
           </li>
+          <li>
+            <a href="coupon.php">쿠폰 관리</a>
+          </li>
         </ul>
         <!-- /.nav-second-level -->
       </li>

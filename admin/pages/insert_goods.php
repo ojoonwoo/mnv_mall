@@ -176,10 +176,11 @@
                   <td colspan="2">
                     <input type="radio" name="m_goods_big_descYN" id="m_goods_big_descY" value="new"> 직접 등록
                     <input type="radio" name="m_goods_big_descYN" id="m_goods_big_descN" value="same" checked> 상품 상세설명 동일
-					<div id="mobile_detail_div" style="display:none;">
-                    <form action="sample.php" method="post">
-                      <textarea name="m_goods_big_desc"  id="m_goods_big_desc" rows="10" cols="100" style="width:100%; height:412px;"></textarea>
-                    </form>
+                    <div id="mobile_detail_div" style="display:none;">
+                      <form action="sample.php" method="post">
+                        <textarea name="m_goods_big_desc"  id="m_goods_big_desc" rows="10" cols="100" style="width:100%; height:412px;"></textarea>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               </tbody>
