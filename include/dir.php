@@ -46,6 +46,16 @@
 	$_mnv_PC_upload_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
 	$_mnv_PC_order_dir				= $_mnv_base_dir . $_mnv_PC_dir_name . "/" . $_mnv_order_dir_name . "/";
 
+	// 쇼핑몰 MOBILE폴더 경로
+	$_mnv_MOBILE_board_dir				= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_board_dir_name . "/";
+	$_mnv_MOBILE_css_dir					= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_css_dir_name . "/";
+	$_mnv_MOBILE_goods_dir				= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_goods_dir_name . "/";
+	$_mnv_MOBILE_images_dir			= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_images_dir_name . "/";
+	$_mnv_MOBILE_member_dir			= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_member_dir_name . "/";
+	$_mnv_MOBILE_member_dir			= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_mypage_dir_name . "/";
+	$_mnv_MOBILE_upload_dir			= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_upload_dir_name . "/";
+	$_mnv_MOBILE_order_dir				= $_mnv_base_dir . $_mnv_MOBILE_dir_name . "/" . $_mnv_order_dir_name . "/";
+
 	// 쇼핑몰 메인 URL 경로
 	$_mnv_base_url						= "http://".$_SERVER['SERVER_NAME']."/";
 
@@ -70,4 +80,15 @@
 	$_mnv_PC_mypage_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_mypage_dir_name . "/";
 	$_mnv_PC_upload_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_upload_dir_name . "/";
 	$_mnv_PC_order_url				= $_mnv_base_url . $_mnv_PC_dir_name . "/" . $_mnv_order_dir_name . "/";
+
+	// 쇼핑몰 MOBILE URL 경로
+	$_mnv_MOBILE_board_url				= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_board_dir_name . "/";
+	$_mnv_MOBILE_css_url					= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_css_dir_name . "/";
+	$_mnv_MOBILE_goods_url				= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_goods_dir_name . "/";
+	$_mnv_MOBILE_images_url			= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_images_dir_name . "/";
+	$_mnv_MOBILE_member_url			= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_member_dir_name . "/";
+	$_mnv_MOBILE_mypage_url			= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_mypage_dir_name . "/";
+	$_mnv_MOBILE_upload_url			= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_upload_dir_name . "/";
+	$_mnv_MOBILE_order_url				= $_mnv_base_url . $_mnv_MOBILE_dir_name . "/" . $_mnv_order_dir_name . "/";
+
 ?>
