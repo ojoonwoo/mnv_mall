@@ -760,3 +760,22 @@ $(document).on("click", "#new_address", function(){
 	$("#deliver_email1").val("");
 	$("#deliver_email2").val("");
 });
+
+// 주문하기 > 결제하기 클릭
+$(document).on("click", "#pay_order", function(){
+	alert('111');
+/*
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "http://store-chon.com/main_exec.php",
+		data:{
+			"exec"				: "move_wishlist",
+			"cart_idx"		: cart_idx
+		},
+		success: function(response){
+			alert(response);
+		}
+	});
+*/
+});

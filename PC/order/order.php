@@ -278,15 +278,15 @@
                     <div class="block_col">
                       <div class="checks">
                         <label for="card_pay">카드결제</label>
-                        <input type="radio" name="select_pay" id="card_pay">
+                        <input type="radio" name="select_pay" id="card_pay" value="SC0010">
                       </div>
                       <div class="checks">
                         <label for="phone_pay">휴대폰결제</label>
-                        <input type="radio" name="select_pay" id="phone_pay">
+                        <input type="radio" name="select_pay" id="phone_pay" value="SC0060">
                       </div>
                       <div class="checks">
                         <label for="nobankbook_pay">무통장입금</label>
-                        <input type="radio" name="select_pay" id="nobankbook_pay">
+                        <input type="radio" name="select_pay" id="nobankbook_pay" value="SC0040">
                       </div>
                     </div>
                   </div>
@@ -347,7 +347,7 @@
                 </div>
                 <div class="block_btn mt40">
                   <input type="button" class="button_default mr10" value="이전 페이지">
-                  <input type="button" class="button_default onColor" value="결제하기">
+                  <input type="button" class="butnto_default onColor" id="pay_order" value="결제하기">
                 </div>
               </div>
             </div>
