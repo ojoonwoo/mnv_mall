@@ -3,7 +3,8 @@
 *	모바일 CSS 파일
 *
 */
-a{text-decoration:none}
+*{-webkit-text-size-adjust:none;margin: 0;padding: 0;font-family: '맑은 고딕', 'Malgun Gothic';-webkit-font-smoothing: antialiased;}
+a{text-decoration:none;color: #000;}
 a[href^="tel"]{ font-style:normal}
 address, caption, em, var{font-style:normal;font-weight:normal}
 input, textarea, select{letter-spacing:normal}
@@ -23,3 +24,567 @@ input[type="radio"]{border:none;-webkit-appearance:none}
 button,input[type="button"],input[type="submit"],input[type="reset"],input[type="file"]{-webkit-appearance:button;border-radius:0}
 textarea{-webkit-appearance:none}
 select{-webkit-appearance:menulist-text}
+
+html {
+    font-size: 13px;
+}
+
+#wrap {
+    width: 100%;
+    position: relative;
+}
+/* aside */
+
+#aside {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80%;
+    height: 100%;
+    background-color: #ffffff;
+    visibility: hidden;
+    font-size: 1.1em;
+}
+
+#aside .inner {
+    padding: 1.5% 1.5%;
+}
+
+#aside .block_btn {
+    display: flex;
+}
+
+
+
+.block_btn input[type="button"] {
+    flex-basis: 50%;
+    color: #fff;
+    background-color: #b88b5b;
+    border: none;
+    margin-right: 1%;
+    padding: 3% 0;
+    font-size: 1em;
+}
+
+.block_btn input[type="button"]:last-child {
+    margin-right: 0;
+}
+
+.block_line {
+    display: flex;
+    padding: 4% 0;
+    border-bottom: 1px solid #ceccca;
+}
+
+.block_line.sns {
+    border-bottom: none;
+}
+
+.block_line.sns a img {
+    width: 65%;
+}
+
+.block_line.sns a img.blog {
+    width: 50%;
+}
+
+.block_line.cate a {
+    color: #b88b5b;
+    font-weight: 700;
+}
+
+.block_line a {
+    flex-basis: 98%;
+    text-align: center;
+}
+
+.block_line.n2 a {
+    flex-basis: 50%;
+}
+
+.block_line.n2 .bar {
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background-color: #ceccca;
+    color: #ceccca;
+    margin: 0;
+}
+
+.linkBtn {
+    display: flex;
+    flex-direction: column;
+    padding: 3% 0;
+}
+
+.linkBtn a {
+    flex-basis: 98%;
+    border: 1px solid #196a24;
+    text-align: center;
+    padding: 4% 0;
+    color: #196a24;
+    margin: 1% 0;
+    font-weight: bold;
+}
+/* aside */
+
+
+
+.container {
+    width: 100%;
+/*    visibility: hidden;*/
+}
+
+#header {
+    width: 100%;
+}
+
+#header .topArea {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.topArea .btnImg {
+    text-indent: 100%;
+    overflow: hidden;
+    text-align: left;
+    white-space: nowrap;
+    width: 20px;
+    height: 16px;
+    padding: 0.5em 0.4em;
+}
+
+.topArea .cart {
+    background-image: url(../images/cart.png);
+    background-size: 20px 16px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.topArea .menu {
+    background-image: url(../images/menu.png);
+    background-size: 20px 16px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.logoArea {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    padding: 5% 0;
+    width: 25.2%;
+}
+
+.logo > a > img {
+    width: 100%;
+}
+
+.navi {
+    width: 100%;
+    border-top: 1px solid #b88b5b;
+    border-bottom: 1px solid #b88b5b;
+}
+
+.navi ul {
+    display: flex;
+}
+
+.navi ul li {
+    border-right: 1px solid #b88b5b;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navi ul li:last-child {
+    border: none;
+}
+
+.navi ul li a {
+    display: block;
+    padding: 7% 0;
+    color: #b88b5b;
+    font-size: 1.1em;
+    font-weight: 900;
+}
+
+
+
+
+/* index */
+#Banner .slideArea {
+    width: 100%;
+}
+
+.slideArea .slider {
+    width: 100%;
+}
+
+.slider img {
+    width: 100%;
+}
+
+.slideArea .pager {
+    width: 100%;
+}
+
+.pager ul {
+    display: flex;
+    justify-content: center;
+}
+
+.pager ul li {
+    border-radius: 50%;
+    background-color: #ddd5cc;
+    width: 10px;
+    height: 10px;
+    margin: 3% 1.8%;
+}
+
+.pager ul li.active {
+    background-color: #b88b5b;
+}
+
+.pager ul li a {
+    display: block;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.fixBanner {
+    padding: 0 2%;
+}
+
+.fixBanner ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.fixBanner ul li {
+    flex-grow: 1;
+    padding-right: 1.8%;
+}
+
+.fixBanner ul li:last-child {
+    padding-right: 0;
+}
+
+.fixBanner ul li a {
+    display: block;
+}
+
+.fixBanner ul li a img {
+    width: 100%;
+}
+
+.contents {
+    width: 96%;
+    padding: 6% 2%;
+    min-height: 667px; /* 디바이스 크기로 */
+}
+
+.contents.main {
+    padding-top: 0;
+}
+
+.contents .prHead_list {
+    display: flex;
+    justify-content: center;
+    padding: 9% 0 3%;
+}
+
+.centerTxtBox {
+    border-top: 1px solid #c59c71;
+    width: 25%;
+}
+
+.insta .centerTxtBox {
+    border: none;
+    width: 50%;
+}
+
+.centerTxtBox p {
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 0.8em;
+}
+
+.insta .centerTxtBox p {
+    width: 100%;
+}
+
+.centerTxtBox p img {
+    width: 90%;
+}
+
+.prList {
+    display: flex;
+}
+
+.insta + .prList {
+    padding-bottom: 10%;
+}
+
+.prList a {
+    display: block;
+    flex-grow: 1;
+    padding-right: 1.5%;
+    text-align: center;
+}
+
+.prList a p {
+    color: #797979;
+    padding: 0.05em 0;
+}
+
+.prList a p.price {
+    text-decoration: line-through;
+    font-weight: 700;
+}
+
+.prList a p.sale {
+    color: #005827;
+    font-weight: 700;
+}
+
+
+.prList a:last-child {
+    padding-right: 0;
+}
+
+.prList a img {
+    width: 100%;
+}
+
+/* index */
+
+
+/* member */
+.contents .title_text {
+    margin: 0 auto;
+    text-align: center;
+    color: #b88b5b;
+    padding-bottom: 3%;
+}
+
+.input_login {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_login .block_input {
+    width: 100%;
+    padding-bottom: 3%;
+}
+
+.block_input input[type="text"],input[type="password"] {
+    border: 1px solid #b88b5b;
+    background-color: #f3ede7;
+    width: 94%;
+    padding: 3% 3%;
+    font-size: 1em;
+}
+
+::-webkit-input-placeholder{color:#b88b5b;}
+
+.block_input input[type="button"] {
+    width: 100%;
+    padding: 3% 3%;
+    background-color: #b88b5b;
+    color: #ffffff;
+    border: none;
+    font-size: 1.1em;
+}
+
+.link_btn {
+    text-align: center;
+}
+
+.link_btn a {
+    display: inline-block;
+    text-decoration: underline;
+    color: #b88b5b;
+    padding: 1% 1%;
+    font-size: 1.1em;
+}
+
+.input_guide {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 6%;
+}
+
+.input_guide div {
+    flex-basis: 50%;
+    padding: 3% 0;
+}
+
+.guideTxt p {
+    padding: 6% 0;
+    font-size: 1rem;
+    letter-spacing: -1px;
+}
+
+.guideBtn input[type="button"] {
+    width: 100%;
+    border: 1px solid #b88b5b;
+    background-color: #fff;
+    color: #b88b5b;
+    padding: 6% 0;
+}
+
+.fullBtn2n {
+    display: flex;
+    border-top: 1px solid #ceccca;
+    margin-top: 5%;
+    padding-top: 4%;
+}
+
+.fullBtn2n input[type="button"] {
+    flex-basis: 50%;
+    flex-grow: 1;
+    margin-right: 2%;
+    border: 1px solid #b88b5b;
+    color: #b88b5b;
+    padding: 3%;
+    background-color: #ffffff;
+}
+
+.fullBtn2n input[type="button"]:last-child {
+    margin-right: 0;
+}
+
+/* member */
+
+
+#footer {
+    width: 100%;
+}
+
+#footer .background {
+    background-color: #f1e6da;
+}
+
+#footer .customerArea {
+    padding: 4% 2%;
+}
+
+.customerArea .center {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 700;
+}
+
+.customerArea .call {
+    font-size: 24px;
+    color: #444444;
+    padding-bottom: 0.1em;
+}
+
+.customerArea p {
+    color: #777777;
+    padding-bottom: 0.04em;
+}
+
+.linkArea {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 0 1%;
+}
+
+.linkArea .aboutChon {
+    border: 1px solid #b88b5b;
+    color: #b88b5b;
+    flex-basis: 96%;
+}
+
+.linkArea a {
+    font-size: 1.1em;
+    font-weight: 700;
+    border: 1px solid #196a24;
+    color: #196a24;
+    flex-grow: 1;
+    padding: 3% 0;
+    margin: 1% 1%;
+}
+
+.snsArea {
+    display: flex;
+    padding: 6% 6%;
+}
+
+.snsArea a {
+    display: block;
+    text-align: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 33%;
+}
+
+.snsArea a img.insta {
+    width: 80%;
+}
+
+.snsArea a img {
+    width: 60%;
+}
+
+.bar {
+    display: inline-block;
+    width: 1px;
+    height: 1.6em;
+    margin: 0 2%;
+    color: #000000;
+    background-color: #000000;
+}
+
+#address {
+    padding: 2% 2%;
+}
+
+#address p {
+    white-space: pre-wrap;
+    color: #666666;
+}
+
+#address .copy {
+    padding: 1% 0;
+}
+
+
+
+
+/*
+div {
+    outline: 1px dashed red;
+}
+*/
+
+/*clearfix*/
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
+}
