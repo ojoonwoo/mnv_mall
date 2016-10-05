@@ -347,8 +347,7 @@
                 </div>
                 <div class="block_btn mt40">
                   <input type="button" class="button_default mr10" value="이전 페이지">
-                  <!-- <input type="button" class="butnto_default onColor" id="pay_order" value="결제하기"> -->
-                  <input type="button" class="butnto_default onColor" value="결제하기">
+                  <input type="button" class="button_default onColor" id="pay_order" value="결제하기">
                 </div>
               </div>
             </div>
