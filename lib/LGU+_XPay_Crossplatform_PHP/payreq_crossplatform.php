@@ -35,12 +35,12 @@ session_start();
     /*
      * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다. 
      */    
-    $LGD_CASNOTEURL				= "http://상점URL/cas_noteurl.php";    
+    $LGD_CASNOTEURL				= "http://store-chon.com/cas_noteurl.php";    
 
     /*
      * LGD_RETURNURL 을 설정하여 주시기 바랍니다. 반드시 현재 페이지와 동일한 프로트콜 및  호스트이어야 합니다. 아래 부분을 반드시 수정하십시요.
      */    
-    $LGD_RETURNURL				= "http://상점URL/returnurl.php";  
+    $LGD_RETURNURL				= "http://store-chon.com/returnurl.php";  
 
 
     $configPath                 = "C:/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.     
