@@ -83,7 +83,7 @@
 	$LGD_RETURNURL				= "http://store-chon.com/returnurl.php";  
 
 
-	$configPath                 = "http://store-chon.com/lib/LGU+_XPay_Crossplatform_PHP/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.     
+	$configPath                 = $_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.     
 
 	/*
 	 *************************************************
@@ -102,7 +102,7 @@
 	 * MD5 해쉬데이터 암호화 검증을 위해
 	 * LG유플러스에서 발급한 상점키(MertKey)를 환경설정 파일(lgdacom/conf/mall.conf)에 반드시 입력하여 주시기 바랍니다.
 	 */
-	require_once("http://store-chon.com/lib/LGU+_XPay_Crossplatform_PHP/lgdacom/XPayClient.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom/XPayClient.php");
 	$xpay = &new XPayClient($configPath, $CST_PLATFORM);
 	$xpay->Init_TX($LGD_MID);
 	$LGD_HASHDATA = md5($LGD_MID.$LGD_OID.$LGD_AMOUNT.$LGD_TIMESTAMP.$xpay->config[$LGD_MID]);
@@ -240,7 +240,7 @@ function payment_return() {
 </body>
 </html>
 <script type="text/javascript">
-//$(window).load(function(){
-//	launchCrossPlatform();
-//});
+$(window).load(function(){
+	launchCrossPlatform();
+});
 </script>
