@@ -115,7 +115,10 @@
 	}
 
 	if ($order_goods_cnt > 1)
+	{
+		$order_goods_cnt = $order_goods_cnt -1;
 		$show_goods_name	= $show_goods_name." 외 ".$order_goods_cnt."건";
+	}
 ?>
                     <input type="hidden" id="order_cart_idx" value="<?=$order_cart_idx?>">
                     <input type="hidden" id="total_order_price" value="<?=$total_price?>">
