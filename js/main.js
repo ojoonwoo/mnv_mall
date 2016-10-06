@@ -909,7 +909,7 @@ $(document).on("click", "#pay_order", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://store-chon.com/PC/ajax_payment.php",
+		url    : "http://store-chon.com/main_exec.php",
 		data:{
 			//"exec"						: "insert_order_info",
 			"order_cart_idx"			: order_cart_idx,
