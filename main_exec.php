@@ -1011,7 +1011,7 @@
 			else
 				$flag	= "N";
 
-			echo $flag;
+			echo $order_query;
 		break;
 	}
 ?>
