@@ -785,7 +785,7 @@ $(document).on("click", "#pay_order", function(){
 	var deliver_phone3			= $("#deliver_phone3").val();
 	var deliver_message		= $("#deliver_message").val();
 	var select_pay				=  $(":input:radio[name=select_pay]:checked").val()
-
+	var order_oid				= makeoid();
 	if (order_name == "")
 	{
 		alert("주문하시는분 이름을 입력해주세요.");
@@ -932,7 +932,8 @@ $(document).on("click", "#pay_order", function(){
 			"deliver_phone2"		: deliver_phone2,
 			"deliver_phone3"		: deliver_phone3,
 			"deliver_message"		: deliver_message,
-			"select_pay"				: select_pay
+			"select_pay"				: select_pay,
+			"order_oid"				: order_oid
 		},
 		success: function(response){
 			console.log(response);
@@ -940,3 +941,31 @@ $(document).on("click", "#pay_order", function(){
 		}
 	});
 });
+
+function makeoid() {
+	var now = new Date();
+	var years = now.getFullYear();
+	var months = LPad(now.getMonth() + 1, 2, "0");
+	var dates = LPad(now.getDate(), 2, "0");
+	var hours = LPad(now.getHours(), 2, "0");
+	var minutes = LPad(now.getMinutes(), 2, "0");
+	var seconds = LPad(now.getSeconds(), 2, "0");
+	var timeValue = years + months + dates + hours + minutes + seconds; 
+	//document.getElementById("LGD_OID").value = "test_" + timeValue;
+	//document.getElementById("LGD_TIMESTAMP").value = timeValue;
+
+	return timeValue;
+}
+
+function LPad(digit, size, attatch) {
+    var add = "";
+    digit = digit.toString();
+
+    if (digit.length < size) {
+        var len = size - digit.length;
+        for (i = 0; i < len; i++) {
+            add += attatch;
+        }
+    }
+    return add + digit;
+}
