@@ -382,6 +382,7 @@
 ?>
     </div>
   </body>
+<script language='javascript' src='http://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js' type='text/javascript'></script>
 <script>
 	$('#zip1').on('click', function() {
 		new daum.Postcode({

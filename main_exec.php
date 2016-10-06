@@ -1125,7 +1125,7 @@
 
 				$_SESSION['PAYREQ_MAP'] = $payReqMap;
 
-				$innerHTML .= "<script language='javascript' src='http://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js' type='text/javascript'></script>";
+				//$innerHTML .= "<script language='javascript' src='http://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js' type='text/javascript'></script>";
 				$innerHTML .= "<script type='text/javascript'>";
 				$innerHTML .= "var LGD_window_type = '".$LGD_WINDOW_TYPE."';";
 				$innerHTML .= "";
