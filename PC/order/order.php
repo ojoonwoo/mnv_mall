@@ -114,7 +114,7 @@
 ?>
                     <input type="hidden" id="order_cart_idx" value="<?=$order_cart_idx?>">
                     <input type="hidden" id="total_order_price" value="<?=$total_price?>">
-                    <input type="hidden" id="delivery_price" value="<?=$order_cart_idx?>">
+                    <input type="hidden" id="delivery_price" value="<?=$site_option['default_delivery_price']?>">
                     <input type="hidden" id="total_pay_price" value="<?=$total_pay_price?>">
                   </tbody>
                 </table>
