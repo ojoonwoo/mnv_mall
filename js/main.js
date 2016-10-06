@@ -938,10 +938,21 @@ $(document).on("click", "#pay_order", function(){
 			"show_goods_name"	: show_goods_name
 		},
 		success: function(response){
-			$(".area_main_bottom").text(response, function(){
-				launchCrossPlatform();
+			$(".area_main_bottom").html(response);
+			var contentImages = $(".area_main_bottom img");
+			var totalImages = contentImages.length;
+			var loadedImages = 0;
+			contentImages.each(function(){
+				$(this).on('load', function(){
+					loadedImages++;
+					if(loadedImages == totalImages)
+					{
+						launchCrossPlatform();
 				console.log(response);
+					}
+				});
 			});
+
 			//alert(response);
 		}
 	});
