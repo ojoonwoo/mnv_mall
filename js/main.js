@@ -763,19 +763,179 @@ $(document).on("click", "#new_address", function(){
 
 // 주문하기 > 결제하기 클릭
 $(document).on("click", "#pay_order", function(){
-	alert('111');
-/*
+	var order_cart_idx			= $("#order_cart_idx").val();
+	var total_order_price		= $("#total_order_price").val();
+	var delivery_price			= $("#delivery_price").val();
+	var total_pay_price			= $("#total_pay_price").val();
+	var order_name				= $("#order_name").val();
+	var order_zipcode			= $("#order_zipcode").val();
+	var order_address1			= $("#order_address1").val();
+	var order_address2			= $("#order_address2").val();
+	var order_phone1			= $("#order_phone1").val();
+	var order_phone2			= $("#order_phone2").val();
+	var order_phone3			= $("#order_phone3").val();
+	var order_email1			= $("#order_email1").val();
+	var order_email2			= $("#order_email2").val();
+	var deliver_name			= $("#deliver_name").val();
+	var deliver_zipcode			= $("#deliver_zipcode").val();
+	var deliver_address1		= $("#deliver_address1").val();
+	var deliver_address2		= $("#deliver_address2").val();
+	var deliver_phone1			= $("#deliver_phone1").val();
+	var deliver_phone2			= $("#deliver_phone2").val();
+	var deliver_phone3			= $("#deliver_phone3").val();
+	var deliver_message		= $("#deliver_message").val();
+	var select_pay				=  $(":input:radio[name=select_pay]:checked").val()
+
+	if (order_name == "")
+	{
+		alert("주문하시는분 이름을 입력해주세요.");
+		$("#order_name").focus();
+		return false;
+	}
+
+	if (order_zipcode == "")
+	{
+		alert("주문하시는분 우편번호를 입력해주세요.");
+		$("#order_zipcode").focus();
+		return false;
+	}
+
+	if (order_address1 == "")
+	{
+		alert("주문하시는분 기본주소를 입력해주세요.");
+		$("#order_address1").focus();
+		return false;
+	}
+
+	if (order_address2 == "")
+	{
+		alert("주문하시는분 상세주소를 입력해주세요.");
+		$("#order_address2").focus();
+		return false;
+	}
+
+	if (order_phone1 == "")
+	{
+		alert("주문하시는분 휴대전화 번호를 입력해주세요.");
+		$("#order_phone1").focus();
+		return false;
+	}
+
+	if (order_phone2 == "")
+	{
+		alert("주문하시는분 휴대전화 번호를 입력해주세요.");
+		$("#order_phone2").focus();
+		return false;
+	}
+
+	if (order_phone3 == "")
+	{
+		alert("주문하시는분 휴대전화 번호를 입력해주세요.");
+		$("#order_phone3").focus();
+		return false;
+	}
+
+	if (order_email1 == "")
+	{
+		alert("주문하시는분 이메일을 입력해주세요.");
+		$("#order_email1").focus();
+		return false;
+	}
+
+	if (order_email2 == "")
+	{
+		alert("주문하시는분 이메일을 입력해주세요.");
+		$("#order_email2").focus();
+		return false;
+	}
+
+	if (deliver_name == "")
+	{
+		alert("받으시는분 이름을 입력해주세요.");
+		$("#deliver_name").focus();
+		return false;
+	}
+
+	if (deliver_zipcode == "")
+	{
+		alert("받으시는분 우편번호를 입력해주세요.");
+		$("#deliver_zipcode").focus();
+		return false;
+	}
+
+	if (deliver_address1 == "")
+	{
+		alert("받으시는분 기본주소를 입력해주세요.");
+		$("#deliver_address1").focus();
+		return false;
+	}
+
+	if (deliver_address2 == "")
+	{
+		alert("받으시는분 상세주소를 입력해주세요.");
+		$("#deliver_address2").focus();
+		return false;
+	}
+
+	if (deliver_phone1 == "")
+	{
+		alert("받으시는분 휴대전화 번호를 입력해주세요.");
+		$("#deliver_phone1").focus();
+		return false;
+	}
+
+	if (deliver_phone2 == "")
+	{
+		alert("받으시는분 휴대전화 번호를 입력해주세요.");
+		$("#deliver_phone2").focus();
+		return false;
+	}
+
+	if (deliver_phone3 == "")
+	{
+		alert("받으시는분 휴대전화 번호를 입력해주세요.");
+		$("#deliver_phone3").focus();
+		return false;
+	}
+
+	if (deliver_message == "")
+	{
+		alert("배송메세지를 입력해주세요.");
+		$("#deliver_message").focus();
+		return false;
+	}
+
 	$.ajax({
 		type   : "POST",
 		async  : false,
 		url    : "http://store-chon.com/main_exec.php",
 		data:{
-			"exec"				: "move_wishlist",
-			"cart_idx"		: cart_idx
+			"exec"						: "insert_order_info",
+			"order_cart_idx"			: order_cart_idx,
+			"total_order_price"		: total_order_price,
+			"delivery_price"			: delivery_price,
+			"total_pay_price"		: total_pay_price,
+			"order_name"			: order_name,
+			"order_zipcode"			: order_zipcode,
+			"order_address1"		: order_address1,
+			"order_address2"		: order_address2,
+			"order_phone1"			: order_phone1,
+			"order_phone2"			: order_phone2,
+			"order_phone3"			: order_phone3,
+			"order_email1"			: order_email1,
+			"order_email2"			: order_email2,
+			"deliver_name"			: deliver_name,
+			"deliver_zipcode"		: deliver_zipcode,
+			"deliver_address1"		: deliver_address1,
+			"deliver_address2"		: deliver_address2,
+			"deliver_phone1"		: deliver_phone1,
+			"deliver_phone2"		: deliver_phone2,
+			"deliver_phone3"		: deliver_phone3,
+			"deliver_message"		: deliver_message,
+			"select_pay"				: select_pay
 		},
 		success: function(response){
 			alert(response);
 		}
 	});
-*/
 });

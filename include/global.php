@@ -17,8 +17,8 @@
 	$_gl['purchasing_info_table']			= "purchasing_info";			// 거래처 정보 테이블
 	$_gl['board_notice_table']				= "board_notice";				// 공지사항 게시판 테이블
 	$_gl['board_review_table']				= "board_review";				// 리뷰 게시판 테이블
-	$_gl['board_qna_table']					= "board_qna";					// 문의사항 게시판 테이블
-	$_gl['board_mtm_table']					= "board_mtm";					// 1대1문의 게시판 테이블
+	$_gl['board_qna_table']				= "board_qna";					// 문의사항 게시판 테이블
+	$_gl['board_mtm_table']				= "board_mtm";					// 1대1문의 게시판 테이블
 	$_gl['wishlist_info_table']				= "wishlist_info";				// 위시리스트 테이블
 	$_gl['mycart_info_table']				= "mycart_info";					// 마이카트 테이블
 	$_gl['restock_info_table']				= "restock_info";				// 재입고 요청 테이블
@@ -26,6 +26,7 @@
 	$_gl['stock_change_log_table']		= "stock_change_log";			// 재고 변경 로그 테이블
 	$_gl['event_info_table']				= "event_info";					// 이벤트 테이블
 	$_gl['post_info_table']					= "post_info";					// 포스트 테이블
+	$_gl['order_info_table']				= "order_info";					// 주문 테이블
 
 
 ?>

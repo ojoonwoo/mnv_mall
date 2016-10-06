@@ -974,5 +974,44 @@
 
 			echo $innerHTML;
 		break;
+
+		case "insert_order_info" :
+			$order_cart_idx				= $_REQUEST['order_cart_idx'];
+			$total_order_price			= $_REQUEST['total_order_price'];
+			$delivery_price				= $_REQUEST['delivery_price'];
+			$total_pay_price			= $_REQUEST['total_pay_price'];
+			$order_name				= $_REQUEST['order_name'];
+			$order_zipcode				= $_REQUEST['order_zipcode'];
+			$order_address1			= $_REQUEST['order_address1'];
+			$order_address2			= $_REQUEST['order_address2'];
+			$order_phone1				= $_REQUEST['order_phone1'];
+			$order_phone2				= $_REQUEST['order_phone2'];
+			$order_phone3				= $_REQUEST['order_phone3'];
+			$order_phone				= $order_phone1."-".$order_phone2."-".$order_phone3;
+			$order_email1				= $_REQUEST['order_email1'];
+			$order_email2				= $_REQUEST['order_email2'];
+			$order_email				= $order_email1."@".$order_email2;
+			$deliver_name				= $_REQUEST['deliver_name'];
+			$deliver_zipcode			= $_REQUEST['deliver_zipcode'];
+			$deliver_address1			= $_REQUEST['deliver_address1'];
+			$deliver_address2			= $_REQUEST['deliver_address2'];
+			$deliver_phone1			= $_REQUEST['deliver_phone1'];
+			$deliver_phone2			= $_REQUEST['deliver_phone2'];
+			$deliver_phone3			= $_REQUEST['deliver_phone3'];
+			$deliver_phone				= $deliver_phone1."-".$deliver_phone2."-".$deliver_phone3;
+			$deliver_message			= $_REQUEST['deliver_message'];
+			$select_pay					= $_REQUEST['select_pay'];
+			$cart_id						= $_SESSION['ss_chon_cartid'];
+
+			$order_query		= "INSERT INTO ".$_gl['order_info_table']."(cart_idx, total_order_price, delivery_price, total_pay_price, order_name, order_zipcode, order_address1, order_address2, order_phone, order_email, delivery_name, delivery_zipcode, delivery_address1, delivery_address2, delivery_phone, delivery_message, select_pay, cart_id, order_regdate) values('".$order_cart_idx."','".$total_order_price."','".$delivery_price."','".$total_pay_price."','".$order_name."','".$order_zipcode."','".$order_address1."','".$order_address2."','".$order_phone."','".$order_email."','".$deliver_name."','".$deliver_zipcode."','".$deliver_address1."','".$deliver_address2."','".$deliver_phone."','".$deliver_message."','".$select_pay."','".$cart_id."','".date("Y-m-d H:i:s")."')";
+			$order_result 		= mysqli_query($my_db, $order_query);
+
+			if ($order_result)
+				$flag	= "Y";
+			else
+				$flag	= "N";
+
+			echo $flag;
+		break;
 	}
 ?>

@@ -49,9 +49,11 @@
                   </thead>
                   <tbody>
 <?
-	$total_price	= 0;
+	$total_price		= 0;
+	$order_cart_idx	= null;
 	foreach($order_info as $key => $val)
 	{
+		$order_cart_idx	.= "||".$val['idx'];
 		$goods_info	= select_idx_goods_info($val['goods_idx']);
 		$goods_info['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$goods_info['goods_img_url']);
 
@@ -110,6 +112,10 @@
 		$total_pay_price	= $total_price + $site_option['default_delivery_price'];
 	}
 ?>
+                    <input type="hidden" id="order_cart_idx" value="<?=$order_cart_idx?>">
+                    <input type="hidden" id="total_order_price" value="<?=$total_price?>">
+                    <input type="hidden" id="delivery_price" value="<?=$order_cart_idx?>">
+                    <input type="hidden" id="total_pay_price" value="<?=$total_pay_price?>">
                   </tbody>
                 </table>
               </div>
@@ -278,15 +284,15 @@
                     <div class="block_col">
                       <div class="checks">
                         <label for="card_pay">카드결제</label>
-                        <input type="radio" name="select_pay" id="card_pay" value="SC0010">
+                        <input type="radio" name="select_pay" id="card_pay" value="card_pay">
                       </div>
                       <div class="checks">
                         <label for="phone_pay">휴대폰결제</label>
-                        <input type="radio" name="select_pay" id="phone_pay" value="SC0060">
+                        <input type="radio" name="select_pay" id="phone_pay" value="phone_pay">
                       </div>
                       <div class="checks">
                         <label for="nobankbook_pay">무통장입금</label>
-                        <input type="radio" name="select_pay" id="nobankbook_pay" value="SC0040">
+                        <input type="radio" name="select_pay" id="nobankbook_pay" value="nobankbook_pay">
                       </div>
                     </div>
                   </div>
