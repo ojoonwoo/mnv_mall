@@ -367,7 +367,7 @@
               </div>
             </div>
             <div class="area_main_bottom">
-              <img src='".$_mnv_PC_images_url."blank.png'>
+              <img src='<?=$_mnv_PC_images_url?>blank.png'>
             </div>
           </div>
           <div class="section side">
