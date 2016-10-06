@@ -935,7 +935,8 @@ $(document).on("click", "#pay_order", function(){
 			"select_pay"				: select_pay
 		},
 		success: function(response){
-			alert(response);
+			console.log(response);
+			//alert(response);
 		}
 	});
 });
