@@ -1138,7 +1138,7 @@
 				$innerHTML .= "if (fDoc.document.getElementById('LGD_RESPCODE').value == '0000') {";
 				$innerHTML .= "document.getElementById('LGD_PAYKEY').value = fDoc.document.getElementById('LGD_PAYKEY').value;";
 				$innerHTML .= "document.getElementById('LGD_PAYINFO').target = '_self';";
-				$innerHTML .= "document.getElementById('LGD_PAYINFO').action = '".$_mnv_PC_url."lib/LGU+_XPay_Crossplatform_PHP/payres.php';";
+				$innerHTML .= "document.getElementById('LGD_PAYINFO').action = '".$_mnv_base_url."lib/LGU+_XPay_Crossplatform_PHP/payres.php';";
 				$innerHTML .= "document.getElementById('LGD_PAYINFO').submit();";
 				$innerHTML .= "} else {";
 				$innerHTML .= "closeIframe();";
