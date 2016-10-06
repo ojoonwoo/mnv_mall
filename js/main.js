@@ -764,6 +764,7 @@ $(document).on("click", "#new_address", function(){
 // 주문하기 > 결제하기 클릭
 $(document).on("click", "#pay_order", function(){
 	var order_cart_idx			= $("#order_cart_idx").val();
+	var show_goods_name		= $("#show_goods_name").val();
 	var total_order_price		= $("#total_order_price").val();
 	var delivery_price			= $("#delivery_price").val();
 	var total_pay_price			= $("#total_pay_price").val();
@@ -908,9 +909,9 @@ $(document).on("click", "#pay_order", function(){
 	$.ajax({
 		type   : "POST",
 		async  : false,
-		url    : "http://store-chon.com/main_exec.php",
+		url    : "http://store-chon.com/PC/ajax_payment.php",
 		data:{
-			"exec"						: "insert_order_info",
+			//"exec"						: "insert_order_info",
 			"order_cart_idx"			: order_cart_idx,
 			"total_order_price"		: total_order_price,
 			"delivery_price"			: delivery_price,
@@ -933,7 +934,8 @@ $(document).on("click", "#pay_order", function(){
 			"deliver_phone3"		: deliver_phone3,
 			"deliver_message"		: deliver_message,
 			"select_pay"				: select_pay,
-			"order_oid"				: order_oid
+			"order_oid"				: order_oid,
+			"show_goods_name"	: show_goods_name
 		},
 		success: function(response){
 			console.log(response);
@@ -943,6 +945,7 @@ $(document).on("click", "#pay_order", function(){
 });
 
 function makeoid() {
+	// OID 생성은 변경해야함 ( 현재는 시간으로 만들어서 중복될 여지가 있음 )
 	var now = new Date();
 	var years = now.getFullYear();
 	var months = LPad(now.getMonth() + 1, 2, "0");

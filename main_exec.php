@@ -1003,14 +1003,24 @@
 			$select_pay					= $_REQUEST['select_pay'];
 			$cart_id						= $_SESSION['ss_chon_cartid'];
 			$order_oid					= "test_".$_REQUEST['order_oid'];
+			$show_goods_name		= $_REQUEST['show_goods_name'];
+
+			if ($select_pay == "card_pay")
+					$USABLEPAY	= "SC0010";
+			else if ($select_pay == "phone_pay")
+					$USABLEPAY	= "SC0060";
+			else
+					$USABLEPAY	= "SC0040";
 
 			$order_query		= "INSERT INTO ".$_gl['order_info_table']."(cart_idx, total_order_price, delivery_price, total_pay_price, order_name, order_zipcode, order_address1, order_address2, order_phone, order_email, deliver_name, deliver_zipcode, deliver_address1, deliver_address2, deliver_phone, deliver_message, select_pay, cart_id, order_oid, order_regdate) values('".$order_cart_idx."','".$total_order_price."','".$delivery_price."','".$total_pay_price."','".$order_name."','".$order_zipcode."','".$order_address1."','".$order_address2."','".$order_phone."','".$order_email."','".$deliver_name."','".$deliver_zipcode."','".$deliver_address1."','".$deliver_address2."','".$deliver_phone."','".$deliver_message."','".$select_pay."','".$cart_id."','".$order_oid."','".date("Y-m-d H:i:s")."')";
 			$order_result 		= mysqli_query($my_db, $order_query);
 
 			if ($order_result)
+			{
 				$flag	= "Y";
-			else
+			}else{
 				$flag	= "N";
+			}
 
 			echo $flag;
 		break;

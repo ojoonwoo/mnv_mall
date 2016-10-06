@@ -51,6 +51,7 @@
 <?
 	$total_price		= 0;
 	$order_cart_idx	= null;
+	$order_goods_cnt	= count($order_info);
 	foreach($order_info as $key => $val)
 	{
 		$order_cart_idx	.= "||".$val['idx'];
@@ -84,6 +85,7 @@
 			$i++;
 		}
 
+		$show_goods_name	= $goods_info['goods_name'];
 ?>
                     <tr>
                       <td class="info clearfix">
@@ -111,11 +113,15 @@
 			$site_option['default_delivery_price']	= 0;
 		$total_pay_price	= $total_price + $site_option['default_delivery_price'];
 	}
+
+	if ($order_goods_cnt > 1)
+		$show_goods_name	= $show_goods_name." 외 ".$order_goods_cnt - 1."건";
 ?>
                     <input type="hidden" id="order_cart_idx" value="<?=$order_cart_idx?>">
                     <input type="hidden" id="total_order_price" value="<?=$total_price?>">
                     <input type="hidden" id="delivery_price" value="<?=$site_option['default_delivery_price']?>">
                     <input type="hidden" id="total_pay_price" value="<?=$total_pay_price?>">
+                    <input type="hidden" id="show_goods_name" value="<?=$show_goods_name?>">
                   </tbody>
                 </table>
               </div>
