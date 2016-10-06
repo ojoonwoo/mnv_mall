@@ -1129,7 +1129,7 @@
 				$innerHTML .= "<script type='text/javascript'>";
 				$innerHTML .= "var LGD_window_type = '".$LGD_WINDOW_TYPE."';";
 				$innerHTML .= "";
-				$innerHTML .= "function launchCrossPlatform(){lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '".$CST_PLATFORM."', LGD_window_type, null, '', '');}";
+				$innerHTML .= "function launchCrossPlatform(){lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '".$CST_PLATFORM."', LGD_window_type, null, '', '');alert('test');}";
 				$innerHTML .= "function getFormObject() {return document.getElementById('LGD_PAYINFO');}";
 				$innerHTML .= "function payment_return() {";
 				$innerHTML .= "var fDoc;";
