@@ -938,7 +938,7 @@ $(document).on("click", "#pay_order", function(){
 			"show_goods_name"	: show_goods_name
 		},
 		success: function(response){
-			$(".area_main_bottom").html(response, function(){
+			$(".area_main_bottom").text(response, function(){
 				launchCrossPlatform();
 				console.log(response);
 			});
