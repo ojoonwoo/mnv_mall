@@ -7,7 +7,7 @@
      * LG유플러스으로 부터 내려받은 LGD_PAYKEY(인증Key)를 가지고 최종 결제요청.(파라미터 전달시 POST를 사용하세요)
      */
 
-	$configPath = "./lgdacom"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf,/conf/mall.conf") 위치 지정. 
+	$configPath = $_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom"; //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf,/conf/mall.conf") 위치 지정. 
 
     /*
      *************************************************
@@ -20,7 +20,7 @@
     $LGD_MID                    = (("test" == $CST_PLATFORM)?"t":"").$CST_MID;
     $LGD_PAYKEY                 = $_POST["LGD_PAYKEY"];
 
-    require_once("./lgdacom/XPayClient.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom/XPayClient.php");
 
 	// (1) XpayClient의 사용을 위한 xpay 객체 생성
 	// (2) Init: XPayClient 초기화(환경설정 파일 로드) 
