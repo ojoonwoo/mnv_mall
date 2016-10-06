@@ -240,7 +240,7 @@ function payment_return() {
 </body>
 </html>
 <script type="text/javascript">
-$(window).load(function(){
-	launchCrossPlatform();
-});
+//$(window).load(function(){
+//	launchCrossPlatform();
+//});
 </script>
