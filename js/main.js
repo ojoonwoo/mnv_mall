@@ -939,7 +939,7 @@ $(document).on("click", "#pay_order", function(){
 		},
 		success: function(response){
 			$(".area_main_bottom").html(response);
-			var contentImages = $(".area_main_bottom hidden");
+			var contentImages = $(".area_main_bottom img");
 			var totalImages = contentImages.length;
 			alert(totalImages);
 			var loadedImages = 0;
