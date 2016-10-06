@@ -941,7 +941,6 @@ $(document).on("click", "#pay_order", function(){
 			$(".area_main_bottom").html(response);
 			var contentImages = $(".area_main_bottom img");
 			var totalImages = contentImages.length;
-			alert(totalImages);
 			var loadedImages = 0;
 			contentImages.each(function(){
 				$(this).on('load', function(){
@@ -949,7 +948,6 @@ $(document).on("click", "#pay_order", function(){
 					if(loadedImages == totalImages)
 					{
 						launchCrossPlatform();
-				console.log(response);
 					}
 				});
 			});

@@ -1012,7 +1012,7 @@
 			else
 					$USABLEPAY	= "SC0040";
 
-			$order_query		= "INSERT INTO ".$_gl['order_info_table']."(cart_idx, total_order_price, delivery_price, total_pay_price, order_name, order_zipcode, order_address1, order_address2, order_phone, order_email, deliver_name, deliver_zipcode, deliver_address1, deliver_address2, deliver_phone, deliver_message, select_pay, cart_id, order_oid, order_regdate) values('".$order_cart_idx."','".$total_order_price."','".$delivery_price."','".$total_pay_price."','".$order_name."','".$order_zipcode."','".$order_address1."','".$order_address2."','".$order_phone."','".$order_email."','".$deliver_name."','".$deliver_zipcode."','".$deliver_address1."','".$deliver_address2."','".$deliver_phone."','".$deliver_message."','".$USABLEPAY."','".$cart_id."','".$order_oid."','".date("Y-m-d H:i:s")."')";
+			$order_query		= "INSERT INTO ".$_gl['order_info_table']."(cart_idx, total_order_price, delivery_price, total_pay_price, order_name, order_zipcode, order_address1, order_address2, order_phone, order_email, deliver_name, deliver_zipcode, deliver_address1, deliver_address2, deliver_phone, deliver_message, select_pay, cart_id, order_oid, order_regdate) values('".$order_cart_idx."','".$total_order_price."','".$delivery_price."','".$total_pay_price."','".$order_name."','".$order_zipcode."','".$order_address1."','".$order_address2."','".$order_phone."','".$order_email."','".$deliver_name."','".$deliver_zipcode."','".$deliver_address1."','".$deliver_address2."','".$deliver_phone."','".$deliver_message."','".$select_pay."','".$cart_id."','".$order_oid."','".date("Y-m-d H:i:s")."')";
 			$order_result 		= mysqli_query($my_db, $order_query);
 
 			if ($order_result)
@@ -1129,7 +1129,7 @@
 				$innerHTML .= "<script type='text/javascript'>";
 				$innerHTML .= "var LGD_window_type = '".$LGD_WINDOW_TYPE."';";
 				$innerHTML .= "";
-				$innerHTML .= "function launchCrossPlatform(){lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '".$CST_PLATFORM."', LGD_window_type, null, '', '');alert('test');}";
+				$innerHTML .= "function launchCrossPlatform(){lgdwin = openXpay(document.getElementById('LGD_PAYINFO'), '".$CST_PLATFORM."', LGD_window_type, null, '', '');}";
 				$innerHTML .= "function getFormObject() {return document.getElementById('LGD_PAYINFO');}";
 				$innerHTML .= "function payment_return() {";
 				$innerHTML .= "var fDoc;";
