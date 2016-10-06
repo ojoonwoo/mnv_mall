@@ -1142,7 +1142,7 @@
 				$innerHTML .= "} else {";
 				$innerHTML .= "closeIframe();";
 				$innerHTML .= "}}";
-				$innerHTML .= "</script></head><body>";
+				$innerHTML .= "</script>";
 				$innerHTML .= "<form method='post' name='LGD_PAYINFO' id='LGD_PAYINFO' action='".$_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/payres.php'>";
 				foreach ($payReqMap as $key => $value) {
 					$innerHTML .= "<input type='hidden' name='$key' id='$key' value='$value'>";
