@@ -911,7 +911,7 @@ $(document).on("click", "#pay_order", function(){
 		async  : false,
 		url    : "http://store-chon.com/main_exec.php",
 		data:{
-			//"exec"						: "insert_order_info",
+			"exec"						: "insert_order_info",
 			"order_cart_idx"			: order_cart_idx,
 			"total_order_price"		: total_order_price,
 			"delivery_price"			: delivery_price,
