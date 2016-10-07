@@ -1038,6 +1038,12 @@
 				$LGD_OID								= $order_oid;                             //주문번호(상점정의 유니크한 주문번호를 입력하세요)
 				$LGD_AMOUNT							= $total_pay_price;                          //결제금액("," 를 제외한 결제금액을 입력하세요)
 				$LGD_BUYER								= $order_name;                           //구매자명
+				$LGD_BUYERID							= $cart_id;                           //구매자ID
+				$LGD_BUYERADDRESS					= "[".$order_zipcode."] ".$order_address1." ".$order_address2;                           //구매자 주소
+				$LGD_BUYERPHONE					= $order_phone;                           //구매자 주소
+				$LGD_RECEIVER							= $deliver_name;						// 수취인 이름
+				$LGD_RECEIVERPHONE					= $deliver_phone;						// 수취인 전화번호
+				$LGD_DELIVERYINFO					= $deliver_message
 				$LGD_PRODUCTINFO					= $show_goods_name;                     //상품명
 				$LGD_BUYEREMAIL						= $order_email;                      //구매자 이메일
 				$LGD_TIMESTAMP						= date("YmdHis");                                  //타임스탬프
@@ -1055,15 +1061,15 @@
 				/*
 				 * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다. 
 				 */    
-				$LGD_CASNOTEURL				= "http://store-chon.com/cas_noteurl.php";    
+				$LGD_CASNOTEURL					= "http://store-chon.com/cas_noteurl.php";    
 
 				/*
 				 * LGD_RETURNURL 을 설정하여 주시기 바랍니다. 반드시 현재 페이지와 동일한 프로트콜 및  호스트이어야 합니다. 아래 부분을 반드시 수정하십시요.
 				 */    
-				$LGD_RETURNURL				= "http://store-chon.com/returnurl.php";  
+				$LGD_RETURNURL						= "http://store-chon.com/returnurl.php";  
 
 
-				$configPath                 = $_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.     
+				$configPath								= $_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.     
 
 				/*
 				 *************************************************
@@ -1093,29 +1099,35 @@
 				 *************************************************
 				 */
 
-				$payReqMap['CST_PLATFORM']           = $CST_PLATFORM;				// 테스트, 서비스 구분
-				$payReqMap['LGD_WINDOW_TYPE']        = $LGD_WINDOW_TYPE;			// 수정불가
-				$payReqMap['CST_MID']                = $CST_MID;					// 상점아이디
-				$payReqMap['LGD_MID']                = $LGD_MID;					// 상점아이디
-				$payReqMap['LGD_OID']                = $LGD_OID;					// 주문번호
-				$payReqMap['LGD_BUYER']              = $LGD_BUYER;					// 구매자
-				$payReqMap['LGD_PRODUCTINFO']        = $LGD_PRODUCTINFO;			// 상품정보
-				$payReqMap['LGD_AMOUNT']             = $LGD_AMOUNT;					// 결제금액
-				$payReqMap['LGD_BUYEREMAIL']         = $LGD_BUYEREMAIL;				// 구매자 이메일
-				$payReqMap['LGD_CUSTOM_SKIN']        = $LGD_CUSTOM_SKIN;			// 결제창 SKIN
-				$payReqMap['LGD_CUSTOM_PROCESSTYPE'] = $LGD_CUSTOM_PROCESSTYPE;		// 트랜잭션 처리방식
-				$payReqMap['LGD_TIMESTAMP']          = $LGD_TIMESTAMP;				// 타임스탬프
-				$payReqMap['LGD_HASHDATA']           = $LGD_HASHDATA;				// MD5 해쉬암호값
-				$payReqMap['LGD_RETURNURL']   		 = $LGD_RETURNURL;				// 응답수신페이지
-				$payReqMap['LGD_VERSION']         	 = "PHP_Non-ActiveX_Standard";	// 버전정보 (삭제하지 마세요)
-				$payReqMap['LGD_CUSTOM_USABLEPAY']  	= $LGD_CUSTOM_USABLEPAY;	// 디폴트 결제수단
-				$payReqMap['LGD_CUSTOM_SWITCHINGTYPE']  = $LGD_CUSTOM_SWITCHINGTYPE;// 신용카드 카드사 인증 페이지 연동 방식
-				$payReqMap['LGD_OSTYPE_CHECK']          = $LGD_OSTYPE_CHECK;        // 값 P: XPay 실행(PC용 결제 모듈), PC, 모바일 에서 선택적으로 결제가능 
-				//$payReqMap['LGD_ACTIVEXYN']			= $LGD_ACTIVEXYN;			// 계좌이체 결제시 사용,ActiveX 사용 여부
-				$payReqMap['LGD_WINDOW_VER'] 			= $LGD_WINDOW_VER;
-				$payReqMap['LGD_ENCODING'] 				= "UTF-8";
-				$payReqMap['LGD_ENCODING_NOTEURL'] 				= "UTF-8";
-				$payReqMap['LGD_ENCODING_RETURNURL'] 				= "UTF-8";
+				$payReqMap['CST_PLATFORM']						= $CST_PLATFORM;				// 테스트, 서비스 구분
+				$payReqMap['LGD_WINDOW_TYPE']					= $LGD_WINDOW_TYPE;			// 수정불가
+				$payReqMap['CST_MID']								= $CST_MID;					// 상점아이디
+				$payReqMap['LGD_MID']								= $LGD_MID;					// 상점아이디
+				$payReqMap['LGD_OID']								= $LGD_OID;					// 주문번호
+				$payReqMap['LGD_BUYER']							= $LGD_BUYER;					// 구매자
+				$payReqMap['LGD_BUYERID']							= $LGD_BUYERID;					// 구매자
+				$payReqMap['LGD_BUYERADDRESS']				= $LGD_BUYERADDRESS;					// 구매자
+				$payReqMap['LGD_BUYERPHONE']					= $LGD_BUYERPHONE;					// 구매자
+				$payReqMap['LGD_PRODUCTINFO']					= $LGD_PRODUCTINFO;			// 상품정보
+				$payReqMap['LGD_AMOUNT']						= $LGD_AMOUNT;					// 결제금액
+				$payReqMap['LGD_BUYEREMAIL']					= $LGD_BUYEREMAIL;				// 구매자 이메일
+				$payReqMap['LGD_RECEIVER']						= $LGD_RECEIVER;				// 구매자 이메일
+				$payReqMap['LGD_RECEIVERPHONE']				= $LGD_RECEIVERPHONE;				// 구매자 이메일
+				$payReqMap['LGD_DELIVERYINFO']					= $LGD_DELIVERYINFO;				// 구매자 이메일
+				$payReqMap['LGD_CUSTOM_SKIN']					= $LGD_CUSTOM_SKIN;			// 결제창 SKIN
+				$payReqMap['LGD_CUSTOM_PROCESSTYPE']		= $LGD_CUSTOM_PROCESSTYPE;		// 트랜잭션 처리방식
+				$payReqMap['LGD_TIMESTAMP']					= $LGD_TIMESTAMP;				// 타임스탬프
+				$payReqMap['LGD_HASHDATA']						= $LGD_HASHDATA;				// MD5 해쉬암호값
+				$payReqMap['LGD_RETURNURL']					= $LGD_RETURNURL;				// 응답수신페이지
+				$payReqMap['LGD_VERSION']						= "PHP_Non-ActiveX_Standard";	// 버전정보 (삭제하지 마세요)
+				$payReqMap['LGD_CUSTOM_USABLEPAY']			= $LGD_CUSTOM_USABLEPAY;	// 디폴트 결제수단
+				$payReqMap['LGD_CUSTOM_SWITCHINGTYPE']	= $LGD_CUSTOM_SWITCHINGTYPE;// 신용카드 카드사 인증 페이지 연동 방식
+				$payReqMap['LGD_OSTYPE_CHECK']				= $LGD_OSTYPE_CHECK;        // 값 P: XPay 실행(PC용 결제 모듈), PC, 모바일 에서 선택적으로 결제가능 
+				//$payReqMap['LGD_ACTIVEXYN']					= $LGD_ACTIVEXYN;			// 계좌이체 결제시 사용,ActiveX 사용 여부
+				$payReqMap['LGD_WINDOW_VER'] 					= $LGD_WINDOW_VER;
+				$payReqMap['LGD_ENCODING'] 						= "UTF-8";
+				$payReqMap['LGD_ENCODING_NOTEURL'] 		= "UTF-8";
+				$payReqMap['LGD_ENCODING_RETURNURL'] 		= "UTF-8";
 
 				
 				// 가상계좌(무통장) 결제연동을 하시는 경우  할당/입금 결과를 통보받기 위해 반드시 LGD_CASNOTEURL 정보를 LG 유플러스에 전송해야 합니다 .
