@@ -126,7 +126,7 @@
 	include_once $_mnv_PC_dir."header_area.php";
 
 	// 주문번호를 이용하여 ORDER 정보 불러오기
-	$order_info	= select_order_info($oid);
+	$order_info	= select_order_info($xpay->Response("LGD_OID",0));
 ?>
       <div id="wrap_content">
         <div class="contents l2 clearfix">
@@ -240,7 +240,6 @@
                   <tbody>
 <?
 	$order_goods_arr	= explode("||",$order_info['cart_idx']);
-print_r($order_info);
 	$i = 0;
 	foreach($order_goods_arr as $key => $val)
 	{
