@@ -417,4 +417,17 @@ function select_order_goods($ordertype)
 	}
 	return $res_data;
 }
+
+function select_order_info($oid)
+{
+	global $_gl;
+	global $my_db;
+
+	$order_query		= "SELECT * FROM ".$_gl['order_info_table']." WHERE order_oid='".$oid."'";
+	$order_result		= mysqli_query($my_db, $order_query);
+	$order_data			= mysqli_fetch_array($order_result);
+
+	return $order_data;
+}
+
 ?>

@@ -124,6 +124,9 @@
 <?
 	// 사이트 헤더 영역
 	include_once $_mnv_PC_dir."header_area.php";
+
+	// 주문번호를 이용하여 ORDER 정보 불러오기
+	$order_info	= select_order_info($oid);
 ?>
       <div id="wrap_content">
         <div class="contents l2 clearfix">
@@ -181,7 +184,7 @@
                     <p>결제금액</p>
                   </div>
                   <div class="block_col">
-                    <p><?=number_format($xpay->Response("LGD_BUYERPHONE",0))?>원</p>
+                    <p><?=number_format($xpay->Response("LGD_AMOUNT",0))?>원</p>
                   </div>
                 </div>
                 <div class="form_header clearfix">
@@ -203,7 +206,7 @@
                       <p>주소</p>
                     </div>
                     <div class="block_col">
-                      <p>[137-844] 서울특별시 서초구 방배동 931-9 2층</p>
+                      <p>[<?=$order_info['order_zipcode']?>] <?=$order_info['order_address1']." ".$order_info['order_address2']?></p>
                     </div>
                   </div>
                   <div class="block_row">
