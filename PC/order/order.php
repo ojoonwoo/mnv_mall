@@ -293,7 +293,7 @@
                     <div class="block_col">
                       <div class="checks">
                         <label for="card_pay">카드결제</label>
-                        <input type="radio" name="select_pay" id="card_pay" value="card_pay">
+                        <input type="radio" name="select_pay" id="card_pay" value="card_pay" checked>
                       </div>
                       <div class="checks">
                         <label for="phone_pay">휴대폰결제</label>
