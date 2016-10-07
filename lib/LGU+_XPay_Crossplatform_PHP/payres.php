@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
     /*
      * [최종결제요청 페이지(STEP2-2)]
 	 *
