@@ -300,14 +300,7 @@
                       </td>
                       <td class="price"><?=number_format($current_price)?></td>
                       <td class="count">
-                        <input type="text" name="select_amount" id="buy_cnt" value="<?=$cart_data['goods_cnt']?>">
-                        <span class="amount_btn">
-                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
-                          <map name="amount" id="amount">
-                            <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
-                            <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
-                          </map>
-                        </span>
+                        <p><?=$cart_data['goods_cnt']?></p>
                       </td>
                       <td class="total"><?=number_format($current_sum_price)?></td>
                     </tr>
