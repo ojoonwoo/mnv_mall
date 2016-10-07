@@ -107,7 +107,7 @@
           	}            	
         }else{
           	//통신상의 문제 발생(최종결제요청 결과 실패 DB처리)
-         	echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.<br>";            	            
+         	echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.111<br>";            	            
         }
     }else {
         //2)API 요청실패 화면처리
@@ -116,7 +116,7 @@
         echo "TX Response_msg = " . $xpay->Response_Msg() . "<p>";
             
         //최종결제요청 결과 실패 DB처리
-        echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.<br>";            	                        
+        echo "최종결제요청 결과 실패 DB처리하시기 바랍니다.222<br>";            	                        
     }
 	include_once $_mnv_PC_dir."header.php";
 ?>
