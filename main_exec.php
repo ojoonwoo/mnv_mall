@@ -1140,14 +1140,14 @@
 				$innerHTML .= "if (fDoc.document.getElementById('LGD_RESPCODE').value == '0000') {";
 				$innerHTML .= "document.getElementById('LGD_PAYKEY').value = fDoc.document.getElementById('LGD_PAYKEY').value;";
 				$innerHTML .= "document.getElementById('LGD_PAYINFO').target = '_self';";
-				$innerHTML .= "document.getElementById('LGD_PAYINFO').action = '".$_mnv_base_url."lib/LGU+_XPay_Crossplatform_PHP/payres.php';";
+				$innerHTML .= "document.getElementById('LGD_PAYINFO').action = '".$_mnv_PC_url."order_complete.php';";
 				$innerHTML .= "document.getElementById('LGD_PAYINFO').submit();";
 				$innerHTML .= "} else {";
 				$innerHTML .= "closeIframe();";
 				$innerHTML .= "}}";
 				$innerHTML .= "</script>";
 				$innerHTML .= "<img src='".$_mnv_PC_images_url."blank.png'>";
-				$innerHTML .= "<form method='post' name='LGD_PAYINFO' id='LGD_PAYINFO' action='".$_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/payres.php'>";
+				$innerHTML .= "<form method='post' name='LGD_PAYINFO' id='LGD_PAYINFO' action='".$_mnv_PC_url."order_complete.php'>";
 				foreach ($payReqMap as $key => $value) {
 					$innerHTML .= "<input type='hidden' name='$key' id='$key' value='$value'>";
 				}
