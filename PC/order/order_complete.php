@@ -248,7 +248,7 @@
 		{
 			continue;
 		}
-		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE idx='".$val."'";
+		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.idx='".$val."'";
 		$cart_result		= mysqli_query($my_db, $cart_query);
 		$cart_data		= mysqli_fetch_array($cart_result);
 
