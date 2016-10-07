@@ -27,6 +27,7 @@
 	$_gl['event_info_table']				= "event_info";					// 이벤트 테이블
 	$_gl['post_info_table']					= "post_info";					// 포스트 테이블
 	$_gl['order_info_table']				= "order_info";					// 주문 테이블
+	$_gl['payment_info_table']				= "payment_info";				// 결제 테이블
 
 
 ?>

@@ -1,6 +1,16 @@
 <?php
-header("Content-Type: text/html; charset=UTF-8");
-    /*
+	session_save_path($_SERVER['DOCUMENT_ROOT']."/session");
+	ini_set("session.cache_expire", 180); // 세션 유효시간 : 분
+	ini_set("session.gc_maxlifetime", 180); // 세션 가비지 컬렉션(로그인시 세션지속 시간) :
+	session_start();
+	header("Content-Type: text/html; charset=UTF-8");
+
+	include_once $_SERVER['DOCUMENT_ROOT']."/include/global.php"; 				//변수정보
+	include_once $_SERVER['DOCUMENT_ROOT']."/include/function.php"; 				//함수정보
+	include_once $_SERVER['DOCUMENT_ROOT']."/include/dbi.php"; 					//DB 연결정보
+	include_once $_SERVER['DOCUMENT_ROOT']."/include/dir.php"; 					//경로정보
+
+	/*
      * [최종결제요청 페이지(STEP2-2)]
 	 *
 	 * 매뉴얼 "5.1. XPay 결제 요청 페이지 개발"의 "단계 5. 최종 결제 요청 및 요청 결과 처리" 참조
@@ -76,9 +86,14 @@ header("Content-Type: text/html; charset=UTF-8");
         if( "0000" == $xpay->Response_Code() ) {
 			//통신상의 문제가 없을시
          	//최종결제요청 결과 성공 DB처리(LGD_RESPCODE 값에 따라 결제가 성공인지, 실패인지 DB처리)
-           	echo "최종결제요청 결과 성공 DB처리하시기 바랍니다.<br>";
+           	//echo "최종결제요청 결과 성공 DB처리하시기 바랍니다.<br>";
 
             //최종결제요청 결과를 DB처리합니다. (결제성공 또는 실패 모두 DB처리 가능)
+			$pay_query		= "INSERT INTO ".$_gl['payment_info_table']."(LGD_RESPCODE, LGD_RESPMSG, LGD_MID, LGD_OID, LGD_AMOUNT, LGD_TID, LGD_PAYTYPE, LGD_PAYDATE, LGD_HASHDATA, LGD_TIMESTAMP, LGD_BUYER, LGD_PRODUCTINFO, LGD_BUYERID, LGD_BUYERADDRESS, LGD_BUYERPHONE, LGD_BUYEREMAIL, LGD_PRODUCTCODE, LGD_RECEIVER, LGD_RECEIVERPHONE, LGD_DELIVERYINFO, LGD_FINANCECODE, LGD_FINANCENAME, LGD_FINANCEAUTHNUM, LGD_ESCROWYN, LGD_CASHRECEIPTNUM, LGD_CASHRECEIPTSELFYN, LGD_CASHRECEIPTKIND, LGD_CARDNUM, LGD_CARDINSTALLMONTH, LGD_CARDNOINTYN, LGD_AFFILIATECODE, LGD_CARDGUBUN1, LGD_CARDGUBUN2, LGD_CARDACQUIRER, LGD_PCANCELFLAG, LGD_PCANCELSTR, LGD_TRANSAMOUNT, LGD_EXCHANGERATE, LGD_DISCOUNTUSEYN, LGD_DISCOUNTUSEAMOUNT, LGD_ACCOUNTNUM, LGD_ACCOUNTOWNER, LGD_PAYER, LGD_CASTAMOUNT, LGD_CASCAMOUNT, LGD_CASFLAG, LGD_CASSEQNO, LGD_SAOWNER, LGD_TELNO, LGD_OCBAMOUNT, LGD_OCBSAVEPOINT, LGD_OCBTOTALPOINT, LGD_OCBUSABLEPOINT, LGD_OCBTID) values('".$xpay->Response_Code()."','".$xpay->Response_Msg()."','".$xpay->Response("LGD_MID",0)."','".$xpay->Response("LGD_OID",0)."','".$xpay->Response("LGD_AMOUNT",0)."','".$xpay->Response("LGD_TID",0)."','".$xpay->Response("LGD_PAYTYPE",0)."','".$xpay->Response("LGD_PAYDATE",0)."','".$xpay->Response("LGD_HASHDATA",0)."','".$xpay->Response("LGD_TIMESTAMP",0)."','".$xpay->Response("LGD_BUYER",0)."','".$xpay->Response("LGD_PRODUCTINFO",0)."','".$xpay->Response("LGD_BUYERID",0)."','".$xpay->Response("LGD_BUYERADDRESS",0)."','".$xpay->Response("LGD_BUYERPHONE",0)."','".$xpay->Response("LGD_BUYEREMAIL",0)."','".$xpay->Response("LGD_PRODUCTCODE",0)."','".$xpay->Response("LGD_RECEIVER",0)."','".$xpay->Response("LGD_RECEIVERPHONE",0)."','".$xpay->Response("LGD_DELIVERYINFO",0)."','".$xpay->Response("LGD_FINANCECODE",0)."','".$xpay->Response("LGD_FINANCENAME",0)."','".$xpay->Response("LGD_FINANCEAUTHNUM",0)."','".$xpay->Response("LGD_ESCROWYN",0)."','".$xpay->Response("LGD_CASHRECEIPTNUM",0)."','".$xpay->Response("LGD_CASHRECEIPTSELFYN",0)."','".$xpay->Response("LGD_CASHRECEIPTKIND",0)."','".$xpay->Response("LGD_CARDNUM",0)."','".$xpay->Response("LGD_CARDINSTALLMONTH",0)."','".$xpay->Response("LGD_CARDNOINTYN",0)."','".$xpay->Response("LGD_AFFILIATECODE",0)."','".$xpay->Response("LGD_CARDGUBUN1",0)."','".$xpay->Response("LGD_CARDGUBUN2",0)."','".$xpay->Response("LGD_CARDACQUIRER",0)."','".$xpay->Response("LGD_PCANCELFLAG",0)."','".$xpay->Response("LGD_PCANCELSTR",0)."','".$xpay->Response("LGD_TRANSAMOUNT",0)."','".$xpay->Response("LGD_EXCHANGERATE",0)."','".$xpay->Response("LGD_DISCOUNTUSEYN",0)."','".$xpay->Response("LGD_DISCOUNTUSEAMOUNT",0)."','".$xpay->Response("LGD_ACCOUNTNUM",0)."','".$xpay->Response("LGD_ACCOUNTOWNER",0)."','".$xpay->Response("LGD_PAYER",0)."','".$xpay->Response("LGD_CASTAMOUNT",0)."','".$xpay->Response("LGD_CASCAMOUNT",0)."','".$xpay->Response("LGD_CASFLAG",0)."','".$xpay->Response("LGD_CASSEQNO",0)."','".$xpay->Response("LGD_SAOWNER",0)."','".$xpay->Response("LGD_TELNO",0)."','".$xpay->Response("LGD_OCBAMOUNT",0)."','".$xpay->Response("LGD_OCBSAVEPOINT",0)."','".$xpay->Response("LGD_OCBTOTALPOINT",0)."','".$xpay->Response("LGD_OCBUSABLEPOINT",0)."','".$xpay->Response("LGD_OCBTID",0)."')";
+			$pay_result 		= mysqli_query($my_db, $pay_query);
+
+print_r($pay_query);
+
 			//상점내 DB에 어떠한 이유로 처리를 하지 못한경우 false로 변경해 주세요.
           	$isDBOK = true; 
           	if( !$isDBOK ) {
