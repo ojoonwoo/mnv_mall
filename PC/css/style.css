@@ -910,7 +910,7 @@ input:-webkit-autofill {
 }
 
 .area_main_middle p img{
-    width: 100%;
+    /*width: 100%;*/
 }
 
 /* 에디터로 상품입력, 나중에 지울것 */
