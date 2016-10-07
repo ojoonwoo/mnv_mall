@@ -243,7 +243,6 @@
 	$i = 0;
 	foreach($order_goods_arr as $key => $val)
 	{
-		print_R($val);
 		if ($val == "")
 		{
 			continue;
@@ -315,6 +314,10 @@
 <?
 		$i++;
 	}
+	if ($total_price > 49999)
+		$site_option['default_delivery_price']	= 0;
+	$total_pay_price	= $total_price + $site_option['default_delivery_price'];
+
 ?>
                   </tbody>
                 </table>
