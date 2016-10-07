@@ -240,7 +240,7 @@
                   <tbody>
 <?
 	$order_goods_arr	= explode("||",$order_info['cart_idx']);
-
+print_r($order_info);
 	$i = 0;
 	foreach($order_goods_arr as $key => $val)
 	{
