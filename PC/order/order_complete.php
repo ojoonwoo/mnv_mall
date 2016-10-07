@@ -130,7 +130,7 @@
           <div class="section main">
             <div class="area_main_top nopadd">
               <div class="block_title">
-                <p class="cate_title"><img src="images/cate_title_orderC.png" alt="주문완료"></p>
+                <p class="cate_title"><img src="<?=$_mnv_PC_images_url?>cate_title_orderC.png" alt="주문완료"></p>
               </div>
               <div class="block_title alignC">
                 <h3>고객님의 주문이 정상적으로 접수되었습니다.</h3>
@@ -219,7 +219,7 @@
                       <p>배송메시지</p>
                     </div>
                     <div class="block_col">
-                      <p><?=iconv("EUC-KR","UTF-8",$xpay->Response("LGD_DELIVERINFO",0))?></p>
+                      <p><?=iconv("EUC-KR","UTF-8",$xpay->Response("LGD_DELIVERYINFO",0))?></p>
                     </div>
                   </div>
                 </div>
@@ -238,7 +238,7 @@
                     <tr>
                       <td class="info clearfix">
                         <div class="info_img">
-                          <img src="./images/order_list_img1.png" alt="주문상품1">
+                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
                         </div>
                         <div class="info_txt">
                           <h3>실용적인 사이즈의 머그컵</h3>
@@ -249,7 +249,7 @@
                       <td class="count">
                         <input type="text" name="select_amount" id="buy_cnt" value="1">
                         <span class="amount_btn">
-                          <img src="./images/polygon_double.png" usemap="#amount">
+                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
                           <map name="amount" id="amount">
                             <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
                             <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
@@ -261,7 +261,7 @@
                     <tr>
                       <td class="info clearfix">
                         <div class="info_img">
-                          <img src="./images/order_list_img1.png" alt="주문상품1">
+                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
                         </div>
                         <div class="info_txt">
                           <h3>실용적인 사이즈의 머그컵</h3>
@@ -272,7 +272,7 @@
                       <td class="count">
                         <input type="text" name="select_amount" id="buy_cnt" value="1">
                         <span class="amount_btn">
-                          <img src="./images/polygon_double.png" usemap="#amount">
+                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
                           <map name="amount" id="amount">
                             <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
                             <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
@@ -297,14 +297,14 @@
                     <h3 class="total_order">80,000원</h3>
                   </div>
                   <div class="charImg">
-                    <img src="./images/spec_plus.png">
+                    <img src="<?=$_mnv_PC_images_url?>spec_plus.png">
                   </div>
                   <div class="price_block">
                     <h3>배송비</h3>
                     <h3 class="shipping">2,500원</h3>
                   </div>
                   <div class="charImg">
-                    <img src="./images/spec_equal.png">
+                    <img src="<?=$_mnv_PC_images_url?>spec_equal.png">
                   </div>
                   <div class="price_block">
                     <h3>총 결제금액</h3>
@@ -319,44 +319,14 @@
           </div>
           <div class="section side">
             <div class="side_full_img">
-              <img src="./images/side_full_img1.jpg">
+              <img src="<?=$_mnv_PC_images_url?>side_full_img1.jpg">
             </div>
           </div>
         </div>
       </div>
-      <div id="footer">
-        <div class="area_infoChon">
-          <div class="inner infoC clearfix">
-            <div class="box_info">
-              <span class="customerC"><img src="./images/customer_center.png" alt="고객센터"></span>
-              <span class="telNum">070-000-0000</span>
-              <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
-              <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
-            </div>
-            <div class="box_info">
-              <span>이메일 : SERVICE@STORE-CHON.COM</span>
-              <span>토/일 법정공휴일, 임시공휴일 전화상담 휴무<br/>Q&A 게시판을 이용해주세요</span>
-            </div>
-            <div class="box_info clearfix">
-              <a href="#"><span class="about_chon"><img src="./images/about_chon.png" alt="about 촌의감각"></span></a>
-              <a href="#"><span class="sugg"><img src="./images/sugg_store.png" alt="입점문의"></span></a>
-              <a href="#"><span class="sugg"><img src="./images/sugg_partnership.png" alt="제휴문의"></span></a>
-              <a href="#"><span class="sugg last"><img src="./images/heavy_buying.png" alt="대량구매"></span></a>
-            </div>
-            <div class="box_info sns clearfix">
-              <a href="#"><span>인스타그램</span></a>
-              <a href="#"><span>페이스북</span></a>
-              <a href="#"><span>블로그</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="address">
-          <p>company  미니버타이징(주)  address  서울특별시  서초구  방배동  931-9  2F</p>
-          <p>owner  양선혜    business  license  114  87  11622   privacy policy | terms of use</p>
-          <br>
-          <p>@chon all rights reserved</p>
-        </div>
-      </div>
+<?
+	include_once $_mnv_PC_dir."footer.php";
+?>
     </div>
   </body>
 </html>
