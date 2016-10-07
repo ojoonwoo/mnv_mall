@@ -135,7 +135,7 @@
               </div>
               <div class="block_title alignC">
                 <h3>고객님의 주문이 정상적으로 접수되었습니다.</h3>
-                <p>양선혜님께서 주문하신 제품이 접수되었습니다. 주문내역 및 배송정보는 <span>주문/배송조회</span>에서 확인할 수 있습니다.</p>
+                <p><?=iconv("EUC-KR","UTF-8",$xpay->Response("LGD_BUYER",0))?>님께서 주문하신 제품이 접수되었습니다. 주문내역 및 배송정보는 <span>주문/배송조회</span>에서 확인할 수 있습니다.</p>
               </div>
             </div>
             <div class="area_main_middle nopadd noborder">
