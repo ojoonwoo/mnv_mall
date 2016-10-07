@@ -1043,7 +1043,7 @@
 				$LGD_BUYERPHONE					= $order_phone;                           //구매자 주소
 				$LGD_RECEIVER							= $deliver_name;						// 수취인 이름
 				$LGD_RECEIVERPHONE					= $deliver_phone;						// 수취인 전화번호
-				$LGD_DELIVERYINFO					= $deliver_message
+				$LGD_DELIVERYINFO					= $deliver_message;
 				$LGD_PRODUCTINFO					= $show_goods_name;                     //상품명
 				$LGD_BUYEREMAIL						= $order_email;                      //구매자 이메일
 				$LGD_TIMESTAMP						= date("YmdHis");                                  //타임스탬프
