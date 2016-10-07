@@ -1114,6 +1114,8 @@
 				//$payReqMap['LGD_ACTIVEXYN']			= $LGD_ACTIVEXYN;			// 계좌이체 결제시 사용,ActiveX 사용 여부
 				$payReqMap['LGD_WINDOW_VER'] 			= $LGD_WINDOW_VER;
 				$payReqMap['LGD_ENCODING'] 				= "UTF-8";
+				$payReqMap['LGD_ENCODING_NOTEURL'] 				= "UTF-8";
+				$payReqMap['LGD_ENCODING_RETURNURL'] 				= "UTF-8";
 
 				
 				// 가상계좌(무통장) 결제연동을 하시는 경우  할당/입금 결과를 통보받기 위해 반드시 LGD_CASNOTEURL 정보를 LG 유플러스에 전송해야 합니다 .
