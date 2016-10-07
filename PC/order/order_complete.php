@@ -244,6 +244,7 @@
 	$i = 0;
 	foreach($order_goods_arr as $key => $val)
 	{
+		print_R($val);
 		if ($val == "")
 		{
 			continue;
