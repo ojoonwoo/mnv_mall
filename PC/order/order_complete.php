@@ -238,19 +238,70 @@
                     </tr>
                   </thead>
                   <tbody>
+<?
+	$order_goods_arr	= explode("||",$order_info['cart_idx']);
+
+	$i = 0;
+	foreach($order_goods_arr as $key => $val)
+	{
+		if ($val == "")
+		{
+			continue;
+		}
+		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE idx='".$val."'";
+		$cart_result		= mysqli_query($my_db, $cart_query);
+		$cart_data		= mysqli_fetch_array($cart_result);
+
+		$cart_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$cart_data['goods_img_url']);
+
+		if ($cart_data['discount_price'] == 0)
+		{
+			$current_price			= $cart_data['sales_price'];
+			$current_sum_price		= $cart_data['sales_price'] * $cart_data['goods_cnt'];
+		}else{
+			$current_price			= $cart_data['discount_price'];
+			$current_sum_price		= $cart_data['discount_price'] * $cart_data['goods_cnt'];
+		}
+
+		$total_price			= $total_price + $current_sum_price;
+
+		$goods_option_arr	= explode("||",$cart_data['goods_option']);
+		$goods_option_txt	= "";
+		$i = 0;
+		foreach($goods_option_arr as $key => $val)
+		{
+			$sub_option_arr		= explode("|+|",$val);
+			if ($i == 0)
+				$comma	= "";
+			else if ($i == count($goods_option_arr)-1)
+				$comma	= "";
+			else
+				$comma	= ",";
+			$goods_option_txt	.= $sub_option_arr[1].$comma;
+			$i++;
+		}
+
+?>
                     <tr>
                       <td class="info clearfix">
                         <div class="info_img">
-                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
+                          <a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>"></a>
                         </div>
                         <div class="info_txt">
-                          <h3>실용적인 사이즈의 머그컵</h3>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
+                          <h3><a href="<?=$_mnv_PC_goods_url?>goods_detail.php?goods_code=<?=$cart_data['goods_code']?>"><?=$cart_data['goods_name']?></a></h3>
+<?
+	if ($cart_data['goods_optionYN'] == "Y")
+	{
+?>
+                          <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p>
+<?
+	}
+?>
                         </div>
                       </td>
-                      <td class="price">20,000</td>
+                      <td class="price"><?=number_format($current_price)?></td>
                       <td class="count">
-                        <input type="text" name="select_amount" id="buy_cnt" value="1">
+                        <input type="text" name="select_amount" id="buy_cnt" value="<?=$cart_data['goods_cnt']?>">
                         <span class="amount_btn">
                           <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
                           <map name="amount" id="amount">
@@ -259,31 +310,12 @@
                           </map>
                         </span>
                       </td>
-                      <td class="total">20,000</td>
+                      <td class="total"><?=number_format($current_sum_price)?></td>
                     </tr>
-                    <tr>
-                      <td class="info clearfix">
-                        <div class="info_img">
-                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
-                        </div>
-                        <div class="info_txt">
-                          <h3>실용적인 사이즈의 머그컵</h3>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
-                        </div>
-                      </td>
-                      <td class="price">20,000</td>
-                      <td class="count">
-                        <input type="text" name="select_amount" id="buy_cnt" value="1">
-                        <span class="amount_btn">
-                          <img src="<?=$_mnv_PC_images_url?>polygon_double.png" usemap="#amount">
-                          <map name="amount" id="amount">
-                            <area shape="rect" coords="0,0,9,9" href="#" onclick="amount_change('up');return false;";>
-                            <area shape="rect" coords="0,10,9,19" href="#" onclick="amount_change('down');return false;";>
-                          </map>
-                        </span>
-                      </td>
-                      <td class="total">20,000</td>
-                    </tr>
+<?
+		$i++;
+	}
+?>
                   </tbody>
                 </table>
               </div>
@@ -297,21 +329,21 @@
                   </div>
                   <div class="price_block">
                     <h3>총 주문금액</h3>
-                    <h3 class="total_order">80,000원</h3>
+                    <h3 class="total_order"><?=number_format($total_price)?>원</h3>
                   </div>
                   <div class="charImg">
                     <img src="<?=$_mnv_PC_images_url?>spec_plus.png">
                   </div>
                   <div class="price_block">
                     <h3>배송비</h3>
-                    <h3 class="shipping">2,500원</h3>
+                    <h3 class="shipping"><?=number_format($site_option['default_delivery_price'])?>원</h3>
                   </div>
                   <div class="charImg">
                     <img src="<?=$_mnv_PC_images_url?>spec_equal.png">
                   </div>
                   <div class="price_block">
                     <h3>총 결제금액</h3>
-                    <h3 class="total_payment">82,500원</h3>
+                    <h3 class="total_payment"><?=number_format($total_pay_price)?>원</h3>
                   </div>
                 </div>
               </div>
