@@ -909,9 +909,11 @@ input:-webkit-autofill {
     margin-bottom: 40px;
 }
 
+/*
 .area_main_middle p img{
     width: 100%;
 }
+*/
 
 /* 에디터로 상품입력, 나중에 지울것 */
 .product_dt_img {

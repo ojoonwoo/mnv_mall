@@ -56,7 +56,7 @@ function validate(ref)
 	// if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{4,12}$/, password, "비밀번호에 대소문자, 최소 1개의 숫자/ 특수 문자 포함"))
 	//return false;
 
-	if(!chk(/^[a-zA-Z]{1}[a-zA-Z0-9\!\@\#\$\%\^\*\+\=\-]{5,11}$/, password, "비밀번호가 형식에 맞지 않습니다."))
+	if(!chk(/^[a-zA-Z]{1}[a-zA-Z0-9\!\@\#\$\%\^\*\+\=\-\_]{5,11}$/, password, "비밀번호가 형식에 맞지 않습니다."))
 		return false;
 	// if(!chk(/^[a-zA-Z0-9]{4,12}$/, password, "비밀번호는 숫자, 영문자 혼합으로 4~12자 입력할것"))
 	// 	return false;
