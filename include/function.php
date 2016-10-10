@@ -84,7 +84,7 @@ function sub_category_info($cate1)
 	$result		= mysqli_query($my_db, $query);
 	while ($data = mysqli_fetch_array($result))
 	{
-		$goods_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2 = '".$data['cate_2']."'";
+		$goods_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' AND cate_2 = '".$data['cate_2']."' AND showYN='Y'";
 		$goods_result		= mysqli_query($my_db, $goods_query);
 		$goods_num			= mysqli_num_rows($goods_result);
 		$res_data[]	= $cate1."||".$data['cate_2']."||".$data['cate_name']."||".$goods_num;
