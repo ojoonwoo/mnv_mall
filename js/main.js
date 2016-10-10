@@ -511,7 +511,7 @@ $(document).on("click", "#mycart_link", function(){
 	var goods_idx				= $("#goods_idx").val();
 	var goods_optionYN		= $("#goods_optionYN").val();
 	var buy_cnt					= $("#buy_cnt").val();
-	var goods_current_cnt		= $("#current_cnt").val();
+	var goods_current_cnt		= $("#goods_current_cnt").val();
 	var option_txt				= "";
 	
 	if (goods_current_cnt == "0")
