@@ -72,22 +72,6 @@
 			else
 				$current_price	= $wish_data['discount_price'];
 */
-
-			$goods_option_arr	= explode("||",$wish_data['goods_option']);
-			$goods_option_txt	= "";
-			$i = 0;
-			foreach($goods_option_arr as $key => $val)
-			{
-				$sub_option_arr		= explode("|+|",$val);
-				if ($i == 0)
-					$comma	= "";
-				else if ($i == count($goods_option_arr)-1)
-					$comma	= "";
-				else
-					$comma	= ",";
-				$goods_option_txt	.= $sub_option_arr[1].$comma;
-				$i++;
-			}
 ?>
                     <tr>
                       <td><p><?=$order_date?></p></td>
@@ -101,7 +85,29 @@
 <?
 	if ($order_num == 1)
 	{
-		if ($order_data['goods_optionYN'] == "Y")
+		$cart_idx_arr	= explode(" ",$order_data['order_regdate']);
+		$cart_idx		= $order_date_arr[1];
+
+		$cart_query		= "SELECT goods_option FROM ".$_gl['mycart_info_table']." WHERE idx='".$cart_idx."'";
+		$cart_result		= mysqli_query($my_db, $cart_query);
+		$cart_data		= mysqli_fetch_array($cart_result);
+
+		$goods_option_arr	= explode("||",$cart_data['goods_option']);
+		$goods_option_txt	= "";
+		$i = 0;
+		foreach($goods_option_arr as $key => $val)
+		{
+			$sub_option_arr		= explode("|+|",$val);
+			if ($i == 0)
+				$comma	= "";
+			else if ($i == count($goods_option_arr)-1)
+				$comma	= "";
+			else
+				$comma	= ",";
+			$goods_option_txt	.= $sub_option_arr[1].$comma;
+			$i++;
+		}
+		if ($cart_data['goods_option'] != "")
 		{
 ?>
                           <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p>
@@ -111,7 +117,7 @@
 ?>
                         </a>
                       </td>
-                      <td><p class="bold"><?=$order_data['LGD_AMOUNT']?></p></td>
+                      <td><p class="bold"><?=number_format($order_data['LGD_AMOUNT'])?></p></td>
                       <td><p>배송중</p></td>
                     </tr>
 <?
