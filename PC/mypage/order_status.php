@@ -75,11 +75,11 @@
                     <tr>
                       <td><p><?=$order_date?></p></td>
                       <td>
-                        <p class="orderNum"><?=$order_data['LGD_OID']?></p>
+                        <a href="<?=$_mnv_PC_order_url?>order_detail.php?oid=<?=$order_data['LGD_OID']?>"><p class="orderNum"><?=$order_data['LGD_OID']?></p></a>
                         <input type="button" class="board_btn cancel" value="주문취소">
                       </td>
                       <td class="alignL pl30">
-                        <a href="#">
+                        <a href="<?=$_mnv_PC_order_url?>order_detail.php?oid=<?=$order_data['LGD_OID']?>">
                           <p><?=$order_data['LGD_PRODUCTINFO']?></p>
 <?
 			$cart_idx_arr	= explode("||",$order_data['cart_idx']);
