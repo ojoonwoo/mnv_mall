@@ -83,38 +83,38 @@
                         <a href="#">
                           <p><?=$order_data['LGD_PRODUCTINFO']?></p>
 <?
-	if ($order_num == 1)
-	{
-		$cart_idx_arr	= explode("||",$order_data['cart_idx']);
-		$cart_idx		= $order_date_arr[1];
+			$cart_idx_arr	= explode("||",$order_data['cart_idx']);
 
-		$cart_query		= "SELECT goods_option FROM ".$_gl['mycart_info_table']." WHERE idx='".$cart_idx."'";
-		$cart_result		= mysqli_query($my_db, $cart_query);
-		$cart_data		= mysqli_fetch_array($cart_result);
+			if (count($cart_idx_arr) == 2)
+			{
+				$cart_idx		= $order_date_arr[1];
 
-		$goods_option_arr	= explode("||",$cart_data['goods_option']);
-		$goods_option_txt	= "";
-		$i = 0;
-		print_r($goods_option_arr);
-		foreach($goods_option_arr as $key => $val)
-		{
-			$sub_option_arr		= explode("|+|",$val);
-			if ($i == 0)
-				$comma	= "";
-			else if ($i == count($goods_option_arr)-1)
-				$comma	= "";
-			else
-				$comma	= ",";
-			$goods_option_txt	.= $sub_option_arr[1].$comma;
-			$i++;
-		}
-		if ($cart_data['goods_option'] != "")
-		{
+				$cart_query		= "SELECT goods_option FROM ".$_gl['mycart_info_table']." WHERE idx='".$cart_idx."'";
+				$cart_result		= mysqli_query($my_db, $cart_query);
+				$cart_data		= mysqli_fetch_array($cart_result);
+
+				$goods_option_arr	= explode("||",$cart_data['goods_option']);
+				$goods_option_txt	= "";
+				$i = 0;
+				foreach($goods_option_arr as $key => $val)
+				{
+					$sub_option_arr		= explode("|+|",$val);
+					if ($i == 0)
+						$comma	= "";
+					else if ($i == count($goods_option_arr)-1)
+						$comma	= "";
+					else
+						$comma	= ",";
+					$goods_option_txt	.= $sub_option_arr[1].$comma;
+					$i++;
+				}
+				if ($cart_data['goods_option'] != "")
+				{
 ?>
                           <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p>
 <?
-		}
-	}
+				}
+			}
 ?>
                         </a>
                       </td>
