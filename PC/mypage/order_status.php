@@ -85,7 +85,7 @@
 <?
 	if ($order_num == 1)
 	{
-		$cart_idx_arr	= explode(" ",$order_data['cart_idx']);
+		$cart_idx_arr	= explode("||",$order_data['cart_idx']);
 		$cart_idx		= $order_date_arr[1];
 
 		$cart_query		= "SELECT goods_option FROM ".$_gl['mycart_info_table']." WHERE idx='".$cart_idx."'";
