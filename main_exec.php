@@ -17,9 +17,10 @@
 			{
 				$update_query		= "UPDATE ".$_gl['member_info_table']." SET mb_logindate='".date("Y-m-d H:i:s")."' WHERE mb_id='".$login_data['mb_id']."'";
 				$update_result		= mysqli_query($my_db, $update_query);
-				// 회원 아이디, 이름 세션 생성
+				// 회원 아이디, 이름, 등급 세션 생성
 				$_SESSION['ss_chon_id']			= $login_data['mb_id'];
 				$_SESSION['ss_chon_name']		= $login_data['mb_name'];
+				$_SESSION['ss_chon_grade']		= $login_data['mb_grade'];
 				$flag	= "Y";
 			}else{
 				$flag	= "N";
@@ -96,7 +97,7 @@
 
 				$birth = $birthY . $birthM . $birthD;
 				// 등급 수정할것
-				$grade = "silver";
+				$grade = "3";
 
 
 				$insert_query    = "INSERT INTO ".$_gl['member_info_table']."(mb_id, mb_password, mb_name, mb_birth, mb_address1, mb_address2, mb_zipcode, mb_telphone, mb_handphone, mb_smsYN, mb_email, mb_emailYN, mb_grade, mb_join_date, mb_join_ipaddr) values('".$user_id."',MD5('".$password."'),'".$username."','".$birth."','".$addr1."','".$addr2."','".$zipcode."','".$tel."','".$phone."','".$smsYN."','".$email."','".$emailYN."','".$grade."','".date("Y-m-d H:i:s")."','".$_SERVER['REMOTE_ADDR']."')";
@@ -895,7 +896,10 @@
 			else
 				$where	= " AND cate_2='".$cate2."'";
 
-			$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE showYN='Y' AND cate_1='".$cate1."' ".$where." ORDER BY idx DESC limit 16";
+			if ($_SESSION['ss_chon_grade'] == "6")
+				$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE cate_1='".$cate1."' ".$where." ORDER BY idx DESC limit 16";
+			else
+				$list_query		= "SELECT * FROM ".$_gl['goods_info_table']." WHERE showYN='Y' AND cate_1='".$cate1."' ".$where." ORDER BY idx DESC limit 16";
 			$list_result		= mysqli_query($my_db, $list_query);
 
 			$innerHTML	= "";
