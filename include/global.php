@@ -29,5 +29,7 @@
 	$_gl['order_info_table']				= "order_info";					// 주문 테이블
 	$_gl['payment_info_table']				= "payment_info";				// 결제 테이블
 
-
+	$_gl['order_status']['order_comp']			= "주문완료";
+	$_gl['order_status']['delivery_ing']			= "배송중";
+	$_gl['order_status']['delivery_comp']		= "배송완료";
 ?>
