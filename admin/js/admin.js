@@ -998,7 +998,7 @@ $(document).on("click", "#submit_btn2", function(){
 		return false;
 	}
 
-	if (cate_2 == "")
+	if (cate_2 == "" && cate_1 != "5")
 	{
 		alert("상품분류를 선택해주세요.");
 		return false;
