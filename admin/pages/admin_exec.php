@@ -1292,7 +1292,7 @@
 				$innerHTML	.= "<tr>";
 				$innerHTML	.= "<td><input type='checkbox' name='one_check' id='one_check'></td>";
 				$innerHTML	.= "<td></td>";
-				$innerHTML	.= "<td>".$list_data['goods_code']."</td>";
+				$innerHTML	.= "<td><a href='".$_mnv_PC_goods_url."goods_detail.php?goods_code=".$list_data['goods_code']."' target='_blank'>".$list_data['goods_code']."</a></td>";
 				$innerHTML	.= "<td>";
 				if($list_data['depth']>0)
 				{
