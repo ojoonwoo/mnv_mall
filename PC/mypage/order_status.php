@@ -54,6 +54,7 @@
                   <tbody>
 <?
 	$order_query		= "SELECT * FROM ".$_gl['payment_info_table']." AS A INNER JOIN ".$_gl['order_info_table']." AS B ON A.LGD_OID=B.order_oid WHERE A.mb_id='".$_SESSION['ss_chon_id']."'";
+	print_r($order_query);
 	$order_result		= mysqli_query($my_db, $order_query);
 	$order_num		= mysqli_num_rows($order_result);
 	if ($order_num > 0)
