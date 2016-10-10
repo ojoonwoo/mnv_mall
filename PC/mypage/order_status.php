@@ -95,6 +95,7 @@
 		$goods_option_arr	= explode("||",$cart_data['goods_option']);
 		$goods_option_txt	= "";
 		$i = 0;
+		print_r($goods_option_arr);
 		foreach($goods_option_arr as $key => $val)
 		{
 			$sub_option_arr		= explode("|+|",$val);
