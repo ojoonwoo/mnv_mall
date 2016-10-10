@@ -62,6 +62,8 @@
 		$total_price	= 0;
 		while ($order_data = mysqli_fetch_array($order_result))
 		{
+			$order_date_arr	= explode(" ",$order_data['order_regdate']);
+			$order_date		= $order_date_arr[0];
 /*
 			$wish_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$wish_data['goods_img_url']);
 
@@ -88,7 +90,7 @@
 */
 ?>
                     <tr>
-                      <td><p>2016-09-01</p></td>
+                      <td><p><?=$order_date?></p></td>
                       <td>
                         <p class="orderNum">16090121</p>
                         <input type="button" class="board_btn cancel" value="주문취소">
