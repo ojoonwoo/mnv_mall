@@ -71,6 +71,7 @@
 				$current_price	= $wish_data['sales_price'];
 			else
 				$current_price	= $wish_data['discount_price'];
+*/
 
 			$goods_option_arr	= explode("||",$wish_data['goods_option']);
 			$goods_option_txt	= "";
@@ -87,28 +88,30 @@
 				$goods_option_txt	.= $sub_option_arr[1].$comma;
 				$i++;
 			}
-*/
 ?>
                     <tr>
                       <td><p><?=$order_date?></p></td>
                       <td>
-                        <p class="orderNum">16090121</p>
+                        <p class="orderNum"><?=$order_data['LGD_OID']?></p>
                         <input type="button" class="board_btn cancel" value="주문취소">
                       </td>
                       <td class="alignL pl30">
                         <a href="#">
-                          <p>카레그릇</p>
+                          <p><?=$order_data['LGD_PRODUCTINFO']?></p>
 <?
-	//if ($wish_data['goods_optionYN'] == "Y")
-	//{
+	if ($order_num == 1)
+	{
+		if ($order_data['goods_optionYN'] == "Y")
+		{
 ?>
-                          <!-- <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p> -->
+                          <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p>
 <?
-	//}
+		}
+	}
 ?>
                         </a>
                       </td>
-                      <td><p class="bold">20,000</p></td>
+                      <td><p class="bold"><?=$order_data['LGD_AMOUNT']?></p></td>
                       <td><p>배송중</p></td>
                     </tr>
 <?
