@@ -52,6 +52,40 @@
                     </tr>
                   </thead>
                   <tbody>
+<?
+	$order_query		= "SELECT * FROM ".$_gl['payment_info_table']." AS A INNER JOIN ".$_gl['order_info_table']." AS B ON A.LGD_OID=B.order_oid WHERE A.mb_id='".$_SESSION['ss_chon_id']."'";
+	$order_result		= mysqli_query($my_db, $order_query);
+	$order_num		= mysqli_num_rows($order_result);
+	if ($order_num > 0)
+	{
+		$total_price	= 0;
+		while ($order_data = mysqli_fetch_array($order_result))
+		{
+/*
+			$wish_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$wish_data['goods_img_url']);
+
+			if ($wish_data['discount_price'] == 0)
+				$current_price	= $wish_data['sales_price'];
+			else
+				$current_price	= $wish_data['discount_price'];
+
+			$goods_option_arr	= explode("||",$wish_data['goods_option']);
+			$goods_option_txt	= "";
+			$i = 0;
+			foreach($goods_option_arr as $key => $val)
+			{
+				$sub_option_arr		= explode("|+|",$val);
+				if ($i == 0)
+					$comma	= "";
+				else if ($i == count($goods_option_arr)-1)
+					$comma	= "";
+				else
+					$comma	= ",";
+				$goods_option_txt	.= $sub_option_arr[1].$comma;
+				$i++;
+			}
+*/
+?>
                     <tr>
                       <td><p>2016-09-01</p></td>
                       <td>
@@ -61,17 +95,32 @@
                       <td class="alignL pl30">
                         <a href="#">
                           <p>카레그릇</p>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
+<?
+	//if ($wish_data['goods_optionYN'] == "Y")
+	//{
+?>
+                          <!-- <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p> -->
+<?
+	//}
+?>
                         </a>
                       </td>
                       <td><p class="bold">20,000</p></td>
                       <td><p>배송중</p></td>
                     </tr>
-<!-- 주문내역 없을때
+<?
+		}
+	}else{
+?>
+<!-- 주문내역 없을때-->
                     <tr>
                       <td colspan="5">주문내역이 없습니다.</td>
                     </tr>
--->
+<!-- 주문내역 없을때-->
+
+<?
+	}
+?>
                   </tbody>
                 </table>
               </div>
