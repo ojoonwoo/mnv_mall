@@ -107,7 +107,7 @@
                     <div class="block_line">
                       <span class="left_text">수량</span>
 <?
-	if ($current_cnt < 1)
+	if ($current_cnt < 1 || $goods_info['salesYN'] == "N")
 	{
 ?>
                       <input type="text" name="select_amount" id="buy_cnt" value="품 절" readonly>
