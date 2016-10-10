@@ -98,7 +98,7 @@
 			$i++;
 			continue;
 		}
-		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.idx='".$val."' AND A.showYN='Y'";
+		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.idx='".$val."'";
 print_r($cart_query);
 		$cart_result		= mysqli_query($my_db, $cart_query);
 		$total_price	= 0;
