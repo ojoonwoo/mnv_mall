@@ -2,11 +2,23 @@
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
+	$OID	= $_REQUEST['oid'];
 	if (!$_SESSION['ss_chon_id'])
 	{
 		echo "<script>alert('로그인 후 이용해 주세요.');</script>";
 		echo "<script>location.href='".$_mnv_PC_member_url."member_login.php';</script>";
 	}
+
+	// 주문번호를 이용하여 ORDER 정보 불러오기
+	$order_info	= select_order_info($OID);
+
+	// 주문번호를 이용하여 PAYMENT 정보 불러오기
+	$payment_info	= select_payment_info($OID);
+
+	// 주문 날짜
+	$order_date_arr	= explode(" ",$order_data['order_regdate']);
+	$order_date		= $order_date_arr[0];
+
 ?>
     <div id="wrap_page">
 <?
@@ -48,18 +60,18 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><p>2016-09-01</p></td>
+                      <td><p><?=$order_date?></p></td>
                       <td>
-                        <p class="orderNum">123456622</p>
+                        <p class="orderNum"><?=$order_info['order_oid']?></p>
                         <input type="button" class="board_btn cancel" value="주문취소">
                       </td>
                       <td class="alignL pl30">
-                        <p>카레그릇<span>(총 3종)</span></p>
+                        <p><?=$payment_info['LGD_PRODUCTINFO']?></p>
                       </td>
-                      <td><p class="bold">20,000</p></td>
+                      <td><p class="bold"><?=number_format($payment_info['LGD_AMOUNT'])?></p></td>
                       <td>
-                        <p>배송준비중</p>
-                        <p>로젠택배 [23456]</p>
+                        <p><?=$_gl['order_status'][$order_info['order_status']]?></p>
+                        <!-- <p>로젠택배 [23456]</p> -->
                       </td>
                     </tr>
                   </tbody>
@@ -76,6 +88,45 @@
                     </tr>
                   </thead>
                   <tbody>
+<?
+	$cart_idx_arr	= explode("||",$order_info['cart_idx']);
+
+	foreach($cart_idx_arr as $key => $val)
+	{
+		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.idx='".$val."' AND A.showYN='Y'";
+		$cart_result		= mysqli_query($my_db, $cart_query);
+		$total_price	= 0;
+		while ($cart_data = mysqli_fetch_array($cart_result))
+		{
+			$cart_data['goods_img_url']	= str_replace("../../../",$_mnv_base_url,$cart_data['goods_img_url']);
+
+			if ($cart_data['discount_price'] == 0)
+			{
+				$current_price			= $cart_data['sales_price'];
+				$current_sum_price		= $cart_data['sales_price'] * $cart_data['goods_cnt'];
+			}else{
+				$current_price			= $cart_data['discount_price'];
+				$current_sum_price		= $cart_data['discount_price'] * $cart_data['goods_cnt'];
+			}
+
+			$total_price			= $total_price + $current_sum_price;
+
+			$goods_option_arr	= explode("||",$cart_data['goods_option']);
+			$goods_option_txt	= "";
+			$i = 0;
+			foreach($goods_option_arr as $key2 => $val2)
+			{
+				$sub_option_arr		= explode("|+|",$val2);
+				if ($i == 0)
+					$comma	= "";
+				else if ($i == count($goods_option_arr)-1)
+					$comma	= "";
+				else
+					$comma	= ",";
+				$goods_option_txt	.= $sub_option_arr[1].$comma;
+				$i++;
+			}
+?>
                     <tr>
                       <td class="info clearfix">
                         <div class="info_img">
@@ -83,7 +134,14 @@
                         </div>
                         <div class="info_txt">
                           <h3>실용적인 사이즈의 머그컵</h3>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
+<?
+	if ($cart_data['goods_optionYN'] == "Y")
+	{
+?>
+                          <p class="option">ㄴ [옵션 : <?=$goods_option_txt?>]</p>
+<?
+	}
+?>
                         </div>
                       </td>
                       <td class="price">20,000</td>
@@ -92,38 +150,14 @@
                       </td>
                       <td class="total">20,000</td>
                     </tr>
-                    <tr>
-                      <td class="info clearfix">
-                        <div class="info_img">
-                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
-                        </div>
-                        <div class="info_txt">
-                          <h3>실용적인 사이즈의 머그컵</h3>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
-                        </div>
-                      </td>
-                      <td class="price">20,000</td>
-                      <td class="count">
-                        <p>1</p>
-                      </td>
-                      <td class="total">20,000</td>
-                    </tr>
-                    <tr>
-                      <td class="info clearfix">
-                        <div class="info_img">
-                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
-                        </div>
-                        <div class="info_txt">
-                          <h3>실용적인 사이즈의 머그컵</h3>
-                          <p class="option">ㄴ [옵션 : 화이트 그릇]</p>
-                        </div>
-                      </td>
-                      <td class="price">20,000</td>
-                      <td class="count">
-                        <p>1</p>
-                      </td>
-                      <td class="total">20,000</td>
-                    </tr>
+<?
+		}
+		if ($total_price > 49999)
+			$site_option['default_delivery_price']	= 0;
+		$total_pay_price	= $total_price + $site_option['default_delivery_price'];
+	}
+?>
+
                   </tbody>
                 </table>
               </div>
@@ -242,7 +276,7 @@
                 </div>
               </div>
               <div class="block_btn mt30">
-                <input type="button" value="주문목록" class="button_default">
+                <a href="<?=$_mnv_PC_mypage_url?>order_status.php"><input type="button" value="주문목록" class="button_default"></a>
               </div>
             </div>
             <div class="area_main_bottom">

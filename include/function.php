@@ -454,4 +454,16 @@ function select_order_info($oid)
 	return $order_data;
 }
 
+function select_payment_info($oid)
+{
+	global $_gl;
+	global $my_db;
+
+	$payment_query		= "SELECT * FROM ".$_gl['payment_info_table']." WHERE LGD_OID='".$oid."'";
+	$payment_result		= mysqli_query($my_db, $payment_query);
+	$payment_data			= mysqli_fetch_array($payment_result);
+
+	return $payment_data;
+}
+
 ?>
