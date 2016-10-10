@@ -511,45 +511,51 @@ $(document).on("click", "#mycart_link", function(){
 	var goods_idx				= $("#goods_idx").val();
 	var goods_optionYN		= $("#goods_optionYN").val();
 	var buy_cnt					= $("#buy_cnt").val();
-
+	var goods_current_cnt		= $("#current_cnt").val();
 	var option_txt				= "";
 	
-	if (goods_optionYN == "Y")
+	if (goods_current_cnt == "0")
 	{
-		for (var k=0;k<5 ;k++ )
+		alert("품절된 상품입니다. 구매를 원하시면 재입고 버튼을 눌러 요청 주세요.");
+		return false;
+	}else{
+		if (goods_optionYN == "Y")
 		{
-			if ($("#option_change"+k).val() == "default")
+			for (var k=0;k<5 ;k++ )
 			{
-				alert("필수 옵션을 선택해 주세요.");
-				return false;
-			}else if ($("#option_change"+k).val() == undefined){
-				option_txt		+= "";
-			}else{
-				option_txt		+= "||"+$("#option_change"+k).val();
+				if ($("#option_change"+k).val() == "default")
+				{
+					alert("필수 옵션을 선택해 주세요.");
+					return false;
+				}else if ($("#option_change"+k).val() == undefined){
+					option_txt		+= "";
+				}else{
+					option_txt		+= "||"+$("#option_change"+k).val();
+				}
 			}
 		}
-	}
 
-	$.ajax({
-		type   : "POST",
-		async  : false,
-		url    : "http://store-chon.com/main_exec.php",
-		data:{
-			"exec"				: "add_mycart",
-			"goods_idx"		: goods_idx,
-			"buy_cnt"			: buy_cnt,
-			"goods_option"	: option_txt
-		},
-		success: function(response){
-			if (response == "Y")
-			{
-				$(".popup_basket").show();
-			}else{
-				alert("다시 시도해 주세요.");
-				location.reload();
+		$.ajax({
+			type   : "POST",
+			async  : false,
+			url    : "http://store-chon.com/main_exec.php",
+			data:{
+				"exec"				: "add_mycart",
+				"goods_idx"		: goods_idx,
+				"buy_cnt"			: buy_cnt,
+				"goods_option"	: option_txt
+			},
+			success: function(response){
+				if (response == "Y")
+				{
+					$(".popup_basket").show();
+				}else{
+					alert("다시 시도해 주세요.");
+					location.reload();
+				}
 			}
-		}
-	});
+		});
+	}
 });
 
 // 상품 상세 > 바로구매 클릭

@@ -22,6 +22,8 @@
 	// 현재 남은 갯수
 	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 
+	if ($goods_info['salesYN'] == "N")
+		$current_cnt	= 0;
 	$goods_info['goods_img_url']		= str_replace("../../","../",$goods_info['goods_img_url']);
 	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 	if ($goods_info['goods_optionYN'] == "Y")
@@ -34,6 +36,7 @@
 <input type="hidden" id="hd_sales_price" value="<?=$real_price?>">
 <input type="hidden" id="goods_idx" value="<?=$goods_info['idx']?>">
 <input type="hidden" id="goods_optionYN" value="<?=$goods_info['goods_optionYN']?>">
+<input type="hidden" id="goods_current_cnt" value="<?=$current_cnt?>">
 
     <div id="wrap_page">
 <?
@@ -107,7 +110,7 @@
                     <div class="block_line">
                       <span class="left_text">수량</span>
 <?
-	if ($current_cnt < 1 || $goods_info['salesYN'] == "N")
+	if ($current_cnt < 1)
 	{
 ?>
                       <input type="text" name="select_amount" id="buy_cnt" value="품 절" readonly>
