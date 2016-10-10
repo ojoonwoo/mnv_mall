@@ -22,14 +22,15 @@
 	// 현재 남은 갯수
 	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 
-	if ($goods_info['salesYN'] == "N")
-		$current_cnt	= 0;
 	$goods_info['goods_img_url']		= str_replace("../../","../",$goods_info['goods_img_url']);
 	$current_cnt	= $goods_info['goods_stock'] - $goods_info['goods_sales_cnt'];
 	if ($goods_info['goods_optionYN'] == "Y")
 	{
 		$goods_option_arr	= explode("||",$goods_info['goods_option_txt']);
 	}
+
+	if ($goods_info['salesYN'] == "N")
+		$current_cnt	= 0;
 
 ?>
   <body>
