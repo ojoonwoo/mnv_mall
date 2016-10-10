@@ -16,7 +16,7 @@
 	$payment_info	= select_payment_info($OID);
 
 	// 주문 날짜
-	$order_date_arr	= explode(" ",$order_data['order_regdate']);
+	$order_date_arr	= explode(" ",$order_info['order_regdate']);
 	$order_date		= $order_date_arr[0];
 
 ?>
@@ -91,8 +91,14 @@
 <?
 	$cart_idx_arr	= explode("||",$order_info['cart_idx']);
 
+	$i = 0;
 	foreach($cart_idx_arr as $key => $val)
 	{
+		if ($i == 0)
+		{
+			$i++;
+			continue;
+		}
 		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.cart_regdate >= date_add(now(), interval -3 day) AND A.idx='".$val."' AND A.showYN='Y'";
 		$cart_result		= mysqli_query($my_db, $cart_query);
 		$total_price	= 0;
@@ -155,6 +161,7 @@
 		if ($total_price > 49999)
 			$site_option['default_delivery_price']	= 0;
 		$total_pay_price	= $total_price + $site_option['default_delivery_price'];
+		$i++;
 	}
 ?>
 
