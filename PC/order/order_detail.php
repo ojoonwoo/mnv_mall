@@ -149,11 +149,11 @@
 ?>
                         </div>
                       </td>
-                      <td class="price"><?=$cart_data['sales_price']?></td>
+                      <td class="price"><?=$current_price?></td>
                       <td class="count">
                         <p><?=$cart_data['goods_cnt']?></p>
                       </td>
-                      <td class="total">20,000</td>
+                      <td class="total"><?=$current_sum_price?></td>
                     </tr>
 <?
 		}
