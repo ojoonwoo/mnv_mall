@@ -178,7 +178,7 @@
                     <p>주문번호</p>
                   </div>
                   <div class="block_col">
-                    <p>12323234234</p>
+                    <p><?=$order_info['order_oid']?></p>
                   </div>
                 </div>
                 <div class="block_row">
@@ -186,7 +186,7 @@
                     <p>주문하신분</p>
                   </div>
                   <div class="block_col">
-                    <p>양선혜</p>
+                    <p><?=$order_info['order_name']?></p>
                   </div>
                 </div>
                 <div class="block_row">
@@ -194,7 +194,7 @@
                     <p>휴대폰</p>
                   </div>
                   <div class="block_col">
-                    <p>010-2515-4373</p>
+                    <p><?=$order_info['order_phone']?></p>
                   </div>
                 </div>
                 <div class="block_row">
@@ -202,7 +202,7 @@
                     <p>결제방법</p>
                   </div>
                   <div class="block_col">
-                    <p>신용카드</p>
+                    <p><?=$_gl['PAYTYPE'][$payment_info['LGD_PAYTYPE']]?></p>
                   </div>
                 </div>
                 <div class="block_row">
@@ -210,7 +210,7 @@
                     <p>결제금액</p>
                   </div>
                   <div class="block_col">
-                    <p>12,000원</p>
+                    <p><?=number_format($payment_info['LGD_AMOUNT'])?>원</p>
                   </div>
                 </div>
                 <div class="form_header clearfix">
@@ -224,7 +224,7 @@
                       <p>받으시는분</p>
                     </div>
                     <div class="block_col">
-                      <p>양선혜</p>
+                      <p><?=$order_info['deliver_name']?></p>
                     </div>
                   </div>
                   <div class="block_row">
@@ -232,7 +232,7 @@
                       <p>주소</p>
                     </div>
                     <div class="block_col">
-                      <p>[137-844] 서울특별시 서초구 방배동 931-9 2층</p>
+                      <p>[<?=$order_info['deliver_zipcode']?>] <?=$order_info['deliver_address1']." ".$order_info['deliver_address2']?></p>
                     </div>
                   </div>
                   <div class="block_row">
@@ -240,7 +240,7 @@
                       <p>휴대폰</p>
                     </div>
                     <div class="block_col">
-                      <p>010-2515-4373</p>
+                      <p><?=$order_info['deliver_phone']?></p>
                     </div>
                   </div>
                   <div class="block_row">
@@ -248,7 +248,7 @@
                       <p>배송메시지</p>
                     </div>
                     <div class="block_col">
-                      <p>경비실에 맡겨주세요</p>
+                      <p><?=$order_info['deliver_message']?></p>
                     </div>
                   </div>
                 </div>
@@ -263,21 +263,21 @@
                   </div>
                   <div class="price_block">
                     <h3>총 주문금액</h3>
-                    <h3 class="total_order">80,000원</h3>
+                    <h3 class="total_order"><?=number_format($total_price)?>원</h3>
                   </div>
                   <div class="charImg">
                     <img src="<?=$_mnv_PC_images_url?>spec_plus.png">
                   </div>
                   <div class="price_block">
                     <h3>배송비</h3>
-                    <h3 class="shipping">2,500원</h3>
+                    <h3 class="shipping"><?=number_format($site_option['default_delivery_price'])?>원</h3>
                   </div>
                   <div class="charImg">
                     <img src="<?=$_mnv_PC_images_url?>spec_equal.png">
                   </div>
                   <div class="price_block">
                     <h3>총 결제금액</h3>
-                    <h3 class="total_payment">82,500원</h3>
+                    <h3 class="total_payment"><?=number_format($total_pay_price)?>원</h3>
                   </div>
                 </div>
               </div>
