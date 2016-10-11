@@ -7,7 +7,7 @@
     <link href="<?=$_mnv_lib_url?>swiper/swiper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?=$_mnv_MOBILE_css_url?>style.css" />
     <script type="text/javascript" src="<?=$_mnv_js_url?>jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="<?=$_mnv_js_url?>main.js"></script>
+    <script type="text/javascript" src="<?=$_mnv_js_url?>m_main.js"></script>
     <script type="text/javascript" src="<?=$_mnv_lib_url?>swiper/swiper.jquery.min.js"></script>
     <script type="text/javascript" src="<?=$_mnv_js_url?>instafeed.min.js"></script>
     <script type="text/javascript" src="<?=$_mnv_js_url?>selectivizr-min.js"></script>
