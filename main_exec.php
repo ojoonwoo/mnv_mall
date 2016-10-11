@@ -1159,7 +1159,7 @@
 				$innerHTML .= "document.getElementById('LGD_PAYINFO').action = '".$_mnv_PC_order_url."order_complete.php';";
 				$innerHTML .= "document.getElementById('LGD_PAYINFO').submit();";
 				$innerHTML .= "} else {";
-				$innerHTML .= "closeIframe();";
+				$innerHTML .= "alert(fDoc.document.getElementById('LGD_RESPCODE').value);closeIframe();";
 				$innerHTML .= "}}";
 				$innerHTML .= "</script>";
 				$innerHTML .= "<img src='".$_mnv_PC_images_url."blank.png'>";
