@@ -3,9 +3,9 @@
           <div class="inner infoC clearfix">
             <div class="box_info">
               <span class="customerC"><img src="<?=$_mnv_PC_images_url?>customer_center.png" alt="고객센터"></span>
-              <span class="telNum">070-000-0000</span>
+              <span class="telNum">02-532-2475</span>
               <span>운영시간 10:30-18:00 / 점심시간 13:00-2:30</span>
-              <span>신한은행 11-111-11111 예금주 미니버타이징(주)</span>
+              <span>우리은행 1005-102-344909 예금주 미니버타이징(주)</span>
             </div>
             <div class="box_info">
               <span>이메일 : SERVICE@STORE-CHON.COM</span>
