@@ -99,7 +99,6 @@
 			continue;
 		}
 		$cart_query		= "SELECT A.goods_option, A.goods_cnt, A.idx cart_idx,B.* FROM ".$_gl['mycart_info_table']." AS A INNER JOIN ".$_gl['goods_info_table']." AS B ON A.goods_idx=B.idx WHERE A.idx='".$val."'";
-print_r($cart_query);
 		$cart_result		= mysqli_query($my_db, $cart_query);
 		$total_price	= 0;
 		while ($cart_data = mysqli_fetch_array($cart_result))
@@ -136,10 +135,10 @@ print_r($cart_query);
                     <tr>
                       <td class="info clearfix">
                         <div class="info_img">
-                          <img src="<?=$_mnv_PC_images_url?>order_list_img1.png" alt="주문상품1">
+                          <img src="<?=$cart_data['goods_img_url']?>" alt="<?=$cart_data['goods_name']?>">
                         </div>
                         <div class="info_txt">
-                          <h3>실용적인 사이즈의 머그컵</h3>
+                          <h3><?=$cart_data['goods_name']?></h3>
 <?
 	if ($cart_data['goods_optionYN'] == "Y")
 	{
@@ -150,9 +149,9 @@ print_r($cart_query);
 ?>
                         </div>
                       </td>
-                      <td class="price">20,000</td>
+                      <td class="price"><?=$cart_data['sales_price']?></td>
                       <td class="count">
-                        <p>1</p>
+                        <p><?=$cart_data['goods_cnt']?></p>
                       </td>
                       <td class="total">20,000</td>
                     </tr>
