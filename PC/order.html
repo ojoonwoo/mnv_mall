@@ -285,7 +285,11 @@
                     <div class="block_col">
                       <div class="checks">
                         <label for="card_pay">카드결제</label>
-                        <input type="radio" name="select_pay" id="card_pay">
+                        <input type="radio" name="select_pay" id="card_pay" checked>
+                      </div>
+                      <div class="checks">
+                        <label for="realtime_pay">실시간 계좌이체</label>
+                        <input type="radio" name="select_pay" id="realtime_pay">
                       </div>
                       <div class="checks">
                         <label for="phone_pay">휴대폰결제</label>
@@ -298,6 +302,91 @@
                     </div>
                   </div>
                 </div>
+                <div class="payChoice card">
+                  <div class="block_row">
+                    <div class="block_col empty">
+                    </div>
+                    <div class="block_col pay">
+                      <p class="noticeMsg">- 최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
+                      <p class="noticeMsg">- 소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+                    </div>
+                  </div>
+                </div>
+<!-- 실시간계좌이체
+                <div class="payChoice realtime">
+                  <div class="block_row">
+                    <div class="block_col empty">
+                      <p>예금주명</p>
+                    </div>
+                    <div class="block_col pay">
+                      <p class="textBox"><input type="text" class="inputT"></p>
+                      <div class="checks">
+                        <input type="checkbox" id="payChk">
+                        <label for="payChk">에스크로(구매안전)서비스를 적용합니다.</label>
+                      </div>
+                      <p class="noticeMsg">- 소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+                    </div>
+                  </div>
+                  <div class="block_row">
+                    <div class="block_col empty">
+                      <p>현금영수증발행</p>
+                    </div>
+                    <div class="block_col pay">
+                      <p>
+                        <input type="radio" name="receipt" value="personal"><span>개인</span>
+                        <input type="radio" name="receipt" value="licensee"><span>사업자</span>
+                        <input type="radio" name="receipt" value="no"><span>신청안함</span>
+                      </p>
+                      <p>휴대전화 <input class="inputT" type="text" size="6"> - <input class="inputT" type="text" size="6"> - <input class="inputT" type="text" size="6"></p>
+                    </div>
+                  </div>
+                </div>
+-->
+<!-- 휴대폰결제
+                <div class="payChoice phone">
+                  <div class="block_row">
+                    <div class="block_col empty">
+                    </div>
+                    <div class="block_col">
+                      <p class="noticeMsg">- 소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+                    </div>
+                  </div>
+                </div>
+-->
+<!-- 무통장입금
+                <div class="payChoice nobankbook">
+                  <div class="block_row">
+                    <div class="block_col empty">
+                      <p>입금자명</p>
+                    </div>
+                    <div class="block_col pay">
+                      <p class="textBox"><input type="text" class="inputT"></p>
+                      <p class="noticeMsg">- 최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
+                    </div>
+                  </div>
+                  <div class="block_row">
+                    <div class="block_col empty">
+                      <p>입금계좌정보</p>
+                    </div>
+                    <div class="block_col pay">
+                      <p class="noticeMsg">우리은행: 1005-111-1111 / 예금주: 미니버타이징(주)</p>
+                    </div>
+                  </div>
+                  <div class="block_row">
+                    <div class="block_col empty">
+                      <p>현금영수증발행</p>
+                    </div>
+                    <div class="block_col pay">
+                      <p>
+                        <input type="radio" name="receipt" value="personal"><span>개인</span>
+                        <input type="radio" name="receipt" value="licensee"><span>사업자</span>
+                        <input type="radio" name="receipt" value="no"><span>신청안함</span>
+                      </p>
+                      <p>휴대전화 <input class="inputT" type="text" size="6"> - <input class="inputT" type="text" size="6"> - <input class="inputT" type="text" size="6"></p>
+                    </div>
+                  </div>
+                </div>
+-->
                 <div class="form_header clearfix">
                   <div class="lt_float">
                     <h2>결제예정금액</h2>
