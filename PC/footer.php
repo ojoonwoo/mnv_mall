@@ -26,7 +26,7 @@
         </div>
         <div class="address">
           <p>company  미니버타이징(주)  address  서울특별시  서초구  방배동  931-9  2F</p>
-          <p>owner  양선혜    business  license  114  87  11622   privacy policy | terms of use</p>
+          <p>owner  양선혜    business  license  114  87  11622   <a href="<?=$_mnv_PC_url?>privacy.php">privacy policy</a> | <a href="<?=$_mnv_PC_url?>termsOfUse.php">terms of use</a></p>
           <br>
           <p>@chon all rights reserved</p>
         </div>

@@ -2,7 +2,7 @@
         <div class="background">
           <div class="customerArea">
             <p class="center">고객센터</p>
-            <p class="call">070-000-0000</p>
+            <p class="call">02-532-2475</p>
             <p>운영시간 10:30~18:00 / 점심시간 13:00~2:30</p>
             <p>신한은행 11-111-11111 예금주 미니버타이징(주)</p>
             <p>이메일 : SERVICE@STORE-CHON.COM</p>
@@ -17,15 +17,15 @@
           </div>
           <div class="snsArea">
             <a href="#">
-              <img src="./images/instagram.png" alt="인스타그램" class="insta">
+              <img src="<?=$_mnv_MOBILE_images_url?>instagram.png" alt="인스타그램" class="insta">
             </a>
             <span class="bar"></span>
             <a href="#">
-              <img src="./images/facebook.png" alt="페이스북">
+              <img src="<?=$_mnv_MOBILE_images_url?>facebook.png" alt="페이스북">
             </a>
             <span class="bar"></span>
             <a href="#">
-              <img src="./images/blog.png" alt="블로그">
+              <img src="<?=$_mnv_MOBILE_images_url?>blog.png" alt="블로그">
             </a>
           </div>
         </div>

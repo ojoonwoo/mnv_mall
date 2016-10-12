@@ -9,13 +9,13 @@
 
 			$login_query		= "SELECT * FROM ".$_gl['member_info_table']." WHERE mb_id='".$mb_id."' AND mb_password=MD5('".$mb_password."')";
 			$login_result		= mysqli_query($my_db, $login_query);
-			$login_data		= mysqli_fetch_array($login_result);
+			$login_data			= mysqli_fetch_array($login_result);
 
 			// 암호 검증
 			//if (validate_password($mb_password,$login_data['mb_password']))
 			if ($mb_id == $login_data['mb_id'])
 			{
-				$update_query		= "UPDATE ".$_gl['member_info_table']." SET mb_logindate='".date("Y-m-d H:i:s")."' WHERE mb_id='".$login_data['mb_id']."'";
+				$update_query		= "UPDATE ".$_gl['member_info_table']." SET mb_login_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$login_data['mb_id']."'";
 				$update_result		= mysqli_query($my_db, $update_query);
 				// 회원 아이디, 이름, 등급 세션 생성
 				$_SESSION['ss_chon_id']			= $login_data['mb_id'];
