@@ -20,6 +20,7 @@
 <?
 		if ($i == 2)
 		{
+			$i++;
 			continue;
 ?>
               <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>">
@@ -41,6 +42,7 @@
 <?
 		if ($i == 4)
 		{
+			$i++;
 			continue;
 ?>
               <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>">
@@ -52,6 +54,7 @@
 <?
 		if ($i == 5)
 		{
+			$i++;
 			continue;
 ?>
               <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>">
