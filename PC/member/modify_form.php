@@ -88,7 +88,7 @@
                     <span class="input_guide">주소</span>
                     <div class="input_block">
                       <input type="text" class="inputT" size="7" name="zipcode" id="zipcode" value="<?=$user_data['mb_zipcode']?>" readonly="true">
-                      <input type="button" class="board_btn" value="우편번호" id="find_addr" value="주소검색">
+                      <input type="button" class="board_btn" id="find_addr" value="주소검색">
                     </div>
                   </div>
                   <div class="block_line clearfix">

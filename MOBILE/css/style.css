@@ -688,7 +688,7 @@ html {
     padding-top: 1.5%;
 }
 
-#zipcode {
+.typingBox input[type="button"].zipcodeBtn {
     width: 30%;
 }
 
@@ -2136,6 +2136,9 @@ p .discount {
     border-bottom: 2px solid #b88b5b;
 }
 .pt5 {
+    padding-top: 5%;
+}
+.pb5 {
     padding-bottom: 5%;
 }
 .pb10 {

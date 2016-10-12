@@ -347,7 +347,7 @@ $(document).on("keydown", "#mb_password", function(){
 			data:{
 				"exec"				: "member_login",
 				"mb_id"				: mb_id,
-				"mb_password"	: mb_password
+				"mb_password"		: mb_password
 			},
 			success: function(response){
 				if (response == "Y")
@@ -365,7 +365,7 @@ $(document).on("keydown", "#mb_password", function(){
 	}
 });
 
-// 회원 로그인
+// 회원 로그아웃
 $(document).on("click", "#mb_logout", function(){
 	$.ajax({
 		type   : "POST",

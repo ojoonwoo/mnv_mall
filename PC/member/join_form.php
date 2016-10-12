@@ -424,12 +424,11 @@
 <script type="text/javascript">
 	var val_check;
 	var id_check;
-	
-	var user_id
-	var password
-	var passchk
-	var username
-	var zipcode
+	var user_id;
+	var password;
+	var passchk;
+	var username;
+	var zipcode;
 	var addr1;
 	var addr2;
 	var email1;
@@ -533,7 +532,6 @@
 					phone2		: phone2.value,
 					phone3		: phone3.value,
 					smsYN		: $(':radio[name="smsYN"]:checked').val(),
-					phone2		: phone2.value,
 					birthY		: $('#birthY').val(),
 					birthM		: $('#birthM').val(),
 					birthD		: $('#birthD').val()

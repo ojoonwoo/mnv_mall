@@ -17,15 +17,15 @@
           </div>
           <div class="snsArea">
             <a href="#">
-              <img src="./images/instagram.png" alt="인스타그램" class="insta">
+              <img src="<?=$_mnv_MOBILE_images_url?>instagram.png" alt="인스타그램" class="insta">
             </a>
             <span class="bar"></span>
             <a href="#">
-              <img src="./images/facebook.png" alt="페이스북">
+              <img src="<?=$_mnv_MOBILE_images_url?>facebook.png" alt="페이스북">
             </a>
             <span class="bar"></span>
             <a href="#">
-              <img src="./images/blog.png" alt="블로그">
+              <img src="<?=$_mnv_MOBILE_images_url?>blog.png" alt="블로그">
             </a>
           </div>
         </div>
