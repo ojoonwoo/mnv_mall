@@ -293,7 +293,7 @@
                   </div>
                 </div>
               </div>
-              <div class="product_dt_branding">
+              <div class="product_dt_branding" style="display:none;">
                 <img src="../images/branding_img.jpg">
               </div>
             </div>
