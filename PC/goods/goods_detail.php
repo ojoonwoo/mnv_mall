@@ -282,7 +282,7 @@
                           </div>
                           <div class="guide_block">
                             <h4><img src="../images/guide_dot_img.png">고객센터</h4>
-                            <p><span>-</span><span>전화 : 070-000-0000</span></p>
+                            <p><span>-</span><span>전화 : 02-532-2475</span></p>
                             <p><span>-</span><span>교환 및 반품주소 : 서울특별시 서초구 방배동 931-9 2F</span></p>
                             <p><span>-</span><span>고객 상담시간 : 평일 오전 10시 30분 ~오후 5시 (토요일, 일요일 및 공휴일 휴무)
                               </span></p>

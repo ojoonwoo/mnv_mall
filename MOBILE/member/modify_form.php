@@ -78,7 +78,7 @@
             <div class="typingBox">
               <input type="text" id="email" name="email" value="<?=$user_data['mb_email']?>">
               <div class="checks">
-                <input type="checkbox" id="ex_chk" name="emailYN" value="Y" <? if($user_data['mb_emailYN'] == 'Y') echo 'checked'; ?>>
+                <input type="checkbox" id="ex_chk" name="emailYN" <? if($user_data['mb_emailYN'] == 'Y') echo 'checked'; ?>>
                 <label for="ex_chk">메일수신</label>
               </div>
               <p>쇼핑몰에서 제공하는 제품 및 이벤트 소식을<br/> 이메일로 받으실 수 있어요.</p>
@@ -134,6 +134,9 @@
   </div>
 <script type="text/javascript">
 	$(window).load(function() {
+		
+		var emailYN = $('input:checkbox[name="emailYN"]').is(':checked');
+		
 		if($('#birthY').val() !== ''){
 			$('#birthY').attr('disabled', 'true');
 			$('#birthM').attr('disabled', 'true');
@@ -207,6 +210,7 @@
 			email = email.value.split('@');
 			var email1 = email[0];
 			var email2 = email[1];
+			emailYN = (emailYN) ? "Y" : "N";
 			$.ajax({
 				method: 'POST',
 				url: '../../main_exec.php',
@@ -220,7 +224,7 @@
 					addr2       : addr2.value,
 					email1      : email1,
 					email2      : email2,
-					emailYN     : $(':checkbox[name="emailYN"]:checked').val(),
+					emailYN     : emailYN,
 //					tel1        : tel1.value,
 //					tel2        : tel2.value,
 //					tel3        : tel3.value,
