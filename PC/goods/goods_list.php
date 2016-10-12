@@ -65,11 +65,11 @@
 ?>
                   </div>
                   <div class="right_cate">
-                    <a href="#" onclick="show_sub_cate_sort('discount_price asc');return false;">
+                    <a href="#" onclick="show_sub_cate_sort('sales_price asc');return false;">
                       <span class="cate_name">LOW PRICE</span>
                     </a>
                     <span class="bar_slash">/</span>
-                    <a href="#" onclick="show_sub_cate_sort('discount_price desc');return false;">
+                    <a href="#" onclick="show_sub_cate_sort('sales_price desc');return false;">
                       <span class="cate_name">HIGH PRICE</span>
                     </a>
                     <span class="bar_slash">/</span>
@@ -81,7 +81,7 @@
                       <span class="cate_name">NEW</span>
                     </a>
                     <span class="bar_slash">/</span>
-                    <a href="#" onclick="show_sub_cate_sort('discount_price desc');return false;">
+                    <a href="#" onclick="show_sub_cate_sort('sales_price desc');return false;">
                       <span class="cate_name">REVIEW</span>
                     </a>
                   </div>
