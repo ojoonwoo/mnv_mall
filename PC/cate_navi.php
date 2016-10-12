@@ -64,7 +64,8 @@
 		}
 ?>
 <?
-		if ($i < $category_cnt)
+		//if ($i < $category_cnt)
+		if ($i < 2)
 		{
 ?>
               <span class="bar1"></span>
