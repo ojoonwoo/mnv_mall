@@ -80,7 +80,7 @@ function sub_category_info($cate1)
 	global $_gl;
 	global $my_db;
 
-	$query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate1."' AND cate_2 <> '0'";
+	$query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate1."' AND cate_2 <> '0' AND cate_pcYN='Y'";
 	$result		= mysqli_query($my_db, $query);
 	while ($data = mysqli_fetch_array($result))
 	{
