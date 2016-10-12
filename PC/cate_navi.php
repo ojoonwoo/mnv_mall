@@ -20,6 +20,7 @@
 <?
 		if ($i == 2)
 		{
+			continue;
 ?>
               <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>">
                 <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_cooking_tools.png" alt="조리도구"></span>
@@ -40,6 +41,7 @@
 <?
 		if ($i == 4)
 		{
+			continue;
 ?>
               <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>">
                 <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_set.png" alt="세트"></span>
@@ -50,6 +52,7 @@
 <?
 		if ($i == 5)
 		{
+			continue;
 ?>
               <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$val['idx']?>">
                 <span class="cate_name"><img src="<?=$_mnv_PC_images_url?>navi_special.png" alt="스페셜"></span>
