@@ -201,9 +201,9 @@
               </div>
             </div>
             <div class="area_main_middle">
-              <div class="product_logo">
+              <!-- <div class="product_logo">
                 <img src="../images/product_logo.png">
-              </div>
+              </div> -->
 <?=$goods_info['goods_big_desc'];?>
               <div class="product_dt_info">
                 <div class="dt_info_top" style="display:none;">
