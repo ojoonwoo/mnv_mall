@@ -201,12 +201,12 @@
               </div>
             </div>
             <div class="area_main_middle">
-              <div class="product_logo">
+              <!-- <div class="product_logo">
                 <img src="../images/product_logo.png">
-              </div>
+              </div> -->
 <?=$goods_info['goods_big_desc'];?>
               <div class="product_dt_info">
-                <div class="dt_info_top">
+                <div class="dt_info_top" style="display:none;">
                   <div class="caution_txt ceramics">
                     <h2>수작업으로 만들어진 도자기들은,</h2>
                     <p>무늬와 사이즈가 상세 설명과 차이가 있을 수 있어요.<br>
@@ -293,7 +293,7 @@
                   </div>
                 </div>
               </div>
-              <div class="product_dt_branding">
+              <div class="product_dt_branding" style="display:none;">
                 <img src="../images/branding_img.jpg">
               </div>
             </div>
