@@ -5,6 +5,7 @@
 
 	$cate_no	= $_REQUEST['cate_no'];
 	$sub_cate_info	= sub_category_info($cate_no);
+	$ref_sub_cate_no = $_REQUEST['sub_cate_no'];
 ?>
   <body>
     <div id="wrap_page">
@@ -95,6 +96,7 @@
                       <span class="prd_name">제품명</span>
                       <span class="prd_price">2,500</span>
                       <span class="prd_sale">2,500</span>
+                      <span class="sale_pctg"></span>
                       <span class="prd_desc">디저트접시로, 앞접시로, 반찬접시로  전천후로 활용가능한 접시에요.  테두리에 홈이 파진 모양새가</span>
                     </div>
                   </div>
@@ -104,6 +106,7 @@
                       <span class="prd_name">제품명</span>
                       <span class="prd_price">2,500</span>
                       <span class="prd_sale">2,500</span>
+                      <span class="sale_pctg"></span>
                       <span class="prd_desc">디저트접시로, 앞접시로, 반찬접시로  전천후로 활용가능한 접시에요.  테두리에 홈이 파진 모양새가</span>
                     </div>
                   </div>
@@ -113,6 +116,7 @@
                       <span class="prd_name">제품명</span>
                       <span class="prd_price">2,500</span>
                       <span class="prd_sale">2,500</span>
+                      <span class="sale_pctg"></span>
                       <span class="prd_desc">디저트접시로, 앞접시로, 반찬접시로  전천후로 활용가능한 접시에요.  테두리에 홈이 파진 모양새가</span>
                     </div>
                   </div>
@@ -122,6 +126,7 @@
                       <span class="prd_name">제품명</span>
                       <span class="prd_price">2,500</span>
                       <span class="prd_sale">2,500</span>
+                      <span class="sale_pctg"></span>
                       <span class="prd_desc">디저트접시로, 앞접시로, 반찬접시로  전천후로 활용가능한 접시에요.  테두리에 홈이 파진 모양새가</span>
                     </div>
                   </div>
@@ -145,8 +150,13 @@
 <script type="text/javascript">
 var sub_cate1	= null;
 var sub_cate2	= null;
+var ref_sub_cate_no = '<?=$ref_sub_cate_no?>';
 
 $(document).ready(function(){
-	show_sub_cate('<?=$cate_no?>','0');
+	if(ref_sub_cate_no == ''){
+		show_sub_cate('<?=$cate_no?>','0');
+	}else {
+		show_sub_cate('<?=$cate_no?>',ref_sub_cate_no);
+	}
 });
 </script>

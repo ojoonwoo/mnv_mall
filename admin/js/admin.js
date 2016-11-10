@@ -1211,12 +1211,12 @@ $(document).on("click", "#submit_btn3", function(){
 		return false;
 	}
 
-	if (goods_middle_desc == "")
-	{
-		alert("상품 간략 설명을 입력해주세요.");
-		$("#goods_middle_desc").focus();
-		return false;
-	}
+//	if (goods_middle_desc == "")
+//	{
+//		alert("상품 간략 설명을 입력해주세요.");
+//		$("#goods_middle_desc").focus();
+//		return false;
+//	}
 
 	if (goods_big_desc == "")
 	{

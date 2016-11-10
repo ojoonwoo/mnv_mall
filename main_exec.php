@@ -913,6 +913,8 @@
 				else
 					$current_price	= $list_data['discount_price'];
 
+				$percent_num	= ceil(100 - (($list_data['discount_price'] / $list_data['sales_price'])*100));
+				
 				if ($i % 4 == 0)
 					$innerHTML		.= '<div class="list_product clearfix">';
 
@@ -922,7 +924,9 @@
 				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
 				if ($list_data['sales_price'] != $current_price)
 					$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
-				$innerHTML		.= '<span class="prd_sale">'.number_format($current_price).'</span>';
+				$innerHTML		.= '<span class="prd_sale" style="display:inline-block;padding-right:0;">'.number_format($current_price).'</span>';
+				if ($percent_num < 100)
+					$innerHTML		.= '<span class="sale_pctg" style="display:inline-block;padding-left:2px;font-size:13px;color:#00481c;">['.$percent_num.'%]</span>';
 				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
 				$innerHTML		.= '</div></div>';
 
@@ -935,6 +939,7 @@
 		break;
 
 		case "show_cate_goods_list_sort" :
+
 			$cate1			= $_REQUEST['cate1'];
 			$cate2			= $_REQUEST['cate2'];
 			$sort				= $_REQUEST['sort'];
@@ -957,7 +962,9 @@
 					$current_price	= $list_data['sales_price'];
 				else
 					$current_price	= $list_data['discount_price'];
-
+				
+				$percent_num	= ceil(100 - (($list_data['discount_price'] / $list_data['sales_price'])*100));
+				
 				if ($i % 4 == 0)
 					$innerHTML		.= '<div class="list_product clearfix">';
 
@@ -967,7 +974,9 @@
 				$innerHTML		.= '<span class="prd_name">'.$list_data['goods_name'].'</span>';
 				if ($list_data['sales_price'] != $current_price)
 					$innerHTML		.= '<span class="prd_price">'.number_format($list_data['sales_price']).'</span>';
-				$innerHTML		.= '<span class="prd_sale">'.number_format($current_price).'</span>';
+				$innerHTML		.= '<span class="prd_sale" style="display:inline-block;padding-right:0;">'.number_format($current_price).'</span>';
+				if ($percent_num < 100)
+					$innerHTML		.= '<span class="sale_pctg" style="display:inline-block;padding-left:2px;font-size:13px;color:#00481c;">['.$percent_num.'%]</span>';
 				$innerHTML		.= '<span class="prd_desc">'.$list_data['goods_small_desc'].'</span>';
 				$innerHTML		.= '</div></div>';
 
@@ -975,7 +984,7 @@
 					$innerHTML		.= '</div>';
 				$i++;
 			}
-
+			
 			echo $innerHTML;
 		break;
 

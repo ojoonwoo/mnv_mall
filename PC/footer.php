@@ -13,9 +13,9 @@
       </div>
       <div class="box_info clearfix colorBox">
         <a href="<?=$_mnv_PC_url?>about_chon.php"><span class="about_chon"><img src="<?=$_mnv_PC_images_url?>about_chon.png" alt="about 촌의감각"></span></a>
-        <a href="<?=$_mnv_PC_url?>new_store.php"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_store.png" alt="입점문의"></span></a>
+        <a href="<?=$_mnv_PC_url?>partnership.php"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_store.png" alt="입점문의"></span></a>
         <a href="<?=$_mnv_PC_url?>partnership.php"><span class="sugg"><img src="<?=$_mnv_PC_images_url?>sugg_partnership.png" alt="제휴문의"></span></a>
-        <a href="<?=$_mnv_PC_url?>heavy_buying.php"><span class="sugg last"><img src="<?=$_mnv_PC_images_url?>heavy_buying.png" alt="대량구매"></span></a>
+        <a href="<?=$_mnv_PC_url?>partnership.php"><span class="sugg last"><img src="<?=$_mnv_PC_images_url?>heavy_buying.png" alt="대량구매"></span></a>
       </div>
       <!--
 <div class="box_info sns clearfix">
