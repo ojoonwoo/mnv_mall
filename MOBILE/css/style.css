@@ -134,12 +134,16 @@ html {
 
 #aside .block_btn {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 
 
 .block_btn input[type="button"] {
     flex-basis: 50%;
+    -webkit-flex-basis: 50%;
     color: #fff;
     background-color: #b88b5b;
     border: none;
@@ -154,6 +158,9 @@ html {
 
 .block_line {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     padding: 4% 0;
     border-bottom: 1px solid #ceccca;
 }
@@ -177,11 +184,13 @@ html {
 
 .block_line a {
     flex-basis: 98%;
+    -webkit-flex-basis: 98%;
     text-align: center;
 }
 
 .block_line.n2 a {
     flex-basis: 50%;
+    -webkit-flex-basis: 50%;
 }
 
 .block_line.n2 .bar {
@@ -195,12 +204,17 @@ html {
 
 .linkBtn {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-direction: column;
+    -webkit-flex-direction: column;
     padding: 3% 0;
 }
 
 .linkBtn a {
     flex-basis: 98%;
+    -webkit-flex-basis: 98%;
     border: 1px solid #196a24;
     text-align: center;
     padding: 4% 0;
@@ -224,7 +238,11 @@ html {
 #header .topArea {
     width: 100%;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
 }
 
 .topArea .btnImg {
@@ -255,7 +273,11 @@ html {
 
 .logoArea {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: center;
+    -webkit-justify-content: center;
 }
 
 .logo {
@@ -275,11 +297,15 @@ html {
 
 .navi ul {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .navi ul li {
     border-right: 1px solid #b88b5b;
     flex-grow: 1;
+    -webkit-flex-grow: 1;
     text-align: center;
 }
 
@@ -317,7 +343,11 @@ html {
 
 .pager ul {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: center;
+    -webkit-justify-content: center;
 }
 
 .pager ul li {
@@ -344,12 +374,18 @@ html {
 
 .fixBanner ul {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: flex-start;
+    -webkit-justify-content: flex-start;
     flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
 }
 
 .fixBanner ul li {
     flex-grow: 1;
+    -webkit-flex-grow: 1;
     padding-right: 1.8%;
 }
 
@@ -377,7 +413,11 @@ html {
 
 .contents .prHead_list {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: center;
+    -webkit-justify-content: center;
     padding: 9% 0 3%;
 }
 
@@ -409,7 +449,11 @@ html {
 
 .product_list {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
     padding-bottom: 3%;
 }
 
@@ -498,7 +542,11 @@ html {
 
 .input_login {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-direction: column;
+    -webkit-flex-direction: column;
 }
 
 .block_input {
@@ -528,11 +576,18 @@ html {
     background-color: #ffffff;
     padding: 8%;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .guideBox.v2 .guideTxt {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-direction: column;
+    -webkit-flex-direction: column;
 }
 
 .guideBox.v2 .guideTxt:first-child p {
@@ -580,12 +635,17 @@ html {
 
 .input_guide {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     padding-top: 6%;
 }
 
 .input_guide div {
     flex-basis: 50%;
+    -webkit-flex-basis: 50%;
     padding: 3% 0;
 }
 
@@ -605,6 +665,9 @@ html {
 
 .fullBtn2n {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     border-top: 1px solid #ceccca;
     margin-top: 5%;
     padding-top: 4%;
@@ -612,7 +675,9 @@ html {
 
 .fullBtn2n input[type="button"] {
     flex-basis: 50%;
+    -webkit-flex-basis: 50%;
     flex-grow: 1;
+    -webkit-flex-grow: 1;
     margin-right: 2%;
     border: 1px solid #b88b5b;
     color: #b88b5b;
@@ -634,14 +699,20 @@ html {
 
 .inputBox {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
     width: 100%;
     padding-bottom: 3%;
 }
 
 .inputBox .guideText {
     flex-basis: 30%;
+    -webkit-flex-basis: 30%;
     align-self: center;
+    -webkit-align-self: center;
 }
 
 .guideText p {
@@ -656,6 +727,7 @@ html {
 
 .inputBox .typingBox {
     flex-basis: 70%;
+    -webkit-flex-basis: 70%;
 }
 
 .inputBox .typingBox.n3 {
@@ -698,7 +770,11 @@ html {
 
 .termsZone .agreeChk {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: space-between;
+    -webkit-justify-content: space-between;
     padding-bottom: 2%;
 }
 
@@ -820,10 +896,12 @@ html {
 
 .pr_descArea .leftBlock {
     flex-basis: 23%;
+    -webkit-flex-basis: 23%;
 }
 
 .pr_descArea .rightBlock {
     flex-basis: 77%;
+    -webkit-flex-basis: 77%;
 }
 
 p .price {
@@ -902,7 +980,11 @@ p .discount {
 
 .space_between {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     justify-content: space-between;
+    -webkit-justify-content: space-between;
 }
 
 .totalPrice {
@@ -925,6 +1007,9 @@ p .discount {
 
 .fullWidthBtn {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .fullWidthBtn > input[type="button"] {
@@ -935,6 +1020,9 @@ p .discount {
 
 .halfWidthBtn {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .halfWidthBtn > input[type="button"] {
@@ -1019,6 +1107,7 @@ p .discount {
 
 .likeTable.moveCnt .row .column.no1 {
     flex-basis: 25%;
+    -webkit-flex-basis: 25%;
 }
 
 .likeTable.moveCnt .prev {
@@ -1056,10 +1145,15 @@ p .discount {
 
 .likeTable .row {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
     border-bottom: 1px solid #ceccca;
     padding: 0.7em 0.5em;
     align-items: stretch;
+    -webkit-align-items: stretch;
 }
 
 .likeTable.highPadd .row {
@@ -1069,6 +1163,7 @@ p .discount {
 
 .likeTable .row .column {
     align-self: center;
+    -webkit-align-self: center;
 }
 
 .likeTable .column .title {
@@ -1083,6 +1178,7 @@ p .discount {
 
 .likeTable .row .column.no1 {
     flex-basis: 8%;
+    -webkit-flex-basis: 8%;
 }
 
 .likeTable.highPadd .column.no1 {
@@ -1098,6 +1194,7 @@ p .discount {
 
 .likeTable .row .column.no2 {
     flex-basis: 92%;
+    -webkit-flex-basis: 92%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -1169,7 +1266,11 @@ p .discount {
 
 .mypage_layout .boxLow {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
     border-bottom: 1px solid #ceccca;
     width: 100%;
 /*    height: 100px;*/
@@ -1182,6 +1283,7 @@ p .discount {
 
 .boxLow .boxCol {
     flex-basis: 50%;
+    -webkit-flex-basis: 50%;
     text-align: center;
 }
 
@@ -1223,6 +1325,9 @@ p .discount {
 .likeTable-v2 .row {
     width: 100%;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     border-bottom: 1px solid #d7d6d4;
 }
 
@@ -1243,6 +1348,7 @@ p .discount {
 .likeTable-v2.custom1 .col:first-child {
     background-color: #faf5f0;
     flex-basis: 20%;
+    -webkit-flex-basis: 20%;
 }
 
 .editor_area.padd {
@@ -1314,6 +1420,9 @@ p .discount {
 .review_link .innerflex {
     padding: 8px;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .review_link .rv_img {
@@ -1381,6 +1490,7 @@ p .discount {
 .event_block > .txt_cnt > .headLine > .date {
     color: #777777;
     align-self: flex-end;
+    -webkit-align-self: flex-end;
 }
 
 .event_block .empty {
@@ -1418,11 +1528,16 @@ p .discount {
     padding: 0 2% 3% 2%;
     color: #777777;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .list_line > p.answer span:first-child {
     flex-basis: 20%;
+    -webkit-flex-basis: 20%;
     flex-shrink: 0;
+    -webkit-flex-shrink: 0;
 }
 
 .list_line > p.answer span {
@@ -1460,6 +1575,7 @@ p .discount {
     padding: 13px;
     display: flex;
     align-items: center;
+    -webkit-align-items: center;
 }
 
 .block_box .imgCol {
@@ -1472,6 +1588,7 @@ p .discount {
 
 .block_box .descCol {
     align-self: stretch;
+    -webkit-align-self: stretch;
 }
 
 .block_box .descCol > p.title {
@@ -1492,6 +1609,9 @@ p .discount {
 .block_btn.n3 {
     width: 100%;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .block_btn.n3 > input[type="button"] {
@@ -1515,6 +1635,7 @@ p .discount {
 
 .block_box.custom .imgCol {
     align-self: flex-start;
+    -webkit-align-self: flex-start;
 }
 
 .block_box.custom .descCol {
@@ -1578,7 +1699,11 @@ p .discount {
 
 .payBox .row {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     align-items: center;
+    -webkit-align-items: center;
 }
 
 .payBox .row:first-child {
@@ -1588,15 +1713,19 @@ p .discount {
 .payBox .row .col:first-child {
 /*    flex-basis: 40%;*/
     flex-shrink: 0;
+    -webkit-flex-shrink: 0;
 }
 
 .payBox .row .col {
     flex-grow: 1;
+    -webkit-flex-grow: 1;
     flex-shrink: 0;
+    -webkit-flex-shrink: 0;
 }
 
 .payBox .row .col.img {
     flex-grow: 0 !important;
+    -webkit-flex-grow: 0 !important;
     padding: 0 4%;
 }
 
@@ -1606,6 +1735,7 @@ p .discount {
 
 .payBox .row .col:last-child {
     flex-basis: 60%;
+    -webkit-flex-basis: 60%;
 }
 
 .payBox .row .col > p {
@@ -1647,11 +1777,15 @@ p .discount {
 .tab_block {
     border: 1px solid #b88b5b;
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .tab_block > div {
     padding: 3.5%;
     flex-basis: 50%;
+    -weblkit-flex-basis: 50%;
 }
 
 .tab_block > div > a {
@@ -1725,7 +1859,11 @@ p .discount {
 
 .cpDesc .flexline {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     align-items: flex-start;
+    -webkit-align-items: flex-start;
     padding-bottom: 2%;
 }
 
@@ -1738,6 +1876,7 @@ p .discount {
     margin-top: 2%;
     padding-right: 2%;
     flex-basis: 1%;
+    -webkit-flex-basis: 1%;
 }
 
 
@@ -1761,6 +1900,9 @@ p .discount {
 
 .orderBox .inner {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     padding: 3% 2%;
 }
 
@@ -1768,11 +1910,13 @@ p .discount {
     display: block;
     color: #333333;
     align-self: center;
+    -webkit-align-self: center;
     font-size: 1.1em;
 }
 
 .orderBox .topBlock span.date {
     flex-shrink: 0;
+    -webkit-flex-shrink: 0;
 }
 
 .orderBox .topBlock span.divide {
@@ -1782,6 +1926,7 @@ p .discount {
 
 .orderBox .topBlock span.orderNum {
     flex-grow: 2;
+    -webkit-flex-grow: 2;
     text-decoration: underline;
 }
 
@@ -1895,6 +2040,9 @@ p .discount {
 
 .spreadBlock .row {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .spreadBlock .row > .col {
@@ -1912,11 +2060,14 @@ p .discount {
 
 .spreadBlock .row > .col:first-child {
     flex-basis: 30%;
+    -webkit-flex-basis: 30%;
     flex-shrink: 0;
+    -webkit-flex-shrink: 0;
 }
 
 .spreadBlock .row > .col:last-child {
     flex-grow: 2;
+    -webkit-flex-grow: 2;
 }
 
 .spreadBlock .row > .col:last-child > p {
@@ -1960,6 +2111,9 @@ p .discount {
 
 .rowRadio .row {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
 }
 
 .rowRadio .row:first-child {
@@ -1968,10 +2122,12 @@ p .discount {
 
 .rowRadio .row .col {
     flex-basis: 50%;
+    -webkit-flex-basis: 50%;
 }
 
 .rowRadio .row .col.full {
     flex-basis: 100%;
+    -webkit-flex-basis: 100%;
 }
 
 .totalPayBlock {
@@ -2007,6 +2163,9 @@ p .discount {
 
 .nobookLayout .row {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     padding-bottom: 2%;
 }
 
@@ -2017,6 +2176,7 @@ p .discount {
 
 .nobookLayout .row .col:first-child {
     flex-basis: 30%;
+    -webkit-flex-basis: 30%;
 }
 
 .nobookLayout .row .col input[type="text"] {
@@ -2026,6 +2186,7 @@ p .discount {
 
 .nobookLayout .row .col:last-child {
     flex-basis: 70%;
+    -webkit-flex-basis: 70%;
 }
 
 .nobookLayout .row .col .colInRow {
@@ -2065,7 +2226,11 @@ p .discount {
 
 .linkArea {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     text-align: center;
     padding: 0 1%;
 }
@@ -2074,6 +2239,7 @@ p .discount {
     border: 1px solid #b88b5b;
     color: #b88b5b;
     flex-basis: 96%;
+    -webkit-flex-basis: 96%;
 }
 
 .linkArea a {
@@ -2082,12 +2248,16 @@ p .discount {
     border: 1px solid #196a24;
     color: #196a24;
     flex-grow: 1;
+    -webkit-flex-grow: 1;
     padding: 3% 0;
     margin: 1% 1%;
 }
 
 .snsArea {
     display: flex;
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
     padding: 6% 6%;
 }
 
@@ -2097,6 +2267,9 @@ p .discount {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 33%;
+    -webkit-flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -webkit-flex-basis: 33%;
 }
 
 .snsArea a img.insta {

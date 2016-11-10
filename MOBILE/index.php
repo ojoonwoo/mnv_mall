@@ -93,16 +93,22 @@
             </p>
           </div>
         </div>
-        <div class="prList">
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-          </a>
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-          </a>
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-          </a>
+        <div class="product_list">
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+            </a>
+          </div>
         </div>
         <div class="prHead_list">
           <div class="centerTxtBox">
@@ -111,25 +117,31 @@
             </p>
           </div>
         </div>
-        <div class="prList">
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-            <p>제품명</p>
-            <p class="price">2,500</p>
-            <p class="sale">2,500</p>
-          </a>
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-            <p>제품명</p>
-            <p class="price">2,500</p>
-            <p class="sale">2,500</p>
-          </a>
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-            <p>제품명</p>
-            <p class="price">2,500</p>
-            <p class="sale">2,500</p>
-          </a>
+        <div class="product_list">
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+              <p>제품명</p>
+              <p class="price">2,500</p>
+              <p class="sale">2,500</p>
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+              <p>제품명</p>
+              <p class="price">2,500</p>
+              <p class="sale">2,500</p>
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+              <p>제품명</p>
+              <p class="price">2,500</p>
+              <p class="sale">2,500</p>
+            </a>
+          </div>
         </div>
         <div class="prHead_list">
           <div class="centerTxtBox">
@@ -138,25 +150,31 @@
             </p>
           </div>
         </div>
-        <div class="prList">
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-            <p>제품명</p>
-            <p class="price">2,500</p>
-            <p class="sale">2,500</p>
-          </a>
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-            <p>제품명</p>
-            <p class="price">2,500</p>
-            <p class="sale">2,500</p>
-          </a>
-          <a href="#">
-            <img src="./images/default_product.png" alt="상품">
-            <p>제품명</p>
-            <p class="price">2,500</p>
-            <p class="sale">2,500</p>
-          </a>
+        <div class="product_list">
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+              <p>제품명</p>
+              <p class="price">2,500</p>
+              <p class="sale">2,500</p>
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+              <p>제품명</p>
+              <p class="price">2,500</p>
+              <p class="sale">2,500</p>
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_product.png" alt="상품">
+              <p>제품명</p>
+              <p class="price">2,500</p>
+              <p class="sale">2,500</p>
+            </a>
+          </div>
         </div>
         <div class="prHead_list insta">
           <div class="centerTxtBox">
@@ -178,6 +196,28 @@
           <a href="#">
             <img src="./images/default_insta.png" alt="피드4">
           </a>
+        </div>
+        <div class="product_list">
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_insta.png" alt="피드1">
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_insta.png" alt="피드2">
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_insta.png" alt="피드3">
+            </a>
+          </div>
+          <div class="product_box">
+            <a href="#">
+              <img src="./images/default_insta.png" alt="피드4">
+            </a>
+          </div>
         </div>
       </div>
 <?
