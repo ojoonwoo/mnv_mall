@@ -56,9 +56,9 @@
                 <div class="product_head info">
                   <div class="block_info_top">
                     <div class="block_line cate">
-                        <span class="cate1"><?=$cate1?></span>
+                      <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$goods_info['cate_1']?>"><span class="cate1"><?=$cate1?></span></a>
                         <span>></span>
-                        <span class="cate2 current_cate"><?=$cate2?></span>
+                      <a href="<?=$_mnv_PC_goods_url?>goods_list.php?cate_no=<?=$goods_info['cate_1']?>&sub_cate_no=<?=$goods_info['cate_2']?>"><span class="cate2 current_cate"><?=$cate2?></span></a>
                     </div>
                     <div class="block_line">
                       <span class="product_name left_text"><?=$goods_info['goods_name']?></span>
@@ -316,7 +316,7 @@
                     <div class="prd_info">
                       <span class="prd_name"><?=$related_goods_info['goods_name']?></span>
                       <span class="stt_icon2 new">NEW</span>
-                      <span class="prd_price"><?=number_format($related_goods_info['discount_price'])?>원</span>
+                      <span class="prd_price"><?=number_format($related_goods_info['sales_price'])?></span>
                       <span class="prd_desc">
                       <?=$related_goods_info['goods_small_desc']?>
                       </span>

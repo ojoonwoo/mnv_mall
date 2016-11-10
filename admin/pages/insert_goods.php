@@ -158,7 +158,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>* 상품 간략설명</td>
+                  <td>상품 간략설명</td>
                   <td colspan="2">
                     <textarea class="form-control" id="goods_middle_desc" rows="3" style="width:100%"></textarea>
                   </td>

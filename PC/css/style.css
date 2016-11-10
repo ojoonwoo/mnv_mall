@@ -409,13 +409,22 @@ input:-webkit-autofill {
     color: #7a7a7a;
 }
 
-/*
 .contents .list_product .product .prd_info .prd_name {
+    font-weight: bold;
+    color: #444444;
 }
-*/
+
 .contents .list_product .product .prd_info .prd_price {
     text-decoration: line-through;
     padding-bottom: 0;
+}
+
+.contents .list_product .product .prd_info .prd_price:after {
+    content: "원";
+    display: inline-block;
+    color: inherit;
+    text-decoration: inherit;
+    vertical-align: baseline;
 }
 .contents .list_product .product .prd_info .prd_sale {
     color: #00481c;
@@ -423,6 +432,14 @@ input:-webkit-autofill {
     font-weight: bold;
     padding-top: 0;
 }
+
+.contents .list_product .product .prd_info .prd_sale:after {
+    content: "원";
+    display: inline-block;
+    color: inherit;
+    vertical-align: baseline;
+}
+
 .contents .list_product .product .prd_info .prd_desc {
     padding-top: 6px;
     white-space: normal;
@@ -642,6 +659,10 @@ input:-webkit-autofill {
     width: 80px;
 }
 
+.product_head.info .block_line .left_text + span {
+    font-size: 13px;
+}
+
 .product_head.info .block_line .product_name {
     font-weight: bold;
     font-size: 15px;
@@ -696,9 +717,14 @@ input:-webkit-autofill {
     text-decoration: line-through;
 }
 
+.block_line .price {
+    font-weight: bold;
+}
+
 .block_line .sale_price {
     color: #8d0202;
     font-weight: bold;
+    font-size: 15px;
 }
 
 .block_line .sale_pctg {
