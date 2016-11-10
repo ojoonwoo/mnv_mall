@@ -1908,6 +1908,7 @@ $(document).on("click", ".JoinSubmit", function(){
 // 배너 정보 insert
 $(document).on("click", "#submit_btn7", function(){
 	var banner_name				= $("#banner_name").val();
+	var device_type				= $("#device_type").val();
 	var banner_type				= $("#banner_type").val();
 	var banner_value				= $("#banner_value").val();
 	var banner_showYN			= $("#banner_showYN").val();
@@ -1918,6 +1919,13 @@ $(document).on("click", "#submit_btn7", function(){
 	{
 		alert("배너 설명을 넣어주세요.");
 		$("#banner_name").focus();
+		return false;
+	}
+	
+	if (device_type == "")
+	{
+		alert("디바이스 타입을 넣어주세요.");
+		$("#device_type").focus();
 		return false;
 	}
 
@@ -1942,6 +1950,7 @@ $(document).on("click", "#submit_btn7", function(){
 		data:{
 			"exec"							: "insert_banner_info",
 			"banner_name"				: banner_name,
+			"device_type"				: device_type,
 			"banner_type"				: banner_type,
 			"banner_value"				: banner_value,
 			"banner_showYN"			: banner_showYN,

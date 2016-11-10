@@ -1129,12 +1129,13 @@
 
 		case "insert_banner_info" :
 			$banner_name			= $_REQUEST['banner_name'];
+			$device_type			= $_REQUEST['device_type'];
 			$banner_type				= $_REQUEST['banner_type'];
 			$banner_value				= $_REQUEST['banner_value'];
 			$banner_showYN			= $_REQUEST['banner_showYN'];
 			$banner_show_order	= $_REQUEST['banner_show_order'];
 			$banner_link_target		= $_REQUEST['banner_link_target'];
-			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,banner_type,banner_showYN,banner_show_order,banner_img_link,banner_link_target,banner_regdate) values('".$banner_name."','".$banner_type."','".$banner_showYN."','".$banner_show_order."','".$banner_value."','".$banner_link_target."','".date("Y-m-d H:i:s")."')";
+			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,device_type,banner_type,banner_showYN,banner_show_order,banner_img_link,banner_link_target,banner_regdate) values('".$banner_name."','".device_type."','".$banner_type."','".$banner_showYN."','".$banner_show_order."','".$banner_value."','".$banner_link_target."','".date("Y-m-d H:i:s")."')";
 			$banner_result	= mysqli_query($my_db, $banner_query);
 			$id_num				= mysqli_insert_id($my_db);
 			if($banner_result)
@@ -1186,6 +1187,7 @@
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
 			$innerHTML	.= "<th>배너 이름</th>";
+			$innerHTML	.= "<th>디바이스 타입</th>";
 			$innerHTML	.= "<th>배너 타입</th>";
 			$innerHTML	.= "<th>배너 노출 여부</th>";
 			$innerHTML	.= "<th>배너 표시 순서</th>";
@@ -1202,6 +1204,7 @@
 			{
 				$innerHTML	.= "<tr>";
 				$innerHTML	.= "<td>".$list_data['banner_name']."</td>";
+				$innerHTML	.= "<td>".$list_data['device_type']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_type']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_showYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_show_order']."</td>";
