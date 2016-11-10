@@ -475,6 +475,10 @@ html {
     padding-bottom: 10%;
 }
 
+.insta + .product_list > .product_box {
+    width: 23.5%;
+}
+
 .product_list a {
     display: block;
 }
