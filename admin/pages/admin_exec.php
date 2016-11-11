@@ -1130,12 +1130,21 @@
 		case "insert_banner_info" :
 			$banner_name			= $_REQUEST['banner_name'];
 			$device_type			= $_REQUEST['device_type'];
-			$banner_type				= $_REQUEST['banner_type'];
-			$banner_value				= $_REQUEST['banner_value'];
+			$banner_type			= $_REQUEST['banner_type'];
+			$banner_value			= $_REQUEST['banner_value'];
 			$banner_showYN			= $_REQUEST['banner_showYN'];
-			$banner_show_order	= $_REQUEST['banner_show_order'];
+			$banner_show_order		= $_REQUEST['banner_show_order'];
 			$banner_link_target		= $_REQUEST['banner_link_target'];
-			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,device_type,banner_type,banner_showYN,banner_show_order,banner_img_link,banner_link_target,banner_regdate) values('".$banner_name."','".device_type."','".$banner_type."','".$banner_showYN."','".$banner_show_order."','".$banner_value."','".$banner_link_target."','".date("Y-m-d H:i:s")."')";
+			
+			$order_duplicate_query	= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 AND banner_type = '".$banner_type."' AND device_type = '".$device_type."' AND banner_show_order = '".$banner_show_order."' AND banner_showYN = 'Y'";
+			$duplicate_result = mysqli_query($my_db, $order_duplicate_query);
+			if($duplicate_result){
+				$duplicate_data = mysqli_fetch_array($duplicate_result);
+				$update_show_order_query = "UPDATE ".$_gl['banner_info_table']." SET banner_showYN = 'N' WHERE idx = '".$duplicate_data['idx']."'";
+				$update_result	= mysqli_query($my_db, $update_show_order_query);
+			}
+			
+			$banner_query	= "INSERT INTO ".$_gl['banner_info_table']."(banner_name,device_type,banner_type,banner_showYN,banner_show_order,banner_img_link,banner_link_target,banner_regdate) values('".$banner_name."','".$device_type."','".$banner_type."','".$banner_showYN."','".$banner_show_order."','".$banner_value."','".$banner_link_target."','".date("Y-m-d H:i:s")."')";
 			$banner_result	= mysqli_query($my_db, $banner_query);
 			$id_num				= mysqli_insert_id($my_db);
 			if($banner_result)
@@ -1144,6 +1153,36 @@
 				$flag = "0";
 			echo $flag;
 		break;
+			
+		case "update_banner_info" :
+			$idx					= $_REQUEST['idx'];
+			$banner_name			= $_REQUEST['banner_name'];
+			$device_type			= $_REQUEST['device_type'];
+			$banner_type			= $_REQUEST['banner_type'];
+			$banner_value			= $_REQUEST['banner_value'];
+			$banner_showYN			= $_REQUEST['banner_showYN'];
+			$banner_show_order		= $_REQUEST['banner_show_order'];
+			$banner_link_target		= $_REQUEST['banner_link_target'];
+
+			$order_duplicate_query	= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 AND banner_type = '".$banner_type."' AND device_type = '".$device_type."' AND banner_show_order = '".$banner_show_order."' AND banner_showYN = 'Y'";
+			$duplicate_result = mysqli_query($my_db, $order_duplicate_query);
+			if($duplicate_result){
+				$duplicate_data = mysqli_fetch_array($duplicate_result);
+				$update_show_order_query = "UPDATE ".$_gl['banner_info_table']." SET banner_showYN = 'N' WHERE idx = '".$duplicate_data['idx']."'";
+				$update_result	= mysqli_query($my_db, $update_show_order_query);
+			}
+			
+			$banner_query = "UPDATE ".$_gl['banner_info_table']." SET banner_name='".$banner_name."', device_type='".$device_type."', banner_type='".$banner_type."', banner_showYN='".$banner_showYN."', banner_show_order='".$banner_show_order."', banner_img_link='".$banner_value."', banner_link_target='".$banner_link_target."', banner_regdate='".date("Y-m-d H:i:s")."' WHERE idx='".$idx."'";
+
+			$banner_result	= mysqli_query($my_db, $banner_query);
+
+			if($banner_result)
+				$flag = $idx;
+			else
+				$flag = "0";
+			echo $flag;
+		break;
+
 
 		case "update_option_info" :
 			$best_goods_flag			= $_REQUEST['best_goods_flag'];
@@ -1182,7 +1221,7 @@
 
 		case "show_banner_list" :
 			$target	= $_REQUEST['target'];
-			$list_query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 ORDER BY idx DESC";
+			$list_query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 AND admin_showYN = 'Y' ORDER BY idx DESC";
 			$list_result		= mysqli_query($my_db, $list_query);
 			$innerHTML	= "<thead>";
 			$innerHTML	.= "<tr>";
@@ -1206,13 +1245,13 @@
 				$innerHTML	.= "<td>".$list_data['banner_name']."</td>";
 				$innerHTML	.= "<td>".$list_data['device_type']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_type']."</td>";
-				$innerHTML	.= "<td>".$list_data['banner_showYN']."</td>";
+				$innerHTML	.= "<td class='showYN'>".$list_data['banner_showYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_show_order']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_img_url']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_img_link']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_link_target']."</td>";
 				$innerHTML	.= "<td>".$list_data['banner_regdate']."</td>";
-				$innerHTML	.= "<td><a href='./banner_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='#' class='del_banner' data-idx='".$list_data['idx']."'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
+				$innerHTML	.= "<td><a href='./banner_detail.php?idx=".$list_data['idx']."'><button type='button' class='btn btn-primary'>수정</button></a> <a href='javascript:void(0)' class='del_banner' data-idx='".$list_data['idx']."' onclick='delete_row(".$list_data['idx'].");return false;'><button type='button' class='btn btn-danger'>삭제</button></a></td>";
 				$innerHTML	.= "</tr>";
 				//$i++;
 			}
@@ -1847,7 +1886,21 @@
 
 			echo $flag;
 		break;
+			
+		case "delete_row":
+			$idx = $_REQUEST['idx'];
 
+			$query = "UPDATE ".$_gl['banner_info_table']." SET admin_showYN='N', banner_showYN='N' WHERE idx='".$idx."'";
+			$result = mysqli_query($my_db, $query); // 배너 비노출로 변경
+
+			if($result){
+				$flag = "Y";
+			}else{
+				$flag = "N";
+			}
+
+			echo $flag;
+		break;
 	}
 
 ?>

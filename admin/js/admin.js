@@ -1394,6 +1394,7 @@ function img_submit3(idx)
 {
 	var frm = $('#main_image_frm');
 	var stringData = frm.serialize();
+	
 	frm.ajaxSubmit({
 		type: 'post',
 		url: '../../lib/filer/php/upload.php?ig=banner&b_idx='+idx,
@@ -1910,10 +1911,11 @@ $(document).on("click", "#submit_btn7", function(){
 	var banner_name				= $("#banner_name").val();
 	var device_type				= $("#device_type").val();
 	var banner_type				= $("#banner_type").val();
-	var banner_value				= $("#banner_value").val();
+	var banner_value			= $("#banner_value").val();
 	var banner_showYN			= $("#banner_showYN").val();
 	var banner_show_order		= $("#banner_show_order").val();
 	var banner_link_target		= $("#banner_link_target").val();
+	var inputFile  = $("#filer_input").val();
 
 	if (banner_name == "")
 	{
@@ -1935,6 +1937,11 @@ $(document).on("click", "#submit_btn7", function(){
 		$("#banner_type").focus();
 		return false;
 	}
+	
+	if (inputFile == "") {
+		alert("배너 이미지를 넣어주세요.");
+		return false;
+	}
 
 	if (banner_value == "")
 	{
@@ -1942,6 +1949,14 @@ $(document).on("click", "#submit_btn7", function(){
 		$("#banner_value").focus();
 		return false;
 	}
+	
+	if (banner_show_order == "")
+	{
+		alert("배너 순서를 입력해주세요.");
+		$("#banner_show_order").focus();
+		return false;
+	}
+
 
 	$.ajax({
 		type   : "POST",
@@ -1965,6 +1980,85 @@ $(document).on("click", "#submit_btn7", function(){
 			}else{
 				alert("배너 정보가 입력 되었습니다.");
 				img_submit3(response);
+				location.reload();
+			}
+		}
+	});
+});
+
+// 배너 정보 update
+$(document).on("click", "#submit_btn19", function(){
+	var banner_name				= $("#banner_name").val();
+	var device_type				= $("#device_type").val();
+	var banner_type				= $("#banner_type").val();
+	var banner_value			= $("#banner_value").val();
+	var banner_showYN			= $("#banner_showYN").val();
+	var banner_show_order		= $("#banner_show_order").val();
+	var banner_link_target		= $("#banner_link_target").val();
+	var inputFile  = $("#filer_input").val();
+	
+
+	if (banner_name == "")
+	{
+		alert("배너 설명을 넣어주세요.");
+		$("#banner_name").focus();
+		return false;
+	}
+
+	if (device_type == "")
+	{
+		alert("디바이스 타입을 넣어주세요.");
+		$("#device_type").focus();
+		return false;
+	}
+
+	if (banner_type == "")
+	{
+		alert("배너 타입을 선택해주세요.");
+		$("#banner_type").focus();
+		return false;
+	}
+
+	if (banner_value == "")
+	{
+		alert("배너 링크를 입력해주세요.");
+		$("#banner_value").focus();
+		return false;
+	}
+
+	if (banner_show_order == "")
+	{
+		alert("배너 순서를 입력해주세요.");
+		$("#banner_show_order").focus();
+		return false;
+	}
+
+
+	$.ajax({
+		type   : "POST",
+		async  : false,
+		url    : "admin_exec.php",
+		data:{
+			"exec"							: "update_banner_info",
+			"idx"						: idx,
+			"banner_name"				: banner_name,
+			"device_type"				: device_type,
+			"banner_type"				: banner_type,
+			"banner_value"				: banner_value,
+			"banner_showYN"			: banner_showYN,
+			"banner_show_order"		: banner_show_order,
+			"banner_link_target"		: banner_link_target
+		},
+		success: function(response){
+			if (response == "0")
+			{
+				alert("다시 시도해 주세요.");
+				location.reload();
+			}else{
+				alert("배너 정보가 수정 되었습니다.");
+				if(inputFile != '') {
+					img_submit3(response);
+				}
 				location.reload();
 			}
 		}
