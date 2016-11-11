@@ -136,12 +136,12 @@ function select_all_category_info($gubun)
 	return $res_data;
 }
 
-function select_banner_info($type)
+function select_banner_info($type, $device)
 {
 	global $_gl;
 	global $my_db;
 
-	$query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE banner_type='".$type."' AND banner_showYN='Y' ORDER BY banner_show_order ASC";
+	$query		= "SELECT * FROM ".$_gl['banner_info_table']." WHERE banner_type='".$type."' AND device_type='".$device."' AND banner_showYN='Y' ORDER BY banner_show_order ASC";
 	$result		= mysqli_query($my_db, $query);
 	while ($data = mysqli_fetch_array($result))
 	{

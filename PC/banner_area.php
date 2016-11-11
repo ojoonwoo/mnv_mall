@@ -1,7 +1,7 @@
           <div class="area_banner">
             <div class="banner_slide">
 <?
-	$rolling_banner_info		= select_banner_info("main_rolling_banner");
+	$rolling_banner_info		= select_banner_info("main_rolling_banner", "PC");
 	foreach ($rolling_banner_info as $key => $val)
 	{
 		$val['banner_img_url']	= str_replace("../../","",$val['banner_img_url']);
@@ -9,7 +9,7 @@
               <div class="slide"><a href="<?=$val['banner_img_link']?>" target="<?=$val['banner_link_target']?>"><img src="<?=$val['banner_img_url']?>"></a></div>
 <?
 	}
-	$image_banner_info		= select_banner_info("main_image_banner");
+	$image_banner_info		= select_banner_info("main_image_banner", "PC");
 	$image_banner_info[0]['banner_img_url']	= str_replace("../../","",$image_banner_info[0]['banner_img_url']);
 ?>
             </div>

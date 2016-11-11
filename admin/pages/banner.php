@@ -58,6 +58,18 @@
                   </td>
                 </tr>
                 <tr>
+                  <td>디바이스 구분</td>
+                  <td>
+                    <select id="device_type">
+                      <option value="">선택하세요</option>
+                      <option value="PC">PC</option>
+                      <option value="MOBILE">MOBILE</option>
+                    </select>
+                    <p style="padding-top:20px;">PC : 가로 1180px / 세로 380px</p>
+                    <p>MOBILE : 가로 320px / 세로 160px</p>
+                  </td>
+                </tr>
+                <tr>
                   <td>배너 종류</td>
                   <td>
                     <select id="banner_type">
