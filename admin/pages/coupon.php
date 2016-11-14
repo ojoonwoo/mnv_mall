@@ -40,7 +40,7 @@
       <button type="button" class="btn btn-outline btn-success btn-lg" id="list_coupon_btn">쿠폰 목록</button>
       <div class="panel-body">
         <div class="panel-body">
-          <div class="table-responsive" id="add_coupon">
+          <div class="table-responsive" id="add_coupon" style="display:none;">
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
@@ -100,7 +100,7 @@
             <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn5">브랜드 정보 입력</button>
           </div>
           <!-- /.table-responsive -->
-          <div class="table-responsive" id="list_purchasing" style="display:none;">
+          <div class="table-responsive" id="list_purchasing">
             <table width="100%" class="table table-striped table-bordered table-hover" id="purchasing_list">
             </table>
           </div>

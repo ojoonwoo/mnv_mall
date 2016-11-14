@@ -672,7 +672,7 @@ input:-webkit-autofill {
 
 .stt_icon1 {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 12px !important;
     color: #ffffff;
     padding: 2px 6px;
     margin-right: -2px;

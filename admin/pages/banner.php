@@ -42,7 +42,7 @@
       <button type="button" class="btn btn-outline btn-success btn-lg" id="list_banner_btn">배너 목록</button>
       <div class="panel-body">
         <div class="panel-body">
-          <div class="table-responsive" id="add_banner">
+          <div class="table-responsive" id="add_banner" style="display:none;">
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
@@ -65,8 +65,32 @@
                       <option value="PC">PC</option>
                       <option value="MOBILE">MOBILE</option>
                     </select>
-                    <p style="padding-top:20px;">PC : 가로 1180px / 세로 380px</p>
-                    <p>MOBILE : 가로 320px / 세로 160px</p>
+                    <p style="margin-left:150px;">
+                      <span>PC</span>
+                      <span style="margin-left:100px;">MOBILE</span>
+                    </p>
+                    <p>
+                      <span>
+                        롤링 배너
+                      </span>
+                      <span style="margin-left:60px;">
+                        1180x380
+                      </span>
+                      <span style="margin-left:80px;">
+                        320x160(임시)
+                      </span>
+                    </p>
+                    <p>
+                      <span>
+                        이미지 배너
+                      </span>
+                      <span style="margin-left:50px;">
+                        385x165
+                      </span>
+                      <span style="margin-left:83px;">
+                        200x130(임시)
+                      </span>
+                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -133,7 +157,7 @@
             <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn7">완 료</button>
           </div>
           <!-- /.table-responsive -->
-          <div class="table-responsive" id="list_banner" style="display:none;">
+          <div class="table-responsive" id="list_banner">
             <table width="100%" class="table table-striped table-bordered table-hover" id="banner_list">
             </table>
           </div>

@@ -1,6 +1,6 @@
 <?
 	include_once "header.php";
-	// 카테고리 정보 SELECT
+
 	$idx = $_REQUEST['idx'];
 	$query = "SELECT * FROM ".$_gl['banner_info_table']." WHERE 1 AND idx = '".$idx."'";
 	$result = mysqli_query($my_db, $query);
@@ -10,7 +10,6 @@
 <link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 <link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <body>
-  <input type="hidden" id="idx" value="<?=$idx?>">
   <div id="wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -55,6 +54,7 @@
                 </tr>
               </thead>
               <tbody>
+                <input type="hidden" id="idx" value="<?=$idx?>">
                 <tr>
                   <td>배너명</td>
                   <td colspan="2">
@@ -144,11 +144,6 @@
             <button type="button" class="btn btn-danger btn-lg btn-block" id="submit_btn19">수 정</button>
           </div>
           <!-- /.table-responsive -->
-          <div class="table-responsive" id="list_category" style="display:none;">
-            <table width="100%" class="table table-striped table-bordered table-hover" id="category_list">
-            </table>
-          </div>
-          <!-- /.table-responsive -->
         </div>
       </div>
       <!-- /.panel-body -->
@@ -174,7 +169,7 @@ include_once "lib.php";
 	$(document).ready(function() {
 		// 배너 리스트
 		// 작업해야함
-		show_banner_list("banner_list");
+//		show_banner_list("banner_list");
 
 		// 테이블 api 세팅
 		/*

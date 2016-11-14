@@ -1988,6 +1988,7 @@ $(document).on("click", "#submit_btn7", function(){
 
 // 배너 정보 update
 $(document).on("click", "#submit_btn19", function(){
+	var idx						= $("#idx").val();
 	var banner_name				= $("#banner_name").val();
 	var device_type				= $("#device_type").val();
 	var banner_type				= $("#banner_type").val();
@@ -2053,13 +2054,15 @@ $(document).on("click", "#submit_btn19", function(){
 			if (response == "0")
 			{
 				alert("다시 시도해 주세요.");
-				location.reload();
+//				location.reload();
+				location.href="banner.php";
 			}else{
 				alert("배너 정보가 수정 되었습니다.");
 				if(inputFile != '') {
 					img_submit3(response);
 				}
-				location.reload();
+//				location.reload();
+				location.href="banner.php";
 			}
 		}
 	});
