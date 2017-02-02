@@ -2100,16 +2100,18 @@ $(document).on("click", "#list_banner_btn", function(){
 $(document).on("click", "#submit_btn8", function(){
 	if (confirm("쇼핑몰 기본설정을 수정하시겠습니까?"))
 	{
-		var best_goods_flag			= $(':radio[name="best_goods_flag"]:checked').val();
-		var new_goods_flag			= $(':radio[name="new_goods_flag"]:checked').val();
-		var plan_goods_flag			= $(':radio[name="plan_goods_flag"]:checked').val();
-		var cate_goods_flag			= $(':radio[name="cate_goods_flag"]:checked').val();
-		var best_goods_flagYN		= $("#best_goods_flagYN").val();
-		var new_goods_flagYN		= $("#new_goods_flagYN").val();
-		var plan_goods_flagYN		= $("#plan_goods_flagYN").val();
-		var cate_goods_flagYN		= $("#cate_goods_flagYN").val();
-		var default_saved_priceYN	= $("#default_saved_priceYN").val();
-		var default_saved_price		= $("#default_saved_price").val();
+		var best_goods_flag				= $(':radio[name="best_goods_flag"]:checked').val();
+		var new_goods_flag				= $(':radio[name="new_goods_flag"]:checked').val();
+		var plan_goods_flag				= $(':radio[name="plan_goods_flag"]:checked').val();
+		var cate_goods_flag				= $(':radio[name="cate_goods_flag"]:checked').val();
+		var best_goods_flagYN			= $("#best_goods_flagYN").val();
+		var new_goods_flagYN			= $("#new_goods_flagYN").val();
+		var plan_goods_flagYN			= $("#plan_goods_flagYN").val();
+		var cate_goods_flagYN			= $("#cate_goods_flagYN").val();
+		var default_saved_priceYN		= $("#default_saved_priceYN").val();
+		var default_saved_price			= $("#default_saved_price").val();
+		var default_delivery_priceYN	= $("#default_delivery_priceYN").val();
+		var default_delivery_price		= $("#default_delivery_price").val();
 
 		$.ajax({
 			type   : "POST",
@@ -2117,16 +2119,18 @@ $(document).on("click", "#submit_btn8", function(){
 			url    : "admin_exec.php",
 			data:{
 				"exec"							: "update_option_info",
-				"best_goods_flag"			: best_goods_flag,
-				"new_goods_flag"			: new_goods_flag,
-				"plan_goods_flag"			: plan_goods_flag,
-				"cate_goods_flag"			: cate_goods_flag,
-				"best_goods_flagYN"		: best_goods_flagYN,
-				"new_goods_flagYN"		: new_goods_flagYN,
-				"plan_goods_flagYN"		: plan_goods_flagYN,
-				"cate_goods_flagYN"		: cate_goods_flagYN,
-				"default_saved_priceYN"	: default_saved_priceYN,
-				"default_saved_price"		: default_saved_price
+				"best_goods_flag"				: best_goods_flag,
+				"new_goods_flag"				: new_goods_flag,
+				"plan_goods_flag"				: plan_goods_flag,
+				"cate_goods_flag"				: cate_goods_flag,
+				"best_goods_flagYN"				: best_goods_flagYN,
+				"new_goods_flagYN"				: new_goods_flagYN,
+				"plan_goods_flagYN"				: plan_goods_flagYN,
+				"cate_goods_flagYN"				: cate_goods_flagYN,
+				"default_saved_priceYN"			: default_saved_priceYN,
+				"default_saved_price"			: default_saved_price,
+				"default_delivery_priceYN"		: default_delivery_priceYN,
+				"default_delivery_price"		: default_delivery_price
 			},
 			success: function(response){
 				if (response == "Y")
