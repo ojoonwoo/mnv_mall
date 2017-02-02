@@ -1186,15 +1186,17 @@
 
 		case "update_option_info" :
 			$best_goods_flag			= $_REQUEST['best_goods_flag'];
-			$new_goods_flag			= $_REQUEST['new_goods_flag'];
+			$new_goods_flag				= $_REQUEST['new_goods_flag'];
 			$plan_goods_flag			= $_REQUEST['plan_goods_flag'];
 			$cate_goods_flag			= $_REQUEST['cate_goods_flag'];
-			$best_goods_flagYN		= $_REQUEST['best_goods_flagYN'];
-			$new_goods_flagYN		= $_REQUEST['new_goods_flagYN'];
-			$plan_goods_flagYN		= $_REQUEST['plan_goods_flagYN'];
-			$cate_goods_flagYN		= $_REQUEST['cate_goods_flagYN'];
-			$default_saved_priceYN	= $_REQUEST['default_saved_priceYN'];
-			$default_saved_price	= $_REQUEST['default_saved_price'];
+			$best_goods_flagYN			= $_REQUEST['best_goods_flagYN'];
+			$new_goods_flagYN			= $_REQUEST['new_goods_flagYN'];
+			$plan_goods_flagYN			= $_REQUEST['plan_goods_flagYN'];
+			$cate_goods_flagYN			= $_REQUEST['cate_goods_flagYN'];
+			$default_saved_priceYN		= $_REQUEST['default_saved_priceYN'];
+			$default_saved_price		= $_REQUEST['default_saved_price'];
+			$default_delivery_price 	= $_REQUEST['default_delivery_price'];
+			$default_delivery_priceYN 	= $_REQUEST['default_delivery_priceYN'];
 
 			$option1_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$best_goods_flag."', option_load='".$best_goods_flagYN."' WHERE option_name='best_goods_flag'"; 
 			$option1_result		= mysqli_query($my_db, $option1_query);
@@ -1211,7 +1213,10 @@
 			$option5_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_saved_price."', option_load='".$default_saved_priceYN."' WHERE option_name='default_saved_price'"; 
 			$option5_result		= mysqli_query($my_db, $option5_query);
 
-			if ($option5_result)
+			$option6_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_delivery_price."', option_load='".$default_delivery_priceYN."' WHERE option_name='default_delivery_price'"; 
+			$option6_result		= mysqli_query($my_db, $option6_query);
+
+			if ($option6_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
