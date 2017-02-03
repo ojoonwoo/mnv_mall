@@ -153,6 +153,7 @@
 	<script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 	<script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
 
+	<script src="../../lib/filer/js/jquery.filer.min.js"></script>
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 	<script>
 	$('#filer_input').filer({
