@@ -1,6 +1,8 @@
 <?
 	include_once "header.php";
 ?>
+<link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+<link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 <body>
 
 <div id="wrapper">
