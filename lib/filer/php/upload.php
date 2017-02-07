@@ -82,7 +82,7 @@
 			'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
 			'extensions' => null, //Whitelist for file extension. {null, Array(ex: array('jpg', 'png'))}
 			'required' => false, //Minimum one file is required for upload {Boolean}
-			'uploadDir' => '../../../uploads5/'.$_REQUEST['idx'].'/', //Upload directory {String}
+			'uploadDir' => '../../../uploads5/'.$_REQUEST['cate_1'].'_'.$_REQUEST['cate_2'].'_'.$_REQUEST['cate_3'].'/', //Upload directory {String}
 			'title' => array('name'), //New file name {null, String, Array} *please read documentation in README.md
 			'removeFiles' => true, //Enable file exclusion {Boolean(extra for jQuery.filer), String($_POST field name containing json data with file names)}
 			'perms' => null, //Uploaded file permisions {null, Number}
