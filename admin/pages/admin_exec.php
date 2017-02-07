@@ -150,13 +150,13 @@
 
 		case "insert_cate_info" :
 			$cate_name			= $_REQUEST['cate_name']; 
-			$cate_1					= $_REQUEST['cate_1'];
-			$cate_2					= $_REQUEST['cate_2'];
-			$cate_3					= $_REQUEST['cate_3'];
-			$cate_pcYN				= $_REQUEST['cate_pcYN'];
+			$cate_1				= $_REQUEST['cate_1'];
+			$cate_2				= $_REQUEST['cate_2'];
+			$cate_3				= $_REQUEST['cate_3'];
+			$cate_pcYN			= $_REQUEST['cate_pcYN'];
 			$cate_mobileYN		= $_REQUEST['cate_mobileYN'];
 			$cate_accessYN		= $_REQUEST['cate_accessYN'];
-			$access_specific		= $_REQUEST['access_specific'];
+			$access_specific	= $_REQUEST['access_specific'];
 			if ($cate_accessYN == "SPECIFIC")
 				$accessYN	= $access_specific;
 			else
@@ -165,21 +165,21 @@
 			{
 				$care1_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1 <> 0 and cate_2 = 0 and cate_3 = 0";
 				$care1_result		= mysqli_query($my_db, $care1_query);
-				$cate1_num		= @mysqli_num_rows($care1_result);
+				$cate1_num			= @mysqli_num_rows($care1_result);
 				$cate_1				= $cate1_num + 1;
 			}else{
 				if ($cate_2 == "")
 				{
 					$cate2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2 <> 0 and cate_3 = 0";
 					$cate2_result		= mysqli_query($my_db, $cate2_query);
-					$cate2_num		= @mysqli_num_rows($cate2_result);
+					$cate2_num			= @mysqli_num_rows($cate2_result);
 					$cate_2				= $cate2_num + 1;
 				}else{
 					if ($cate_3 == "")
 					{
 						$cate3_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2='".$cate_2."' AND cate_3 <> 0";
 						$cate3_result		= mysqli_query($my_db, $cate3_query);
-						$cate3_num		= @mysqli_num_rows($cate3_result);
+						$cate3_num			= @mysqli_num_rows($cate3_result);
 						$cate_3				= $cate3_num + 1;
 					}
 				}

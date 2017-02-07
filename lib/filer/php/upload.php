@@ -125,6 +125,10 @@
 			// 배너정보에 이미지 정보 업데이트
 			$goods_query		= "UPDATE ".$_gl['post_info_table']." SET post_img_url='".$file_txt."' WHERE idx='".$_REQUEST['idx']."'";
 			$goods_result		= mysqli_query($my_db, $goods_query);
+		}else if ($_REQUEST['ig'] == "category" ){
+			// 배너정보에 이미지 정보 업데이트
+			$goods_query		= "UPDATE ".$_gl['category_info_table']." SET cate_img_url='".$file_txt."' WHERE cate_1='".$_REQUEST['cate_1']."' AND cate_2='".$_REQUEST['cate_2']."' AND cate_3='".$_REQUEST['cate_3']."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
 		}
 	}
 
