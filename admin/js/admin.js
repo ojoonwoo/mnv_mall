@@ -822,6 +822,9 @@ $(document).on("click", "#submit_btn", function(){
 			return false;
 		}
 	}
+
+				alert(cate_1+"_222_"+cate_2+"_"+cate_3);
+	
 	$.ajax({
 		type   : "POST",
 		async  : false,
@@ -840,7 +843,6 @@ $(document).on("click", "#submit_btn", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				alert(cate_1+"_"+cate_2+"_"+cate_3);
 				//alert("카테고리가 추가 되었습니다.");
 				img_submit6(cate_1, cate_2, cate_3);
 				location.reload();
