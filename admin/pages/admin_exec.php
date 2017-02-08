@@ -190,7 +190,7 @@
 				$flag	= "Y";
 			else
 				$flag	= "N";
-			echo $cate_query;
+			echo $flag;
 		break;
 
 		case "insert_event_info" :
