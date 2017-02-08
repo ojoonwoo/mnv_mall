@@ -841,6 +841,7 @@ $(document).on("click", "#submit_btn", function(){
 			"access_specific"	: access_specific
 		},
 		success: function(response){
+			alert(response);
 			if (response == "Y")
 			{
 				//alert("카테고리가 추가 되었습니다.");
