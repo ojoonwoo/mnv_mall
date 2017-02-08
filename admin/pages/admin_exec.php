@@ -557,7 +557,7 @@
 				$innerHTML	.= "<td>".$list_data['cate_1']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_2']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_3']."</td>";
-				$innerHTML	.= "<td>".$list_data['cate_img_url']."</td>";
+				$innerHTML	.= "<td><image src='".$list_data['cate_img_url']."'></td>";
 				$innerHTML	.= "<td>".$list_data['cate_name']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_pcYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_mobileYN']."</td>";
