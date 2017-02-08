@@ -1438,6 +1438,7 @@ function img_submit5(idx)
 
 function img_submit6(cate_1, cate_2, cate_3)
 {
+	alert(cate_1+"_"+cate_2+"_"+cate_3);
 	var frm = $('#main_image_frm');
 	var stringData = frm.serialize();
 	frm.ajaxSubmit({
