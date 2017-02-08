@@ -807,6 +807,7 @@ $(document).on("click", "#submit_btn", function(){
 	var cate_mobileYN		= $(':radio[name="cate_mobileYN"]:checked').val();
 	var cate_accessYN		= $(':radio[name="cate_accessYN"]:checked').val();
 	var access_specific		= $("#access_specific").val();
+
 	if (cate_name == "")
 	{
 		alert("카테고리 이름을 입력해주세요.");
@@ -823,7 +824,7 @@ $(document).on("click", "#submit_btn", function(){
 		}
 	}
 
-				alert(cate_1);
+				alert($("#cate_1").val());
 	
 	$.ajax({
 		type   : "POST",
