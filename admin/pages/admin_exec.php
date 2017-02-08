@@ -540,6 +540,7 @@
 			$innerHTML	.= "<th>1번 카테고리</th>";
 			$innerHTML	.= "<th>2번 카테고리</th>";
 			$innerHTML	.= "<th>3번 카테고리</th>";
+			$innerHTML	.= "<th>카테고리 이미지</th>";
 			$innerHTML	.= "<th>카테고리 명</th>";
 			$innerHTML	.= "<th>PC 화면 노출여부</th>";
 			$innerHTML	.= "<th>MOBILE 화면 노출여부</th>";
