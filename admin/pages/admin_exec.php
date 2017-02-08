@@ -190,6 +190,8 @@
 				$flag	= "Y";
 			else
 				$flag	= "N";
+
+			$flag 	= $flag."||".$cate_1."||".$cate_2."||".$cate_3; 
 			echo $flag;
 		break;
 
