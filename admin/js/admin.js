@@ -840,7 +840,7 @@ $(document).on("click", "#submit_btn", function(){
 		success: function(response){
 			if (response == "Y")
 			{
-				alert("카테고리가 추가 되었습니다.");
+				//alert("카테고리가 추가 되었습니다.");
 				img_submit6(cate_1, cate_2, cate_3);
 				location.reload();
 			}else{
@@ -1445,6 +1445,7 @@ function img_submit6(cate_1, cate_2, cate_3)
 		url: '../../lib/filer/php/upload.php?ig=category&cate_1='+cate_1+'&cate_2='+cate_2+'&cate_3='+cate_3,
 		data: stringData,
 		success:function(msg){
+			alert(msg);
 			alert('카테고리가 등록 되었습니다');
 			self.location.reload();
 		}
