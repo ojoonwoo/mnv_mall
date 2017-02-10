@@ -76,6 +76,24 @@
 			'onComplete' => 'onFilesCompleteCallback', //A callback function name to be called when upload is complete | ($file) | Callback
 			'onRemove' => 'onFilesRemoveCallback' //A callback function name to be called by removing files (must return an array) | ($removed_files) | Callback
 		));
+	}else if ($_REQUEST['ig'] == "category" ){
+		$data = $uploader->upload($_FILES['files'], array(
+			'limit' => 10, //Maximum Limit of files. {null, Number}
+			'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
+			'extensions' => null, //Whitelist for file extension. {null, Array(ex: array('jpg', 'png'))}
+			'required' => false, //Minimum one file is required for upload {Boolean}
+			'uploadDir' => '../../../uploads5/'.$_REQUEST['cate_1'].'_'.$_REQUEST['cate_2'].'_'.$_REQUEST['cate_3'].'/', //Upload directory {String}
+			'title' => array('name'), //New file name {null, String, Array} *please read documentation in README.md
+			'removeFiles' => true, //Enable file exclusion {Boolean(extra for jQuery.filer), String($_POST field name containing json data with file names)}
+			'perms' => null, //Uploaded file permisions {null, Number}
+			'onCheck' => null, //A callback function name to be called by checking a file for errors (must return an array) | ($file) | Callback
+			'onError' => null, //A callback function name to be called if an error occured (must return an array) | ($errors, $file) | Callback
+			'onSuccess' => null, //A callback function name to be called if all files were successfully uploaded | ($files, $metas) | Callback
+			'onUpload' => null, //A callback function name to be called if all files were successfully uploaded (must return an array) | ($file) | Callback
+			//'onComplete' => null, //A callback function name to be called when upload is complete | ($file) | Callback
+			'onComplete' => 'onFilesCompleteCallback', //A callback function name to be called when upload is complete | ($file) | Callback
+			'onRemove' => 'onFilesRemoveCallback' //A callback function name to be called by removing files (must return an array) | ($removed_files) | Callback
+		));
 	}
     
     if($data['isComplete']){
@@ -106,6 +124,10 @@
 		}else if ($_REQUEST['ig'] == "post" ){
 			// 배너정보에 이미지 정보 업데이트
 			$goods_query		= "UPDATE ".$_gl['post_info_table']." SET post_img_url='".$file_txt."' WHERE idx='".$_REQUEST['idx']."'";
+			$goods_result		= mysqli_query($my_db, $goods_query);
+		}else if ($_REQUEST['ig'] == "category" ){
+			// 배너정보에 이미지 정보 업데이트
+			$goods_query		= "UPDATE ".$_gl['category_info_table']." SET cate_img_url='".$file_txt."' WHERE cate_1='".$_REQUEST['cate_1']."' AND cate_2='".$_REQUEST['cate_2']."' AND cate_3='".$_REQUEST['cate_3']."'";
 			$goods_result		= mysqli_query($my_db, $goods_query);
 		}
 	}

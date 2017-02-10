@@ -150,13 +150,13 @@
 
 		case "insert_cate_info" :
 			$cate_name			= $_REQUEST['cate_name']; 
-			$cate_1					= $_REQUEST['cate_1'];
-			$cate_2					= $_REQUEST['cate_2'];
-			$cate_3					= $_REQUEST['cate_3'];
-			$cate_pcYN				= $_REQUEST['cate_pcYN'];
+			$cate_1				= $_REQUEST['cate_1'];
+			$cate_2				= $_REQUEST['cate_2'];
+			$cate_3				= $_REQUEST['cate_3'];
+			$cate_pcYN			= $_REQUEST['cate_pcYN'];
 			$cate_mobileYN		= $_REQUEST['cate_mobileYN'];
 			$cate_accessYN		= $_REQUEST['cate_accessYN'];
-			$access_specific		= $_REQUEST['access_specific'];
+			$access_specific	= $_REQUEST['access_specific'];
 			if ($cate_accessYN == "SPECIFIC")
 				$accessYN	= $access_specific;
 			else
@@ -165,21 +165,21 @@
 			{
 				$care1_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1 <> 0 and cate_2 = 0 and cate_3 = 0";
 				$care1_result		= mysqli_query($my_db, $care1_query);
-				$cate1_num		= @mysqli_num_rows($care1_result);
+				$cate1_num			= @mysqli_num_rows($care1_result);
 				$cate_1				= $cate1_num + 1;
 			}else{
 				if ($cate_2 == "")
 				{
 					$cate2_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2 <> 0 and cate_3 = 0";
 					$cate2_result		= mysqli_query($my_db, $cate2_query);
-					$cate2_num		= @mysqli_num_rows($cate2_result);
+					$cate2_num			= @mysqli_num_rows($cate2_result);
 					$cate_2				= $cate2_num + 1;
 				}else{
 					if ($cate_3 == "")
 					{
 						$cate3_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_1='".$cate_1."' AND cate_2='".$cate_2."' AND cate_3 <> 0";
 						$cate3_result		= mysqli_query($my_db, $cate3_query);
-						$cate3_num		= @mysqli_num_rows($cate3_result);
+						$cate3_num			= @mysqli_num_rows($cate3_result);
 						$cate_3				= $cate3_num + 1;
 					}
 				}
@@ -190,6 +190,8 @@
 				$flag	= "Y";
 			else
 				$flag	= "N";
+
+			$flag 	= $flag."||".$cate_1."||".$cate_2."||".$cate_3; 
 			echo $flag;
 		break;
 
@@ -538,6 +540,7 @@
 			$innerHTML	.= "<th>1번 카테고리</th>";
 			$innerHTML	.= "<th>2번 카테고리</th>";
 			$innerHTML	.= "<th>3번 카테고리</th>";
+			$innerHTML	.= "<th>카테고리 이미지</th>";
 			$innerHTML	.= "<th>카테고리 명</th>";
 			$innerHTML	.= "<th>PC 화면 노출여부</th>";
 			$innerHTML	.= "<th>MOBILE 화면 노출여부</th>";
@@ -554,6 +557,7 @@
 				$innerHTML	.= "<td>".$list_data['cate_1']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_2']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_3']."</td>";
+				$innerHTML	.= "<td><image src='".$list_data['cate_img_url']."'></td>";
 				$innerHTML	.= "<td>".$list_data['cate_name']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_pcYN']."</td>";
 				$innerHTML	.= "<td>".$list_data['cate_mobileYN']."</td>";
@@ -1187,15 +1191,17 @@
 
 		case "update_option_info" :
 			$best_goods_flag			= $_REQUEST['best_goods_flag'];
-			$new_goods_flag			= $_REQUEST['new_goods_flag'];
+			$new_goods_flag				= $_REQUEST['new_goods_flag'];
 			$plan_goods_flag			= $_REQUEST['plan_goods_flag'];
 			$cate_goods_flag			= $_REQUEST['cate_goods_flag'];
-			$best_goods_flagYN		= $_REQUEST['best_goods_flagYN'];
-			$new_goods_flagYN		= $_REQUEST['new_goods_flagYN'];
-			$plan_goods_flagYN		= $_REQUEST['plan_goods_flagYN'];
-			$cate_goods_flagYN		= $_REQUEST['cate_goods_flagYN'];
-			$default_saved_priceYN	= $_REQUEST['default_saved_priceYN'];
-			$default_saved_price	= $_REQUEST['default_saved_price'];
+			$best_goods_flagYN			= $_REQUEST['best_goods_flagYN'];
+			$new_goods_flagYN			= $_REQUEST['new_goods_flagYN'];
+			$plan_goods_flagYN			= $_REQUEST['plan_goods_flagYN'];
+			$cate_goods_flagYN			= $_REQUEST['cate_goods_flagYN'];
+			$default_saved_priceYN		= $_REQUEST['default_saved_priceYN'];
+			$default_saved_price		= $_REQUEST['default_saved_price'];
+			$default_delivery_price 	= $_REQUEST['default_delivery_price'];
+			$default_delivery_priceYN 	= $_REQUEST['default_delivery_priceYN'];
 
 			$option1_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$best_goods_flag."', option_load='".$best_goods_flagYN."' WHERE option_name='best_goods_flag'"; 
 			$option1_result		= mysqli_query($my_db, $option1_query);
@@ -1212,7 +1218,10 @@
 			$option5_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_saved_price."', option_load='".$default_saved_priceYN."' WHERE option_name='default_saved_price'"; 
 			$option5_result		= mysqli_query($my_db, $option5_query);
 
-			if ($option5_result)
+			$option6_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_delivery_price."', option_load='".$default_delivery_priceYN."' WHERE option_name='default_delivery_price'"; 
+			$option6_result		= mysqli_query($my_db, $option6_query);
+
+			if ($option6_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";
