@@ -75,7 +75,8 @@
                     <select id="banner_type">
                       <option value="">선택하세요</option>
                       <option value="main_rolling_banner">메인 롤링 배너</option>
-                      <option value="main_image_banner">메인 이미지 배너</option>
+                      <option value="main_top_banner">메인 상단 배너</option>
+                      <option value="main_middle_banner">메인 중단 배너</option>
                     </select>
                   </td>
                 </tr>

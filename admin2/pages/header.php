@@ -1,5 +1,9 @@
 <?
 	include_once "../../config.php";
+
+	if (!$_SESSION['ss_admin_id'] && strpos($_SERVER['PHP_SELF'], "login.php") !== false)
+		echo "<script>location.href='login.php'</script>";
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
