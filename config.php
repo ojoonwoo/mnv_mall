@@ -2,7 +2,7 @@
 	//session_save_path($_SERVER['DOCUMENT_ROOT']."/session");
 	ini_set("session.cache_expire", 180); // 세션 유효시간 : 분
 	ini_set("session.gc_maxlifetime", 180); // 세션 가비지 컬렉션(로그인시 세션지속 시간) :
-	//session_start();
+	session_start();
 //	session_destroy();
 	header("Content-Type: text/html; charset=UTF-8");
 	//환경설정 파일
