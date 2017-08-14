@@ -77,7 +77,7 @@
 				$tel = '';
 			}else{
 				$tel = $tel1 . '-' . $tel2 . '-' . $tel3;
-			} 
+			}
 
 				$phone = $phone1 . '-' . $phone2 . '-' . $phone3;
 
@@ -190,8 +190,8 @@
 			}
 
 			$birth = $birthY . $birthM . $birthD;
-			
-			
+
+
 
 			$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$password."'),mb_name='".$username."',mb_birth='".$birth."',mb_address1='".$addr1."',mb_address2='".$addr2."',mb_zipcode='".$zipcode."',mb_telphone='".$tel."',mb_handphone='".$phone."',mb_smsYN='".$smsYN."',mb_email='".$email."',mb_emailYN='".$emailYN."',mb_update_date='".date("Y-m-d H:i:s")."' WHERE mb_id='".$user_id."'";
 			$update_result   = mysqli_query($my_db, $update_query);
@@ -204,28 +204,28 @@
 			echo $flag;
 
 		break;
-		
+
 		case "sear_id":
 			$mb_name = $_REQUEST['mb_name'];
 			$mb_email = $_REQUEST['mb_email'];
-			
+
 			$query		= "SELECT mb_id FROM ".$_gl['member_info_table']." WHERE mb_name='".$mb_name."' AND mb_email='".$mb_email."'";
 			$result		= mysqli_query($my_db, $query);
 			$data 		= mysqli_fetch_array($result);
-			
+
 			if($data){
 				$replace_id = substr_replace($data['mb_id'], "***", -3);
 				$flag = "Y||".$replace_id;
 			}else{
 				$flag = "N||none";
 			}
-			
+
 			echo $flag;
-			
+
 		break;
-			
+
 		case "sear_pass":
-			
+
 			$mb_id = $_REQUEST['mb_id'];
 			$mb_name = $_REQUEST['mb_name'];
 			$mb_email = $_REQUEST['mb_email'];
@@ -239,7 +239,7 @@
 				//$password = create_hash($temp_pw);
 				$update_query = "UPDATE ".$_gl['member_info_table']." SET mb_password=MD5('".$temp_pw."') WHERE mb_id='".$data['mb_id']."' AND mb_name='".$data['mb_name']."' AND mb_email='".$data['mb_email']."'";
 				$update_result   = mysqli_query($my_db, $update_query);
-				
+
 				if($update_result)
 				{
 					$mail_result = sendMail(
@@ -279,13 +279,13 @@
 				}else{
 					$flag = "E"; // 비밀번호 업데이트 오류
 				}
-				
+
 			}else{
 				$flag = "N"; // 입력한 정보의 회원이 없음
 			}
 
 			echo $flag;
-			
+
 		break;
 
 // 회원수정시 회원본인인지 체크 --------------------------> 현재 안쓰는 코드
@@ -348,7 +348,7 @@
 			$max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
 			$max_idx = $max_thread_fetch[1]+1;
 
-			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr)
 			VALUES('".$max_idx."','".$max_thread."',0,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
 
 			$i_result = mysqli_query($my_db, $i_query); // 글 저장
@@ -362,7 +362,7 @@
 			echo $flag;
 
 		break;
-			
+
 		case "write_qna":
 
 			$user_id = $_REQUEST['user_id'];
@@ -377,7 +377,7 @@
 			$max_thread = ceil($max_thread_fetch[0]/1000)*1000+1000;
 			$max_idx = $max_thread_fetch[1]+1;
 
-			$i_query = "INSERT INTO ".$_gl['board_qna_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+			$i_query = "INSERT INTO ".$_gl['board_qna_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr)
 			VALUES('".$max_idx."','".$max_thread."',0,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
 
 			$i_result = mysqli_query($my_db, $i_query); // 글 저장
@@ -447,7 +447,7 @@
 			echo $flag;
 
 		break;
-			
+
 		case "edit_qna":
 
 			$user_id       = $_REQUEST['user_id'];
@@ -519,12 +519,12 @@
 			//만약 부모글이 2000이면 prev_parent_thread는 1000이므로 2000> x >1000 인 x 글들을 모두 -1 한다.
 
 			$u_query = "UPDATE ".$_gl['board_review_table']." SET thread=thread-1 WHERE thread > '".$prev_parent_thread."' AND thread < '".$p_thread."'";
-			$result = mysqli_query ($my_db, $u_query); 
+			$result = mysqli_query ($my_db, $u_query);
 
 			//원본글보다는 1 작은 값으로 답글을 등록한다.
 			//원본글의 바로 밑에 등록되게 된다.
 			//depth는 원본글의 depth + 1 이다. 원본글이 3(이글도 답글)이면 답글은 4가된다.
-			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+			$i_query = "INSERT INTO ".$_gl['board_review_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr)
 						VALUES ('".$parent_gID."','".$p_thread."'-1,'".$p_depth."'+1,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
 			$result = mysqli_query($my_db, $i_query);
 
@@ -537,7 +537,7 @@
 			echo $flag;
 
 		break;
-			
+
 		case "reply_qna":
 
 			$user_id = $_REQUEST['user_id'];
@@ -555,12 +555,12 @@
 			//만약 부모글이 2000이면 prev_parent_thread는 1000이므로 2000> x >1000 인 x 글들을 모두 -1 한다.
 
 			$u_query = "UPDATE ".$_gl['board_qna_table']." SET thread=thread-1 WHERE thread > '".$prev_parent_thread."' AND thread < '".$p_thread."'";
-			$result = mysqli_query ($my_db, $u_query); 
+			$result = mysqli_query ($my_db, $u_query);
 
 			//원본글보다는 1 작은 값으로 답글을 등록한다.
 			//원본글의 바로 밑에 등록되게 된다.
 			//depth는 원본글의 depth + 1 이다. 원본글이 3(이글도 답글)이면 답글은 4가된다.
-			$i_query = "INSERT INTO ".$_gl['board_qna_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr) 
+			$i_query = "INSERT INTO ".$_gl['board_qna_table']."(group_id, thread, depth, user_id, goods_code, subject, content, date, ipaddr)
 						VALUES ('".$parent_gID."','".$p_thread."'-1,'".$p_depth."'+1,'".$user_id."','".$goods_code."','".$subject."','".$content."','".date('Y-m-d H:i:s')."','".$_SERVER['REMOTE_ADDR']."')";
 			$result = mysqli_query($my_db, $i_query);
 
@@ -611,7 +611,7 @@
 
 			echo $flag;
 		break;
-			
+
 		case "delete_qna":
 
 			$user_id = $_REQUEST['user_id'];
@@ -855,7 +855,7 @@
 					$i++;
 					continue;
 				}
-				
+
 				if($direction == "cart")
 				{
 					$cart_query 	= "UPDATE ".$_gl['mycart_info_table']." SET showYN='N' WHERE idx='".$val."' AND mb_id='".$mb_id."'";
@@ -890,7 +890,7 @@
 		case "show_cate_goods_list" :
 			$cate1			= $_REQUEST['cate1'];
 			$cate2			= $_REQUEST['cate2'];
-			
+
 			if ($cate2 == "0")
 				$where	= "";
 			else
@@ -914,7 +914,7 @@
 					$current_price	= $list_data['discount_price'];
 
 				$percent_num	= ceil(100 - (($list_data['discount_price'] / $list_data['sales_price'])*100));
-				
+
 				if ($i % 4 == 0)
 					$innerHTML		.= '<div class="list_product clearfix">';
 
@@ -962,9 +962,9 @@
 					$current_price	= $list_data['sales_price'];
 				else
 					$current_price	= $list_data['discount_price'];
-				
+
 				$percent_num	= ceil(100 - (($list_data['discount_price'] / $list_data['sales_price'])*100));
-				
+
 				if ($i % 4 == 0)
 					$innerHTML		.= '<div class="list_product clearfix">';
 
@@ -984,7 +984,7 @@
 					$innerHTML		.= '</div>';
 				$i++;
 			}
-			
+
 			echo $innerHTML;
 		break;
 
@@ -1036,12 +1036,12 @@
 				/*
 				 * [결제 인증요청 페이지(STEP2-1)]
 				 *
-				 * 샘플페이지에서는 기본 파라미터만 예시되어 있으며, 별도로 필요하신 파라미터는 연동메뉴얼을 참고하시어 추가 하시기 바랍니다.     
+				 * 샘플페이지에서는 기본 파라미터만 예시되어 있으며, 별도로 필요하신 파라미터는 연동메뉴얼을 참고하시어 추가 하시기 바랍니다.
 				 */
 
 				/*
 				 * 1. 기본결제 인증요청 정보 변경
-				 * 
+				 *
 				 * 기본정보를 변경하여 주시기 바랍니다.(파라미터 전달시 POST를 사용하세요)
 				 */
 				$CST_PLATFORM						= "test";                        //LG유플러스 결제 서비스 선택(test:테스트, service:서비스)
@@ -1060,35 +1060,35 @@
 				$LGD_PRODUCTINFO					= $show_goods_name;                     //상품명
 				$LGD_BUYEREMAIL						= $order_email;                      //구매자 이메일
 				$LGD_TIMESTAMP						= date("YmdHis");                                  //타임스탬프
-				$LGD_OSTYPE_CHECK					= "P";                                           //값 P: XPay 실행(PC 결제 모듈): PC용과 모바일용 모듈은 파라미터 및 프로세스가 다르므로 PC용은 PC 웹브라우저에서 실행 필요. 
+				$LGD_OSTYPE_CHECK					= "P";                                           //값 P: XPay 실행(PC 결제 모듈): PC용과 모바일용 모듈은 파라미터 및 프로세스가 다르므로 PC용은 PC 웹브라우저에서 실행 필요.
 																							 //"P", "M" 외의 문자(Null, "" 포함)는 모바일 또는 PC 여부를 체크하지 않음
 				//$LGD_ACTIVEXYN						= "N";											 //계좌이체 결제시 사용, ActiveX 사용 여부로 "N" 이외의 값: ActiveX 환경에서 계좌이체 결제 진행(IE)
-																							 
+
 				$LGD_CUSTOM_SKIN					= "red";                                         //상점정의 결제창 스킨
 				$LGD_CUSTOM_USABLEPAY			= $USABLEPAY;        	     //디폴트 결제수단 (해당 필드를 보내지 않으면 결제수단 선택 UI 가 노출됩니다.)
 				$LGD_WINDOW_VER					= "2.5";										 //결제창 버젼정보
 				$LGD_WINDOW_TYPE					= "iframe";					 //결제창 호출방식 (수정불가)
-				$LGD_CUSTOM_SWITCHINGTYPE	= "IFRAME";            //신용카드 카드사 인증 페이지 연동 방식 (수정불가)  
+				$LGD_CUSTOM_SWITCHINGTYPE	= "IFRAME";            //신용카드 카드사 인증 페이지 연동 방식 (수정불가)
 				$LGD_CUSTOM_PROCESSTYPE		= "TWOTR";                                       //수정불가
 
 				/*
-				 * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다. 
-				 */    
-				$LGD_CASNOTEURL					= "http://store-chon.com/cas_noteurl.php";    
+				 * 가상계좌(무통장) 결제 연동을 하시는 경우 아래 LGD_CASNOTEURL 을 설정하여 주시기 바랍니다.
+				 */
+				$LGD_CASNOTEURL					= "http://store-chon.com/cas_noteurl.php";
 
 				/*
 				 * LGD_RETURNURL 을 설정하여 주시기 바랍니다. 반드시 현재 페이지와 동일한 프로트콜 및  호스트이어야 합니다. 아래 부분을 반드시 수정하십시요.
-				 */    
-				$LGD_RETURNURL						= "http://store-chon.com/returnurl.php";  
+				 */
+				$LGD_RETURNURL						= "http://store-chon.com/returnurl.php";
 
 
-				$configPath								= $_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.     
+				$configPath								= $_SERVER['DOCUMENT_ROOT']."/lib/LGU+_XPay_Crossplatform_PHP/lgdacom";                                  //LG유플러스에서 제공한 환경파일("/conf/lgdacom.conf") 위치 지정.
 
 				/*
 				 *************************************************
 				 * 2. MD5 해쉬암호화 (수정하지 마세요) - BEGIN
-				 * 
-				 * MD5 해쉬암호화는 거래 위변조를 막기위한 방법입니다. 
+				 *
+				 * MD5 해쉬암호화는 거래 위변조를 막기위한 방법입니다.
 				 *************************************************
 				 *
 				 * 해쉬 암호화 적용( LGD_MID + LGD_OID + LGD_AMOUNT + LGD_TIMESTAMP + LGD_MERTKEY )
@@ -1105,7 +1105,7 @@
 				$xpay = &new XPayClient($configPath, $CST_PLATFORM);
 				$xpay->Init_TX($LGD_MID);
 				$LGD_HASHDATA = md5($LGD_MID.$LGD_OID.$LGD_AMOUNT.$LGD_TIMESTAMP.$xpay->config[$LGD_MID]);
-				
+
 				/*
 				 *************************************************
 				 * 2. MD5 해쉬암호화 (수정하지 마세요) - END
@@ -1135,14 +1135,14 @@
 				$payReqMap['LGD_VERSION']						= "PHP_Non-ActiveX_Standard";	// 버전정보 (삭제하지 마세요)
 				$payReqMap['LGD_CUSTOM_USABLEPAY']			= $LGD_CUSTOM_USABLEPAY;	// 디폴트 결제수단
 				$payReqMap['LGD_CUSTOM_SWITCHINGTYPE']	= $LGD_CUSTOM_SWITCHINGTYPE;// 신용카드 카드사 인증 페이지 연동 방식
-				$payReqMap['LGD_OSTYPE_CHECK']				= $LGD_OSTYPE_CHECK;        // 값 P: XPay 실행(PC용 결제 모듈), PC, 모바일 에서 선택적으로 결제가능 
+				$payReqMap['LGD_OSTYPE_CHECK']				= $LGD_OSTYPE_CHECK;        // 값 P: XPay 실행(PC용 결제 모듈), PC, 모바일 에서 선택적으로 결제가능
 				//$payReqMap['LGD_ACTIVEXYN']					= $LGD_ACTIVEXYN;			// 계좌이체 결제시 사용,ActiveX 사용 여부
 				$payReqMap['LGD_WINDOW_VER'] 					= $LGD_WINDOW_VER;
 				$payReqMap['LGD_ENCODING'] 						= "UTF-8";
 				$payReqMap['LGD_ENCODING_NOTEURL'] 		= "UTF-8";
 				$payReqMap['LGD_ENCODING_RETURNURL'] 		= "UTF-8";
 
-				
+
 				// 가상계좌(무통장) 결제연동을 하시는 경우  할당/입금 결과를 통보받기 위해 반드시 LGD_CASNOTEURL 정보를 LG 유플러스에 전송해야 합니다 .
 				$payReqMap['LGD_CASNOTEURL'] = $LGD_CASNOTEURL;               // 가상계좌 NOTEURL
 

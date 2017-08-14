@@ -1,7 +1,7 @@
 <?
 /*
 *
-*	php function 
+*	php function
 *
 */
 
@@ -291,7 +291,7 @@ function load_option()
 * $SUBJECT : 메일 제목
 * $CONTENT : 메일 내용
 * $MAILTO : 받는 사람 메일 주소
-* $MAILTONAME : 받는 사람 이름 
+* $MAILTONAME : 받는 사람 이름
 */
 function sendMail($EMAIL, $NAME, $SUBJECT, $CONTENT, $MAILTO, $MAILTONAME){
 	$mail             = new PHPMailer();
@@ -376,7 +376,7 @@ function select_shop_config_info()
 
 function create_cartid()
 {
-	$randcode = md5( mktime() . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] ); ;
+	$randcode = md5( time() . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'] ); 
 
 	return $randcode; // 난수 생성
 }
