@@ -3,9 +3,9 @@
 	include_once $_SERVER['DOCUMENT_ROOT']."/config.php";
 	include_once $_mnv_PC_dir."header.php";
 
-	$ordertype	= $_REQUEST['ordertype'];
+	$order_type	= $_REQUEST['ordertype'];
 
-	$order_info	= select_order_goods($ordertype);
+	$order_info	= select_order_goods($order_type);
 
 	if ($_SESSION['ss_chon_id'])
 	{
