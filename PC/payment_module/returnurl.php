@@ -4,6 +4,7 @@
   세션 유지 시간(로그인 유지시간)을 적당히 유지 하거나 세션을 사용하지 않는 경우 DB처리 하시기 바랍니다.
 */
   session_start();
+  print_r($_SESSION['PAYREQ_MAP']);
   if(!isset($_SESSION['PAYREQ_MAP'])){
   	echo "세션이 만료 되었거나 유효하지 않은 요청 입니다.";
   	return;
@@ -13,7 +14,7 @@
 <html>
 <head>
 	<script type="text/javascript">
-	
+
 		function setLGDResult() {
 			parent.payment_return();
 			try {
@@ -21,7 +22,7 @@
 				alert(e.message);
 			}
 		}
-		
+
 	</script>
 </head>
 <body onload="setLGDResult()">
